@@ -1,0 +1,121 @@
+---
+import { faq } from "../data/faq";
+---
+
+<section id="sss" class="section section-alt">
+  <div class="container">
+    <header class="section-head section-head-center">
+      <p class="eyebrow">Sıkça sorulanlar</p>
+      <h2>Çolakoğlu Emlak — SSS</h2>
+      <p class="section-desc">
+        En çok merak edilen sorular ve net cevapları. Daha fazlasını
+        soracaksanız <a href="#iletisim">iletişim formundan</a> yazın.
+      </p>
+    </header>
+
+    <div class="faq-list">
+      {
+        faq.map((item, i) => (
+          <details class="faq-item" open={i === 0}>
+            <summary>
+              <span class="faq-q">{item.question}</span>
+              <span class="faq-toggle" aria-hidden="true">+</span>
+            </summary>
+            <div class="faq-a">
+              <p>{item.answer}</p>
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-list {
+    display: grid;
+    gap: 0.85rem;
+    max-width: 880px;
+    margin-inline: auto;
+  }
+
+  .faq-item {
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .faq-item[open] {
+    border-color: rgba(212, 175, 55, 0.35);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  }
+
+  .faq-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.15rem 1.4rem;
+    cursor: pointer;
+    list-style: none;
+    transition: background 0.2s;
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-item summary:hover {
+    background: rgba(212, 175, 55, 0.05);
+  }
+
+  .faq-q {
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-ink);
+    line-height: 1.35;
+  }
+
+  .faq-toggle {
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--color-gold);
+    transition: transform 0.25s var(--ease-out);
+    flex-shrink: 0;
+    line-height: 1;
+    width: 1.5rem;
+    text-align: center;
+  }
+
+  .faq-item[open] .faq-toggle {
+    transform: rotate(45deg);
+  }
+
+  .faq-a {
+    padding: 0 1.4rem 1.4rem;
+  }
+
+  .faq-a p {
+    margin: 0;
+    color: var(--color-ink-muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 640px) {
+    .faq-item summary {
+      padding: 1rem 1.1rem;
+    }
+
+    .faq-q {
+      font-size: 1rem;
+    }
+
+    .faq-a {
+      padding: 0 1.1rem 1.1rem;
+    }
+  }
+</style>

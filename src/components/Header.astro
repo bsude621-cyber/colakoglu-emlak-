@@ -1,0 +1,44 @@
+---
+import { site } from "../data/config";
+---
+
+<header class="site-header" data-header>
+  <div class="container header-inner">
+    <a href="/" class="logo" aria-label={`${site.name} ana sayfa`}>
+      <img
+        class="logo-symbol"
+        src="/images/logo-mark.png"
+        alt=""
+        width="415"
+        height="445"
+        loading="eager"
+        decoding="async"
+      />
+      <span class="logo-text">
+        <span class="logo-name">Çolakoğlu</span>
+        <span class="logo-tag">Emlak</span>
+      </span>
+    </a>
+    <button
+      type="button"
+      class="nav-toggle"
+      aria-expanded="false"
+      aria-controls="site-nav"
+      data-nav-toggle
+    >
+      <span class="nav-toggle-bar"></span>
+      <span class="nav-toggle-bar"></span>
+      <span class="visually-hidden">Menü</span>
+    </button>
+    <nav id="site-nav" class="site-nav" data-nav>
+      <ul>
+        <li><a href="/#hizmetler">Hizmetler</a></li>
+        <li><a href="/#surec">Süreç</a></li>
+        <li><a href="/#hakkimizda">Hakkımızda</a></li>
+        <li><a href="/#bolgeler">Bölgeler</a></li>
+        <li><a href="/#sss">SSS</a></li>
+        <li><a href="/#iletisim" class="nav-cta">İletişim</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>

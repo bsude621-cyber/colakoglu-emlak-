@@ -1,0 +1,245 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { regions, type Region } from "../../data/regions";
+import { site } from "../../data/config";
+
+export async function getStaticPaths() {
+  return regions.map((r) => ({
+    params: { ilce: r.slug },
+    props: { region: r },
+  }));
+}
+
+interface Props {
+  region: Region;
+}
+
+const { region } = Astro.props;
+const title = `${region.fullName} | ${site.name}`;
+const description = region.intro.slice(0, 155);
+const canonical = `${site.url}/bolgeler/${region.slug}/`;
+
+const breadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: site.url },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Bölgeler",
+      item: `${site.url}/#bolgeler`,
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: region.name,
+      item: canonical,
+    },
+  ],
+};
+
+const placePage = {
+  "@context": "https://schema.org",
+  "@type": "Place",
+  "@id": `${canonical}#place`,
+  name: region.fullName,
+  description: region.intro,
+  url: canonical,
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: region.geo.lat,
+    longitude: region.geo.lng,
+  },
+  containedInPlace: {
+    "@type": "AdministrativeArea",
+    name: "Muğla",
+  },
+};
+
+const realEstateService = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "@id": `${canonical}#service`,
+  name: `${region.name} gayrimenkul danışmanlığı`,
+  description: `${region.name}'de konut, arsa ve ticari gayrimenkul alım-satım, kiralama, değerleme ve yatırım danışmanlığı. ${region.intro}`,
+  serviceType: "Gayrimenkul danışmanlığı",
+  provider: { "@id": `${site.url}/#organization` },
+  areaServed: {
+    "@type": "City",
+    name: region.name,
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: region.geo.lat,
+      longitude: region.geo.lng,
+    },
+  },
+  category: region.segments,
+};
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  jsonLd={[breadcrumb, placePage, realEstateService]}
+>
+  <Header />
+  <main id="main" class="region-page">
+    <section class="region-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Sayfa konumu">
+          <a href="/">Ana Sayfa</a>
+          <span aria-hidden="true">›</span>
+          <a href="/#bolgeler">Bölgeler</a>
+          <span aria-hidden="true">›</span>
+          <span aria-current="page">{region.name}</span>
+        </nav>
+        <p class="eyebrow">Muğla · Bölge sayfası</p>
+        <h1>{region.fullName}</h1>
+        <p class="region-intro">{region.intro}</p>
+        <div class="region-actions">
+          <a href="/#iletisim" class="btn btn-primary">{region.name} için danışmanlık alın</a>
+          <a href="/#surec" class="btn btn-ghost">Nasıl çalışırız</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">Bölge profili</p>
+          <h2>{region.name} gayrimenkul piyasası</h2>
+        </header>
+        <ul class="checklist region-highlights">
+          {region.highlights.map((h) => <li>{h}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">Segmentler</p>
+          <h2>{region.name}'de hizmet verdiğimiz gayrimenkul tipleri</h2>
+        </header>
+        <div class="region-segments">
+          {region.segments.map((s) => <span>{s}</span>)}
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="container region-cta">
+        <h2>{region.name}'de gayrimenkul mü arıyorsunuz?</h2>
+        <p>
+          Çolakoğlu Emlak ekibi {region.name} piyasasını yakından takip eder.
+          Bütçenize ve beklentinize uygun portföy için bize ulaşın.
+        </p>
+        <a href="/#iletisim" class="btn btn-primary">İletişim formunu doldur</a>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .region-page {
+    padding-top: var(--header-h);
+  }
+
+  .region-hero {
+    padding: 4rem 0 3rem;
+    background:
+      linear-gradient(180deg, rgba(15, 26, 46, 0.95), rgba(10, 14, 20, 0.85)),
+      radial-gradient(circle at 20% 20%, rgba(107, 155, 209, 0.18), transparent 55%);
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    font-size: 0.8rem;
+    color: var(--color-ink-muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .breadcrumb a {
+    color: var(--color-ink-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .breadcrumb [aria-current="page"] {
+    color: var(--color-ink);
+  }
+
+  .region-hero h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    line-height: 1.05;
+    color: #fff;
+    margin: 0 0 1rem;
+  }
+
+  .region-intro {
+    max-width: 56ch;
+    color: rgba(233, 237, 245, 0.82);
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin: 0 0 1.5rem;
+  }
+
+  .region-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .region-highlights {
+    max-width: 60ch;
+    font-size: 1rem;
+  }
+
+  .region-segments {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+  }
+
+  .region-segments span {
+    padding: 0.55rem 1.1rem;
+    background: var(--color-surface);
+    border-radius: 999px;
+    font-size: 0.9rem;
+    border: 1px solid var(--color-line);
+    color: var(--color-ink);
+  }
+
+  .region-cta {
+    text-align: center;
+    max-width: 640px;
+    margin-inline: auto;
+  }
+
+  .region-cta h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    margin: 0 0 1rem;
+    color: var(--color-ink);
+  }
+
+  .region-cta p {
+    color: var(--color-ink-muted);
+    margin: 0 0 1.5rem;
+  }
+</style>

@@ -1,0 +1,114 @@
+---
+// Hero slider — 4 slayt
+// Görseller şimdilik Unsplash placeholder. Çolakoğlu portföy fotoğrafları gelince değiştirilecek.
+// [[BİLGİ GEREK: Çolakoğlu'nun gerçek portföy fotoğrafları (4 adet, Bodrum/Marmaris/Fethiye/Muğla genel)]]
+
+const slides = [
+  {
+    image:
+      "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1920&q=85",
+    caption:
+      "Bodrum'dan Fethiye'ye, Ege kıyısında satış ve kiralama danışmanlığı.",
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1920&q=85",
+    caption:
+      "Villa ve özel konutlarda seçkin portföy ve gizlilik odaklı hizmet.",
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1920&q=85",
+    caption:
+      "Arsa ve yatırım projelerinde hukuki süreçlerle birlikte güvenilir eşlik.",
+  },
+  {
+    image:
+      "https://images.unsplash.com/photo-1566073771259-6a850609994f?auto=format&fit=crop&w=1920&q=85",
+    caption: "Muğla genelinde yerel bilgi, güçlü ağ ve profesyonel değerleme.",
+  },
+];
+---
+
+<section
+  class="hero-slider"
+  id="acilis"
+  data-hero-slider
+  aria-roledescription="carousel"
+  aria-label="Çolakoğlu Emlak tanıtım görselleri"
+>
+  <div class="hero-slider__slides" aria-hidden="true">
+    {
+      slides.map((slide, i) => (
+        <div
+          class={`hero-slide${i === 0 ? " is-active" : ""}`}
+          data-slide
+          aria-hidden={i === 0 ? "false" : "true"}
+          data-caption={slide.caption}
+        >
+          <div
+            class="hero-slide__bg"
+            style={`background-image: url('${slide.image}')`}
+          />
+          <div class="hero-slide__scrim" />
+        </div>
+      ))
+    }
+  </div>
+
+  <div class="hero-slider__ui">
+    <div class="container hero-slider__inner">
+      <div class="experience-badge" aria-label="25 yıllık sektör tecrübesi">
+        <span class="experience-badge__year">25+</span>
+        <span class="experience-badge__label">
+          <span>Yıllık</span>
+          <span>Tecrübe</span>
+        </span>
+      </div>
+      <p class="hero-slider__kicker">Muğla · Gayrimenkul danışmanlığı</p>
+      <h1 class="hero-slider__title">Çolakoğlu Emlak</h1>
+      <p class="hero-slider__slogan">"Emlakçılıkta Güven Esastır"</p>
+      <p
+        class="hero-slider__caption"
+        data-slider-caption
+        aria-live="polite"
+      >
+        {slides[0].caption}
+      </p>
+      <div class="hero-slider__actions">
+        <a href="#iletisim" class="btn btn-primary">Danışmanlık alın</a>
+        <a href="#hakkimizda" class="btn btn-ghost">Bizi tanıyın</a>
+      </div>
+      <div class="hero-slider__toolbar">
+        <button
+          type="button"
+          class="hero-slider__arrow"
+          data-slider-prev
+          aria-label="Önceki görsel"
+        >
+          <span aria-hidden="true">‹</span>
+        </button>
+        <div
+          class="hero-slider__dots"
+          data-slider-dots
+          role="tablist"
+          aria-label="Slayt seçimi"
+        >
+        </div>
+        <button
+          type="button"
+          class="hero-slider__arrow"
+          data-slider-next
+          aria-label="Sonraki görsel"
+        >
+          <span aria-hidden="true">›</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <a class="hero-slider__scroll" href="#hizmetler">
+    <span>Keşfet</span>
+    <span class="hero-slider__scroll-line" aria-hidden="true"></span>
+  </a>
+</section>

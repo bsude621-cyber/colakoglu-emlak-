@@ -1,0 +1,318 @@
+---
+import { site, services } from "../data/config";
+import { regions } from "../data/regions";
+import { faq } from "../data/faq";
+
+const baseUrl = site.url;
+const orgId = `${baseUrl}/#organization`;
+const websiteId = `${baseUrl}/#website`;
+const placeId = `${baseUrl}/#place`;
+const founderId = `${baseUrl}/#founder`;
+
+// TEMFED + Esnaf Odası + Dernek entity'leri — memberOf otorite sinyali için ayrı node'lar
+const orgaIds = {
+  esnafOdasi: `${baseUrl}/#org-esnaf-odasi`,
+  dernek: `${baseUrl}/#org-dernek`,
+  temfed: `${baseUrl}/#org-temfed`,
+};
+
+const graph = {
+  "@context": "https://schema.org",
+  "@graph": [
+    // 1) Ana iş varlığı — RealEstateAgent
+    {
+      "@type": ["RealEstateAgent", "LocalBusiness", "Organization"],
+      "@id": orgId,
+      name: site.name,
+      legalName: site.legalName,
+      url: baseUrl,
+      sameAs: [site.alternateDomain],
+      logo: `${baseUrl}/images/logo.png`,
+      image: `${baseUrl}/images/ziya-ercan-portre.jpg`,
+      description: site.description,
+      slogan: site.tagline,
+      foundingDate: String(site.foundingYear),
+      telephone: site.contact.phone,
+      email: site.contact.email,
+      priceRange: "₺₺₺",
+      currenciesAccepted: "TRY, EUR, USD, GBP",
+      paymentAccepted: "Cash, Bank Transfer",
+      founder: { "@id": founderId },
+      employee: [{ "@id": founderId }],
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: site.address.street,
+        addressLocality: site.address.locality,
+        addressRegion: site.address.region,
+        postalCode: site.address.postalCode,
+        addressCountry: site.address.country,
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: site.geo.latitude,
+        longitude: site.geo.longitude,
+      },
+      areaServed: regions.map((r) => ({
+        "@type": "City",
+        name: r.name,
+        containedInPlace: {
+          "@type": "AdministrativeArea",
+          name: "Muğla",
+        },
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: r.geo.lat,
+          longitude: r.geo.lng,
+        },
+      })),
+      makesOffer: services.map((s) => ({
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: s.name,
+          description: s.description,
+          serviceType: s.name,
+          provider: { "@id": orgId },
+          areaServed: { "@id": placeId },
+        },
+      })),
+      knowsAbout: [
+        "Gayrimenkul danışmanlığı",
+        "Konut satış danışmanlığı",
+        "Konut kiralama",
+        "Villa satışı",
+        "Arsa yatırım danışmanlığı",
+        "Ticari gayrimenkul danışmanlığı",
+        "Gayrimenkul değerleme",
+        "Tapu süreçleri",
+        "İmar danışmanlığı",
+        "Yabancı yatırımcı danışmanlığı",
+        "Muğla emlak piyasası",
+        ...regions.map((r) => `${r.name} gayrimenkul danışmanlığı`),
+      ],
+      knowsLanguage: [
+        { "@type": "Language", name: "Turkish", alternateName: "tr" },
+        { "@type": "Language", name: "English", alternateName: "en" },
+      ],
+      openingHoursSpecification: [
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+          ],
+          opens: "09:00",
+          closes: "18:30",
+        },
+      ],
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          telephone: site.contact.phone,
+          email: site.contact.email,
+          contactType: "customer service",
+          areaServed: "TR",
+          availableLanguage: ["Turkish", "English"],
+        },
+        {
+          "@type": "ContactPoint",
+          telephone: site.contact.mobile,
+          contactType: "sales",
+          areaServed: "TR",
+          availableLanguage: ["Turkish", "English"],
+        },
+      ],
+    },
+
+    // 2) Founder Person — Ziya Ercan (otorite çekirdeği)
+    {
+      "@type": "Person",
+      "@id": founderId,
+      name: site.owner.name,
+      givenName: "Ziya",
+      familyName: "Ercan",
+      image: `${baseUrl}/images/ziya-ercan-portre.jpg`,
+      jobTitle: site.owner.jobTitle,
+      worksFor: { "@id": orgId },
+      affiliation: [
+        { "@id": orgaIds.esnafOdasi },
+        { "@id": orgaIds.dernek },
+        { "@id": orgaIds.temfed },
+      ],
+      memberOf: [
+        {
+          "@type": "OrganizationRole",
+          roleName: "Başkan",
+          memberOf: { "@id": orgaIds.esnafOdasi },
+        },
+        {
+          "@type": "OrganizationRole",
+          roleName: "Başkan",
+          memberOf: { "@id": orgaIds.dernek },
+        },
+        {
+          "@type": "OrganizationRole",
+          roleName: "Genel Başkan Yardımcısı",
+          memberOf: { "@id": orgaIds.temfed },
+        },
+      ],
+      hasOccupation: {
+        "@type": "Occupation",
+        name: "Emlak Müşaviri",
+        occupationLocation: { "@id": placeId },
+        skills:
+          "Gayrimenkul danışmanlığı, değerleme, yabancı yatırımcı süreçleri, tapu ve imar süreçleri",
+      },
+      knowsAbout: [
+        "Muğla emlak piyasası",
+        "Türkiye emlak sektörü mevzuatı",
+        "Yabancı yatırımcı vatandaşlık süreçleri",
+        "Emlak müşavirliği etik standartları",
+        "Gayrimenkul değerleme",
+      ],
+      knowsLanguage: ["Turkish", "English"],
+      description: `${site.experienceYears} yıllık tecrübeyle Muğla emlak sektörünün meslek odası başkanı, derneği başkanı ve TEMFED Genel Başkan Yardımcısı. Çolakoğlu Emlak'ın kurucusu.`,
+    },
+
+    // 3) Esnaf Odası (otorite organizasyonu)
+    {
+      "@type": "Organization",
+      "@id": orgaIds.esnafOdasi,
+      name: "Muğla Emlak Danışmanları Esnaf Odası",
+      description:
+        "Muğla ili emlak danışmanlarının yasal meslek temsilcisi olan esnaf odası. TC Esnaf ve Sanatkârlar Konfederasyonu (TESK) çatısı altında faaliyet gösterir.",
+      areaServed: {
+        "@type": "AdministrativeArea",
+        name: "Muğla",
+      },
+    },
+
+    // 4) Dernek
+    {
+      "@type": "Organization",
+      "@id": orgaIds.dernek,
+      name: "Muğla Emlak Müşavirleri Derneği",
+      description:
+        "Muğla ili emlak müşavirlerinin sektörel ve sosyal birlik amacıyla kurduğu mesleki dernek.",
+      areaServed: {
+        "@type": "AdministrativeArea",
+        name: "Muğla",
+      },
+    },
+
+    // 5) TEMFED (ulusal federasyon — tanınırlık)
+    {
+      "@type": "Organization",
+      "@id": orgaIds.temfed,
+      name: "TEMFED — Türkiye Tüm Emlak Müşavirleri Federasyonu",
+      alternateName: "TEMFED",
+      description:
+        "Türkiye'deki emlak müşavirleri derneklerini bir araya getiren ulusal federasyon. Sektörel standartların belirlenmesi ve meslek mensuplarının haklarının savunulması amaçlarıyla faaliyet gösterir.",
+      url: "https://temfed.org.tr",
+      areaServed: {
+        "@type": "Country",
+        name: "Türkiye",
+      },
+    },
+
+    // 6) WebSite
+    {
+      "@type": "WebSite",
+      "@id": websiteId,
+      url: baseUrl,
+      name: site.name,
+      description: site.description,
+      publisher: { "@id": orgId },
+      inLanguage: "tr-TR",
+      potentialAction: {
+        "@type": "SearchAction",
+        target: {
+          "@type": "EntryPoint",
+          urlTemplate: `${baseUrl}/?q={search_term_string}`,
+        },
+        "query-input": "required name=search_term_string",
+      },
+    },
+
+    // 7) Place (Muğla operasyon alanı)
+    {
+      "@type": "Place",
+      "@id": placeId,
+      name: "Muğla ve çevresi",
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: site.geo.latitude,
+        longitude: site.geo.longitude,
+      },
+      containsPlace: regions.map((r) => ({
+        "@type": "City",
+        name: r.name,
+        url: `${baseUrl}/bolgeler/${r.slug}/`,
+      })),
+    },
+
+    // 8) WebPage (ana sayfa)
+    {
+      "@type": "WebPage",
+      "@id": `${baseUrl}/#webpage`,
+      url: baseUrl,
+      name: `${site.name} | ${site.tagline}`,
+      description: site.description,
+      isPartOf: { "@id": websiteId },
+      about: { "@id": orgId },
+      mainEntity: { "@id": orgId },
+      inLanguage: "tr-TR",
+      primaryImageOfPage: `${baseUrl}/og-default.jpg`,
+    },
+
+    // 9) BreadcrumbList (ana sayfa)
+    {
+      "@type": "BreadcrumbList",
+      "@id": `${baseUrl}/#breadcrumb`,
+      itemListElement: [
+        {
+          "@type": "ListItem",
+          position: 1,
+          name: "Ana Sayfa",
+          item: baseUrl,
+        },
+      ],
+    },
+
+    // 10) Service entity'leri (her hizmet ayrı, AEO için)
+    ...services.map((s) => ({
+      "@type": "Service",
+      "@id": `${baseUrl}/#service-${s.slug}`,
+      name: s.name,
+      description: s.description,
+      provider: { "@id": orgId },
+      serviceType: s.name,
+      areaServed: { "@id": placeId },
+      audience: {
+        "@type": "Audience",
+        audienceType: "Gayrimenkul alıcı ve satıcıları",
+      },
+    })),
+
+    // 11) FAQPage (AEO altın madeni — content'le birebir)
+    {
+      "@type": "FAQPage",
+      "@id": `${baseUrl}/#faq`,
+      mainEntity: faq.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: item.answer,
+        },
+      })),
+    },
+  ],
+};
+---
+
+<script type="application/ld+json" set:html={JSON.stringify(graph)} />

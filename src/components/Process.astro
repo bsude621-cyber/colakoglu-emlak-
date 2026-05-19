@@ -1,0 +1,169 @@
+---
+// Süreç — Çolakoğlu Emlak danışmanlık akışı.
+// Generic şablon (sektör standartı). [[BİLGİ GEREK: Ziya Ercan onayı ile özelleştirilecek
+// — gerçek süreç farklıysa adımlar yeniden yazılacak]]
+const steps = [
+  {
+    number: "01",
+    title: "Tanışma",
+    description:
+      "İlk görüşmede ihtiyacınızı, beklentinizi ve bütçenizi dinleriz. Alıcı veya satıcı olun, doğru sorularla resmi netleştiririz. Telefon, ofis veya sahada — sizin için uygun yerde.",
+    duration: "~30 dakika",
+  },
+  {
+    number: "02",
+    title: "Saha ve piyasa analizi",
+    description:
+      "Aradığınız bölgede güncel piyasa verilerini, benzer satışları ve fiyat trendlerini paylaşırız. Satıcıysanız gayrimenkulünüz için piyasa karşılaştırmalı değerleme raporu hazırlarız.",
+    duration: "1-3 gün",
+  },
+  {
+    number: "03",
+    title: "Eşleştirme ve görüntüleme",
+    description:
+      "Portföyümüzden ve geniş bayi ağımızdan size uygun seçenekleri filtreleriz. Sahada eşlik eder, tapu/imar/yapı durumunu yerinde inceleriz. Yabancı yatırımcılara dil desteği veririz.",
+    duration: "süreç boyunca",
+  },
+  {
+    number: "04",
+    title: "Hukuki süreç ve teslim",
+    description:
+      "Tapu, vergi, sözleşme aşamalarında güvenilir hukuk ve mali müşavir iş ortaklarıyla koordineli ilerleriz. Teslim sonrası 6 ay danışmanlık desteği devam eder.",
+    duration: "1-4 hafta",
+  },
+];
+---
+
+<section id="surec" class="section">
+  <div class="container">
+    <header class="section-head section-head-center">
+      <p class="eyebrow">Nasıl çalışıyoruz</p>
+      <h2>Çolakoğlu Emlak süreci</h2>
+      <p class="section-desc">
+        Şeffaf, ölçülebilir ve baştan sona eşlikli bir süreç. Hangi adımdayız,
+        ne bekleyebilirsiniz — sürpriz yok.
+      </p>
+    </header>
+
+    <ol class="process-steps">
+      {
+        steps.map((step) => (
+          <li class="process-step">
+            <div class="process-step-marker">
+              <span class="process-step-number">{step.number}</span>
+            </div>
+            <div class="process-step-body">
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+              <p class="process-step-duration">⏱ {step.duration}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .process-steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 1.5rem;
+    counter-reset: process;
+    max-width: 920px;
+    margin-inline: auto;
+  }
+
+  .process-step {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+    align-items: flex-start;
+    background: var(--color-surface);
+    padding: 1.75rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-line);
+    box-shadow: var(--shadow-card);
+    transition:
+      transform 0.25s var(--ease-out),
+      box-shadow 0.25s,
+      border-color 0.25s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .process-step::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 3px;
+    background: var(--color-gold);
+    opacity: 0.85;
+  }
+
+  .process-step:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+    border-color: rgba(212, 175, 55, 0.28);
+  }
+
+  .process-step-marker {
+    display: grid;
+    place-items: center;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(160deg, #1c2a45 0%, #0f1724 100%);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    flex-shrink: 0;
+  }
+
+  .process-step-number {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: #f0f4fa;
+    letter-spacing: 0.02em;
+  }
+
+  .process-step-body h3 {
+    font-family: var(--font-serif);
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+    color: var(--color-ink);
+  }
+
+  .process-step-body p {
+    margin: 0 0 0.5rem;
+    color: var(--color-ink-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .process-step-duration {
+    font-size: 0.8rem !important;
+    color: var(--color-eyebrow) !important;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    margin-top: 0.75rem !important;
+  }
+
+  @media (max-width: 640px) {
+    .process-step {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+
+    .process-step-marker {
+      width: 52px;
+      height: 52px;
+    }
+
+    .process-step-number {
+      font-size: 1.15rem;
+    }
+  }
+</style>

@@ -1,0 +1,193 @@
+---
+import { site } from "../data/config";
+
+// Form Web3Forms ile backend'siz çalışır.
+// [[BİLGİ GEREK: Web3Forms access_key — Sude oluşturup .env'e koyacak (PUBLIC_WEB3FORMS_KEY)]]
+const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HERE";
+---
+
+<section id="iletisim" class="section section-contact">
+  <div class="container contact-grid">
+    <div>
+      <p class="eyebrow">İletişim</p>
+      <h2>Bir kahve içmeye bekleriz</h2>
+      <p class="section-desc">
+        Portföyünüzü değerlendirmek veya aradığınız gayrimenkulü birlikte
+        netleştirmek için arayın, yazın ya da formu doldurun — en kısa sürede
+        dönüş yapalım.
+      </p>
+
+      <address class="contact-block">
+        <p>
+          <strong>Sahibi</strong><br />
+          Ziya Ercan
+        </p>
+        <p>
+          <strong>İş telefonu</strong><br />
+          <a href={`tel:${site.contact.phone}`}>{site.contact.phoneDisplay}</a>
+        </p>
+        <p>
+          <strong>GSM</strong><br />
+          <a href={`tel:${site.contact.mobile}`}>{site.contact.mobileDisplay}</a>
+        </p>
+        <p>
+          <strong>E-posta</strong><br />
+          <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>
+        </p>
+        {site.contact.whatsapp && (
+          <p>
+            <strong>WhatsApp</strong><br />
+            <a
+              href={`https://wa.me/${site.contact.whatsapp}`}
+              target="_blank"
+              rel="noopener"
+            >
+              {site.contact.mobileDisplay}
+            </a>
+          </p>
+        )}
+      </address>
+
+      <div class="trust-badges">
+        <p class="trust-badges-title">Mesleki üyelikler</p>
+        <ul>
+          {site.memberships.map((m) => (
+            <li>
+              <strong>{m.role}</strong> — {m.name}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <form
+      class="contact-form"
+      data-contact-form
+      action="https://api.web3forms.com/submit"
+      method="POST"
+    >
+      <input type="hidden" name="access_key" value={accessKey} />
+      <input
+        type="hidden"
+        name="subject"
+        value="Çolakoğlu Emlak — Yeni iletişim formu"
+      />
+      <input
+        type="hidden"
+        name="from_name"
+        value="Çolakoğlu Emlak Web Sitesi"
+      />
+      <input
+        type="checkbox"
+        name="botcheck"
+        class="visually-hidden"
+        tabindex="-1"
+        autocomplete="off"
+      />
+      <label>
+        <span>Ad Soyad</span>
+        <input
+          type="text"
+          name="name"
+          required
+          autocomplete="name"
+          placeholder="Adınız Soyadınız"
+        />
+      </label>
+      <label>
+        <span>Telefon</span>
+        <input
+          type="tel"
+          name="phone"
+          required
+          autocomplete="tel"
+          placeholder="05xx xxx xx xx"
+        />
+      </label>
+      <label>
+        <span>E-posta</span>
+        <input
+          type="email"
+          name="email"
+          autocomplete="email"
+          placeholder="ornek@eposta.com"
+        />
+      </label>
+      <label>
+        <span>İlgi alanı</span>
+        <select name="interest">
+          <option value="">Seçiniz</option>
+          <option>Satılık konut</option>
+          <option>Kiralık konut</option>
+          <option>Arsa / arazi</option>
+          <option>Ticari</option>
+          <option>Değerleme</option>
+          <option>Yatırım danışmanlığı</option>
+        </select>
+      </label>
+      <label>
+        <span>Bölge</span>
+        <select name="region">
+          <option value="">Seçiniz</option>
+          <option>Bodrum</option>
+          <option>Marmaris</option>
+          <option>Fethiye</option>
+          <option>Milas</option>
+          <option>Datça</option>
+          <option>Köyceğiz</option>
+          <option>Ortaca</option>
+          <option>Dalaman</option>
+          <option>Muğla geneli</option>
+        </select>
+      </label>
+      <label>
+        <span>Mesajınız</span>
+        <textarea
+          name="message"
+          rows="4"
+          placeholder="Bütçe, lokasyon ve zaman çizelgeniz..."></textarea>
+      </label>
+      <button type="submit" class="btn btn-primary btn-block">Gönder</button>
+      <p class="form-hint" data-form-status role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<style>
+  .trust-badges {
+    margin-top: 2rem;
+    padding: 1.25rem;
+    background: rgba(212, 175, 55, 0.05);
+    border: 1px solid rgba(212, 175, 55, 0.18);
+    border-radius: var(--radius-md);
+  }
+
+  .trust-badges-title {
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-eyebrow);
+    margin: 0 0 0.75rem;
+    font-weight: 600;
+  }
+
+  .trust-badges ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .trust-badges li {
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: var(--color-ink-muted);
+  }
+
+  .trust-badges strong {
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+</style>

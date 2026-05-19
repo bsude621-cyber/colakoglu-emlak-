@@ -1,0 +1,46 @@
+---
+import { regions } from "../data/regions";
+---
+
+<section id="bolgeler" class="section section-alt">
+  <div class="container">
+    <header class="section-head section-head-center">
+      <p class="eyebrow">Operasyon alanı</p>
+      <h2>Muğla ve çevresi</h2>
+      <p class="section-desc">
+        Her ilçenin gayrimenkul karakterini ayrı ayrı tanıyor, bölgeye özel
+        strateji üretiyoruz.
+      </p>
+    </header>
+    <div class="regions">
+      {
+        regions.map((r) => (
+          <a
+            href={`/bolgeler/${r.slug}/`}
+            aria-label={`${r.name} gayrimenkul detayı`}
+          >
+            <span>{r.name}</span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .regions a {
+    text-decoration: none;
+  }
+  .regions a:hover span {
+    background: rgba(212, 175, 55, 0.08);
+    border-color: rgba(212, 175, 55, 0.4);
+    color: var(--color-ink);
+  }
+  .regions span {
+    transition:
+      background 0.2s,
+      border-color 0.2s,
+      color 0.2s;
+    cursor: pointer;
+  }
+</style>

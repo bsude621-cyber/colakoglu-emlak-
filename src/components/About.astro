@@ -1,0 +1,248 @@
+---
+import { site } from "../data/config";
+// Hakkımızda — Ziya Ercan tanıtım merkezli.
+// Sol: gerçek portre fotoğrafı + altında kısa bilgi (deneyim, isim, unvan)
+// Sağ: detaylı tanıtım, üç unvan kartları, alıntı
+---
+
+<section id="hakkimizda" class="section section-split">
+  <div class="container split">
+    <aside class="split-portrait">
+      <div class="portrait-frame">
+        <img
+          src="/images/ziya-ercan-portre.jpg"
+          alt="Ziya Ercan — Çolakoğlu Emlak Kurucusu"
+          width="600"
+          height="800"
+          loading="lazy"
+          decoding="async"
+        />
+        <div class="portrait-frame__border" aria-hidden="true"></div>
+      </div>
+      <div class="portrait-info">
+        <p class="portrait-name">Ziya Ercan</p>
+        <p class="portrait-role">Çolakoğlu Emlak Kurucusu</p>
+        <div class="portrait-meta">
+          <div
+            class="experience-badge experience-badge--inline"
+            aria-label="25 yıllık tecrübe"
+          >
+            <span class="experience-badge__year">{site.experienceYears}+</span>
+            <span class="experience-badge__label">
+              <span>Yıllık</span>
+              <span>Tecrübe</span>
+            </span>
+          </div>
+          <div class="portrait-meta-divider"></div>
+          <div class="portrait-meta-item">
+            <span class="portrait-meta-value">3</span>
+            <span class="portrait-meta-label">mesleki başkanlık</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="split-content">
+      <p class="eyebrow">{site.name}</p>
+      <h2>"Emlakçılıkta Güven Esastır"</h2>
+      <p class="lead-paragraph">
+        Çolakoğlu Emlak, <strong>Ziya Ercan</strong> liderliğinde
+        <strong>{site.experienceYears} yıllık tecrübeyle</strong> Muğla
+        genelinde gayrimenkul danışmanlığı sunar. Bölgenin meslek odası,
+        derneği ve ulusal federasyon temsilciliği bizde — bu, sıradan bir
+        emlak ofisi değil, sektörün kendi temsilcisi anlamına gelir.
+      </p>
+
+      <div class="title-cards">
+        {
+          site.owner.titles.map((title) => (
+            <div class="title-card">
+              <span class="title-card-icon" aria-hidden="true">
+                ★
+              </span>
+              <span class="title-card-text">{title}</span>
+            </div>
+          ))
+        }
+      </div>
+
+      <ul class="checklist">
+        <li>Meslek odası başkanlığı — sektörel etik standartların belirleyicisi</li>
+        <li>Ulusal federasyon temsilciliği (TEMFED) — Türkiye genelinde tanınırlık</li>
+        <li>Muğla'nın 8 ilçesinde yerel piyasa derinliği</li>
+        <li>Yabancı yatırımcı süreçlerinde dil ve hukuk desteği</li>
+      </ul>
+
+      <blockquote class="quote">
+        <p>
+          "Bir emlakçı sadece konut göstermez — ailenin yıllarca yaşayacağı
+          kararı şekillendirir. Bu sorumluluk, mesleğimizi sıradan bir
+          ticaretten ayırır."
+        </p>
+        <cite>— Ziya Ercan</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<style>
+  .split-portrait {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    position: relative;
+  }
+
+  .portrait-frame {
+    position: relative;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    aspect-ratio: 3 / 4;
+    background: var(--color-surface);
+  }
+
+  .portrait-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: saturate(0.95) contrast(1.05);
+    transition: transform 0.5s var(--ease-out), filter 0.4s;
+  }
+
+  .portrait-frame:hover img {
+    transform: scale(1.02);
+    filter: saturate(1) contrast(1.05);
+  }
+
+  .portrait-frame__border {
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    pointer-events: none;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  }
+
+  .portrait-frame::after {
+    content: "";
+    position: absolute;
+    inset: -12px;
+    border: 1px solid rgba(212, 175, 55, 0.4);
+    border-radius: calc(var(--radius-lg) + 8px);
+    opacity: 0.65;
+    pointer-events: none;
+  }
+
+  .portrait-info {
+    text-align: center;
+    padding: 0.5rem 0;
+  }
+
+  .portrait-name {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0 0 0.2rem;
+    letter-spacing: 0.01em;
+  }
+
+  .portrait-role {
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-eyebrow);
+    margin: 0 0 1.25rem;
+    font-weight: 500;
+  }
+
+  .portrait-meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .portrait-meta-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+  }
+
+  .portrait-meta-value {
+    font-family: var(--font-serif);
+    font-size: 1.85rem;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1;
+  }
+
+  .portrait-meta-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--color-ink-muted);
+  }
+
+  .portrait-meta-divider {
+    width: 1px;
+    height: 32px;
+    background: linear-gradient(
+      180deg,
+      transparent,
+      rgba(212, 175, 55, 0.5),
+      transparent
+    );
+  }
+
+  .lead-paragraph {
+    font-size: 1.05rem;
+    color: var(--color-ink);
+  }
+
+  .lead-paragraph strong {
+    color: #fff;
+    font-weight: 600;
+  }
+
+  .title-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    margin: 1.5rem 0;
+  }
+
+  .title-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.85rem;
+    padding: 0.9rem 1.1rem;
+    background: rgba(212, 175, 55, 0.08);
+    border-left: 3px solid var(--color-gold);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  }
+
+  .title-card-icon {
+    color: var(--color-gold);
+    font-size: 0.95rem;
+    line-height: 1.5;
+    flex-shrink: 0;
+  }
+
+  .title-card-text {
+    font-size: 0.92rem;
+    line-height: 1.5;
+    color: var(--color-ink);
+    font-weight: 500;
+  }
+
+  @media (max-width: 900px) {
+    .portrait-frame {
+      max-width: 360px;
+      margin-inline: auto;
+    }
+  }
+</style>

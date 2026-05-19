@@ -1,0 +1,40 @@
+# Çolakoğlu Emlak
+
+> Muğla genelinde **Ziya Ercan** liderliğinde gayrimenkul danışmanlığı sunan ofis. Ziya Ercan; **Muğla Emlak Danışmanları Esnaf Odası Başkanı**, **Muğla Emlak Müşavirleri Derneği Başkanı** ve **TEMFED (Türkiye Tüm Emlak Müşavirleri Federasyonu) Genel Başkan Yardımcısı**. Bodrum, Marmaris, Fethiye, Milas, Datça, Köyceğiz, Ortaca ve Dalaman ilçelerinde aktif.
+
+## Kim
+Çolakoğlu Emlak, sektörün meslek odası başkanı tarafından yönetilen Muğla merkezli gayrimenkul danışmanlık ofisidir. Mesleki etik standartların belirleyicisi konumundadır.
+
+## Hizmetler
+- Satış ve kiralama danışmanlığı (konut, villa, arsa, ticari)
+- Yatırım danışmanlığı (bölgesel trend analizi, portföy çeşitlendirme)
+- Değerleme ve raporlama (piyasa karşılaştırmalı analiz)
+- Hukuki eşlik (tapu, imar, sözleşme süreçleri)
+
+## Operasyon alanı
+- [Bodrum](https://colakogluemlak.com/bolgeler/bodrum/) — lüks villa, marina, yat turizmi, yabancı yatırımcı
+- [Marmaris](https://colakogluemlak.com/bolgeler/marmaris/) — tatil dairesi, yat liman çevresi
+- [Fethiye](https://colakogluemlak.com/bolgeler/fethiye/) — yabancı yatırımcı, doğa turizmi
+- [Milas](https://colakogluemlak.com/bolgeler/milas/) — havalimanı yakın, tarım arazisi, zeytinlik
+- [Datça](https://colakogluemlak.com/bolgeler/datca/) — premium villa, sınırlı imar
+- [Köyceğiz](https://colakogluemlak.com/bolgeler/koycegiz/) — göl manzaralı konut, kaplıca turizmi
+- [Ortaca](https://colakogluemlak.com/bolgeler/ortaca/) — Sarıgerme turizm, tarım yatırımı
+- [Dalaman](https://colakogluemlak.com/bolgeler/dalaman/) — havalimanı çevresi, lojistik
+
+## Otorite & üyelikler
+- Muğla Emlak Danışmanları Esnaf Odası — Başkanlık (Ziya Ercan)
+- Muğla Emlak Müşavirleri Derneği — Başkanlık (Ziya Ercan)
+- TEMFED Genel Başkan Yardımcılığı (Ziya Ercan) — https://temfed.org.tr
+
+## İletişim
+- Sahibi: Ziya Ercan
+- İş telefonu: 0252 212 50 15
+- GSM: 0532 316 82 30
+- E-posta: nilercan@gmail.com
+- Web: https://colakogluemlak.com
+- Bölge: Muğla, Türkiye
+- Çalışma saatleri: Pazartesi-Cumartesi 09:00-18:30
+
+## Optional
+- [Tüm sayfa içerikleri](https://colakogluemlak.com/llms-full.txt)
+- [Site haritası](https://colakogluemlak.com/sitemap-index.xml)

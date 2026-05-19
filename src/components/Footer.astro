@@ -1,0 +1,188 @@
+---
+import { site } from "../data/config";
+---
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-col footer-brand-col">
+      <div class="footer-brand">
+        <img
+          class="logo-symbol footer-symbol"
+          src="/images/logo-mark.png"
+          alt=""
+          width="415"
+          height="445"
+          loading="lazy"
+          decoding="async"
+        />
+        <div>
+          <strong>{site.name}</strong>
+          <p>{site.tagline}</p>
+        </div>
+      </div>
+      <p class="footer-blurb">
+        Ziya Ercan liderliğinde, Muğla emlak sektörünün meslek odası, derneği
+        ve ulusal federasyon temsilcisi.
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h4>Unvanlar</h4>
+      <ul class="footer-list">
+        {site.owner.titles.map((title) => (
+          <li>{title}</li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>İletişim</h4>
+      <ul class="footer-list">
+        <li>
+          <a href={`tel:${site.contact.phone}`}>{site.contact.phoneDisplay}</a>
+          <span class="footer-list-tag">İş</span>
+        </li>
+        <li>
+          <a href={`tel:${site.contact.mobile}`}>{site.contact.mobileDisplay}</a>
+          <span class="footer-list-tag">GSM</span>
+        </li>
+        <li>
+          <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>
+        </li>
+        {site.contact.whatsapp && (
+          <li>
+            <a
+              href={`https://wa.me/${site.contact.whatsapp}`}
+              target="_blank"
+              rel="noopener"
+            >
+              WhatsApp
+            </a>
+          </li>
+        )}
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Bölgeler</h4>
+      <ul class="footer-list footer-regions">
+        <li><a href="/bolgeler/bodrum/">Bodrum</a></li>
+        <li><a href="/bolgeler/marmaris/">Marmaris</a></li>
+        <li><a href="/bolgeler/fethiye/">Fethiye</a></li>
+        <li><a href="/bolgeler/milas/">Milas</a></li>
+        <li><a href="/bolgeler/datca/">Datça</a></li>
+        <li><a href="/bolgeler/koycegiz/">Köyceğiz</a></li>
+        <li><a href="/bolgeler/ortaca/">Ortaca</a></li>
+        <li><a href="/bolgeler/dalaman/">Dalaman</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <div class="container footer-inner">
+      <p class="footer-copy">
+        © <span data-year></span> {site.name}. Tüm hakları saklıdır.
+      </p>
+      <a href="#main" class="footer-top">Yukarı çık ↑</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: 2.5rem;
+    padding-bottom: 2.5rem;
+    padding-top: 1rem;
+  }
+
+  @media (max-width: 900px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .footer-brand-col {
+      grid-column: 1 / -1;
+    }
+  }
+
+  @media (max-width: 560px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .footer-symbol {
+    width: 52px;
+    height: 52px;
+  }
+
+  .footer-col h4 {
+    font-family: var(--font-serif);
+    font-size: 1rem;
+    margin: 0 0 1rem;
+    color: #fff;
+    letter-spacing: 0.02em;
+  }
+
+  .footer-blurb {
+    margin: 1rem 0 0;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.65);
+    max-width: 28ch;
+  }
+
+  .footer-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    font-size: 0.88rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .footer-list li {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .footer-list a {
+    color: rgba(255, 255, 255, 0.78);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-list a:hover {
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .footer-list-tag {
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-eyebrow);
+    background: rgba(212, 175, 55, 0.1);
+    padding: 0.1rem 0.45rem;
+    border-radius: 999px;
+  }
+
+  .footer-regions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.4rem 1rem;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 1.25rem 0;
+  }
+</style>

@@ -1,0 +1,155 @@
+---
+// Mesleki üyelikler bandı — TEMFED + Muğla Emlak Danışmanları Esnaf Odası logoları.
+// Bu bant otorite sinyali olarak About bölümünden hemen sonra gösterilir.
+// Schema'da memberOf entity'leri ile birebir eşleşir.
+import { site } from "../data/config";
+---
+
+<section class="memberships" aria-label="Mesleki üyelikler">
+  <div class="container">
+    <p class="memberships-title">
+      Sektörel temsil ve mesleki üyelikler
+    </p>
+
+    <div class="memberships-grid">
+      <div class="membership-card">
+        <span class="membership-card-mark" aria-hidden="true">★</span>
+        <div class="membership-card-body">
+          <p class="membership-card-role">Başkan</p>
+          <h3>Muğla Emlak Danışmanları Esnaf Odası</h3>
+          <p class="membership-card-note">
+            Muğla ili emlak danışmanlarının yasal meslek temsilcisi
+          </p>
+        </div>
+      </div>
+
+      <div class="membership-card">
+        <span class="membership-card-mark" aria-hidden="true">★</span>
+        <div class="membership-card-body">
+          <p class="membership-card-role">Başkan</p>
+          <h3>Muğla Emlak Müşavirleri Derneği</h3>
+          <p class="membership-card-note">
+            Bölgesel emlak müşavirlerinin mesleki birliği
+          </p>
+        </div>
+      </div>
+
+      <div class="membership-card membership-card--highlight">
+        <span class="membership-card-mark" aria-hidden="true">★</span>
+        <div class="membership-card-body">
+          <p class="membership-card-role">Genel Başkan Yardımcısı</p>
+          <h3>TEMFED</h3>
+          <p class="membership-card-note">
+            Türkiye Tüm Emlak Müşavirleri Federasyonu — ulusal sektörel temsil
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .memberships {
+    padding: 4rem 0;
+    background:
+      linear-gradient(180deg, rgba(15, 26, 46, 0.6), rgba(10, 14, 20, 0.95)),
+      radial-gradient(
+        circle at 30% 20%,
+        rgba(212, 175, 55, 0.18),
+        transparent 55%
+      );
+    border-top: 1px solid var(--color-line);
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .memberships-title {
+    text-align: center;
+    font-size: 0.78rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-eyebrow);
+    font-weight: 600;
+    margin: 0 0 2.5rem;
+  }
+
+  .memberships-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 900px) {
+    .memberships-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .membership-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.5rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    transition:
+      transform 0.25s var(--ease-out),
+      border-color 0.25s,
+      box-shadow 0.25s;
+  }
+
+  .membership-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(212, 175, 55, 0.5);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .membership-card--highlight {
+    background: linear-gradient(
+      155deg,
+      rgba(212, 175, 55, 0.18) 0%,
+      var(--color-surface) 100%
+    );
+    border-color: rgba(212, 175, 55, 0.4);
+  }
+
+  .membership-card-mark {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: rgba(212, 175, 55, 0.22);
+    color: var(--color-eyebrow);
+    font-size: 1rem;
+    border: 1px solid rgba(212, 175, 55, 0.5);
+  }
+
+  .membership-card-role {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-eyebrow);
+    margin: 0 0 0.3rem;
+    font-weight: 600;
+  }
+
+  .membership-card-body h3 {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    margin: 0 0 0.4rem;
+    color: var(--color-ink);
+    line-height: 1.25;
+  }
+
+  .membership-card-note {
+    font-size: 0.85rem;
+    color: var(--color-ink-muted);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+</style>
