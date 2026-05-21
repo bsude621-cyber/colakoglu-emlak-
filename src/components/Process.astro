@@ -1,7 +1,8 @@
 ---
 // Süreç — Çolakoğlu Emlak danışmanlık akışı.
-// Generic şablon (sektör standartı). [[BİLGİ GEREK: Ziya Ercan onayı ile özelleştirilecek
-// — gerçek süreç farklıysa adımlar yeniden yazılacak]]
+// Koyu bölüm + bağlı dikey zaman çizgisi: süreç bir "yolculuk" gibi okunur.
+// [[BİLGİ GEREK: Ziya Ercan onayı ile özelleştirilecek — gerçek süreç farklıysa
+// adımlar yeniden yazılacak]]
 const steps = [
   {
     number: "01",
@@ -21,7 +22,7 @@ const steps = [
     number: "03",
     title: "Eşleştirme ve görüntüleme",
     description:
-      "Portföyümüzden ve geniş bayi ağımızdan size uygun seçenekleri filtreleriz. Sahada eşlik eder, tapu/imar/yapı durumunu yerinde inceleriz. Yabancı yatırımcılara dil desteği veririz.",
+      "Geniş bayi ağımızdan size uygun seçenekleri filtreleriz. Sahada eşlik eder, tapu/imar/yapı durumunu yerinde inceleriz. Yabancı yatırımcılara dil desteği veririz.",
     duration: "süreç boyunca",
   },
   {
@@ -34,28 +35,44 @@ const steps = [
 ];
 ---
 
-<section id="surec" class="section">
+<section id="surec" class="section section-process">
   <div class="container">
-    <header class="section-head section-head-center">
-      <p class="eyebrow">Nasıl çalışıyoruz</p>
+    <header class="section-head section-head-center process-head">
+      <p class="eyebrow">Nasıl Çalışıyoruz</p>
       <h2>Çolakoğlu Emlak süreci</h2>
       <p class="section-desc">
-        Şeffaf, ölçülebilir ve baştan sona eşlikli bir süreç. Hangi adımdayız,
-        ne bekleyebilirsiniz — sürpriz yok.
+        Şeffaf, ölçülebilir ve baştan sona eşlikli bir süreç. Hangi adımda
+        olduğunuzu hep bilirsiniz — sürpriz yok.
       </p>
     </header>
 
-    <ol class="process-steps">
+    <ol class="process-timeline">
       {
         steps.map((step) => (
           <li class="process-step">
-            <div class="process-step-marker">
-              <span class="process-step-number">{step.number}</span>
+            <div class="process-step-rail">
+              <span class="process-step-node">{step.number}</span>
             </div>
             <div class="process-step-body">
               <h3>{step.title}</h3>
               <p>{step.description}</p>
-              <p class="process-step-duration"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.6V12l3.1 2.2"/></svg>{step.duration}</p>
+              <p class="process-step-duration">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="14"
+                  height="14"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <circle cx="12" cy="12" r="8.5" />
+                  <path d="M12 7.6V12l3.1 2.2" />
+                </svg>
+                {step.duration}
+              </p>
             </div>
           </li>
         ))
@@ -65,112 +82,137 @@ const steps = [
 </section>
 
 <style>
-  .process-steps {
+  .section-process {
+    background: var(--color-wood-deep, #1e2a34);
+  }
+
+  .process-head .eyebrow {
+    color: var(--color-gold-bright);
+  }
+
+  .process-head h2 {
+    color: #fff;
+  }
+
+  .process-head .section-desc {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .process-timeline {
+    position: relative;
     list-style: none;
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
-    display: grid;
-    gap: 1.5rem;
-    counter-reset: process;
-    max-width: 920px;
-    margin-inline: auto;
+    max-width: 720px;
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+  }
+
+  /* Bağlı zaman çizgisi — düğümlerin ortasından geçer */
+  .process-timeline::before {
+    content: "";
+    position: absolute;
+    left: 31px;
+    top: 31px;
+    bottom: 31px;
+    width: 2px;
+    transform: translateX(-1px);
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(168, 127, 94, 0.55) 9%,
+      rgba(168, 127, 94, 0.55) 91%,
+      transparent 100%
+    );
   }
 
   .process-step {
     display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 1.5rem;
-    align-items: flex-start;
-    background: var(--color-surface);
-    padding: 1.75rem;
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--color-line);
-    box-shadow: var(--shadow-card);
-    transition:
-      transform 0.25s var(--ease-out),
-      box-shadow 0.25s,
-      border-color 0.25s;
+    grid-template-columns: 62px 1fr;
+    gap: 1.6rem;
+    align-items: start;
+  }
+
+  .process-step-rail {
+    width: 62px;
+  }
+
+  .process-step-node {
     position: relative;
-    overflow: hidden;
-  }
-
-  .process-step::before {
-    content: "";
-    position: absolute;
-    inset: 0 auto 0 0;
-    width: 3px;
-    background: var(--color-gold);
-    opacity: 0.85;
-  }
-
-  .process-step:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-soft);
-    border-color: var(--color-navy);
-  }
-
-  .process-step-marker {
+    z-index: 1;
+    width: 62px;
+    height: 62px;
     display: grid;
     place-items: center;
-    width: 64px;
-    height: 64px;
-    border-radius: var(--radius-md);
+    border-radius: 50%;
     background: var(--color-navy);
-    flex-shrink: 0;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--color-gold-bright);
+    transition:
+      border-color 0.25s var(--ease-out),
+      transform 0.25s var(--ease-out);
   }
 
-  .process-step-number {
-    font-family: var(--font-serif);
-    font-size: 1.35rem;
-    font-weight: 800;
-    color: #fff;
-    letter-spacing: -0.01em;
+  .process-step:hover .process-step-node {
+    border-color: var(--color-gold);
+    transform: scale(1.06);
+  }
+
+  .process-step-body {
+    padding-top: 0.35rem;
   }
 
   .process-step-body h3 {
     font-family: var(--font-serif);
-    font-size: 1.35rem;
-    font-weight: 600;
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: #fff;
     margin: 0 0 0.5rem;
-    color: var(--color-ink);
   }
 
   .process-step-body p {
-    margin: 0 0 0.5rem;
-    color: var(--color-ink-muted);
-    font-size: 0.95rem;
-    line-height: 1.6;
+    margin: 0;
+    font-size: 0.97rem;
+    line-height: 1.62;
+    color: rgba(255, 255, 255, 0.7);
   }
 
   .process-step-duration {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
-    font-size: 0.8rem !important;
-    color: var(--color-eyebrow) !important;
-    font-weight: 600;
-    letter-spacing: 0.02em;
     margin-top: 0.85rem !important;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-gold-bright) !important;
   }
 
-  .process-step-duration svg {
-    width: 14px;
-    height: 14px;
-  }
+  @media (max-width: 560px) {
+    .process-timeline::before {
+      left: 25px;
+    }
 
-  @media (max-width: 640px) {
     .process-step {
-      grid-template-columns: 1fr;
-      gap: 1rem;
+      grid-template-columns: 50px 1fr;
+      gap: 1.1rem;
     }
 
-    .process-step-marker {
-      width: 52px;
-      height: 52px;
+    .process-step-rail {
+      width: 50px;
     }
 
-    .process-step-number {
-      font-size: 1.15rem;
+    .process-step-node {
+      width: 50px;
+      height: 50px;
+      font-size: 1.1rem;
     }
   }
 </style>
