@@ -10,30 +10,31 @@
   --color-ink: #28323b;
   --color-ink-muted: #5d6873;
 
-  /* Lacivert — ana koyu renk (footer + üyelikler + aksan) */
-  --color-wood: #2b3a47;
-  --color-wood-deep: #1e2a34;
-  --color-wood-light: #3a4b59;
-  --color-navy: #2b3a47;
+  /* Lacivert — ana koyu renk, canlı + pigmentli + koyu */
+  --color-wood: #1f2c4c;
+  --color-wood-deep: #141d39;
+  --color-wood-light: #34426d;
+  --color-navy: #1f2c4c;
+  --color-navy-deep: #141d39;
 
   /* Aksan / bağlantı — lacivert */
-  --color-accent: #2b3a47;
-  --color-accent-deep: #1e2a34;
-  --color-accent-soft: rgba(43, 58, 71, 0.08);
-  --color-deep: #1e2a34;
-  --color-line: rgba(40, 54, 65, 0.13);
-  --color-line-soft: rgba(40, 54, 65, 0.07);
+  --color-accent: #1f2c4c;
+  --color-accent-deep: #141d39;
+  --color-accent-soft: rgba(31, 44, 76, 0.09);
+  --color-deep: #141d39;
+  --color-line: rgba(31, 44, 76, 0.15);
+  --color-line-soft: rgba(31, 44, 76, 0.08);
 
-  /* Kahve — ikincil aksan */
-  --color-gold: #8a6347;
-  --color-gold-bright: #a87f5e;
-  --color-gold-deep: #6f4e37;
-  --color-gold-soft: rgba(138, 99, 71, 0.1);
+  /* Kahve — ikincil aksan, canlı cognac */
+  --color-gold: #a9682c;
+  --color-gold-bright: #cd8f4b;
+  --color-gold-deep: #7d4818;
+  --color-gold-soft: rgba(169, 104, 44, 0.12);
 
-  /* Eyebrow — kahve */
-  --color-eyebrow: #6f4e37;
-  --color-eyebrow-muted: rgba(111, 78, 55, 0.82);
-  --color-eyebrow-on-dark: #b89478;
+  /* Eyebrow — canlı kahve */
+  --color-eyebrow: #8c5320;
+  --color-eyebrow-muted: rgba(140, 83, 32, 0.85);
+  --color-eyebrow-on-dark: #cd8f4b;
 
   --font-sans: "Archivo", system-ui, -apple-system, sans-serif;
   --font-serif: "Archivo", system-ui, -apple-system, sans-serif;

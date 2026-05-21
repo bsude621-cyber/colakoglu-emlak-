@@ -1,70 +1,82 @@
 ---
-// Mesleki üyelikler bandı — TEMFED + Muğla Emlak Danışmanları Esnaf Odası logoları.
-// Bu bant otorite sinyali olarak About bölümünden hemen sonra gösterilir.
-// Schema'da memberOf entity'leri ile birebir eşleşir.
-import { site } from "../data/config";
+// Mesleki otorite bölümü — Ziya Ercan'ın 3 federasyon/oda/dernek konumu.
+// Koyu zemin: otorite ağırlığı + görsel ritim. Schema memberOf ile eşleşir.
+const memberships = [
+  {
+    role: "Başkan",
+    name: "Muğla Emlak Danışmanları Esnaf Odası",
+    note: "Muğla ili emlak danışmanlarının yasal meslek temsilcisi.",
+  },
+  {
+    role: "Başkan",
+    name: "Muğla Emlak Müşavirleri Derneği",
+    note: "Bölgenin emlak müşavirlerini bir araya getiren mesleki birlik.",
+  },
+  {
+    role: "Genel Başkan Yardımcısı",
+    name: "TEMFED — Türkiye Tüm Emlak Müşavirleri Federasyonu",
+    note: "Ulusal düzeyde sektörel temsil ve meslek standardı.",
+    highlight: true,
+  },
+];
 ---
 
-<section class="memberships" aria-label="Mesleki üyelikler">
+<section class="section section-memberships" aria-labelledby="uyelik-baslik">
   <div class="container">
-    <p class="memberships-title">
-      Sektörel temsil ve mesleki üyelikler
-    </p>
+    <header class="section-head section-head-center memberships-head">
+      <p class="eyebrow">Mesleki Otorite</p>
+      <h2 id="uyelik-baslik">Sektörün kendi temsilcisi</h2>
+      <p class="section-desc">
+        Ziya Ercan, Muğla emlak sektörünün üç mesleki konumunu birden taşıyor.
+        Bu, sıradan bir emlak ofisi değil — mesleğin kendi temsilcisi anlamına
+        gelir.
+      </p>
+    </header>
 
     <div class="memberships-grid">
-      <div class="membership-card">
-        <span class="membership-card-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5.5"/><path d="M8.4 13.3 6.5 21l5.5-3 5.5 3-1.9-7.7"/></svg></span>
-        <div class="membership-card-body">
-          <p class="membership-card-role">Başkan</p>
-          <h3>Muğla Emlak Danışmanları Esnaf Odası</h3>
-          <p class="membership-card-note">
-            Muğla ili emlak danışmanlarının yasal meslek temsilcisi
-          </p>
-        </div>
-      </div>
-
-      <div class="membership-card">
-        <span class="membership-card-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5.5"/><path d="M8.4 13.3 6.5 21l5.5-3 5.5 3-1.9-7.7"/></svg></span>
-        <div class="membership-card-body">
-          <p class="membership-card-role">Başkan</p>
-          <h3>Muğla Emlak Müşavirleri Derneği</h3>
-          <p class="membership-card-note">
-            Bölgesel emlak müşavirlerinin mesleki birliği
-          </p>
-        </div>
-      </div>
-
-      <div class="membership-card membership-card--highlight">
-        <span class="membership-card-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5.5"/><path d="M8.4 13.3 6.5 21l5.5-3 5.5 3-1.9-7.7"/></svg></span>
-        <div class="membership-card-body">
-          <p class="membership-card-role">Genel Başkan Yardımcısı</p>
-          <h3>TEMFED</h3>
-          <p class="membership-card-note">
-            Türkiye Tüm Emlak Müşavirleri Federasyonu — ulusal sektörel temsil
-          </p>
-        </div>
-      </div>
+      {
+        memberships.map((m) => (
+          <article class={`mem-card${m.highlight ? " mem-card--lead" : ""}`}>
+            <span class="mem-card-mark" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                width="22"
+                height="22"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="9" r="5.5" />
+                <path d="M8.4 13.3 6.5 21l5.5-3 5.5 3-1.9-7.7" />
+              </svg>
+            </span>
+            <p class="mem-card-role">{m.role}</p>
+            <h3>{m.name}</h3>
+            <p class="mem-card-note">{m.note}</p>
+          </article>
+        ))
+      }
     </div>
-
   </div>
 </section>
 
 <style>
-  .memberships {
-    padding: clamp(3.5rem, 7vw, 5.5rem) 0;
-    background: var(--color-bg);
-    border-top: 1px solid var(--color-line);
-    border-bottom: 1px solid var(--color-line);
+  .section-memberships {
+    background: var(--color-wood-deep, #1e2a34);
   }
 
-  .memberships-title {
-    text-align: center;
-    font-size: 0.78rem;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--color-eyebrow);
-    font-weight: 600;
-    margin: 0 0 2.5rem;
+  .memberships-head .eyebrow {
+    color: var(--color-gold-bright);
+  }
+
+  .memberships-head h2 {
+    color: #fff;
+  }
+
+  .memberships-head .section-desc {
+    color: rgba(255, 255, 255, 0.7);
   }
 
   .memberships-grid {
@@ -73,95 +85,81 @@ import { site } from "../data/config";
     gap: 1.25rem;
   }
 
-  @media (max-width: 900px) {
+  @media (max-width: 860px) {
     .memberships-grid {
       grid-template-columns: 1fr;
     }
   }
 
-  .membership-card {
+  .mem-card {
     display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    padding: 1.5rem;
-    background: var(--color-surface);
-    border: 1px solid var(--color-line);
+    flex-direction: column;
+    padding: 1.9rem 1.8rem;
     border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-card);
+    background: rgba(255, 255, 255, 0.045);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     transition:
       transform 0.25s var(--ease-out),
       border-color 0.25s,
-      box-shadow 0.25s;
+      background 0.25s;
   }
 
-  .membership-card:hover {
-    transform: translateY(-3px);
-    border-color: var(--color-navy);
-    box-shadow: var(--shadow-soft);
+  .mem-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 255, 255, 0.28);
+    background: rgba(255, 255, 255, 0.06);
   }
 
-  /* TEMFED — vurgulu kart, lacivert dolu blok */
-  .membership-card--highlight {
-    background: var(--color-navy);
-    border-color: var(--color-navy);
+  /* TEMFED — ulusal konum, altın vurgulu */
+  .mem-card--lead {
+    border-color: rgba(168, 127, 94, 0.5);
+    background: rgba(168, 127, 94, 0.09);
   }
 
-  .membership-card-mark {
-    width: 42px;
-    height: 42px;
-    flex-shrink: 0;
+  .mem-card--lead:hover {
+    border-color: var(--color-gold);
+    background: rgba(168, 127, 94, 0.13);
+  }
+
+  .mem-card-mark {
+    width: 48px;
+    height: 48px;
     display: grid;
     place-items: center;
-    border-radius: var(--radius-sm);
+    border-radius: 50%;
+    background: rgba(168, 127, 94, 0.16);
+    color: var(--color-gold-bright);
+    margin-bottom: 1.2rem;
+  }
+
+  .mem-card--lead .mem-card-mark {
     background: var(--color-gold);
     color: #fff;
   }
 
-  .membership-card-mark svg {
-    width: 21px;
-    height: 21px;
-  }
-
-  .membership-card--highlight .membership-card-mark {
-    background: var(--color-gold-bright);
-  }
-
-  .membership-card-role {
-    font-size: 0.7rem;
+  .mem-card-role {
+    font-size: 0.72rem;
+    font-weight: 700;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--color-eyebrow);
-    margin: 0 0 0.3rem;
-    font-weight: 700;
+    color: var(--color-gold-bright);
+    margin: 0 0 0.5rem;
   }
 
-  .membership-card-body h3 {
+  .mem-card h3 {
     font-family: var(--font-serif);
-    font-size: 1.18rem;
+    font-size: 1.2rem;
     font-weight: 700;
     letter-spacing: -0.01em;
-    margin: 0 0 0.4rem;
-    color: var(--color-ink);
-    line-height: 1.25;
-  }
-
-  .membership-card-note {
-    font-size: 0.85rem;
-    color: var(--color-ink-muted);
-    margin: 0;
-    line-height: 1.5;
-  }
-
-  .membership-card--highlight .membership-card-role {
-    color: var(--color-gold-bright);
-  }
-
-  .membership-card--highlight .membership-card-body h3 {
+    line-height: 1.3;
     color: #fff;
+    margin: 0 0 0.7rem;
   }
 
-  .membership-card--highlight .membership-card-note {
-    color: rgba(255, 255, 255, 0.72);
+  .mem-card-note {
+    margin: 0;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.68);
   }
-
 </style>
