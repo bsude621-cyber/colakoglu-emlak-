@@ -4,46 +4,156 @@ import { services } from "../data/config";
 // Premium çizgi ikonlar — slug bazlı, tutarlı 1.6 stroke (unicode/emoji DEĞİL).
 const icons: Record<string, string> = {
   "satis-kiralama":
-    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.6 12 3l9 7.6"/><path d="M5.5 9.4V20h13V9.4"/><path d="M10 20v-5.6h4V20"/></svg>',
+    '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.6 12 3l9 7.6"/><path d="M5.5 9.4V20h13V9.4"/><path d="M10 20v-5.6h4V20"/></svg>',
   "yatirim-danismanligi":
-    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16"/><path d="M6.5 16.4 11 11l3.2 2.6L21 6"/><path d="M16.3 6H21v4.7"/></svg>',
+    '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16"/><path d="M6.5 16.4 11 11l3.2 2.6L21 6"/><path d="M16.3 6H21v4.7"/></svg>',
   "degerleme-raporlama":
-    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l5 5v13H6z"/><path d="M14 3v5h5"/><path d="M9.5 17v-3.4M12.5 17v-6M15.5 17v-2.2"/></svg>',
+    '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l5 5v13H6z"/><path d="M14 3v5h5"/><path d="M9.5 17v-3.4M12.5 17v-6M15.5 17v-2.2"/></svg>',
   "hukuki-eslik":
-    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 5.6v5.6c0 4.8 3 8 7 9.2 4-1.2 7-4.4 7-9.2V5.6z"/><path d="M9 11.4l2.2 2.2 4-4.4"/></svg>',
+    '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 5.6v5.6c0 4.8 3 8 7 9.2 4-1.2 7-4.4 7-9.2V5.6z"/><path d="M9 11.4l2.2 2.2 4-4.4"/></svg>',
 };
 ---
 
 <section id="hizmetler" class="section section-alt">
   <div class="container">
-    <header class="section-head">
-      <p class="eyebrow">Ne sunuyoruz</p>
-      <h2>Hizmetlerimiz</h2>
-      <p class="section-desc">
-        Gayrimenkulünüzün değerini doğru analiz eder, hukuki ve teknik
-        süreçleri sizin adınıza takip ederiz.
-      </p>
-    </header>
-    <div class="grid cards">
-      {
-        services.map((s) => (
-          <article class="card">
-            <div
-              class="card-icon"
-              aria-hidden="true"
-              set:html={icons[s.slug] ?? ""}
-            />
-            <h3>{s.name}</h3>
-            <p>{s.description}</p>
-          </article>
-        ))
-      }
+    <div class="services-layout">
+      <header class="services-head">
+        <p class="eyebrow">Ne Sunuyoruz</p>
+        <h2>Hizmetlerimiz</h2>
+        <p class="services-desc">
+          Gayrimenkulünüzün değerini doğru analiz eder; hukuki ve teknik
+          süreçleri sizin adınıza, baştan sona takip ederiz. Dört temel
+          başlıkta eksiksiz danışmanlık.
+        </p>
+        <a href="#iletisim" class="services-cta">
+          Danışmanlık alın
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+            <path
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M5 12h14M13 6l6 6-6 6"
+            ></path>
+          </svg>
+        </a>
+      </header>
+
+      <div class="services-grid">
+        {
+          services.map((s, i) => (
+            <article class="service-card">
+              <div class="service-card-top">
+                <span
+                  class="service-icon"
+                  aria-hidden="true"
+                  set:html={icons[s.slug] ?? ""}
+                />
+                <span class="service-num">{String(i + 1).padStart(2, "0")}</span>
+              </div>
+              <h3>{s.name}</h3>
+              <p>{s.description}</p>
+            </article>
+          ))
+        }
+      </div>
     </div>
   </div>
 </section>
 
 <style>
-  .card-icon {
+  .services-layout {
+    display: grid;
+    grid-template-columns: 0.82fr 1.4fr;
+    gap: clamp(2rem, 4.5vw, 4rem);
+    align-items: start;
+  }
+
+  @media (max-width: 900px) {
+    .services-layout {
+      grid-template-columns: 1fr;
+      gap: 2.25rem;
+    }
+  }
+
+  .services-head h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 3.6vw, 2.85rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--color-ink);
+    margin: 0 0 0.9rem;
+  }
+
+  .services-desc {
+    font-size: 1.04rem;
+    line-height: 1.66;
+    color: var(--color-ink-muted);
+    margin: 0 0 1.6rem;
+  }
+
+  .services-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--color-navy);
+    text-decoration: none;
+  }
+
+  .services-cta:hover {
+    text-decoration: none;
+  }
+
+  .services-cta svg {
+    transition: transform 0.2s var(--ease-out);
+  }
+
+  .services-cta:hover svg {
+    transform: translateX(3px);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.1rem;
+  }
+
+  @media (max-width: 540px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .service-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    padding: 1.7rem 1.75rem 1.85rem;
+    box-shadow: var(--shadow-card);
+    transition:
+      transform 0.25s var(--ease-out),
+      box-shadow 0.25s,
+      border-color 0.25s;
+  }
+
+  .service-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-soft);
+    border-color: var(--color-navy);
+  }
+
+  .service-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.15rem;
+  }
+
+  .service-icon {
     width: 48px;
     height: 48px;
     display: grid;
@@ -51,16 +161,42 @@ const icons: Record<string, string> = {
     border: 1px solid var(--color-line);
     border-radius: var(--radius-md);
     color: var(--color-gold);
-    margin-bottom: 1.2rem;
+    transition: border-color 0.25s;
   }
 
-  .card-icon svg {
+  .service-icon svg {
     width: 24px;
     height: 24px;
     display: block;
   }
 
-  .card:hover .card-icon {
+  .service-card:hover .service-icon {
     border-color: var(--color-gold);
+  }
+
+  .service-num {
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--color-gold);
+    opacity: 0.4;
+  }
+
+  .service-card h3 {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
+    margin: 0 0 0.5rem;
+  }
+
+  .service-card p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--color-ink-muted);
   }
 </style>
