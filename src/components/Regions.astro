@@ -1,25 +1,39 @@
 ---
+// Operasyon alanı — Muğla'nın 8 ilçesi.
+// Koyu zemin: ana sayfanın açık bölümleri arasında görsel ritim sağlar.
+// Görsel kartlar — ilçe fotoğrafı + segment etiketi; her kart ilçe sayfasına gider.
 import { regions } from "../data/regions";
 ---
 
-<section id="bolgeler" class="section section-alt">
+<section id="bolgeler" class="section section-regions">
   <div class="container">
-    <header class="section-head section-head-center">
-      <p class="eyebrow">Operasyon alanı</p>
-      <h2>Muğla ve çevresi</h2>
+    <header class="section-head section-head-center regions-head">
+      <p class="eyebrow">Operasyon Alanı</p>
+      <h2>Sekiz ilçede yerel uzmanlık</h2>
       <p class="section-desc">
-        Her ilçenin gayrimenkul karakterini ayrı ayrı tanıyor, bölgeye özel
-        strateji üretiyoruz.
+        Muğla tek bir piyasa değil. Her ilçenin gayrimenkul karakterini ayrı
+        ayrı tanıyor, bölgeye özel strateji üretiyoruz.
       </p>
     </header>
-    <div class="regions">
+
+    <div class="regions-grid">
       {
         regions.map((r) => (
           <a
+            class="region-card"
             href={`/bolgeler/${r.slug}/`}
-            aria-label={`${r.name} gayrimenkul detayı`}
+            aria-label={`${r.name} gayrimenkul danışmanlığı`}
           >
-            <span>{r.name}</span>
+            <img
+              src={`/images/ilce-${r.slug}.webp`}
+              alt={`${r.name}, Muğla`}
+              loading="lazy"
+              decoding="async"
+            />
+            <div class="region-card-body">
+              <h3>{r.name}</h3>
+              <p>{r.segments.slice(0, 3).join(" · ")}</p>
+            </div>
           </a>
         ))
       }
@@ -28,19 +42,123 @@ import { regions } from "../data/regions";
 </section>
 
 <style>
-  .regions a {
+  .section-regions {
+    background: var(--color-wood-deep, #1e2a34);
+  }
+
+  .regions-head .eyebrow {
+    color: var(--color-gold-bright);
+  }
+
+  .regions-head h2 {
+    color: #fff;
+  }
+
+  .regions-head .section-desc {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .regions-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.1rem;
+  }
+
+  @media (max-width: 860px) {
+    .regions-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .region-card {
+    position: relative;
+    display: block;
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    text-decoration: none;
+    background: var(--color-navy);
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.3);
+  }
+
+  .region-card:hover {
     text-decoration: none;
   }
-  .regions a:hover span {
-    background: rgba(43, 58, 71, 0.06);
-    border-color: var(--color-navy);
-    color: var(--color-ink);
+
+  .region-card img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.55s var(--ease-out);
   }
-  .regions span {
-    transition:
-      background 0.2s,
-      border-color 0.2s,
-      color 0.2s;
-    cursor: pointer;
+
+  .region-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      180deg,
+      rgba(20, 28, 36, 0) 36%,
+      rgba(20, 28, 36, 0.55) 62%,
+      rgba(16, 22, 30, 0.93) 100%
+    );
+  }
+
+  .region-card-body {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    padding: 1.15rem 1.2rem 1.25rem;
+  }
+
+  .region-card h3 {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: #fff;
+    margin: 0 0 0.3rem;
+  }
+
+  .region-card p {
+    margin: 0;
+    font-size: 0.77rem;
+    line-height: 1.4;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: var(--color-gold-bright);
+  }
+
+  /* hover — görsel yaklaşır + altın hairline çerçeve */
+  .region-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    border: 1px solid transparent;
+    border-radius: var(--radius-lg);
+    transition: border-color 0.25s var(--ease-out);
+    pointer-events: none;
+  }
+
+  .region-card:hover::before {
+    border-color: var(--color-gold);
+  }
+
+  .region-card:hover img {
+    transform: scale(1.06);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .region-card img,
+    .region-card:hover img {
+      transition: none;
+      transform: none;
+    }
   }
 </style>
