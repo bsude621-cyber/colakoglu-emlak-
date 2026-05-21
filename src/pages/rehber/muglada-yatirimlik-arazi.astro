@@ -95,7 +95,15 @@ const faqSchema = {
   <main id="main" class="article-page">
     <article class="article">
       <header class="article-hero">
-        <div class="container">
+        <img
+          class="article-hero-bg"
+          src="/images/rehber-yatirimlik-arazi.webp"
+          alt="Drone'dan görüntülenen tarım arazisi parselleri — yatırımlık arazi seçimi"
+          loading="eager"
+          decoding="async"
+        />
+        <div class="article-hero-scrim" aria-hidden="true"></div>
+        <div class="container article-hero-inner">
           <nav class="breadcrumb" aria-label="Sayfa konumu">
             <a href="/">Ana Sayfa</a>
             <span aria-hidden="true">›</span>
@@ -103,7 +111,7 @@ const faqSchema = {
             <span aria-hidden="true">›</span>
             <span aria-current="page">Yatırımlık Arazi Seçimi</span>
           </nav>
-          <p class="eyebrow">Rehber · Gayrimenkul Yatırımı</p>
+          <p class="eyebrow article-hero-eyebrow">Rehber · Gayrimenkul Yatırımı</p>
           <h1>Muğla'da Yatırımlık Arazi Nasıl Seçilir?</h1>
           <p class="article-meta">
             <span>Çolakoğlu Emlak</span>
@@ -114,17 +122,6 @@ const faqSchema = {
           </p>
         </div>
       </header>
-
-      <div class="container">
-        <figure class="article-figure">
-          <img
-            src="/images/rehber-yatirimlik-arazi.webp"
-            alt="Drone'dan görüntülenen tarım arazisi parselleri — yatırımlık arazi seçimi"
-            loading="eager"
-            decoding="async"
-          />
-        </figure>
-      </div>
 
       <div class="container article-body">
         <aside class="tldr" aria-label="Özet">
@@ -299,14 +296,39 @@ const faqSchema = {
 </Layout>
 
 <style>
-  .article-page {
-    padding-top: var(--header-h);
+  .article-hero {
+    position: relative;
+    min-height: 56vh;
+    display: flex;
+    align-items: flex-end;
+    padding: calc(var(--header-h) + 3rem) 0 clamp(2.5rem, 5vw, 3.5rem);
+    overflow: hidden;
   }
 
-  .article-hero {
-    padding: calc(3.5rem + 1rem) 0 2.5rem;
-    background: linear-gradient(180deg, var(--color-bg-alt) 0%, var(--color-bg) 100%);
-    border-bottom: 2px solid var(--color-gold);
+  .article-hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .article-hero-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      180deg,
+      rgba(20, 29, 57, 0.5) 0%,
+      rgba(20, 29, 57, 0.18) 38%,
+      rgba(16, 23, 46, 0.93) 100%
+    );
+  }
+
+  .article-hero-inner {
+    position: relative;
+    z-index: 2;
   }
 
   .breadcrumb {
@@ -315,32 +337,37 @@ const faqSchema = {
     flex-wrap: wrap;
     gap: 0.45rem;
     font-size: 0.8rem;
-    color: var(--color-ink-muted);
-    margin-bottom: 1.25rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 1.5rem;
   }
 
   .breadcrumb a {
-    color: var(--color-ink-muted);
+    color: rgba(255, 255, 255, 0.6);
     transition: color 0.2s;
   }
 
   .breadcrumb a:hover {
-    color: var(--color-accent);
+    color: var(--color-gold-bright);
   }
 
   .breadcrumb [aria-current="page"] {
-    color: var(--color-ink);
+    color: #fff;
+  }
+
+  .article-hero-eyebrow {
+    color: var(--color-gold-bright);
   }
 
   .article-hero h1 {
     font-family: var(--font-serif);
-    font-size: clamp(2rem, 4.4vw, 3.1rem);
+    font-size: clamp(2.15rem, 4.8vw, 3.4rem);
     font-weight: 800;
-    letter-spacing: -0.03em;
+    letter-spacing: -0.035em;
     line-height: 1.08;
-    color: var(--color-ink);
+    color: #fff;
     margin: 0 0 1rem;
-    max-width: 20ch;
+    max-width: 24ch;
+    text-shadow: 0 2px 28px rgba(12, 18, 30, 0.4);
   }
 
   .article-meta {
@@ -349,23 +376,7 @@ const faqSchema = {
     gap: 0.5rem;
     margin: 0;
     font-size: 0.85rem;
-    color: var(--color-ink-muted);
-  }
-
-  .article-figure {
-    margin: 1.5rem 0 0;
-    aspect-ratio: 16 / 7;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    border: 1px solid var(--color-line);
-    box-shadow: var(--shadow-card);
-  }
-
-  .article-figure img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
+    color: rgba(255, 255, 255, 0.62);
   }
 
   .article-body {
