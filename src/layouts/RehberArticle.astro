@@ -1,0 +1,416 @@
+---
+// Rehber / Mevzuat makaleleri için paylaşılan layout.
+// Sayfa chrome'u (hero, breadcrumb, TL;DR, FAQ) + schema (BlogPosting +
+// BreadcrumbList + FAQPage) burada; içerik <slot /> ile gelir.
+// Fotoğrafsız (mevzuat referans içeriği) — editoryal, metin odaklı.
+import Layout from "./Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { site } from "../data/config";
+
+export interface Props {
+  pageTitle: string;
+  h1: string;
+  description: string;
+  slug: string;
+  eyebrow: string;
+  breadcrumbName: string;
+  published: string;
+  modified: string;
+  modifiedText: string;
+  readTime: string;
+  tldr: string;
+  about: string[];
+  faq: { q: string; a: string }[];
+}
+
+const {
+  pageTitle,
+  h1,
+  description,
+  slug,
+  eyebrow,
+  breadcrumbName,
+  published,
+  modified,
+  modifiedText,
+  readTime,
+  tldr,
+  about,
+  faq,
+} = Astro.props;
+
+const canonical = `${site.url}/rehber/${slug}/`;
+
+const breadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "@id": `${canonical}#breadcrumb`,
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: site.url },
+    { "@type": "ListItem", position: 2, name: "Rehber", item: `${site.url}/rehber/` },
+    { "@type": "ListItem", position: 3, name: breadcrumbName, item: canonical },
+  ],
+};
+
+const article = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": `${canonical}#article`,
+  headline: h1,
+  description,
+  image: {
+    "@type": "ImageObject",
+    url: `${site.url}/og-default.jpg`,
+  },
+  url: canonical,
+  inLanguage: "tr-TR",
+  datePublished: published,
+  dateModified: modified,
+  mainEntityOfPage: canonical,
+  isPartOf: { "@id": `${site.url}/#website` },
+  author: {
+    "@type": "Person",
+    name: site.owner.name,
+    jobTitle: site.owner.jobTitle,
+    worksFor: { "@id": `${site.url}/#organization` },
+  },
+  publisher: { "@id": `${site.url}/#organization` },
+  about,
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": `${canonical}#faq`,
+  mainEntity: faq.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+---
+
+<Layout
+  title={pageTitle}
+  description={description}
+  canonical={canonical}
+  jsonLd={[breadcrumb, article, faqSchema]}
+>
+  <Header />
+  <main id="main" class="article-page">
+    <article class="article">
+      <header class="article-hero">
+        <div class="container">
+          <nav class="breadcrumb" aria-label="Sayfa konumu">
+            <a href="/">Ana Sayfa</a>
+            <span aria-hidden="true">›</span>
+            <a href="/rehber/">Rehber</a>
+            <span aria-hidden="true">›</span>
+            <span aria-current="page">{breadcrumbName}</span>
+          </nav>
+          <p class="eyebrow">{eyebrow}</p>
+          <h1>{h1}</h1>
+          <p class="article-meta">
+            <span>Çolakoğlu Emlak</span>
+            <span aria-hidden="true">·</span>
+            <time datetime={modified}>{modifiedText}</time>
+            <span aria-hidden="true">·</span>
+            <span>{readTime}</span>
+          </p>
+        </div>
+      </header>
+
+      <div class="container article-body">
+        <aside class="tldr" aria-label="Özet">
+          <p class="tldr-label">Özet</p>
+          <p>{tldr}</p>
+        </aside>
+
+        <slot />
+
+        <section class="article-faq" aria-label="Sıkça sorulan sorular">
+          <h2>Sıkça sorulan sorular</h2>
+          {
+            faq.map((item) => (
+              <details class="faq-item">
+                <summary>
+                  <span class="faq-q">{item.q}</span>
+                  <span class="faq-toggle" aria-hidden="true">+</span>
+                </summary>
+                <div class="faq-a">
+                  <p>{item.a}</p>
+                </div>
+              </details>
+            ))
+          }
+        </section>
+
+        <aside class="article-cta">
+          <p class="article-cta-label">Çolakoğlu Emlak</p>
+          <p>
+            Mevzuat, doğru sorulduğunda yanıtı net olan ama gözden kaçtığında
+            maliyetli sürprizler doğuran bir alandır. Çolakoğlu Emlak, Muğla'nın
+            meslek odası ve dernek temsilciliğiyle imar, tapu ve hukuki
+            süreçleri sizin adınıza yürütür.
+          </p>
+          <a href="/#iletisim" class="btn btn-primary">Danışmanlık alın</a>
+        </aside>
+      </div>
+    </article>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .article-page {
+    padding-top: var(--header-h);
+  }
+
+  .article-hero {
+    padding: calc(3.5rem + 1rem) 0 2.5rem;
+    background: linear-gradient(180deg, var(--color-bg-alt) 0%, var(--color-bg) 100%);
+    border-bottom: 2px solid var(--color-gold);
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    font-size: 0.8rem;
+    color: var(--color-ink-muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .breadcrumb a {
+    color: var(--color-ink-muted);
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: var(--color-accent);
+  }
+
+  .breadcrumb [aria-current="page"] {
+    color: var(--color-ink);
+  }
+
+  .article-hero h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4.4vw, 3.1rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    color: var(--color-ink);
+    margin: 0 0 1rem;
+    max-width: 22ch;
+  }
+
+  .article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--color-ink-muted);
+  }
+
+  .article-body {
+    max-width: 760px;
+    padding-top: clamp(2.5rem, 5vw, 3.5rem);
+    padding-bottom: clamp(3.5rem, 7vw, 5.5rem);
+  }
+
+  .tldr {
+    background: var(--color-navy);
+    color: #fff;
+    padding: 1.5rem 1.75rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 2.5rem;
+  }
+
+  .tldr-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-gold-bright);
+    margin: 0 0 0.5rem;
+  }
+
+  .tldr p:last-child {
+    margin: 0;
+    font-size: 0.98rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.88);
+  }
+
+  /* --- slot ile gelen içerik (:global — Astro scope slot'a geçmez) --- */
+  .article-body :global(.lead) {
+    font-size: 1.14rem;
+    line-height: 1.7;
+    color: var(--color-ink);
+    margin: 0 0 2rem;
+  }
+
+  .article-body :global(h2) {
+    font-family: var(--font-serif);
+    font-size: clamp(1.4rem, 2.6vw, 1.85rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--color-ink);
+    margin: 2.5rem 0 0.9rem;
+  }
+
+  .article-body :global(p) {
+    font-size: 1.03rem;
+    line-height: 1.75;
+    color: var(--color-ink-muted);
+    margin: 0 0 1rem;
+  }
+
+  .article-body :global(p strong),
+  .article-body :global(li strong) {
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+
+  .article-body :global(ul),
+  .article-body :global(ol) {
+    margin: 0 0 1.25rem;
+    padding-left: 1.3rem;
+    color: var(--color-ink-muted);
+  }
+
+  .article-body :global(li) {
+    font-size: 1.03rem;
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+  }
+
+  .article-body :global(a) {
+    color: var(--color-accent);
+    font-weight: 600;
+    text-underline-offset: 3px;
+  }
+
+  .article-body :global(.definition) {
+    background: var(--color-gold-soft);
+    border-left: 3px solid var(--color-gold);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: 1.1rem 1.4rem;
+    margin: 0 0 1.25rem;
+  }
+
+  .article-body :global(.definition p) {
+    margin: 0;
+    color: var(--color-ink) !important;
+  }
+
+  .article-body :global(.source-note) {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--color-ink-muted);
+    background: var(--color-bg-alt);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+  }
+
+  .article-faq {
+    margin-top: 3rem;
+    border-top: 1px solid var(--color-line);
+    padding-top: 2.25rem;
+  }
+
+  .article-faq h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.4rem, 2.6vw, 1.85rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
+    margin: 0 0 1.25rem;
+  }
+
+  .faq-item {
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+    background: var(--color-surface);
+  }
+
+  .faq-item[open] {
+    border-color: var(--color-navy);
+  }
+
+  .faq-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.05rem 1.25rem;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-q {
+    font-weight: 600;
+    color: var(--color-ink);
+    font-size: 1rem;
+  }
+
+  .faq-toggle {
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--color-gold);
+    flex-shrink: 0;
+    transition: transform 0.25s var(--ease-out);
+  }
+
+  .faq-item[open] .faq-toggle {
+    transform: rotate(45deg);
+  }
+
+  .faq-a {
+    padding: 0 1.25rem 1.25rem;
+  }
+
+  .faq-a p {
+    margin: 0;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--color-ink-muted);
+  }
+
+  .article-cta {
+    margin-top: 2.5rem;
+    background: var(--color-bg-alt);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem 1.9rem;
+  }
+
+  .article-cta-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-eyebrow);
+    margin: 0 0 0.6rem;
+  }
+
+  .article-cta p {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--color-ink-muted);
+    margin: 0 0 1.25rem;
+  }
+</style>

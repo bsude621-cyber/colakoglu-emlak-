@@ -46,6 +46,34 @@ const articles = [
   },
 ];
 
+// Mevzuat kütüphanesi — emlak süreçlerini ilgilendiren temel kanun/yönetmelikler.
+const mevzuat = [
+  {
+    slug: "imar-kanunu",
+    title: "İmar Kanunu: Emlak Alıcısının Bilmesi Gerekenler",
+    excerpt:
+      "İmar planı türleri, imar durumu belgesi, TAKS/KAKS, yapı ruhsatı ve iskan — 3194 sayılı kanun emlak alıcısı için ne anlama gelir?",
+  },
+  {
+    slug: "kat-mulkiyeti-kanunu",
+    title: "Kat Mülkiyeti Kanunu: Daire Alırken Bilinmesi Gerekenler",
+    excerpt:
+      "Kat mülkiyeti–kat irtifakı farkı, arsa payı, ortak yerler, yönetim planı ve aidat — 634 sayılı kanun sade dille.",
+  },
+  {
+    slug: "tasinmaz-ticareti-yonetmeligi",
+    title: "Taşınmaz Ticareti Yönetmeliği ve Yetkili Emlakçı",
+    excerpt:
+      "Yetki belgesi şartları, TTBS doğrulaması, yazılı sözleşme ve hizmet bedeli — yetkili emlakçı nasıl anlaşılır?",
+  },
+  {
+    slug: "zeytinlik-sit-alanlari",
+    title: "Zeytinlik ve SİT Alanları: Muğla'da Arazi Alırken Dikkat",
+    excerpt:
+      "Zeytincilik Kanunu, SİT türleri ve yapılaşma kuralları — Muğla'da arazi alımının en sık iki kısıtı.",
+  },
+];
+
 const breadcrumb = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
@@ -69,7 +97,7 @@ const collectionPage = {
   breadcrumb: { "@id": `${canonical}#breadcrumb` },
   mainEntity: {
     "@type": "ItemList",
-    itemListElement: articles.map((a, i) => ({
+    itemListElement: [...articles, ...mevzuat].map((a, i) => ({
       "@type": "ListItem",
       position: i + 1,
       url: `${site.url}/rehber/${a.slug}/`,
@@ -105,27 +133,50 @@ const collectionPage = {
     </section>
 
     <section class="section">
-      <div class="container rehber-list">
-        {
-          articles.map((a) => (
-            <a class="rehber-card" href={`/rehber/${a.slug}/`}>
-              <div class="rehber-card-img">
-                <img src={a.image} alt={a.title} loading="lazy" decoding="async" />
-              </div>
-              <div class="rehber-card-body">
-                <span class="rehber-card-cat">{a.category}</span>
-                <h2>{a.title}</h2>
-                <p>{a.excerpt}</p>
-                <span class="rehber-card-meta">
-                  <time datetime={a.date}>{a.dateText}</time>
-                  <span aria-hidden="true">·</span>
-                  <span>{a.readTime}</span>
-                  <span class="rehber-card-go">Oku →</span>
-                </span>
-              </div>
-            </a>
-          ))
-        }
+      <div class="container">
+        <h2 class="rehber-section-title">Rehber Makaleleri</h2>
+        <div class="rehber-list">
+          {
+            articles.map((a) => (
+              <a class="rehber-card" href={`/rehber/${a.slug}/`}>
+                <div class="rehber-card-img">
+                  <img src={a.image} alt={a.title} loading="lazy" decoding="async" />
+                </div>
+                <div class="rehber-card-body">
+                  <span class="rehber-card-cat">{a.category}</span>
+                  <h3>{a.title}</h3>
+                  <p>{a.excerpt}</p>
+                  <span class="rehber-card-meta">
+                    <time datetime={a.date}>{a.dateText}</time>
+                    <span aria-hidden="true">·</span>
+                    <span>{a.readTime}</span>
+                    <span class="rehber-card-go">Oku →</span>
+                  </span>
+                </div>
+              </a>
+            ))
+          }
+        </div>
+
+        <h2 class="rehber-section-title rehber-section-title--gap">
+          Mevzuat Kütüphanesi
+        </h2>
+        <p class="rehber-section-desc">
+          Emlak süreçlerini ilgilendiren temel kanun ve yönetmelikler — sade
+          dille, resmî kaynak bağlantılarıyla.
+        </p>
+        <div class="mevzuat-grid">
+          {
+            mevzuat.map((m) => (
+              <a class="mevzuat-card" href={`/rehber/${m.slug}/`}>
+                <span class="mevzuat-card-tag">Mevzuat</span>
+                <h3>{m.title}</h3>
+                <p>{m.excerpt}</p>
+                <span class="mevzuat-card-go">Oku →</span>
+              </a>
+            ))
+          }
+        </div>
       </div>
     </section>
   </main>
@@ -184,11 +235,100 @@ const collectionPage = {
     margin: 0;
   }
 
+  .rehber-section-title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
+    max-width: 820px;
+    margin: 0 auto 1.5rem;
+  }
+
+  .rehber-section-title--gap {
+    margin-top: 3.5rem;
+  }
+
+  .rehber-section-desc {
+    max-width: 820px;
+    margin: -0.85rem auto 1.85rem;
+    color: var(--color-ink-muted);
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
   .rehber-list {
     max-width: 820px;
+    margin-inline: auto;
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
+  }
+
+  .mevzuat-grid {
+    max-width: 820px;
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 640px) {
+    .mevzuat-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .mevzuat-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    padding: 1.6rem 1.7rem;
+    text-decoration: none;
+    transition: transform 0.25s var(--ease-out), box-shadow 0.25s, border-color 0.25s;
+  }
+
+  .mevzuat-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-soft);
+    border-color: var(--color-navy);
+    text-decoration: none;
+  }
+
+  .mevzuat-card-tag {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-eyebrow);
+    margin-bottom: 0.7rem;
+  }
+
+  .mevzuat-card h3 {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    line-height: 1.26;
+    color: var(--color-ink);
+    margin: 0 0 0.55rem;
+  }
+
+  .mevzuat-card p {
+    font-size: 0.94rem;
+    line-height: 1.6;
+    color: var(--color-ink-muted);
+    margin: 0 0 1.1rem;
+  }
+
+  .mevzuat-card-go {
+    margin-top: auto;
+    font-weight: 700;
+    font-size: 0.88rem;
+    color: var(--color-accent);
   }
 
   .rehber-card {
@@ -248,7 +388,7 @@ const collectionPage = {
     margin-bottom: 0.7rem;
   }
 
-  .rehber-card h2 {
+  .rehber-card h3 {
     font-family: var(--font-serif);
     font-size: clamp(1.3rem, 2.4vw, 1.65rem);
     font-weight: 800;

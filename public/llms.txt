@@ -19,6 +19,10 @@
 - [Muğla'da Yatırımlık Arazi Nasıl Seçilir?](https://colakogluemlak.com/rehber/muglada-yatirimlik-arazi/) — imar durumu, tapu kaydı, kadastro, zeytinlik ve SİT kısıtları
 - [Tapu Devir İşlemleri Adım Adım](https://colakogluemlak.com/rehber/tapu-devir-sureci/) — Web-Tapu randevusu, belgeler, tapu harcı, randevu günü
 - [Yabancıya Gayrimenkul Satışı](https://colakogluemlak.com/rehber/yabanciya-gayrimenkul-satisi/) — alan/bölge sınırları, değerleme raporu, Türk vatandaşlığı
+- [İmar Kanunu](https://colakogluemlak.com/rehber/imar-kanunu/) — imar planı türleri, imar durumu belgesi, TAKS/KAKS, yapı ruhsatı ve iskan
+- [Kat Mülkiyeti Kanunu](https://colakogluemlak.com/rehber/kat-mulkiyeti-kanunu/) — kat mülkiyeti–kat irtifakı farkı, arsa payı, yönetim planı, aidat
+- [Taşınmaz Ticareti Yönetmeliği](https://colakogluemlak.com/rehber/tasinmaz-ticareti-yonetmeligi/) — emlak yetki belgesi, TTBS, yazılı sözleşme, hizmet bedeli
+- [Zeytinlik ve SİT Alanları](https://colakogluemlak.com/rehber/zeytinlik-sit-alanlari/) — zeytinlik yapılaşma kısıtı, SİT türleri, koruma kurulu izni
 
 ## Operasyon alanı
 - [Bodrum](https://colakogluemlak.com/bolgeler/bodrum/) — lüks villa, marina, yat turizmi, yabancı yatırımcı

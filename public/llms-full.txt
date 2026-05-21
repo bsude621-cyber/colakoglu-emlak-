@@ -120,6 +120,25 @@ Yabancı uyruklular Türkiye'de — askeri ve özel güvenlik bölgeleri dışı
 
 **Muğla'da dikkat:** Kıyı ilçelerinde SİT alanları yaygındır; bazı bölgelerde güvenlik kısıtları bulunabilir. Çolakoğlu Emlak yabancı yatırımcılara dil ve hukuk desteğiyle eşlik eder.
 
+## Mevzuat Kütüphanesi
+Emlak süreçlerini ilgilendiren temel kanun ve yönetmeliklerin sade dille açıklaması:
+
+### İmar Kanunu: Emlak Alıcısının Bilmesi Gerekenler
+URL: https://colakogluemlak.com/rehber/imar-kanunu/
+3194 sayılı İmar Kanunu; imar planı türleri (nazım ve uygulama imar planı), imar durumu belgesi, TAKS/KAKS ve çekme mesafeleri, yapı ruhsatı ile yapı kullanma izni (iskan), ifraz/tevhid/parselasyon. İmarsız arazi yapılaşma vaadiyle, iskansız yapı kontrol edilmeden satın alınmamalıdır.
+
+### Kat Mülkiyeti Kanunu: Daire Alırken Bilinmesi Gerekenler
+URL: https://colakogluemlak.com/rehber/kat-mulkiyeti-kanunu/
+634 sayılı Kat Mülkiyeti Kanunu; kat mülkiyeti ile kat irtifakı farkı, bağımsız bölüm ve ortak yerler, arsa payı, yönetim planı, ortak gider ve aidat yükümlülüğü. Tamamlanmış binada kat mülkiyetli tapu tercih edilmeli; ödenmemiş ortak gider borcu alımdan önce kontrol edilmelidir.
+
+### Taşınmaz Ticareti Yönetmeliği ve Yetkili Emlakçı
+URL: https://colakogluemlak.com/rehber/tasinmaz-ticareti-yonetmeligi/
+Taşınmaz Ticareti Hakkında Yönetmelik; emlak yetki belgesi zorunluluğu, mesleki yeterlilik şartları, Taşınmaz Ticareti Bilgi Sistemi (TTBS), yazılı sözleşme ve hizmet bedeli üst sınırı. Bir emlak işletmesinin yetkisi TTBS üzerinden doğrulanabilir.
+
+### Zeytinlik ve SİT Alanları: Muğla'da Arazi Alırken Dikkat
+URL: https://colakogluemlak.com/rehber/zeytinlik-sit-alanlari/
+Muğla'da arazi alımının en sık iki kısıtı: zeytinlik vasfı (3573 sayılı Zeytincilik Kanunu kapsamında yapılaşma önemli ölçüde sınırlı) ve SİT alanları (2863 sayılı Kanun — arkeolojik, doğal ve kentsel SİT; yapılaşma koruma kurulu iznine tabi). Tapu vasfı ve resmî kayıtlar alımdan önce kontrol edilmelidir.
+
 ## Sıkça sorulan sorular
 
 **Çolakoğlu Emlak hangi bölgelerde hizmet veriyor?**

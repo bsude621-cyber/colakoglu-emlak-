@@ -1,0 +1,151 @@
+---
+import RehberArticle from "../../layouts/RehberArticle.astro";
+
+const faq = [
+  {
+    q: "İmar durumu belgesi nereden, nasıl alınır?",
+    a: "İmar durumu belgesi (imar çapı), taşınmazın bağlı olduğu belediyenin İmar Müdürlüğünden alınır. Ada ve parsel numarasıyla başvurulur; belge parselin imar planındaki konumunu, yapılaşma koşullarını (TAKS/KAKS) ve çekme mesafelerini gösterir.",
+  },
+  {
+    q: "TAKS ve KAKS ne anlama gelir?",
+    a: "TAKS (Taban Alanı Kat Sayısı) bir parselin ne kadarlık bölümüne yapının taban olarak oturabileceğini; KAKS yani emsal (Kat Alanı Kat Sayısı) ise parsel üzerine yapılabilecek toplam inşaat alanının parsel alanına oranını belirtir. İkisi birlikte yapılaşma hakkının sınırını çizer.",
+  },
+  {
+    q: "Yapı kullanma izni (iskan) olmayan daire alınır mı?",
+    a: "İskan, binanın ruhsat ve projesine uygun tamamlandığını gösteren resmî belgedir. İskansız taşınmazda eksik veya aykırı yapılaşma riski bulunabilir; alımdan önce yapı kullanma izninin varlığı mutlaka kontrol edilmelidir.",
+  },
+  {
+    q: "İmarsız araziye ev yapılabilir mi?",
+    a: "İmar planı dışındaki arazilerde yapılaşma genellikle mümkün değildir; istisnalar (örneğin bağ-bahçe nizamı veya köy yerleşik alanı kuralları) sınırlı ve özel koşullara bağlıdır. İmarsız arazi, yapı yapma vaadiyle satın alınmamalıdır.",
+  },
+];
+---
+
+<RehberArticle
+  pageTitle="İmar Kanunu: Emlak Alıcısının Bilmesi Gerekenler | Çolakoğlu Emlak"
+  h1="İmar Kanunu: Emlak Alıcısının Bilmesi Gerekenler"
+  description="3194 sayılı İmar Kanunu emlak alıcısı için ne anlama gelir? İmar planı türleri, imar durumu belgesi, TAKS/KAKS, yapı ruhsatı ve iskan — sade dille açıklama. Çolakoğlu Emlak."
+  slug="imar-kanunu"
+  eyebrow="Mevzuat · İmar"
+  breadcrumbName="İmar Kanunu"
+  published="2026-05-21"
+  modified="2026-05-21"
+  modifiedText="21 Mayıs 2026"
+  readTime="~6 dk okuma"
+  tldr="3194 sayılı İmar Kanunu, bir taşınmaza ne yapılabileceğini belirleyen temel çerçevedir. Emlak alımında en kritik belge, belediyeden alınan imar durumu belgesidir: parselin imar planındaki konumunu, TAKS/KAKS oranlarını ve çekme mesafelerini gösterir. İmarsız arazi yapılaşma vaadiyle, iskansız yapı ise kontrol edilmeden satın alınmamalıdır."
+  about={["İmar Kanunu", "İmar planı", "Yapı ruhsatı", "Gayrimenkul mevzuatı"]}
+  faq={faq}
+>
+  <p class="lead">
+    Bir taşınmazın bugünkü fiyatı değil, üzerine ne yapılabileceği gerçek
+    değerini belirler. Bunu da 3194 sayılı İmar Kanunu ve onun uygulama
+    araçları tayin eder. Bu rehber, emlak alıcısı ve satıcısının İmar
+    Kanunu'ndan bilmesi gereken kavramları sade dille açıklar.
+  </p>
+
+  <h2>İmar Kanunu nedir, neyi düzenler?</h2>
+  <p>
+    <strong>3194 sayılı İmar Kanunu, yerleşim yerlerinin ve bu yerlerdeki
+    yapılaşmanın plana, fen ve sağlık kurallarına uygun oluşmasını düzenleyen
+    temel kanundur.</strong> Arazi ve arsa düzenlemesinden yapı ruhsatına,
+    imar planlarından yapı denetimine kadar geniş bir çerçeveyi kapsar. Emlak
+    alıcısı açısından önemi şudur: bir parsele ne yapılabileceği, kaç katlı
+    bina kurulabileceği veya hiç yapı yapılıp yapılamayacağı bu kanunun
+    araçlarıyla belirlenir.
+  </p>
+
+  <h2>İmar planı türleri nelerdir?</h2>
+  <div class="definition">
+    <p>
+      <strong>Nazım imar planı</strong>, genellikle 1/5000 ölçekli; arazi
+      kullanım kararlarını ve ana ulaşım kurgusunu belirler.
+      <strong>Uygulama imar planı</strong> ise 1/1000 ölçekli; ada ve parsel
+      bazında yapılaşma koşullarını (kat sayısı, emsal, çekme mesafesi) net
+      olarak tanımlar.
+    </p>
+  </div>
+  <p>
+    Bir parselde yapı yapılabilmesi için kural olarak uygulama imar planının
+    bulunması gerekir. Üst ölçekte ise çevre düzeni planları bölgenin genel
+    gelişim yönünü çizer. Bir arazi “imara açılacak” beklentisiyle alınıyorsa,
+    bu beklentinin hangi plan kademesinde, hangi aşamada olduğu mutlaka
+    araştırılmalıdır — sözlü vaat yeterli değildir.
+  </p>
+
+  <h2>İmar durumu belgesi ne anlatır?</h2>
+  <p>
+    İmar durumu belgesi (halk arasında imar çapı), bir taşınmazın imar
+    planındaki konumunu özetleyen resmî belgedir. Bağlı olunan belediyenin
+    İmar Müdürlüğünden, ada/parsel bilgisiyle alınır ve şunları gösterir:
+  </p>
+  <ul>
+    <li>Parselin kullanım kararı (konut, ticari, tarım, yeşil alan vb.)</li>
+    <li>Yapılaşma koşulları — TAKS ve KAKS/emsal oranları</li>
+    <li>Yapı yüksekliği veya kat adedi</li>
+    <li>Yola cephe durumu ve çekme mesafeleri</li>
+    <li>Varsa plan notları ve özel kısıtlamalar</li>
+  </ul>
+  <p>
+    <strong>Satıcının beyanı değil, belediyeden alınan güncel belge
+    esastır.</strong> İmar durumu, taşınmazın yatırım değerini belirleyen tek
+    en önemli unsurdur.
+  </p>
+
+  <h2>TAKS, KAKS ve çekme mesafeleri</h2>
+  <p>
+    Bu üç kavram, bir parsele ne kadar ve nasıl yapı yapılabileceğini birlikte
+    tanımlar. <strong>TAKS</strong>, parselin ne kadarına yapının taban olarak
+    oturabileceğini; <strong>KAKS (emsal)</strong>, parsel üzerine
+    yapılabilecek toplam inşaat alanını belirler. Örneğin 1.000 m² parselde
+    emsal 0,50 ise toplam inşaat alanı 500 m²'dir.
+    <strong>Çekme mesafeleri</strong> ise yapının parsel sınırlarından ve
+    yoldan ne kadar geride konumlanacağını gösterir. Bir taşınmazın gerçek
+    yapılaşma potansiyeli ancak bu üç değer birlikte okunduğunda anlaşılır.
+  </p>
+
+  <h2>Yapı ruhsatı ve yapı kullanma izni (iskan)</h2>
+  <p>
+    İnşaata başlamadan önce belediyeden <strong>yapı ruhsatı</strong> alınması
+    zorunludur. İnşaat tamamlandığında ise yapının ruhsata ve projesine uygun
+    bittiğini belgeleyen <strong>yapı kullanma izni</strong> — yaygın adıyla
+    iskan — düzenlenir. İskansız bir taşınmazda eksik, aykırı veya ruhsatsız
+    yapılaşma riski bulunabilir; abonelik ve kredi süreçlerinde de sorun
+    çıkarabilir. Hazır konut alımında iskan durumu en erken aşamada
+    sorgulanmalıdır.
+  </p>
+
+  <h2>İfraz, tevhid ve parselasyon</h2>
+  <p>
+    <strong>İfraz</strong> bir parselin birden fazla parçaya bölünmesi,
+    <strong>tevhid</strong> ise birden fazla parselin tek parselde
+    birleştirilmesidir. <strong>Parselasyon</strong> (İmar Kanunu'nun 18.
+    madde uygulaması), düzensiz arazileri imar planına uygun, yola cepheli
+    parsellere dönüştüren işlemdir; bu süreçte kamuya açık alanlar için
+    “düzenleme ortaklık payı” kesilebilir. Arazi yatırımında bu işlemlerin
+    yapılıp yapılmadığı, taşınmazın imarlı arsa mı yoksa ham arazi mi olduğunu
+    belirler.
+  </p>
+
+  <h2>Emlak alımında imar açısından kontrol listesi</h2>
+  <ol>
+    <li>Güncel imar durumu belgesini belediyeden alın veya talep edin.</li>
+    <li>Parselde uygulama imar planının olup olmadığını doğrulayın.</li>
+    <li>TAKS/KAKS ile gerçek yapılaşma hakkını hesaplayın.</li>
+    <li>Hazır yapıda ruhsat ve iskan belgelerini kontrol edin.</li>
+    <li>Plan notlarındaki özel kısıtları (görüş, yükseklik vb.) okuyun.</li>
+  </ol>
+
+  <p class="source-note">
+    <strong>Resmî kaynak:</strong> 3194 sayılı İmar Kanunu'nun güncel tam
+    metnine T.C. <a href="https://www.mevzuat.gov.tr" target="_blank" rel="noopener noreferrer">Mevzuat Bilgi Sistemi (mevzuat.gov.tr)</a>
+    üzerinden ulaşabilirsiniz. Bu sayfa bilgilendirme amaçlıdır; her taşınmaz
+    için güncel belediye verisi esastır.
+  </p>
+
+  <p>
+    Arazi ve arsa yatırımında imar konusunu pratikte nasıl
+    değerlendireceğinizi
+    <a href="/rehber/muglada-yatirimlik-arazi/">Muğla'da yatırımlık arazi
+    seçimi rehberimizde</a> adım adım ele aldık.
+  </p>
+</RehberArticle>
