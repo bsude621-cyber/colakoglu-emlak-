@@ -1,0 +1,455 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { site } from "../../data/config";
+
+const title =
+  "Yabancıya Gayrimenkul Satışı: Muğla'da Kurallar ve Süreç | Çolakoğlu Emlak";
+const description =
+  "Yabancıya gayrimenkul satışı: alan ve bölge sınırları, değerleme raporu, satış süreci ve gayrimenkulle Türk vatandaşlığı. Muğla'da yabancı yatırımcı rehberi.";
+const canonical = `${site.url}/rehber/yabanciya-gayrimenkul-satisi/`;
+const published = "2026-05-20";
+const modified = "2026-05-20";
+
+const faq = [
+  {
+    q: "Yabancılar Türkiye'de her yeri satın alabilir mi?",
+    a: "Hayır. Askeri yasak bölgeler ve özel güvenlik bölgelerinde edinim izne tabidir; stratejik konumdaki taşınmazlarda satış yapılamayabilir. Ayrıca yabancı bir kişi ülke genelinde en fazla 30 hektar taşınmaz edinebilir ve bir ilçenin özel mülkiyete konu alanının yüzde 10'unu aşan edinim mümkün değildir.",
+  },
+  {
+    q: "Yabancı alımında değerleme raporu zorunlu mu?",
+    a: "Evet. Yabancı uyrukluların taşınmaz ediniminde, taşınmazın gerçek değerini belgeleyen değerleme raporu zorunludur. Türk vatandaşlığı başvurusuna esas alımlarda rapor, yetkilendirilmiş kurum aracılığıyla düzenlenir.",
+  },
+  {
+    q: "Gayrimenkul alarak Türk vatandaşlığı için ne kadarlık alım gerekir?",
+    a: "En az 400.000 ABD doları değerinde taşınmaz edinimi gerekir. Taşınmazın vatandaşlık amacıyla alındığı tapuya işlenir ve alıcı, taşınmazı üç yıl süreyle satmayacağına dair taahhütte bulunur.",
+  },
+  {
+    q: "Yabancıya satışta tapu harcı farklı mı hesaplanır?",
+    a: "Tapu harcı oranı aynıdır — satış bedeli üzerinden toplam yüzde 4. Yabancı alımına özgü olarak ayrıca değerleme raporu ücreti ve gerekli durumlarda izin masrafları söz konusu olur.",
+  },
+  {
+    q: "Muğla'da yabancı yatırımcı en çok nerelerle ilgileniyor?",
+    a: "Bodrum, Fethiye ve Datça gibi kıyı ilçeleri yabancı yatırımcıdan yoğun ilgi görür. Ancak SİT alanı ve askeri/özel güvenlik bölgesi kısıtları ilçeden ilçeye değişir; her taşınmaz alan bazında ayrıca kontrol edilmelidir.",
+  },
+];
+
+const breadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "@id": `${canonical}#breadcrumb`,
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: site.url },
+    { "@type": "ListItem", position: 2, name: "Rehber", item: `${site.url}/rehber/` },
+    { "@type": "ListItem", position: 3, name: "Yabancıya Gayrimenkul Satışı", item: canonical },
+  ],
+};
+
+const article = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": `${canonical}#article`,
+  headline: "Yabancıya Gayrimenkul Satışı: Kurallar, Süreç ve Muğla",
+  description,
+  image: {
+    "@type": "ImageObject",
+    url: `${site.url}/images/rehber-yabanciya-satis.webp`,
+    caption: "Ege kıyısında beyaz evler — Muğla'da yabancıya gayrimenkul",
+  },
+  url: canonical,
+  inLanguage: "tr-TR",
+  datePublished: published,
+  dateModified: modified,
+  mainEntityOfPage: canonical,
+  isPartOf: { "@id": `${site.url}/#website` },
+  author: {
+    "@type": "Person",
+    name: site.owner.name,
+    jobTitle: site.owner.jobTitle,
+    worksFor: { "@id": `${site.url}/#organization` },
+  },
+  publisher: { "@id": `${site.url}/#organization` },
+  about: ["Yabancıya gayrimenkul satışı", "Türk vatandaşlığı", "Muğla", "Gayrimenkul yatırımı"],
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": `${canonical}#faq`,
+  mainEntity: faq.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  ogImage={`${site.url}/og-rehber-yabanciya-satis.jpg`}
+  jsonLd={[breadcrumb, article, faqSchema]}
+>
+  <Header />
+  <main id="main" class="article-page">
+    <article class="article">
+      <header class="article-hero">
+        <div class="container">
+          <nav class="breadcrumb" aria-label="Sayfa konumu">
+            <a href="/">Ana Sayfa</a>
+            <span aria-hidden="true">›</span>
+            <a href="/rehber/">Rehber</a>
+            <span aria-hidden="true">›</span>
+            <span aria-current="page">Yabancıya Gayrimenkul Satışı</span>
+          </nav>
+          <p class="eyebrow">Rehber · Yabancı Yatırımcı</p>
+          <h1>Yabancıya Gayrimenkul Satışı: Kurallar, Süreç ve Muğla</h1>
+          <p class="article-meta">
+            <span>Çolakoğlu Emlak</span>
+            <span aria-hidden="true">·</span>
+            <time datetime={modified}>20 Mayıs 2026</time>
+            <span aria-hidden="true">·</span>
+            <span>~7 dk okuma</span>
+          </p>
+        </div>
+      </header>
+
+      <div class="container">
+        <figure class="article-figure">
+          <img
+            src="/images/rehber-yabanciya-satis.webp"
+            alt="Ege kıyısında beyaz evler — Muğla'da yabancıya gayrimenkul satışı"
+            loading="eager"
+            decoding="async"
+          />
+        </figure>
+      </div>
+
+      <div class="container article-body">
+        <aside class="tldr" aria-label="Özet">
+          <p class="tldr-label">Özet</p>
+          <p>
+            Yabancı uyruklular Türkiye'de — askeri ve özel güvenlik bölgeleri
+            dışında — gayrimenkul edinebilir. Kişi başına ülke genelinde en fazla
+            30 hektar ve bir ilçenin özel mülkiyete konu alanının yüzde 10'u
+            sınırı geçerlidir. Tüm yabancı alımlarında değerleme raporu
+            zorunludur; en az 400.000 ABD doları değerinde edinim, Türk
+            vatandaşlığı başvurusuna imkân tanır.
+          </p>
+        </aside>
+
+        <p class="lead">
+          Muğla, Bodrum'dan Fethiye'ye uzanan kıyı şeridiyle Türkiye'de yabancı
+          yatırımcının en yoğun ilgi gösterdiği illerden biridir. Yabancıya
+          gayrimenkul satışı, doğru yürütüldüğünde her iki taraf için de güvenli
+          bir işlemdir; ancak alan sınırları, değerleme raporu ve bölge
+          izinleri gibi kuralların bilinmesi gerekir.
+        </p>
+
+        <h2>Yabancılar Türkiye'de gayrimenkul alabilir mi?</h2>
+        <p>
+          Evet. Türkiye'de yabancı uyruklu gerçek kişilerin taşınmaz edinimi
+          mümkündür ve çok sayıda ülke vatandaşı bu haktan yararlanabilir.
+          Geçmişte uygulanan karşılıklılık (mütekabiliyet) şartı 2012 yılında
+          kaldırılmıştır. Yine de bazı ülke vatandaşları için kısıtlar
+          sürmektedir; alıcının uyruğu işlem öncesi kontrol edilmelidir.
+        </p>
+
+        <h2>Yabancı alımında alan ve bölge sınırları nelerdir?</h2>
+        <div class="definition">
+          <p>
+            Bir yabancı gerçek kişi, ülke genelinde <strong>en fazla 30 hektar</strong>
+            taşınmaz edinebilir ve edinimleri, bir ilçenin özel mülkiyete konu
+            alanının <strong>yüzde 10'unu</strong> aşamaz.
+          </p>
+        </div>
+        <p>
+          Bunun yanında <strong>askeri yasak bölgeler ve özel güvenlik
+          bölgelerinde</strong> edinim ayrı bir izne tabidir; taşınmaz stratejik
+          bir konumdaysa satışa izin verilmeyebilir. Muğla'nın kıyı kesiminde bu
+          tür kısıtlar yer yer karşımıza çıktığından, alım öncesi taşınmazın
+          konumu mutlaka araştırılmalıdır.
+        </p>
+
+        <h2>Değerleme raporu neden zorunludur?</h2>
+        <p>
+          <strong>Yabancı uyrukluların taşınmaz ediniminde, taşınmazın gerçek
+          piyasa değerini belgeleyen değerleme raporu zorunludur.</strong> Rapor,
+          hem alıcıyı gerçek dışı fiyatlara karşı korur hem de işlemin resmî
+          değer üzerinden yürütülmesini sağlar. Türk vatandaşlığı başvurusuna
+          esas alımlarda değerleme, yetkilendirilmiş kurum aracılığıyla
+          düzenlenir.
+        </p>
+
+        <h2>Yabancıya satış süreci adım adım</h2>
+        <ol>
+          <li>Taşınmazın tapu kaydı, imar durumu ve bölge kısıtlarının kontrolü.</li>
+          <li>Yetkili kuruluştan değerleme raporunun alınması.</li>
+          <li>Gerekiyorsa askeri/özel güvenlik bölgesi izninin tamamlanması.</li>
+          <li>Web-Tapu üzerinden başvuru ve randevu.</li>
+          <li>Tapu müdürlüğünde resmî senedin imzalanması ve devrin tescili.</li>
+        </ol>
+        <p>
+          Yabancı alıcının dil engeli olduğu durumlarda tapu işleminde yeminli
+          tercüman bulundurulması gerekir. Çolakoğlu Emlak, yabancı
+          yatırımcılara süreç boyunca dil ve hukuk desteği sağlar.
+        </p>
+
+        <h2>Gayrimenkulle Türk vatandaşlığı nasıl kazanılır?</h2>
+        <p>
+          Yabancı bir yatırımcı, <strong>en az 400.000 ABD doları değerinde</strong>
+          taşınmaz edinerek Türk vatandaşlığı başvurusunda bulunabilir. Bu yolda:
+        </p>
+        <ul>
+          <li>Taşınmazın vatandaşlık edinimi amacıyla alındığı tapu kaydına işlenir.</li>
+          <li>Alıcı, taşınmazı üç yıl süreyle satmayacağına dair taahhütte bulunur.</li>
+          <li>Taşınmaz bedelinin döviz olarak yurda getirilip bozdurulması ve döviz alım belgesi alınması gerekir.</li>
+          <li>Değerleme raporu, yetkilendirilmiş kurumdan düzenlenir.</li>
+        </ul>
+
+        <h2>Muğla'da yabancıya satışta dikkat edilecekler</h2>
+        <p>
+          Muğla'nın kıyı ilçelerinde doğal ve arkeolojik SİT alanları yaygındır;
+          bu alanlardaki taşınmazlarda yapılaşma ve kullanım kurullara tabidir.
+          Ayrıca kıyıya yakın bazı bölgelerde güvenlik kısıtları bulunabilir.
+          İlçe profillerini
+          <a href="/bolgeler/bodrum/">Bodrum</a>,
+          <a href="/bolgeler/fethiye/">Fethiye</a>,
+          <a href="/bolgeler/datca/">Datça</a> ve
+          <a href="/bolgeler/marmaris/">Marmaris</a>
+          sayfalarımızdan inceleyebilirsiniz.
+        </p>
+
+        <h2>Çolakoğlu Emlak danışmanlığı</h2>
+        <p>
+          Yabancıya gayrimenkul satışı; değerleme, izin ve tapu adımlarının
+          birlikte yürütülmesini gerektiren bir süreçtir. Çolakoğlu Emlak, bu
+          adımları yabancı yatırımcı ve satıcı için dil ve hukuk desteğiyle
+          koordine eder. Çalışma ilkelerimiz için
+          <a href="/vizyon-misyon/">vizyon ve misyon sayfamıza</a>,
+          başlamak için
+          <a href="/#iletisim">iletişim sayfamıza</a>
+          göz atabilirsiniz.
+        </p>
+
+        <section class="article-faq" aria-label="Sıkça sorulan sorular">
+          <h2>Sıkça sorulan sorular</h2>
+          {
+            faq.map((item) => (
+              <details class="faq-item">
+                <summary>
+                  <span class="faq-q">{item.q}</span>
+                  <span class="faq-toggle" aria-hidden="true">+</span>
+                </summary>
+                <div class="faq-a">
+                  <p>{item.a}</p>
+                </div>
+              </details>
+            ))
+          }
+        </section>
+      </div>
+    </article>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .article-page { padding-top: var(--header-h); }
+
+  .article-hero {
+    padding: calc(3.5rem + 1rem) 0 2.5rem;
+    background: linear-gradient(180deg, var(--color-bg-alt) 0%, var(--color-bg) 100%);
+    border-bottom: 2px solid var(--color-gold);
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    font-size: 0.8rem;
+    color: var(--color-ink-muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .breadcrumb a { color: var(--color-ink-muted); transition: color 0.2s; }
+  .breadcrumb a:hover { color: var(--color-accent); }
+  .breadcrumb [aria-current="page"] { color: var(--color-ink); }
+
+  .article-hero h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4.4vw, 3.1rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    color: var(--color-ink);
+    margin: 0 0 1rem;
+    max-width: 24ch;
+  }
+
+  .article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--color-ink-muted);
+  }
+
+  .article-figure {
+    margin: 1.5rem 0 0;
+    aspect-ratio: 16 / 7;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--color-line);
+    box-shadow: var(--shadow-card);
+  }
+
+  .article-figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .article-body {
+    max-width: 760px;
+    padding-top: clamp(2.5rem, 5vw, 3.5rem);
+    padding-bottom: clamp(3.5rem, 7vw, 5.5rem);
+  }
+
+  .tldr {
+    background: var(--color-navy);
+    color: #fff;
+    padding: 1.5rem 1.75rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 2.5rem;
+  }
+
+  .tldr-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-gold-bright);
+    margin: 0 0 0.5rem;
+  }
+
+  .tldr p:last-child {
+    margin: 0;
+    font-size: 0.98rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.88);
+  }
+
+  .article-body .lead {
+    font-size: 1.14rem;
+    line-height: 1.7;
+    color: var(--color-ink);
+    margin: 0 0 2rem;
+  }
+
+  .article-body h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.4rem, 2.6vw, 1.85rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--color-ink);
+    margin: 2.5rem 0 0.9rem;
+  }
+
+  .article-body p {
+    font-size: 1.03rem;
+    line-height: 1.75;
+    color: var(--color-ink-muted);
+    margin: 0 0 1rem;
+  }
+
+  .article-body p strong { color: var(--color-ink); font-weight: 600; }
+
+  .article-body ul,
+  .article-body ol {
+    margin: 0 0 1.25rem;
+    padding-left: 1.3rem;
+    color: var(--color-ink-muted);
+  }
+
+  .article-body li {
+    font-size: 1.03rem;
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+  }
+
+  .article-body li strong { color: var(--color-ink); font-weight: 600; }
+
+  .article-body a {
+    color: var(--color-accent);
+    font-weight: 600;
+    text-underline-offset: 3px;
+  }
+
+  .definition {
+    background: var(--color-gold-soft);
+    border-left: 3px solid var(--color-gold);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: 1.1rem 1.4rem;
+    margin: 0 0 1.25rem;
+  }
+
+  .definition p { margin: 0; color: var(--color-ink) !important; }
+
+  .article-faq {
+    margin-top: 3rem;
+    border-top: 1px solid var(--color-line);
+    padding-top: 2.25rem;
+  }
+
+  .article-faq h2 { margin-top: 0; }
+
+  .faq-item {
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+    background: var(--color-surface);
+  }
+
+  .faq-item[open] { border-color: var(--color-navy); }
+
+  .faq-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.05rem 1.25rem;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .faq-item summary::-webkit-details-marker { display: none; }
+
+  .faq-q { font-weight: 600; color: var(--color-ink); font-size: 1rem; }
+
+  .faq-toggle {
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--color-gold);
+    flex-shrink: 0;
+    transition: transform 0.25s var(--ease-out);
+  }
+
+  .faq-item[open] .faq-toggle { transform: rotate(45deg); }
+
+  .faq-a { padding: 0 1.25rem 1.25rem; }
+
+  .faq-a p {
+    margin: 0;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--color-ink-muted);
+  }
+</style>

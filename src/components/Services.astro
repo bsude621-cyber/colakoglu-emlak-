@@ -1,5 +1,17 @@
 ---
 import { services } from "../data/config";
+
+// Premium çizgi ikonlar — slug bazlı, tutarlı 1.6 stroke (unicode/emoji DEĞİL).
+const icons: Record<string, string> = {
+  "satis-kiralama":
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.6 12 3l9 7.6"/><path d="M5.5 9.4V20h13V9.4"/><path d="M10 20v-5.6h4V20"/></svg>',
+  "yatirim-danismanligi":
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16"/><path d="M6.5 16.4 11 11l3.2 2.6L21 6"/><path d="M16.3 6H21v4.7"/></svg>',
+  "degerleme-raporlama":
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l5 5v13H6z"/><path d="M14 3v5h5"/><path d="M9.5 17v-3.4M12.5 17v-6M15.5 17v-2.2"/></svg>',
+  "hukuki-eslik":
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 5.6v5.6c0 4.8 3 8 7 9.2 4-1.2 7-4.4 7-9.2V5.6z"/><path d="M9 11.4l2.2 2.2 4-4.4"/></svg>',
+};
 ---
 
 <section id="hizmetler" class="section section-alt">
@@ -16,9 +28,11 @@ import { services } from "../data/config";
       {
         services.map((s) => (
           <article class="card">
-            <div class="card-icon" aria-hidden="true">
-              {s.icon}
-            </div>
+            <div
+              class="card-icon"
+              aria-hidden="true"
+              set:html={icons[s.slug] ?? ""}
+            />
             <h3>{s.name}</h3>
             <p>{s.description}</p>
           </article>
@@ -27,3 +41,26 @@ import { services } from "../data/config";
     </div>
   </div>
 </section>
+
+<style>
+  .card-icon {
+    width: 48px;
+    height: 48px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    color: var(--color-gold);
+    margin-bottom: 1.2rem;
+  }
+
+  .card-icon svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+  }
+
+  .card:hover .card-icon {
+    border-color: var(--color-gold);
+  }
+</style>

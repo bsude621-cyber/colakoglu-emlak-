@@ -1,0 +1,443 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { site } from "../../data/config";
+
+const title = "Tapu Devir İşlemleri Adım Adım Nasıl Yapılır? | Çolakoğlu Emlak";
+const description =
+  "Tapu devri nasıl yapılır? Web-Tapu randevusu, gerekli belgeler, tapu harcı ve döner sermaye bedeli, randevu günü süreci — adım adım güncel rehber. Çolakoğlu Emlak.";
+const canonical = `${site.url}/rehber/tapu-devir-sureci/`;
+const published = "2026-05-20";
+const modified = "2026-05-20";
+
+const faq = [
+  {
+    q: "Tapu devri için tapu müdürlüğüne gitmek şart mı?",
+    a: "Akit (resmî senet imzası) işlemi tapu müdürlüğünde, yetkili memur huzurunda yapılır. Başvuru ve randevu Web-Tapu üzerinden çevrim içi alınır; imza aşaması için taraflar veya noter vekilleri müdürlükte hazır bulunur.",
+  },
+  {
+    q: "Tapu harcı kim tarafından ödenir?",
+    a: "Tapu harcı, satış bedeli üzerinden toplam yüzde 4 oranındadır ve yasal olarak alıcı ile satıcı arasında yüzde 2 — yüzde 2 paylaşılır. Taraflar ödemeyi aralarında farklı kararlaştırsa da harcın gerçek satış bedeli üzerinden hesaplanması zorunludur.",
+  },
+  {
+    q: "Tapu devri ne kadar sürede tamamlanır?",
+    a: "Belgeler eksiksiz hazırlandığında ve Web-Tapu randevusu alındığında işlem genellikle birkaç iş günü içinde sonuçlanır; randevu günü müdürlükteki imza aşaması ise saatler içinde tamamlanır.",
+  },
+  {
+    q: "Bina alımında DASK zorunlu mu?",
+    a: "Evet. Konut ve iş yeri gibi bina niteliğindeki taşınmazların tapu devrinde zorunlu deprem sigortası (DASK) poliçesi aranır. Arsa ve arazi devrinde DASK gerekmez.",
+  },
+  {
+    q: "Vekâletle tapu devri yapılabilir mi?",
+    a: "Evet. Alıcı veya satıcı işlemde bizzat bulunamıyorsa, noterde düzenlenen ve taşınmaz devrine özel yetki içeren vekâletnameyle işlem yürütülebilir.",
+  },
+];
+
+const breadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "@id": `${canonical}#breadcrumb`,
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: site.url },
+    { "@type": "ListItem", position: 2, name: "Rehber", item: `${site.url}/rehber/` },
+    { "@type": "ListItem", position: 3, name: "Tapu Devir Süreci", item: canonical },
+  ],
+};
+
+const article = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": `${canonical}#article`,
+  headline: "Tapu Devir İşlemleri Adım Adım Nasıl Yapılır?",
+  description,
+  image: {
+    "@type": "ImageObject",
+    url: `${site.url}/images/rehber-tapu-devir.webp`,
+    caption: "Ev maketi, anahtar ve sözleşme — tapu devir işlemleri",
+  },
+  url: canonical,
+  inLanguage: "tr-TR",
+  datePublished: published,
+  dateModified: modified,
+  mainEntityOfPage: canonical,
+  isPartOf: { "@id": `${site.url}/#website` },
+  author: {
+    "@type": "Person",
+    name: site.owner.name,
+    jobTitle: site.owner.jobTitle,
+    worksFor: { "@id": `${site.url}/#organization` },
+  },
+  publisher: { "@id": `${site.url}/#organization` },
+  about: ["Tapu devri", "Gayrimenkul alım satım", "Web-Tapu", "Tapu harcı"],
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": `${canonical}#faq`,
+  mainEntity: faq.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  ogImage={`${site.url}/og-rehber-tapu-devir.jpg`}
+  jsonLd={[breadcrumb, article, faqSchema]}
+>
+  <Header />
+  <main id="main" class="article-page">
+    <article class="article">
+      <header class="article-hero">
+        <div class="container">
+          <nav class="breadcrumb" aria-label="Sayfa konumu">
+            <a href="/">Ana Sayfa</a>
+            <span aria-hidden="true">›</span>
+            <a href="/rehber/">Rehber</a>
+            <span aria-hidden="true">›</span>
+            <span aria-current="page">Tapu Devir Süreci</span>
+          </nav>
+          <p class="eyebrow">Rehber · Alım Satım Süreci</p>
+          <h1>Tapu Devir İşlemleri Adım Adım Nasıl Yapılır?</h1>
+          <p class="article-meta">
+            <span>Çolakoğlu Emlak</span>
+            <span aria-hidden="true">·</span>
+            <time datetime={modified}>20 Mayıs 2026</time>
+            <span aria-hidden="true">·</span>
+            <span>~6 dk okuma</span>
+          </p>
+        </div>
+      </header>
+
+      <div class="container">
+        <figure class="article-figure">
+          <img
+            src="/images/rehber-tapu-devir.webp"
+            alt="Ev maketi, anahtar ve sözleşme — tapu devir işlemleri"
+            loading="eager"
+            decoding="async"
+          />
+        </figure>
+      </div>
+
+      <div class="container article-body">
+        <aside class="tldr" aria-label="Özet">
+          <p class="tldr-label">Özet</p>
+          <p>
+            Tapu devri; Web-Tapu sistemi üzerinden randevu alınarak, gerekli
+            belgeler tamamlandıktan ve tapu harcı ile döner sermaye bedeli
+            ödendikten sonra, tapu müdürlüğünde alıcı ile satıcının resmî senedi
+            imzalamasıyla tamamlanır. Belgeler eksiksizse işlem genellikle
+            birkaç iş günü içinde sonuçlanır.
+          </p>
+        </aside>
+
+        <p class="lead">
+          Tapu devri, bir gayrimenkulün mülkiyetinin yasal olarak el
+          değiştirdiği işlemdir. Süreç doğru yürütüldüğünde hızlı ve güvenlidir;
+          ancak eksik belge, yanlış beyan veya tapu kaydındaki bir kısıtın
+          atlanması işlemi geciktirir ya da hukuki risk doğurur. Bu rehber, tapu
+          devrini adım adım açıklar.
+        </p>
+
+        <h2>Tapu devri nedir?</h2>
+        <div class="definition">
+          <p>
+            <strong>Tapu devri</strong>, bir taşınmazın mülkiyetinin satış,
+            bağış veya benzeri bir hukuki işlemle bir kişiden başka birine
+            geçirilmesi ve bunun tapu sicilinde resmen tescil edilmesidir. Devir,
+            yalnızca tapu müdürlüğünde, yetkili memur önünde geçerli kazanılır.
+          </p>
+        </div>
+
+        <h2>Tapu devri için hangi belgeler gerekir?</h2>
+        <p>Devir işlemi öncesinde hazırlanması gereken başlıca belgeler:</p>
+        <ul>
+          <li>Taşınmaza ait tapu senedi veya ada/parsel bilgileri</li>
+          <li>Alıcı ve satıcının kimlik belgeleri</li>
+          <li>Tarafların vergi kimlik numaraları</li>
+          <li>Bina niteliğindeki taşınmazlar için zorunlu deprem sigortası (DASK) poliçesi</li>
+          <li>Gerektiğinde vesikalık fotoğraf</li>
+          <li>Vekâletle işlem yapılacaksa noter onaylı, taşınmaz devrine özel vekâletname</li>
+        </ul>
+
+        <h2>Web-Tapu randevusu nasıl alınır?</h2>
+        <p>
+          Web-Tapu, Tapu ve Kadastro Genel Müdürlüğünün resmî çevrim içi işlem
+          platformudur. Başvuru ve randevu talebi e-Devlet üzerinden Web-Tapu'ya
+          erişilerek oluşturulur. Sistem, başvuruyu inceleyip taraflara işlem
+          için randevu tarihi ve gerekli ödeme bilgilerini iletir.
+        </p>
+
+        <h2>Tapu harcı ve masraflar ne kadardır?</h2>
+        <p>
+          <strong>Tapu harcı, gerçek satış bedeli üzerinden toplam yüzde 4
+          oranındadır</strong> ve yasal olarak alıcı ile satıcı arasında yüzde 2
+          — yüzde 2 paylaşılır. Bunun yanında her yıl güncellenen bir döner
+          sermaye hizmet bedeli ödenir.
+        </p>
+        <p>
+          Önemli bir uyarı: tapu harcının, satış bedelini olduğundan düşük
+          göstererek azaltılması yasaya aykırıdır. Düşük beyan, hem alıcı hem
+          satıcı için cezai işlem ve sonradan harç farkı riski doğurur. Harç,
+          taşınmazın emlak rayiç bedelinin altında olamaz.
+        </p>
+
+        <h2>Randevu günü ne olur?</h2>
+        <p>
+          Randevu günü taraflar tapu müdürlüğünde hazır bulunur. Yetkili memur,
+          tapu kaydını ve belgeleri kontrol eder; alıcı ve satıcı resmî senedi
+          (akit tablosu) memur huzurunda imzalar. İmzaların tamamlanmasıyla
+          mülkiyet alıcıya geçer ve yeni tapu senedi düzenlenir. Taraflardan biri
+          gelemeyecekse, noterde düzenlenmiş özel yetkili vekâletnameyle vekili
+          işlemi yürütür.
+        </p>
+
+        <h2>Tapu devrinde en sık yapılan hatalar</h2>
+        <ol>
+          <li>Tapu kaydındaki ipotek, haciz veya şerhleri devir öncesi kontrol etmemek.</li>
+          <li>Satış bedelini düşük beyan ederek harçtan kaçınmaya çalışmak.</li>
+          <li>Bina alımında zorunlu DASK poliçesini hazırlamamak.</li>
+          <li>İmar veya kat mülkiyeti durumunu doğrulamadan imzaya gitmek.</li>
+          <li>Vekâletnamenin taşınmaz devrine özel yetki içermediğini fark etmemek.</li>
+        </ol>
+
+        <h2>Çolakoğlu Emlak süreci nasıl güvenceye alır?</h2>
+        <p>
+          Tapu devri, küçük bir ihmalin büyük sonuçlar doğurabildiği bir
+          işlemdir. Çolakoğlu Emlak; tapu kaydı incelemesi, belge hazırlığı ve
+          randevu sürecini sizin adınıza, kayıtlı ve şeffaf biçimde yürütür.
+          Çalışma ilkelerimizi
+          <a href="/vizyon-misyon/">vizyon ve misyon sayfamızda</a>
+          görebilir, süreç için
+          <a href="/#iletisim">bizimle iletişime geçebilirsiniz</a>. Yatırım
+          amaçlı alımlarda
+          <a href="/rehber/muglada-yatirimlik-arazi/">arazi seçimi rehberimizi</a>
+          de inceleyebilirsiniz.
+        </p>
+
+        <section class="article-faq" aria-label="Sıkça sorulan sorular">
+          <h2>Sıkça sorulan sorular</h2>
+          {
+            faq.map((item) => (
+              <details class="faq-item">
+                <summary>
+                  <span class="faq-q">{item.q}</span>
+                  <span class="faq-toggle" aria-hidden="true">+</span>
+                </summary>
+                <div class="faq-a">
+                  <p>{item.a}</p>
+                </div>
+              </details>
+            ))
+          }
+        </section>
+      </div>
+    </article>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .article-page { padding-top: var(--header-h); }
+
+  .article-hero {
+    padding: calc(3.5rem + 1rem) 0 2.5rem;
+    background: linear-gradient(180deg, var(--color-bg-alt) 0%, var(--color-bg) 100%);
+    border-bottom: 2px solid var(--color-gold);
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    font-size: 0.8rem;
+    color: var(--color-ink-muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .breadcrumb a { color: var(--color-ink-muted); transition: color 0.2s; }
+  .breadcrumb a:hover { color: var(--color-accent); }
+  .breadcrumb [aria-current="page"] { color: var(--color-ink); }
+
+  .article-hero h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4.4vw, 3.1rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    color: var(--color-ink);
+    margin: 0 0 1rem;
+    max-width: 22ch;
+  }
+
+  .article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--color-ink-muted);
+  }
+
+  .article-figure {
+    margin: 1.5rem 0 0;
+    aspect-ratio: 16 / 7;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--color-line);
+    box-shadow: var(--shadow-card);
+  }
+
+  .article-figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .article-body {
+    max-width: 760px;
+    padding-top: clamp(2.5rem, 5vw, 3.5rem);
+    padding-bottom: clamp(3.5rem, 7vw, 5.5rem);
+  }
+
+  .tldr {
+    background: var(--color-navy);
+    color: #fff;
+    padding: 1.5rem 1.75rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 2.5rem;
+  }
+
+  .tldr-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-gold-bright);
+    margin: 0 0 0.5rem;
+  }
+
+  .tldr p:last-child {
+    margin: 0;
+    font-size: 0.98rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.88);
+  }
+
+  .article-body .lead {
+    font-size: 1.14rem;
+    line-height: 1.7;
+    color: var(--color-ink);
+    margin: 0 0 2rem;
+  }
+
+  .article-body h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.4rem, 2.6vw, 1.85rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--color-ink);
+    margin: 2.5rem 0 0.9rem;
+  }
+
+  .article-body p {
+    font-size: 1.03rem;
+    line-height: 1.75;
+    color: var(--color-ink-muted);
+    margin: 0 0 1rem;
+  }
+
+  .article-body p strong { color: var(--color-ink); font-weight: 600; }
+
+  .article-body ul,
+  .article-body ol {
+    margin: 0 0 1.25rem;
+    padding-left: 1.3rem;
+    color: var(--color-ink-muted);
+  }
+
+  .article-body li {
+    font-size: 1.03rem;
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+  }
+
+  .article-body li strong { color: var(--color-ink); font-weight: 600; }
+
+  .article-body a {
+    color: var(--color-accent);
+    font-weight: 600;
+    text-underline-offset: 3px;
+  }
+
+  .definition {
+    background: var(--color-gold-soft);
+    border-left: 3px solid var(--color-gold);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: 1.1rem 1.4rem;
+    margin: 0 0 1.25rem;
+  }
+
+  .definition p { margin: 0; color: var(--color-ink) !important; }
+
+  .article-faq {
+    margin-top: 3rem;
+    border-top: 1px solid var(--color-line);
+    padding-top: 2.25rem;
+  }
+
+  .article-faq h2 { margin-top: 0; }
+
+  .faq-item {
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+    background: var(--color-surface);
+  }
+
+  .faq-item[open] { border-color: var(--color-navy); }
+
+  .faq-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.05rem 1.25rem;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .faq-item summary::-webkit-details-marker { display: none; }
+
+  .faq-q { font-weight: 600; color: var(--color-ink); font-size: 1rem; }
+
+  .faq-toggle {
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--color-gold);
+    flex-shrink: 0;
+    transition: transform 0.25s var(--ease-out);
+  }
+
+  .faq-item[open] .faq-toggle { transform: rotate(45deg); }
+
+  .faq-a { padding: 0 1.25rem 1.25rem; }
+
+  .faq-a p {
+    margin: 0;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--color-ink-muted);
+  }
+</style>

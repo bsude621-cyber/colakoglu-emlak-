@@ -16,6 +16,12 @@ export default defineConfig({
       lastmod: new Date(),
     }),
   ],
+  vite: {
+    server: {
+      host: true,
+      allowedHosts: [".trycloudflare.com", "localhost", "127.0.0.1"],
+    },
+  },
   build: {
     inlineStylesheets: "auto",
   },

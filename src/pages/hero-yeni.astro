@@ -1,0 +1,550 @@
+---
+// Çolakoğlu Emlak — YENİ hero yönü (önizleme)
+// Sude'nin 4 referans ekran görüntüsünden çıkarılan DNA:
+// modern + mimari + bold sans tipografi + fotoğraf-merkezli + lacivert ana renk
+// + kahve ikincil aksan + açık zemin + editoryal sadelik (bol boşluk, ince
+// outline buton, dev stat rakamları, dikey eksen etiket).
+// Bağımsız sayfa — global.css'e dokunmaz. Onaylanınca dil tüm siteye yayılır.
+const photo =
+  "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80";
+---
+
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Çolakoğlu Emlak — yeni hero önizleme</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="page">
+      <!-- HEADER -->
+      <header class="hd">
+        <a href="#" class="brand" aria-label="Çolakoğlu Emlak">
+          <span class="brand-mark" aria-hidden="true"></span>
+          <span class="brand-text">
+            <strong>Çolakoğlu</strong>
+            <em>EMLAK</em>
+          </span>
+        </a>
+        <nav class="nav">
+          <a href="#">Hizmetler</a>
+          <a href="#">Süreç</a>
+          <a href="#">Hakkımızda</a>
+          <a href="#">Bölgeler</a>
+        </nav>
+        <a href="#" class="hd-cta">İletişim</a>
+      </header>
+
+      <!-- HERO -->
+      <main>
+        <section class="hero">
+          <span class="vlabel" aria-hidden="true">EST. 2001 — MUĞLA</span>
+
+          <div class="hero-text">
+            <p class="kicker"><span class="tick"></span>Muğla · Gayrimenkul Danışmanlığı</p>
+            <h1>
+              Muğla'da gayrimenkulün
+              <span class="accent">güvenilir adresi.</span>
+            </h1>
+            <p class="lede">
+              Ziya Ercan liderliğinde 25 yıldır; alım, satım, kiralama ve
+              değerleme süreçlerinde baştan sona yanınızdayız.
+            </p>
+            <div class="actions">
+              <a href="#" class="btn btn-solid">Danışmanlık alın</a>
+              <a href="#" class="btn btn-line">
+                <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true">
+                  <path
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 0 0 5.5 5.5l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7 2 2 0 0 1 6.5 3.5Z"
+                  ></path>
+                </svg>
+                0252 212 50 15
+              </a>
+            </div>
+          </div>
+
+          <figure class="hero-media">
+            <div class="frame"></div>
+            <img src={photo} alt="Muğla'da modern bir konut" loading="eager" />
+            <figcaption class="namecard">
+              <span class="namecard-bar" aria-hidden="true"></span>
+              <span class="namecard-text">
+                <strong>Ziya Ercan</strong>
+                <em>Kurucu — Çolakoğlu Emlak</em>
+              </span>
+            </figcaption>
+          </figure>
+        </section>
+
+        <!-- STAT ŞERİDİ -->
+        <section class="stats" aria-label="Çolakoğlu Emlak rakamları">
+          <div class="stat">
+            <span class="stat-num">25<i>+</i></span>
+            <span class="stat-label">Yıllık tecrübe</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">8</span>
+            <span class="stat-label">İlçede hizmet</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num accent">3</span>
+            <span class="stat-label">Sektörel temsil unvanı</span>
+          </div>
+          <p class="stats-note">
+            Muğla Emlak Danışmanları Esnaf Odası &amp; Müşavirler Derneği Başkanı,
+            TEMFED Genel Başkan Yardımcısı.
+          </p>
+        </section>
+      </main>
+    </div>
+
+    <style is:global>
+      :root {
+        --bg: #f4f4f1;
+        --surface: #ffffff;
+        --navy: #2b3a47;
+        --navy-deep: #1e2a34;
+        --brown: #8a6347;
+        --brown-deep: #6f4e37;
+        --ink: #28323b;
+        --ink-soft: #5d6873;
+        --line: rgba(40, 54, 65, 0.14);
+        --font: "Archivo", system-ui, -apple-system, sans-serif;
+        --ease: cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: var(--font);
+        background: var(--bg);
+        color: var(--ink);
+        -webkit-font-smoothing: antialiased;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .page {
+        width: min(1240px, 100% - 3rem);
+        margin-inline: auto;
+      }
+
+      /* ---------- HEADER ---------- */
+      .hd {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1.5rem 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+      }
+
+      .brand-mark {
+        width: 30px;
+        height: 30px;
+        background: var(--navy);
+        position: relative;
+        flex-shrink: 0;
+      }
+
+      .brand-mark::after {
+        content: "";
+        position: absolute;
+        right: -5px;
+        bottom: -5px;
+        width: 14px;
+        height: 14px;
+        background: var(--brown);
+      }
+
+      .brand-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1;
+      }
+
+      .brand-text strong {
+        font-size: 1.18rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        color: var(--navy);
+      }
+
+      .brand-text em {
+        font-style: normal;
+        font-size: 0.62rem;
+        font-weight: 600;
+        letter-spacing: 0.42em;
+        color: var(--ink-soft);
+        margin-top: 3px;
+      }
+
+      .nav {
+        display: flex;
+        gap: 2.2rem;
+      }
+
+      .nav a {
+        font-size: 0.92rem;
+        font-weight: 500;
+        color: var(--ink-soft);
+        transition: color 0.18s var(--ease);
+      }
+
+      .nav a:hover {
+        color: var(--navy);
+      }
+
+      .hd-cta {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--navy);
+        padding: 0.6rem 1.3rem;
+        border: 1px solid var(--navy);
+        transition: background 0.2s var(--ease), color 0.2s var(--ease);
+      }
+
+      .hd-cta:hover {
+        background: var(--navy);
+        color: #fff;
+      }
+
+      @media (max-width: 800px) {
+        .nav {
+          display: none;
+        }
+      }
+
+      /* ---------- HERO ---------- */
+      .hero {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1.08fr 0.92fr;
+        gap: 4rem;
+        align-items: center;
+        padding: 5.5rem 0 4.5rem;
+      }
+
+      .vlabel {
+        position: absolute;
+        left: -2.6rem;
+        top: 50%;
+        transform: rotate(180deg) translateX(50%);
+        transform-origin: center;
+        writing-mode: vertical-rl;
+        font-size: 0.66rem;
+        font-weight: 600;
+        letter-spacing: 0.32em;
+        color: var(--ink-soft);
+        opacity: 0.5;
+      }
+
+      .kicker {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        margin: 0 0 1.6rem;
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        color: var(--brown-deep);
+      }
+
+      .tick {
+        width: 1.9rem;
+        height: 2px;
+        background: var(--brown);
+        display: block;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: clamp(2.7rem, 5.4vw, 4.55rem);
+        font-weight: 800;
+        line-height: 1.04;
+        letter-spacing: -0.035em;
+        color: var(--navy);
+        text-wrap: balance;
+      }
+
+      h1 .accent {
+        color: var(--brown);
+        display: block;
+      }
+
+      .lede {
+        margin: 1.7rem 0 2.4rem;
+        max-width: 30rem;
+        font-size: 1.075rem;
+        line-height: 1.62;
+        color: var(--ink-soft);
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.9rem;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        font-size: 0.95rem;
+        font-weight: 600;
+        padding: 0.95rem 1.7rem;
+        transition: transform 0.16s var(--ease), background 0.2s var(--ease),
+          color 0.2s var(--ease), border-color 0.2s var(--ease);
+      }
+
+      .btn:active {
+        transform: scale(0.98);
+      }
+
+      .btn-solid {
+        background: var(--navy);
+        color: #fff;
+      }
+
+      .btn-solid:hover {
+        background: var(--navy-deep);
+      }
+
+      .btn-line {
+        color: var(--navy);
+        border: 1px solid var(--line);
+        background: transparent;
+      }
+
+      .btn-line:hover {
+        border-color: var(--navy);
+      }
+
+      /* ---------- HERO GÖRSEL ---------- */
+      .hero-media {
+        position: relative;
+        margin: 0;
+      }
+
+      .hero-media img {
+        width: 100%;
+        height: 540px;
+        object-fit: cover;
+        position: relative;
+        z-index: 1;
+      }
+
+      .frame {
+        position: absolute;
+        inset: 1.5rem -1.5rem -1.5rem 1.5rem;
+        border: 1px solid var(--brown);
+        z-index: 0;
+      }
+
+      .namecard {
+        position: absolute;
+        left: -1.6rem;
+        bottom: 2.4rem;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+        background: var(--navy);
+        color: #fff;
+        padding: 1rem 1.4rem;
+      }
+
+      .namecard-bar {
+        width: 3px;
+        height: 2.4rem;
+        background: var(--brown);
+        flex-shrink: 0;
+      }
+
+      .namecard-text {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.25;
+      }
+
+      .namecard-text strong {
+        font-size: 1.02rem;
+        font-weight: 700;
+      }
+
+      .namecard-text em {
+        font-style: normal;
+        font-size: 0.76rem;
+        color: rgba(255, 255, 255, 0.62);
+        margin-top: 2px;
+      }
+
+      /* ---------- STAT ŞERİDİ ---------- */
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(3, auto) 1fr;
+        align-items: center;
+        gap: 3rem;
+        padding: 3rem 0 5rem;
+        border-top: 1px solid var(--line);
+      }
+
+      .stat {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .stat-num {
+        font-size: clamp(3rem, 5.5vw, 4.6rem);
+        font-weight: 800;
+        line-height: 0.9;
+        letter-spacing: -0.04em;
+        color: var(--navy);
+      }
+
+      .stat-num i {
+        font-style: normal;
+        color: var(--brown);
+      }
+
+      .stat-num.accent {
+        color: var(--brown);
+      }
+
+      .stat-label {
+        margin-top: 0.7rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+      }
+
+      .stats-note {
+        margin: 0;
+        padding-left: 3rem;
+        border-left: 1px solid var(--line);
+        font-size: 0.92rem;
+        line-height: 1.6;
+        color: var(--ink-soft);
+        max-width: 26rem;
+      }
+
+      /* ---------- ENTRANCE ---------- */
+      .hero-text > *,
+      .hero-media,
+      .stat,
+      .stats-note {
+        animation: rise 0.7s var(--ease) both;
+      }
+
+      .kicker { animation-delay: 0.05s; }
+      h1 { animation-delay: 0.12s; }
+      .lede { animation-delay: 0.2s; }
+      .actions { animation-delay: 0.28s; }
+      .hero-media { animation-delay: 0.22s; }
+
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(22px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .hero-text > *,
+        .hero-media,
+        .stat,
+        .stats-note {
+          animation: none;
+        }
+      }
+
+      /* ---------- RESPONSIVE ---------- */
+      @media (max-width: 920px) {
+        .hero {
+          grid-template-columns: 1fr;
+          gap: 3.2rem;
+          padding: 3rem 0 3.5rem;
+        }
+
+        .vlabel {
+          display: none;
+        }
+
+        .hero-media img {
+          height: 420px;
+        }
+
+        .stats {
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1.5rem;
+        }
+
+        .stats-note {
+          grid-column: 1 / -1;
+          padding-left: 0;
+          border-left: none;
+          border-top: 1px solid var(--line);
+          padding-top: 1.5rem;
+          max-width: none;
+        }
+      }
+
+      @media (max-width: 540px) {
+        .page {
+          width: min(1240px, 100% - 2rem);
+        }
+
+        .namecard {
+          left: 0;
+        }
+
+        .frame {
+          inset: 1rem -1rem -1rem 1rem;
+        }
+
+        .stats {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+    </style>
+  </body>
+</html>

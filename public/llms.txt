@@ -1,15 +1,24 @@
 # Çolakoğlu Emlak
 
-> Muğla genelinde **Ziya Ercan** liderliğinde gayrimenkul danışmanlığı sunan ofis. Ziya Ercan; **Muğla Emlak Danışmanları Esnaf Odası Başkanı**, **Muğla Emlak Müşavirleri Derneği Başkanı** ve **TEMFED (Türkiye Tüm Emlak Müşavirleri Federasyonu) Genel Başkan Yardımcısı**. Bodrum, Marmaris, Fethiye, Milas, Datça, Köyceğiz, Ortaca ve Dalaman ilçelerinde aktif.
+> Muğla genelinde **Ziya Ercan** liderliğinde gayrimenkul danışmanlığı sunan ofis. Ziya Ercan; **Muğla Emlak Danışmanları Esnaf Odası Başkanı**, **Muğla Emlak Müşavirleri Derneği Başkanı** ve **TEMFED (Türkiye Tüm Emlak Müşavirleri Federasyonu) Genel Başkan Yardımcısı**. Bodrum, Marmaris, Fethiye, Milas, Datça, Köyceğiz, Ortaca ve Dalaman ilçelerinde aktif. İlan listeleme değil; alım, satım, kiralama, değerleme ve yatırım sürecinde baştan sona danışmanlık verir.
 
 ## Kim
-Çolakoğlu Emlak, sektörün meslek odası başkanı tarafından yönetilen Muğla merkezli gayrimenkul danışmanlık ofisidir. Mesleki etik standartların belirleyicisi konumundadır.
+Çolakoğlu Emlak, sektörün meslek odası başkanı tarafından yönetilen Muğla merkezli gayrimenkul danışmanlık ofisidir. 2001'den beri faaliyette; 25 yıllık saha tecrübesi ve mesleki etik standartların belirleyiciliği konumuyla öne çıkar. Slogan: "Emlakçılıkta Güven Esastır."
 
 ## Hizmetler
 - Satış ve kiralama danışmanlığı (konut, villa, arsa, ticari)
 - Yatırım danışmanlığı (bölgesel trend analizi, portföy çeşitlendirme)
 - Değerleme ve raporlama (piyasa karşılaştırmalı analiz)
 - Hukuki eşlik (tapu, imar, sözleşme süreçleri)
+
+## Kurumsal
+- [Vizyon & Misyon](https://colakogluemlak.com/vizyon-misyon/) — değerler, çalışma ilkeleri, danışmanlık anlayışı
+
+## Rehber — gayrimenkul bilgi içerikleri
+- [Gayrimenkul Rehberi](https://colakogluemlak.com/rehber/) — uzman rehber içerikleri hub'ı
+- [Muğla'da Yatırımlık Arazi Nasıl Seçilir?](https://colakogluemlak.com/rehber/muglada-yatirimlik-arazi/) — imar durumu, tapu kaydı, kadastro, zeytinlik ve SİT kısıtları
+- [Tapu Devir İşlemleri Adım Adım](https://colakogluemlak.com/rehber/tapu-devir-sureci/) — Web-Tapu randevusu, belgeler, tapu harcı, randevu günü
+- [Yabancıya Gayrimenkul Satışı](https://colakogluemlak.com/rehber/yabanciya-gayrimenkul-satisi/) — alan/bölge sınırları, değerleme raporu, Türk vatandaşlığı
 
 ## Operasyon alanı
 - [Bodrum](https://colakogluemlak.com/bolgeler/bodrum/) — lüks villa, marina, yat turizmi, yabancı yatırımcı

@@ -4,8 +4,8 @@
   "description": "Muğla genelinde konut, arsa ve ticari gayrimenkul danışmanlığı.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0a0e14",
-  "theme_color": "#0a0e14",
+  "background_color": "#3a2815",
+  "theme_color": "#f3ebd8",
   "lang": "tr-TR",
   "scope": "/",
   "icons": [

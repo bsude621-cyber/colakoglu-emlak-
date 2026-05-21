@@ -55,7 +55,7 @@ const steps = [
             <div class="process-step-body">
               <h3>{step.title}</h3>
               <p>{step.description}</p>
-              <p class="process-step-duration">⏱ {step.duration}</p>
+              <p class="process-step-duration"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.6V12l3.1 2.2"/></svg>{step.duration}</p>
             </div>
           </li>
         ))
@@ -106,7 +106,7 @@ const steps = [
   .process-step:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-soft);
-    border-color: rgba(212, 175, 55, 0.28);
+    border-color: var(--color-navy);
   }
 
   .process-step-marker {
@@ -114,18 +114,17 @@ const steps = [
     place-items: center;
     width: 64px;
     height: 64px;
-    border-radius: 50%;
-    background: linear-gradient(160deg, #1c2a45 0%, #0f1724 100%);
-    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: var(--radius-md);
+    background: var(--color-navy);
     flex-shrink: 0;
   }
 
   .process-step-number {
     font-family: var(--font-serif);
     font-size: 1.35rem;
-    font-weight: 600;
-    color: #f0f4fa;
-    letter-spacing: 0.02em;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: -0.01em;
   }
 
   .process-step-body h3 {
@@ -144,11 +143,19 @@ const steps = [
   }
 
   .process-step-duration {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
     font-size: 0.8rem !important;
     color: var(--color-eyebrow) !important;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    margin-top: 0.75rem !important;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-top: 0.85rem !important;
+  }
+
+  .process-step-duration svg {
+    width: 14px;
+    height: 14px;
   }
 
   @media (max-width: 640px) {

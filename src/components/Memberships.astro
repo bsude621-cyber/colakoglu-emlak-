@@ -13,7 +13,7 @@ import { site } from "../data/config";
 
     <div class="memberships-grid">
       <div class="membership-card">
-        <span class="membership-card-mark" aria-hidden="true">★</span>
+        <span class="membership-card-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5.5"/><path d="M8.4 13.3 6.5 21l5.5-3 5.5 3-1.9-7.7"/></svg></span>
         <div class="membership-card-body">
           <p class="membership-card-role">Başkan</p>
           <h3>Muğla Emlak Danışmanları Esnaf Odası</h3>
@@ -24,7 +24,7 @@ import { site } from "../data/config";
       </div>
 
       <div class="membership-card">
-        <span class="membership-card-mark" aria-hidden="true">★</span>
+        <span class="membership-card-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5.5"/><path d="M8.4 13.3 6.5 21l5.5-3 5.5 3-1.9-7.7"/></svg></span>
         <div class="membership-card-body">
           <p class="membership-card-role">Başkan</p>
           <h3>Muğla Emlak Müşavirleri Derneği</h3>
@@ -35,7 +35,7 @@ import { site } from "../data/config";
       </div>
 
       <div class="membership-card membership-card--highlight">
-        <span class="membership-card-mark" aria-hidden="true">★</span>
+        <span class="membership-card-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="5.5"/><path d="M8.4 13.3 6.5 21l5.5-3 5.5 3-1.9-7.7"/></svg></span>
         <div class="membership-card-body">
           <p class="membership-card-role">Genel Başkan Yardımcısı</p>
           <h3>TEMFED</h3>
@@ -51,14 +51,8 @@ import { site } from "../data/config";
 
 <style>
   .memberships {
-    padding: 4rem 0;
-    background:
-      linear-gradient(180deg, rgba(15, 26, 46, 0.6), rgba(10, 14, 20, 0.95)),
-      radial-gradient(
-        circle at 30% 20%,
-        rgba(212, 175, 55, 0.18),
-        transparent 55%
-      );
+    padding: clamp(3.5rem, 7vw, 5.5rem) 0;
+    background: var(--color-bg);
     border-top: 1px solid var(--color-line);
     border-bottom: 1px solid var(--color-line);
   }
@@ -66,7 +60,7 @@ import { site } from "../data/config";
   .memberships-title {
     text-align: center;
     font-size: 0.78rem;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--color-eyebrow);
     font-weight: 600;
@@ -102,44 +96,50 @@ import { site } from "../data/config";
 
   .membership-card:hover {
     transform: translateY(-3px);
-    border-color: rgba(212, 175, 55, 0.5);
+    border-color: var(--color-navy);
     box-shadow: var(--shadow-soft);
   }
 
+  /* TEMFED — vurgulu kart, lacivert dolu blok */
   .membership-card--highlight {
-    background: linear-gradient(
-      155deg,
-      rgba(212, 175, 55, 0.18) 0%,
-      var(--color-surface) 100%
-    );
-    border-color: rgba(212, 175, 55, 0.4);
+    background: var(--color-navy);
+    border-color: var(--color-navy);
   }
 
   .membership-card-mark {
-    width: 38px;
-    height: 38px;
+    width: 42px;
+    height: 42px;
     flex-shrink: 0;
     display: grid;
     place-items: center;
-    border-radius: 50%;
-    background: rgba(212, 175, 55, 0.22);
-    color: var(--color-eyebrow);
-    font-size: 1rem;
-    border: 1px solid rgba(212, 175, 55, 0.5);
+    border-radius: var(--radius-sm);
+    background: var(--color-gold);
+    color: #fff;
+  }
+
+  .membership-card-mark svg {
+    width: 21px;
+    height: 21px;
+  }
+
+  .membership-card--highlight .membership-card-mark {
+    background: var(--color-gold-bright);
   }
 
   .membership-card-role {
-    font-size: 0.72rem;
-    letter-spacing: 0.18em;
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--color-eyebrow);
     margin: 0 0 0.3rem;
-    font-weight: 600;
+    font-weight: 700;
   }
 
   .membership-card-body h3 {
     font-family: var(--font-serif);
-    font-size: 1.2rem;
+    font-size: 1.18rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
     margin: 0 0 0.4rem;
     color: var(--color-ink);
     line-height: 1.25;
@@ -150,6 +150,18 @@ import { site } from "../data/config";
     color: var(--color-ink-muted);
     margin: 0;
     line-height: 1.5;
+  }
+
+  .membership-card--highlight .membership-card-role {
+    color: var(--color-gold-bright);
+  }
+
+  .membership-card--highlight .membership-card-body h3 {
+    color: #fff;
+  }
+
+  .membership-card--highlight .membership-card-note {
+    color: rgba(255, 255, 255, 0.72);
   }
 
 </style>

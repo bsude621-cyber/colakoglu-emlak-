@@ -1,0 +1,531 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { site } from "../../data/config";
+
+const title = "Muğla'da Yatırımlık Arazi Nasıl Seçilir? | Çolakoğlu Emlak";
+const description =
+  "Muğla'da yatırımlık arazi seçiminde imar durumu, tapu kaydı, kadastro, zeytinlik ve SİT alanı kısıtları — adım adım uzman rehberi. Çolakoğlu Emlak danışmanlığı.";
+const canonical = `${site.url}/rehber/muglada-yatirimlik-arazi/`;
+const published = "2026-05-20";
+const modified = "2026-05-20";
+
+const faq = [
+  {
+    q: "Muğla'da arsa mı arazi mi almak daha mantıklı?",
+    a: "Kısa vadeli ve yapılaşma amaçlı yatırımda imarlı arsa daha güvenlidir; uzun vadeli ve daha düşük bütçeli yatırımda ise imar planı revizyonu beklenen arazi tercih edilebilir. Karar, yatırım ufkunuza ve riskin yönetilmesine bağlıdır.",
+  },
+  {
+    q: "İmar durumu belgesi nereden alınır?",
+    a: "İmar durumu belgesi, taşınmazın bağlı olduğu belediyenin İmar Müdürlüğünden alınır. Belge; yapılaşma koşullarını, yola cephe durumunu ve parselin imar planındaki konumunu gösterir.",
+  },
+  {
+    q: "Zeytinlik vasıflı arazide yapı yapılabilir mi?",
+    a: "Zeytinlik vasıflı taşınmazlarda yapılaşma, zeytincilik mevzuatı gereği önemli ölçüde kısıtlıdır. Muğla'da sık karşılaşılan bu durum, satın almadan önce tapu vasfı üzerinden mutlaka kontrol edilmelidir.",
+  },
+  {
+    q: "Hisseli tapulu arazi yatırım için uygun mu?",
+    a: "Hisseli (müşterek mülkiyetli) tapuda taşınmazın tamamına değil bir paya sahip olunur. Bu, kullanım ve satışta diğer hissedarlara bağımlılık doğurur. Yatırım amaçlı alımda müstakil tapu tercih edilmelidir.",
+  },
+  {
+    q: "Parsel sınırlarını kim doğrular?",
+    a: "Parsel sınırları, Tapu ve Kadastro Genel Müdürlüğünün Parsel Sorgu sistemi üzerinden ön kontrol edilir; kesin sınır için kadastro müdürlüğünce zeminde aplikasyon yaptırılması en güvenli yoldur.",
+  },
+];
+
+const breadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "@id": `${canonical}#breadcrumb`,
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: site.url },
+    { "@type": "ListItem", position: 2, name: "Rehber", item: `${site.url}/rehber/` },
+    { "@type": "ListItem", position: 3, name: "Muğla'da Yatırımlık Arazi Seçimi", item: canonical },
+  ],
+};
+
+const article = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": `${canonical}#article`,
+  headline: "Muğla'da Yatırımlık Arazi Nasıl Seçilir?",
+  description,
+  image: {
+    "@type": "ImageObject",
+    url: `${site.url}/images/rehber-yatirimlik-arazi.webp`,
+    caption: "Drone'dan görüntülenen tarım arazisi parselleri",
+  },
+  url: canonical,
+  inLanguage: "tr-TR",
+  datePublished: published,
+  dateModified: modified,
+  mainEntityOfPage: canonical,
+  isPartOf: { "@id": `${site.url}/#website` },
+  author: {
+    "@type": "Person",
+    name: site.owner.name,
+    jobTitle: site.owner.jobTitle,
+    worksFor: { "@id": `${site.url}/#organization` },
+  },
+  publisher: { "@id": `${site.url}/#organization` },
+  about: ["Gayrimenkul yatırımı", "Arsa ve arazi", "Muğla", "İmar durumu"],
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": `${canonical}#faq`,
+  mainEntity: faq.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  ogImage={`${site.url}/og-rehber-yatirimlik-arazi.jpg`}
+  jsonLd={[breadcrumb, article, faqSchema]}
+>
+  <Header />
+  <main id="main" class="article-page">
+    <article class="article">
+      <header class="article-hero">
+        <div class="container">
+          <nav class="breadcrumb" aria-label="Sayfa konumu">
+            <a href="/">Ana Sayfa</a>
+            <span aria-hidden="true">›</span>
+            <a href="/rehber/">Rehber</a>
+            <span aria-hidden="true">›</span>
+            <span aria-current="page">Yatırımlık Arazi Seçimi</span>
+          </nav>
+          <p class="eyebrow">Rehber · Gayrimenkul Yatırımı</p>
+          <h1>Muğla'da Yatırımlık Arazi Nasıl Seçilir?</h1>
+          <p class="article-meta">
+            <span>Çolakoğlu Emlak</span>
+            <span aria-hidden="true">·</span>
+            <time datetime={modified}>20 Mayıs 2026</time>
+            <span aria-hidden="true">·</span>
+            <span>~7 dk okuma</span>
+          </p>
+        </div>
+      </header>
+
+      <div class="container">
+        <figure class="article-figure">
+          <img
+            src="/images/rehber-yatirimlik-arazi.webp"
+            alt="Drone'dan görüntülenen tarım arazisi parselleri — yatırımlık arazi seçimi"
+            loading="eager"
+            decoding="async"
+          />
+        </figure>
+      </div>
+
+      <div class="container article-body">
+        <aside class="tldr" aria-label="Özet">
+          <p class="tldr-label">Özet</p>
+          <p>
+            Muğla'da yatırımlık arazi seçiminde en kritik üç adım: imar
+            durumunun belediyeden teyidi, tapu kaydındaki şerh/ipotek/haciz
+            kontrolü ve parsel sınırlarının kadastro ile doğrulanmasıdır.
+            Zeytinlik ve SİT alanı kısıtları bölgede en sık karşılaşılan
+            risklerdir; alım yapılmadan önce mutlaka araştırılmalıdır.
+          </p>
+        </aside>
+
+        <p class="lead">
+          Muğla'da yatırımlık arazi, doğru seçildiğinde uzun vadeli ve
+          görece düşük riskli bir yatırım aracıdır. Ancak arsa ile arazi
+          arasındaki fark, imar durumu, tapu kaydı ve yerel kısıtlar
+          bilinmeden yapılan alımlar maddi kayıpla sonuçlanabilir. Bu rehber,
+          Muğla genelinde arazi yatırımında adım adım nelere dikkat edilmesi
+          gerektiğini açıklar.
+        </p>
+
+        <h2>Arsa ile arazi arasındaki fark nedir?</h2>
+        <div class="definition">
+          <p>
+            <strong>Arsa</strong>, belediye ve mücavir alan sınırları içinde,
+            imar planına göre parsellenmiş taşınmazdır.
+            <strong>Arazi</strong> ise imar planı dışında kalan, çoğunlukla
+            tarım vasıflı taşınmazı ifade eder.
+          </p>
+        </div>
+        <p>
+          Bu ayrım yatırımın temelidir: arsada yapılaşma hakkı imar planıyla
+          tanımlıdır, imarsız arazide ise yapılaşma genellikle mümkün değildir.
+          Arazi yatırımının değer kazanması çoğu zaman imar planı revizyonuna
+          veya bölgenin gelişimine bağlıdır — yani daha uzun vadeli ve daha
+          dikkatli yönetilmesi gereken bir beklentidir.
+        </p>
+
+        <h2>İmar durumu neden en kritik adımdır?</h2>
+        <p>
+          <strong>İmar durumu, bir taşınmazın yatırım değerini belirleyen tek
+          en önemli unsurdur.</strong> İmar durumu belgesi, taşınmazın bağlı
+          olduğu belediyenin İmar Müdürlüğünden alınır ve şu bilgileri gösterir:
+        </p>
+        <ul>
+          <li>Parselin imar planındaki konumu (konut, ticari, tarım vb.)</li>
+          <li>Yapılaşma koşulları — taban alanı ve emsal (TAKS / KAKS) oranları</li>
+          <li>Yola cephe durumu ve çekme mesafeleri</li>
+          <li>Varsa plan notları ve özel kısıtlamalar</li>
+        </ul>
+        <p>
+          Satıcının sözlü beyanı yeterli değildir; imar durumu her zaman
+          belediyeden resmî belgeyle teyit edilmelidir.
+        </p>
+
+        <h2>Tapu kaydında neye bakılır?</h2>
+        <p>
+          Tapu kaydı, taşınmazın hukuki geçmişini gösterir. Alım öncesi
+          kontrol edilmesi gereken başlıca kayıtlar:
+        </p>
+        <ul>
+          <li><strong>İpotek:</strong> Taşınmaz bir borca teminat gösterilmiş olabilir.</li>
+          <li><strong>Haciz:</strong> Üçüncü kişi alacakları nedeniyle konulan kısıtlama.</li>
+          <li><strong>Şerhler ve irtifak hakları:</strong> Geçit hakkı, intifa gibi yükümlülükler.</li>
+          <li><strong>Mülkiyet türü:</strong> Müstakil mi, hisseli (müşterek) mi?</li>
+        </ul>
+        <p>
+          Tapu bilgilerinin bir kısmı, taşınmaz maliki veya yetkili kişi
+          tarafından e-Devlet üzerinden görüntülenebilir. Hisseli tapuda
+          taşınmazın tamamına değil bir paya sahip olunur; yatırım amaçlı
+          alımda müstakil tapu önerilir.
+        </p>
+
+        <h2>Parsel sınırları ve kadastro nasıl doğrulanır?</h2>
+        <p>
+          Tapu ve Kadastro Genel Müdürlüğünün <strong>Parsel Sorgu</strong>
+          sistemi, parselin konumunu ve yüzölçümünü ön kontrol için ücretsiz
+          bir araçtır. Ancak harita üzerindeki sınır, zemindeki gerçek sınırla
+          her zaman birebir örtüşmeyebilir. Kesin sınır için kadastro
+          müdürlüğünce zeminde <strong>aplikasyon</strong> (sınırların araziye
+          işaretlenmesi) yaptırmak en güvenli yoldur.
+        </p>
+
+        <h2>Muğla'ya özel riskler: zeytinlik ve SİT alanları</h2>
+        <p>
+          Muğla, coğrafyası nedeniyle iki kısıtın sık görüldüğü bir ildir:
+        </p>
+        <ul>
+          <li>
+            <strong>Zeytinlik vasıflı araziler:</strong> Zeytincilik mevzuatı
+            gereği bu taşınmazlarda yapılaşma önemli ölçüde sınırlıdır. Tapu
+            vasfı mutlaka kontrol edilmelidir.
+          </li>
+          <li>
+            <strong>SİT alanları:</strong> Kıyı bölgelerinde doğal ve
+            arkeolojik SİT statüsü yaygındır; bu alanlarda yapılaşma ve kullanım
+            kurullara tabidir.
+          </li>
+          <li>
+            <strong>Tarım arazisi bölünme kuralları:</strong> Tarım vasıflı
+            arazilerde belirli büyüklüğün altında ifraz (bölme) yapılması
+            mevzuatla kısıtlanmıştır.
+          </li>
+        </ul>
+
+        <h2>Ulaşım, altyapı ve gelişim potansiyeli</h2>
+        <p>
+          Bir arazinin uzun vadeli değeri; yola cephesi, elektrik ve su
+          altyapısına yakınlığı, çevredeki imar gelişimi ve ulaşım
+          projeleriyle doğrudan ilişkilidir. Bugünkü fiyatı değil,
+          <strong>5–10 yıllık gelişim beklentisini</strong> okuyabilmek arazi
+          yatırımının özüdür.
+        </p>
+
+        <h2>İlçeye göre yatırım yaklaşımı</h2>
+        <p>
+          Muğla tek bir piyasa değildir; her ilçenin gayrimenkul karakteri
+          farklıdır. Yatırım kararından önce ilçe profilini incelemenizi
+          öneririz:
+          <a href="/bolgeler/bodrum/">Bodrum</a>,
+          <a href="/bolgeler/fethiye/">Fethiye</a>,
+          <a href="/bolgeler/milas/">Milas</a>,
+          <a href="/bolgeler/datca/">Datça</a>,
+          <a href="/bolgeler/koycegiz/">Köyceğiz</a>,
+          <a href="/bolgeler/ortaca/">Ortaca</a>,
+          <a href="/bolgeler/dalaman/">Dalaman</a> ve
+          <a href="/bolgeler/marmaris/">Marmaris</a>.
+        </p>
+
+        <h2>Arazi yatırımında en sık yapılan 5 hata</h2>
+        <ol>
+          <li>İmar durumunu belediyeden teyit etmeden, satıcı beyanına güvenmek.</li>
+          <li>Tapu kaydındaki şerh, ipotek ve hacizleri kontrol etmemek.</li>
+          <li>Zeytinlik veya SİT kısıtını araştırmadan alım yapmak.</li>
+          <li>Hisseli tapuyu müstakil tapu sanmak.</li>
+          <li>Parsel sınırlarını zeminde doğrulamadan satın almak.</li>
+        </ol>
+
+        <h2>Profesyonel danışmanlık süreci nasıl güvenceye alır?</h2>
+        <p>
+          Arazi yatırımı, doğru sorulduğunda yanıtı net olan ama sorulmadığında
+          maliyetli sürprizler doğuran bir alandır. Çolakoğlu Emlak, Muğla'nın
+          meslek odası ve dernek temsilciliğiyle; imar, tapu ve saha
+          incelemelerini sizin adınıza yürütür, yatırım kararınızı eksiksiz
+          bilgiyle almanızı sağlar. Çalışma ilkelerimizi
+          <a href="/vizyon-misyon/">vizyon ve misyon sayfamızda</a>
+          inceleyebilir, süreç için
+          <a href="/#iletisim">bizimle iletişime geçebilirsiniz</a>.
+        </p>
+
+        <section class="article-faq" aria-label="Sıkça sorulan sorular">
+          <h2>Sıkça sorulan sorular</h2>
+          {
+            faq.map((item) => (
+              <details class="faq-item">
+                <summary>
+                  <span class="faq-q">{item.q}</span>
+                  <span class="faq-toggle" aria-hidden="true">+</span>
+                </summary>
+                <div class="faq-a">
+                  <p>{item.a}</p>
+                </div>
+              </details>
+            ))
+          }
+        </section>
+      </div>
+    </article>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .article-page {
+    padding-top: var(--header-h);
+  }
+
+  .article-hero {
+    padding: calc(3.5rem + 1rem) 0 2.5rem;
+    background: linear-gradient(180deg, var(--color-bg-alt) 0%, var(--color-bg) 100%);
+    border-bottom: 2px solid var(--color-gold);
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    font-size: 0.8rem;
+    color: var(--color-ink-muted);
+    margin-bottom: 1.25rem;
+  }
+
+  .breadcrumb a {
+    color: var(--color-ink-muted);
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: var(--color-accent);
+  }
+
+  .breadcrumb [aria-current="page"] {
+    color: var(--color-ink);
+  }
+
+  .article-hero h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4.4vw, 3.1rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    color: var(--color-ink);
+    margin: 0 0 1rem;
+    max-width: 20ch;
+  }
+
+  .article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--color-ink-muted);
+  }
+
+  .article-figure {
+    margin: 1.5rem 0 0;
+    aspect-ratio: 16 / 7;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--color-line);
+    box-shadow: var(--shadow-card);
+  }
+
+  .article-figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .article-body {
+    max-width: 760px;
+    padding-top: clamp(2.5rem, 5vw, 3.5rem);
+    padding-bottom: clamp(3.5rem, 7vw, 5.5rem);
+  }
+
+  .tldr {
+    background: var(--color-navy);
+    color: #fff;
+    padding: 1.5rem 1.75rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 2.5rem;
+  }
+
+  .tldr-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-gold-bright);
+    margin: 0 0 0.5rem;
+  }
+
+  .tldr p:last-child {
+    margin: 0;
+    font-size: 0.98rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.88);
+  }
+
+  .article-body .lead {
+    font-size: 1.14rem;
+    line-height: 1.7;
+    color: var(--color-ink);
+    margin: 0 0 2rem;
+  }
+
+  .article-body h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.4rem, 2.6vw, 1.85rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--color-ink);
+    margin: 2.5rem 0 0.9rem;
+  }
+
+  .article-body p {
+    font-size: 1.03rem;
+    line-height: 1.75;
+    color: var(--color-ink-muted);
+    margin: 0 0 1rem;
+  }
+
+  .article-body p strong {
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+
+  .article-body ul,
+  .article-body ol {
+    margin: 0 0 1.25rem;
+    padding-left: 1.3rem;
+    color: var(--color-ink-muted);
+  }
+
+  .article-body li {
+    font-size: 1.03rem;
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+  }
+
+  .article-body li strong {
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+
+  .article-body a {
+    color: var(--color-accent);
+    font-weight: 600;
+    text-underline-offset: 3px;
+  }
+
+  .definition {
+    background: var(--color-gold-soft);
+    border-left: 3px solid var(--color-gold);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: 1.1rem 1.4rem;
+    margin: 0 0 1.25rem;
+  }
+
+  .definition p {
+    margin: 0;
+    color: var(--color-ink) !important;
+  }
+
+  .article-faq {
+    margin-top: 3rem;
+    border-top: 1px solid var(--color-line);
+    padding-top: 2.25rem;
+  }
+
+  .article-faq h2 {
+    margin-top: 0;
+  }
+
+  .faq-item {
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+    background: var(--color-surface);
+  }
+
+  .faq-item[open] {
+    border-color: var(--color-navy);
+  }
+
+  .faq-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.05rem 1.25rem;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-q {
+    font-weight: 600;
+    color: var(--color-ink);
+    font-size: 1rem;
+  }
+
+  .faq-toggle {
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--color-gold);
+    flex-shrink: 0;
+    transition: transform 0.25s var(--ease-out);
+  }
+
+  .faq-item[open] .faq-toggle {
+    transform: rotate(45deg);
+  }
+
+  .faq-a {
+    padding: 0 1.25rem 1.25rem;
+  }
+
+  .faq-a p {
+    margin: 0;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--color-ink-muted);
+  }
+</style>
