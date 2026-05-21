@@ -1,0 +1,183 @@
+---
+// Basında Biz — Çolakoğlu Emlak / Ziya Ercan basın yansımaları.
+// İçerik kuralı: yalnızca doğrulanmış gerçek haberler; metin kopyalanmaz,
+// orijinale dış link verilir. Veri: src/data/press.ts.
+import { press } from "../data/press";
+---
+
+<section
+  class="section section-press"
+  id="basinda"
+  aria-labelledby="basinda-baslik"
+>
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow">Basında Biz</p>
+      <h2 id="basinda-baslik">Basında Çolakoğlu Emlak</h2>
+      <p class="section-desc">
+        Ziya Ercan ve Çolakoğlu Emlak'ın yerel basın, ulusal sektör yayınları
+        ve resmî kurumların gündeminde yer aldığı haberler.
+      </p>
+    </div>
+
+    <ul class="press-list">
+      {
+        press.map((item) => (
+          <li>
+            <a
+              class="press-card"
+              href={item.url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div class="press-card-meta">
+                <span class="press-card-outlet">{item.outlet}</span>
+                <span class="press-card-date">{item.dateLabel}</span>
+              </div>
+              <h3 class="press-card-title">{item.title}</h3>
+              {item.excerpt && (
+                <p class="press-card-excerpt">{item.excerpt}</p>
+              )}
+              <span class="press-card-cta">
+                Habere git
+                <svg
+                  viewBox="0 0 24 24"
+                  width="15"
+                  height="15"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M7 17 17 7M9 7h8v8"
+                  />
+                </svg>
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <p class="press-note">
+      Haber içerikleri ilgili yayın organlarına aittir; bağlantılar
+      orijinal kaynağa yönlendirir.
+    </p>
+  </div>
+</section>
+
+<style>
+  .section-press {
+    background: var(--color-bg);
+  }
+
+  .press-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 720px) {
+    .press-list {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .press-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1.6rem 1.7rem;
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    text-decoration: none;
+    transition:
+      transform 0.25s var(--ease-out),
+      border-color 0.25s,
+      box-shadow 0.25s;
+  }
+
+  .press-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-navy);
+    box-shadow: var(--shadow-soft);
+    text-decoration: none;
+  }
+
+  .press-card-meta {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .press-card-outlet {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--color-eyebrow);
+  }
+
+  .press-card-date {
+    flex-shrink: 0;
+    font-size: 0.78rem;
+    color: var(--color-ink-muted);
+  }
+
+  .press-card-title {
+    font-family: var(--font-serif);
+    font-size: 1.16rem;
+    font-weight: 700;
+    line-height: 1.32;
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
+    margin: 0 0 0.6rem;
+  }
+
+  .press-card-excerpt {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--color-ink-muted);
+    margin: 0 0 1.1rem;
+  }
+
+  .press-card-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: auto;
+    padding-top: 0.4rem;
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: var(--color-navy);
+  }
+
+  .press-card:hover .press-card-cta {
+    color: var(--color-gold-deep);
+  }
+
+  .press-card-cta svg {
+    transition: transform 0.2s var(--ease-out);
+  }
+
+  .press-card:hover .press-card-cta svg {
+    transform: translate(2px, -2px);
+  }
+
+  .press-note {
+    margin: 2rem 0 0;
+    font-size: 0.8rem;
+    color: var(--color-ink-muted);
+    text-align: center;
+  }
+</style>

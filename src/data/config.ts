@@ -8,10 +8,10 @@ export const site = {
   subtitle: "Muğla Gayrimenkul Danışmanlığı",
   url: "https://colakogluemlak.com",
   alternateDomain: "https://emlakmugla.com",
-  experienceYears: 25,
-  foundingYear: 2001,
+  experienceYears: 32,
+  foundingYear: 1994,
   description:
-    "Çolakoğlu Emlak — Ziya Ercan liderliğinde 25 yıllık tecrübeyle Muğla genelinde gayrimenkul danışmanlığı. Muğla Emlak Danışmanları Esnaf Odası Başkanı, Muğla Emlak Müşavirleri Derneği Başkanı ve TEMFED Genel Başkan Yardımcısı.",
+    "Çolakoğlu Emlak — 1994'te kurulan, Muğla'nın ilk emlak ofisi. Ziya Ercan liderliğinde 32 yıllık tecrübeyle gayrimenkul danışmanlığı; Muğla Emlak Danışmanları Esnaf Odası ve Müşavirleri Derneği Başkanı, TEMFED Genel Başkan Yardımcısı.",
   locale: "tr_TR",
   region: "Muğla",
   country: "TR",

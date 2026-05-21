@@ -1,0 +1,409 @@
+---
+// Çolakoğlu Emlak — editoryal hero
+// Stok villa slider terk edildi (jenerik sektör şablonu).
+// Sağ kolon = sektörel temsil paneli: taklit edilemez gerçek otorite
+// (3 federasyon unvanı). Gerçek saha fotoğrafı geldiğinde alt bölüm
+// galerilerine eklenecek — hero foto bağımlılığından kurtarıldı.
+import { site } from "../data/config";
+
+const { owner } = site;
+const telHref = `tel:${site.contact.phone.replace(/[^+\d]/g, "")}`;
+---
+
+<section class="hero" id="acilis">
+  <div class="container">
+    <div class="hero-grid">
+      <span class="hero-vlabel" aria-hidden="true">EST. {site.foundingYear} — MUĞLA</span>
+
+      <div class="hero-text">
+        <p class="hero-kicker">
+          <span class="hero-tick" aria-hidden="true"></span>
+          Muğla'nın ilk emlak ofisi · 1994'ten beri
+        </p>
+        <h1 class="hero-title">
+          Muğla'da gayrimenkulün
+          <span class="hero-accent">güvenilir adresi.</span>
+        </h1>
+        <p class="hero-lede">
+          {owner.name} liderliğinde {site.experienceYears} yıldır — alım, satım,
+          kiralama ve değerleme süreçlerinde baştan sona yanınızdayız.
+        </p>
+        <div class="hero-actions">
+          <a href="#iletisim" class="btn btn-primary">Danışmanlık alın</a>
+          <a href={telHref} class="btn hero-btn-line">
+            <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true">
+              <path
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 0 0 5.5 5.5l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7 2 2 0 0 1 6.5 3.5Z"
+              ></path>
+            </svg>
+            {site.contact.phoneDisplay}
+          </a>
+        </div>
+      </div>
+
+      <aside class="hero-panel" aria-label="Sektörel temsil ve yetki">
+        <p class="hero-panel-eyebrow">Sektörel Temsil</p>
+        <ul class="hero-panel-list">
+          {
+            owner.titles.map((title, i) => (
+              <li>
+                <span class="hero-panel-num">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span class="hero-panel-title">{title}</span>
+              </li>
+            ))
+          }
+        </ul>
+        <div class="hero-panel-foot">
+          <span class="hero-panel-bar" aria-hidden="true"></span>
+          <span class="hero-panel-person">
+            <strong>{owner.name}</strong>
+            <em>{owner.jobTitle}</em>
+          </span>
+        </div>
+      </aside>
+    </div>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-num">{site.experienceYears}<i>+</i></span>
+        <span class="hero-stat-label">Yıllık tecrübe</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">8</span>
+        <span class="hero-stat-label">İlçede hizmet</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num accent">{site.foundingYear}</span>
+        <span class="hero-stat-label">Kuruluş yılı</span>
+      </div>
+      <p class="hero-stats-note">
+        “{site.tagline}” — Muğla'nın sekiz ilçesinde alıcı ve satıcıyı aynı
+        masada buluşturuyoruz.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    background: var(--color-bg);
+    padding-top: calc(var(--header-h) + clamp(2.4rem, 6vw, 5rem));
+    padding-bottom: clamp(2.6rem, 5vw, 4.2rem);
+    overflow: hidden;
+  }
+
+  .hero-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.06fr 0.94fr;
+    gap: clamp(2.4rem, 5vw, 4.6rem);
+    align-items: center;
+    padding-bottom: clamp(2.6rem, 5vw, 4rem);
+  }
+
+  /* Dikey eksen etiketi */
+  .hero-vlabel {
+    position: absolute;
+    left: -2.4rem;
+    top: 50%;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg) translateX(50%);
+    transform-origin: center;
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.34em;
+    color: var(--color-ink-muted);
+    opacity: 0.55;
+  }
+
+  /* --- Sol: metin --- */
+  .hero-kicker {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin: 0 0 1.5rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--color-eyebrow);
+  }
+
+  .hero-tick {
+    width: 1.9rem;
+    height: 2px;
+    background: var(--color-gold);
+    flex-shrink: 0;
+  }
+
+  .hero-title {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: clamp(2.6rem, 5.3vw, 4.4rem);
+    font-weight: 800;
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+    color: var(--color-navy);
+    text-wrap: balance;
+  }
+
+  .hero-accent {
+    display: block;
+    color: var(--color-gold);
+  }
+
+  .hero-lede {
+    margin: 1.6rem 0 2.3rem;
+    max-width: 30rem;
+    font-size: 1.07rem;
+    line-height: 1.62;
+    color: var(--color-ink-muted);
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
+  .hero-btn-line {
+    gap: 0.55rem;
+    background: transparent;
+    color: var(--color-navy);
+    border: 1px solid var(--color-line);
+  }
+
+  .hero-btn-line:hover {
+    border-color: var(--color-navy);
+    color: var(--color-navy);
+  }
+
+  /* --- Sağ: sektörel temsil paneli --- */
+  .hero-panel {
+    position: relative;
+    background: var(--color-navy);
+    color: #fff;
+    padding: clamp(1.9rem, 3vw, 2.7rem);
+  }
+
+  .hero-panel::before {
+    content: "";
+    position: absolute;
+    inset: 0.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    pointer-events: none;
+  }
+
+  .hero-panel-eyebrow {
+    margin: 0 0 1.6rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-gold-bright);
+  }
+
+  .hero-panel-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .hero-panel-list li {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .hero-panel-list li:first-child {
+    border-top: none;
+    padding-top: 0;
+  }
+
+  .hero-panel-num {
+    flex-shrink: 0;
+    padding-top: 0.1rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--color-gold-bright);
+  }
+
+  .hero-panel-title {
+    font-size: 0.98rem;
+    font-weight: 600;
+    line-height: 1.42;
+    color: rgba(255, 255, 255, 0.92);
+  }
+
+  .hero-panel-foot {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .hero-panel-bar {
+    width: 3px;
+    height: 2.6rem;
+    background: var(--color-gold);
+    flex-shrink: 0;
+  }
+
+  .hero-panel-person {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.3;
+  }
+
+  .hero-panel-person strong {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .hero-panel-person em {
+    font-style: normal;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 2px;
+  }
+
+  /* --- Stat şeridi --- */
+  .hero-stats {
+    display: grid;
+    grid-template-columns: repeat(3, auto) 1fr;
+    align-items: center;
+    gap: clamp(1.4rem, 4vw, 3rem);
+    padding-top: clamp(2.2rem, 4vw, 3rem);
+    border-top: 1px solid var(--color-line);
+  }
+
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-stat-num {
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 5vw, 3.9rem);
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: var(--color-navy);
+  }
+
+  .hero-stat-num i {
+    font-style: normal;
+    color: var(--color-gold);
+  }
+
+  .hero-stat-num.accent {
+    color: var(--color-gold);
+  }
+
+  .hero-stat-label {
+    margin-top: 0.6rem;
+    font-size: 0.77rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-ink-muted);
+  }
+
+  .hero-stats-note {
+    margin: 0;
+    padding-left: clamp(1.5rem, 3vw, 3rem);
+    border-left: 1px solid var(--color-line);
+    max-width: 26rem;
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--color-ink-muted);
+  }
+
+  /* --- Giriş animasyonu --- */
+  .hero-text > *,
+  .hero-panel,
+  .hero-stat,
+  .hero-stats-note {
+    animation: hero-rise 0.7s var(--ease-out) both;
+  }
+
+  .hero-kicker {
+    animation-delay: 0.05s;
+  }
+  .hero-title {
+    animation-delay: 0.12s;
+  }
+  .hero-lede {
+    animation-delay: 0.2s;
+  }
+  .hero-actions {
+    animation-delay: 0.28s;
+  }
+  .hero-panel {
+    animation-delay: 0.22s;
+  }
+
+  @keyframes hero-rise {
+    from {
+      opacity: 0;
+      transform: translateY(22px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-text > *,
+    .hero-panel,
+    .hero-stat,
+    .hero-stats-note {
+      animation: none;
+    }
+  }
+
+  /* --- Responsive --- */
+  @media (max-width: 920px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+      gap: 2.6rem;
+      padding-bottom: 2.6rem;
+    }
+
+    .hero-vlabel {
+      display: none;
+    }
+
+    .hero-stats {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .hero-stats-note {
+      grid-column: 1 / -1;
+      padding-left: 0;
+      border-left: none;
+      border-top: 1px solid var(--color-line);
+      padding-top: 1.3rem;
+      max-width: none;
+    }
+  }
+
+  @media (max-width: 540px) {
+    .hero-stats {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

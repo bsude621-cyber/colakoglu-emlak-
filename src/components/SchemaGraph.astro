@@ -2,6 +2,7 @@
 import { site, services } from "../data/config";
 import { regions } from "../data/regions";
 import { faq } from "../data/faq";
+import { press } from "../data/press";
 
 const baseUrl = site.url;
 const orgId = `${baseUrl}/#organization`;
@@ -176,6 +177,13 @@ const graph = {
       ],
       knowsLanguage: ["Turkish", "English"],
       description: `${site.experienceYears} yıllık tecrübeyle Muğla emlak sektörünün meslek odası başkanı, derneği başkanı ve TEMFED Genel Başkan Yardımcısı. Çolakoğlu Emlak'ın kurucusu.`,
+      subjectOf: press.map((p) => ({
+        "@type": "NewsArticle",
+        headline: p.title,
+        url: p.url,
+        datePublished: p.date,
+        publisher: { "@type": "Organization", name: p.outlet },
+      })),
     },
 
     // 3) Esnaf Odası (otorite organizasyonu)
