@@ -1,7 +1,8 @@
 ---
-// Basında Biz — Çolakoğlu Emlak / Ziya Ercan basın yansımaları.
-// İçerik kuralı: yalnızca doğrulanmış gerçek haberler; metin kopyalanmaz,
-// orijinale dış link verilir. Veri: src/data/press.ts.
+// Basında Biz — gazete-kupürü estetiği.
+// Yayın adı masthead + ince kural çizgisi + manşet (editoryal serif) +
+// tarih damgası (mono). Görsel yok; haber hissi tipografiyle verilir.
+// İçerik kuralı: yalnızca doğrulanmış gerçek haberler — veri src/data/press.ts.
 import { press } from "../data/press";
 ---
 
@@ -25,25 +26,25 @@ import { press } from "../data/press";
         press.map((item) => (
           <li>
             <a
-              class="press-card"
+              class="press-cut"
               href={item.url}
               target="_blank"
               rel="noopener noreferrer"
             >
-              <div class="press-card-meta">
-                <span class="press-card-outlet">{item.outlet}</span>
-                <span class="press-card-date">{item.dateLabel}</span>
-              </div>
-              <h3 class="press-card-title">{item.title}</h3>
+              <span class="press-cut-folio">
+                <span class="press-cut-outlet">{item.outlet}</span>
+                <span class="press-cut-date">{item.dateLabel}</span>
+              </span>
+              <h3 class="press-cut-headline">{item.title}</h3>
               {item.excerpt && (
-                <p class="press-card-excerpt">{item.excerpt}</p>
+                <p class="press-cut-excerpt">{item.excerpt}</p>
               )}
-              <span class="press-card-cta">
+              <span class="press-cut-cta">
                 Habere git
                 <svg
                   viewBox="0 0 24 24"
-                  width="15"
-                  height="15"
+                  width="14"
+                  height="14"
                   aria-hidden="true"
                 >
                   <path
@@ -63,8 +64,8 @@ import { press } from "../data/press";
     </ul>
 
     <p class="press-note">
-      Haber içerikleri ilgili yayın organlarına aittir; bağlantılar
-      orijinal kaynağa yönlendirir.
+      Haber içerikleri ilgili yayın organlarına aittir; bağlantılar orijinal
+      kaynağa yönlendirir.
     </p>
   </div>
 </section>
@@ -89,88 +90,96 @@ import { press } from "../data/press";
     }
   }
 
-  .press-card {
+  /* Gazete kupürü */
+  .press-cut {
     display: flex;
     flex-direction: column;
     height: 100%;
-    padding: 1.6rem 1.7rem;
+    padding: 1.5rem 1.65rem 1.7rem;
     background: var(--color-surface);
     border: 1px solid var(--color-line);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-card);
+    border-radius: var(--radius-sm);
     text-decoration: none;
     transition:
       transform 0.25s var(--ease-out),
-      border-color 0.25s,
-      box-shadow 0.25s;
+      box-shadow 0.25s,
+      border-color 0.25s;
   }
 
-  .press-card:hover {
+  .press-cut:hover {
     transform: translateY(-4px);
-    border-color: var(--color-navy);
     box-shadow: var(--shadow-soft);
+    border-color: var(--color-navy);
     text-decoration: none;
   }
 
-  .press-card-meta {
+  /* Folyo satırı — yayın adı (masthead) + tarih, altında kural çizgisi */
+  .press-cut-folio {
     display: flex;
     align-items: baseline;
     justify-content: space-between;
     gap: 1rem;
-    margin-bottom: 0.7rem;
+    padding-bottom: 0.7rem;
+    margin-bottom: 0.95rem;
+    border-bottom: 1.5px solid var(--color-ink);
   }
 
-  .press-card-outlet {
-    font-size: 0.72rem;
+  .press-cut-outlet {
+    font-size: 0.8rem;
     font-weight: 700;
-    letter-spacing: 0.11em;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--color-eyebrow);
-  }
-
-  .press-card-date {
-    flex-shrink: 0;
-    font-size: 0.78rem;
-    color: var(--color-ink-muted);
-  }
-
-  .press-card-title {
-    font-family: var(--font-serif);
-    font-size: 1.16rem;
-    font-weight: 700;
-    line-height: 1.32;
-    letter-spacing: -0.01em;
     color: var(--color-ink);
-    margin: 0 0 0.6rem;
   }
 
-  .press-card-excerpt {
-    font-size: 0.92rem;
-    line-height: 1.6;
+  .press-cut-date {
+    flex-shrink: 0;
+    font-family: "DM Mono", ui-monospace, monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
     color: var(--color-ink-muted);
-    margin: 0 0 1.1rem;
   }
 
-  .press-card-cta {
+  .press-cut-headline {
+    font-family: "Instrument Serif", Georgia, serif;
+    font-size: clamp(1.4rem, 2.2vw, 1.7rem);
+    font-weight: 400;
+    line-height: 1.16;
+    letter-spacing: 0.005em;
+    color: var(--color-ink);
+    margin: 0 0 0.7rem;
+    text-wrap: balance;
+  }
+
+  .press-cut-excerpt {
+    margin: 0 0 1.2rem;
+    font-size: 0.93rem;
+    line-height: 1.62;
+    color: var(--color-ink-muted);
+  }
+
+  .press-cut-cta {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
     margin-top: auto;
-    padding-top: 0.4rem;
-    font-size: 0.86rem;
+    font-size: 0.78rem;
     font-weight: 600;
-    color: var(--color-navy);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-accent);
   }
 
-  .press-card:hover .press-card-cta {
-    color: var(--color-gold-deep);
-  }
-
-  .press-card-cta svg {
+  .press-cut-cta svg {
     transition: transform 0.2s var(--ease-out);
   }
 
-  .press-card:hover .press-card-cta svg {
+  .press-cut:hover .press-cut-cta {
+    color: var(--color-gold-deep);
+  }
+
+  .press-cut:hover .press-cut-cta svg {
     transform: translate(2px, -2px);
   }
 
