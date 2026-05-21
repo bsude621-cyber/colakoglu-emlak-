@@ -2,41 +2,119 @@
 import { faq } from "../data/faq";
 ---
 
-<section id="sss" class="section section-alt">
+<section id="sss" class="section section-faq">
   <div class="container">
-    <header class="section-head section-head-center">
-      <p class="eyebrow">Sıkça sorulanlar</p>
-      <h2>Çolakoğlu Emlak — SSS</h2>
-      <p class="section-desc">
-        En çok merak edilen sorular ve net cevapları. Daha fazlasını
-        soracaksanız <a href="#iletisim">iletişim formundan</a> yazın.
-      </p>
-    </header>
+    <div class="faq-layout">
+      <header class="faq-head">
+        <p class="eyebrow">Sıkça Sorulanlar</p>
+        <h2>Aklınızdaki sorular</h2>
+        <p class="faq-desc">
+          En çok merak edilenler ve net cevapları. Listede yoksa, doğrudan
+          bize sorun — en kısa sürede yanıtlayalım.
+        </p>
+        <a href="#iletisim" class="faq-cta">
+          Soru sorun
+          <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true">
+            <path
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M5 12h14M13 6l6 6-6 6"
+            ></path>
+          </svg>
+        </a>
+      </header>
 
-    <div class="faq-list">
-      {
-        faq.map((item, i) => (
-          <details class="faq-item" open={i === 0}>
-            <summary>
-              <span class="faq-q">{item.question}</span>
-              <span class="faq-toggle" aria-hidden="true">+</span>
-            </summary>
-            <div class="faq-a">
-              <p>{item.answer}</p>
-            </div>
-          </details>
-        ))
-      }
+      <div class="faq-list">
+        {
+          faq.map((item, i) => (
+            <details class="faq-item" open={i === 0}>
+              <summary>
+                <span class="faq-q">{item.question}</span>
+                <span class="faq-toggle" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq-a">
+                <p>{item.answer}</p>
+              </div>
+            </details>
+          ))
+        }
+      </div>
     </div>
   </div>
 </section>
 
 <style>
-  .faq-list {
+  .faq-layout {
     display: grid;
-    gap: 0.85rem;
-    max-width: 880px;
-    margin-inline: auto;
+    grid-template-columns: 0.82fr 1.45fr;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: start;
+  }
+
+  @media (max-width: 860px) {
+    .faq-layout {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
+  .faq-head {
+    position: sticky;
+    top: calc(var(--header-h) + 2rem);
+  }
+
+  @media (max-width: 860px) {
+    .faq-head {
+      position: static;
+    }
+  }
+
+  .faq-head h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 3.6vw, 2.85rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--color-ink);
+    margin: 0 0 0.9rem;
+  }
+
+  .faq-desc {
+    font-size: 1.02rem;
+    line-height: 1.66;
+    color: var(--color-ink-muted);
+    margin: 0 0 1.6rem;
+  }
+
+  .faq-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--color-navy);
+    text-decoration: none;
+  }
+
+  .faq-cta:hover {
+    text-decoration: none;
+  }
+
+  .faq-cta svg {
+    transition: transform 0.2s var(--ease-out);
+  }
+
+  .faq-cta:hover svg {
+    transform: translateX(3px);
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
   }
 
   .faq-item {
@@ -44,20 +122,20 @@ import { faq } from "../data/faq";
     border: 1px solid var(--color-line);
     border-radius: var(--radius-md);
     overflow: hidden;
-    transition: border-color 0.2s;
+    transition: border-color 0.2s, box-shadow 0.25s;
   }
 
   .faq-item[open] {
     border-color: var(--color-navy);
-    box-shadow: 0 10px 26px rgba(30, 42, 52, 0.1);
+    box-shadow: var(--shadow-card);
   }
 
   .faq-item summary {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
-    padding: 1.15rem 1.4rem;
+    gap: 1.1rem;
+    padding: 1.2rem 1.4rem;
     cursor: pointer;
     list-style: none;
     transition: background 0.2s;
@@ -68,30 +146,38 @@ import { faq } from "../data/faq";
   }
 
   .faq-item summary:hover {
-    background: rgba(43, 58, 71, 0.04);
+    background: var(--color-accent-soft);
   }
 
   .faq-q {
     font-family: var(--font-serif);
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: 1.08rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
     color: var(--color-ink);
-    line-height: 1.35;
+    line-height: 1.38;
   }
 
   .faq-toggle {
-    font-size: 1.5rem;
-    font-weight: 300;
-    color: var(--color-gold);
-    transition: transform 0.25s var(--ease-out);
     flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    border: 1px solid var(--color-line);
+    font-size: 1.25rem;
+    font-weight: 300;
     line-height: 1;
-    width: 1.5rem;
-    text-align: center;
+    color: var(--color-gold);
+    transition: transform 0.3s var(--ease-out), border-color 0.2s, background 0.2s;
   }
 
   .faq-item[open] .faq-toggle {
-    transform: rotate(45deg);
+    transform: rotate(135deg);
+    border-color: var(--color-navy);
+    background: var(--color-navy);
+    color: #fff;
   }
 
   .faq-a {
@@ -101,8 +187,8 @@ import { faq } from "../data/faq";
   .faq-a p {
     margin: 0;
     color: var(--color-ink-muted);
-    font-size: 0.95rem;
-    line-height: 1.7;
+    font-size: 0.97rem;
+    line-height: 1.72;
   }
 
   @media (max-width: 640px) {
@@ -110,12 +196,8 @@ import { faq } from "../data/faq";
       padding: 1rem 1.1rem;
     }
 
-    .faq-q {
-      font-size: 1rem;
-    }
-
     .faq-a {
-      padding: 0 1.1rem 1.1rem;
+      padding: 0 1.1rem 1.2rem;
     }
   }
 </style>
