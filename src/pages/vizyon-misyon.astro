@@ -68,13 +68,21 @@ const aboutPage = {
   <Header />
   <main id="main" class="vm-page">
     <section class="vm-hero">
-      <div class="container">
+      <img
+        class="vm-hero-bg"
+        src="/images/ilce-datca.webp"
+        alt="Muğla Ege kıyısı — Çolakoğlu Emlak'ın hizmet bölgesi"
+        loading="eager"
+        decoding="async"
+      />
+      <div class="vm-hero-scrim" aria-hidden="true"></div>
+      <div class="container vm-hero-inner">
         <nav class="breadcrumb" aria-label="Sayfa konumu">
           <a href="/">Ana Sayfa</a>
           <span aria-hidden="true">›</span>
           <span aria-current="page">Vizyon &amp; Misyon</span>
         </nav>
-        <p class="eyebrow">{site.name} · Kurumsal</p>
+        <p class="eyebrow vm-hero-eyebrow">{site.name} · Kurumsal</p>
         <h1>Vizyonumuz ve Misyonumuz</h1>
         <p class="vm-lead">
           Çolakoğlu Emlak'ı sıradan bir emlak ofisinden ayıran şey, 32 yıllık
@@ -83,17 +91,6 @@ const aboutPage = {
         </p>
       </div>
     </section>
-
-    <div class="container">
-      <figure class="vm-figure">
-        <img
-          src="/images/ilce-datca.webp"
-          alt="Muğla Ege kıyısı — Çolakoğlu Emlak'ın hizmet bölgesi"
-          loading="eager"
-          decoding="async"
-        />
-      </figure>
-    </div>
 
     <section class="section">
       <div class="container vm-statement">
@@ -164,9 +161,38 @@ const aboutPage = {
   }
 
   .vm-hero {
-    padding: calc(4rem + 1rem) 0 3rem;
-    background: linear-gradient(180deg, var(--color-bg-alt) 0%, var(--color-bg) 100%);
-    border-bottom: 2px solid var(--color-gold);
+    position: relative;
+    min-height: 58vh;
+    display: flex;
+    align-items: flex-end;
+    padding: calc(var(--header-h) + 3rem) 0 clamp(2.5rem, 5vw, 4rem);
+    overflow: hidden;
+  }
+
+  .vm-hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  .vm-hero-scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      180deg,
+      rgba(20, 29, 57, 0.5) 0%,
+      rgba(20, 29, 57, 0.18) 38%,
+      rgba(16, 23, 46, 0.93) 100%
+    );
+  }
+
+  .vm-hero-inner {
+    position: relative;
+    z-index: 2;
   }
 
   .breadcrumb {
@@ -175,56 +201,45 @@ const aboutPage = {
     flex-wrap: wrap;
     gap: 0.45rem;
     font-size: 0.8rem;
-    color: var(--color-ink-muted);
-    margin-bottom: 1.25rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 1.5rem;
   }
 
   .breadcrumb a {
-    color: var(--color-ink-muted);
+    color: rgba(255, 255, 255, 0.6);
     text-decoration: none;
     transition: color 0.2s;
   }
 
   .breadcrumb a:hover {
-    color: var(--color-accent);
+    color: var(--color-gold-bright);
   }
 
   .breadcrumb [aria-current="page"] {
-    color: var(--color-ink);
+    color: #fff;
+  }
+
+  .vm-hero-eyebrow {
+    color: var(--color-gold-bright);
   }
 
   .vm-hero h1 {
     font-family: var(--font-serif);
-    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-size: clamp(2.4rem, 5.5vw, 4rem);
     font-weight: 800;
-    letter-spacing: -0.03em;
-    line-height: 1.05;
-    color: var(--color-ink);
+    letter-spacing: -0.035em;
+    line-height: 1.04;
+    color: #fff;
     margin: 0 0 1rem;
+    text-shadow: 0 2px 28px rgba(12, 18, 30, 0.4);
   }
 
   .vm-lead {
     max-width: 58ch;
-    color: var(--color-ink-muted);
+    color: rgba(255, 255, 255, 0.84);
     font-size: 1.08rem;
     line-height: 1.65;
     margin: 0;
-  }
-
-  .vm-figure {
-    margin: 0;
-    aspect-ratio: 16 / 7;
-    border-radius: var(--radius-lg);
-    overflow: hidden;
-    border: 1px solid var(--color-line);
-    box-shadow: var(--shadow-card);
-  }
-
-  .vm-figure img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
   }
 
   .vm-statement {
