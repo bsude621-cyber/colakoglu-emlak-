@@ -126,4 +126,60 @@ const slides = [
   .hero-slider .experience-badge__label > span:last-child {
     color: rgba(255, 255, 255, 0.7);
   }
+
+  /* Hero giriş animasyonu — sayfa yüklenince kademeli */
+  @keyframes hero-in {
+    from {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .experience-badge,
+  .hero-slider__kicker,
+  .hero-slider__title,
+  .hero-slider__slogan,
+  .hero-slider__caption,
+  .hero-slider__actions,
+  .hero-slider__toolbar {
+    animation: hero-in 0.7s var(--ease-out) both;
+  }
+
+  .experience-badge {
+    animation-delay: 0.05s;
+  }
+  .hero-slider__kicker {
+    animation-delay: 0.13s;
+  }
+  .hero-slider__title {
+    animation-delay: 0.21s;
+  }
+  .hero-slider__slogan {
+    animation-delay: 0.29s;
+  }
+  .hero-slider__caption {
+    animation-delay: 0.37s;
+  }
+  .hero-slider__actions {
+    animation-delay: 0.45s;
+  }
+  .hero-slider__toolbar {
+    animation-delay: 0.53s;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .experience-badge,
+    .hero-slider__kicker,
+    .hero-slider__title,
+    .hero-slider__slogan,
+    .hero-slider__caption,
+    .hero-slider__actions,
+    .hero-slider__toolbar {
+      animation: none;
+    }
+  }
 </style>

@@ -187,11 +187,41 @@
     restart();
   }
 
-  /* Scroll reveal */
-  var revealSelector = ".section-head, .card, .listing, .split-visual, .split-content, .regions, .contact-form";
+  /* Scroll reveal — premium motion katmanı (fade + rise, grid'lerde stagger) */
+  var revealSelector = [
+    ".section-head",
+    ".services-head",
+    ".regions-head",
+    ".memberships-title",
+    ".contact-intro",
+    ".service-card",
+    ".region-card",
+    ".membership-card",
+    ".process-step",
+    ".faq-item",
+    ".mevzuat-card",
+    ".press-list li",
+    ".contact-form",
+    ".founder-frame",
+    ".split-visual",
+    ".split-content",
+    ".tldr",
+  ].join(",");
   var nodes = document.querySelectorAll(revealSelector);
+
   nodes.forEach(function (el) {
     el.setAttribute("data-reveal", "");
+    /* Aynı tür kardeşler arasında sıraya göre kademeli gecikme (stagger) */
+    var cls = el.classList[0];
+    var i = 0;
+    var prev = el.previousElementSibling;
+    while (prev) {
+      if (prev.classList && prev.classList[0] === cls) i++;
+      prev = prev.previousElementSibling;
+    }
+    if (i > 0) {
+      el.style.transitionDelay = Math.min(i, 6) * 70 + "ms";
+    }
   });
 
   if (!("IntersectionObserver" in window)) {
@@ -210,7 +240,7 @@
         }
       });
     },
-    { rootMargin: "0px 0px -8% 0px", threshold: 0.08 }
+    { rootMargin: "0px 0px -10% 0px", threshold: 0.05 }
   );
 
   nodes.forEach(function (el) {
