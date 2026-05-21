@@ -1,7 +1,7 @@
 ---
 import { site } from "../data/config";
-// Kurucu (Ziya Ercan) bölümü — "01 Editorial Ivory" tasarımına göre yeniden kuruldu.
-// Ivory editorial: Instrument Serif başlık + DM Mono etiket + sıcak kahve/altın.
+// Kurucu (Ziya Ercan) bölümü — editorial düzen, sitenin tipografisi + paleti.
+// Düzen/çerçeve korunur; fontlar Archivo (site standardı), renkler site token'ları.
 // İçerik gerçek veriyle eşleşir (config + memory).
 
 const roman = ["I", "II", "III", "IV", "V"];
@@ -17,13 +17,13 @@ const distinctions = [
 <section id="hakkimizda" class="founder">
   <div class="founder-frame">
     <div class="founder-topbar">
-      <span class="fmono">{site.name} — Muğla · est. {site.foundingYear}</span>
-      <span class="fmono">Kurucu &amp; Vizyon</span>
+      <span class="flabel">{site.name} — Muğla · est. {site.foundingYear}</span>
+      <span class="flabel">Kurucu &amp; Vizyon</span>
     </div>
 
     <div class="founder-grid">
       <aside class="founder-aside">
-        <span class="fmono founder-tag">01 — Kurucu</span>
+        <span class="flabel founder-tag">01 — Kurucu</span>
         <figure class="founder-photo">
           <img
             src="/images/ziya-ercan-portre.jpg"
@@ -35,7 +35,7 @@ const distinctions = [
           />
         </figure>
         <p class="founder-name">Ziya Ercan</p>
-        <p class="fmono founder-name-sub">Kurucu · {site.name}</p>
+        <p class="flabel founder-name-sub">Kurucu · {site.name}</p>
 
         <blockquote class="founder-quote">
           <p>
@@ -49,23 +49,23 @@ const distinctions = [
         <div class="founder-stats">
           <div class="fstat">
             <span class="fstat-num">{site.experienceYears}</span>
-            <span class="fmono fstat-label">Yıllık Tecrübe</span>
+            <span class="flabel fstat-label">Yıllık Tecrübe</span>
           </div>
           <div class="fstat">
             <span class="fstat-num">{site.memberships.length}</span>
-            <span class="fmono fstat-label">Mesleki Temsil</span>
+            <span class="flabel fstat-label">Mesleki Temsil</span>
           </div>
           <div class="fstat">
             <span class="fstat-num">8</span>
-            <span class="fmono fstat-label">İlçede Faaliyet</span>
+            <span class="flabel fstat-label">İlçede Faaliyet</span>
           </div>
         </div>
       </aside>
 
       <div class="founder-main">
-        <p class="fmono founder-eyebrow">{site.name} · Kurucu Notu</p>
+        <p class="flabel founder-eyebrow">{site.name} · Kurucu Notu</p>
         <h2 class="founder-title">
-          Emlakçılıkta <em>güven</em> esastır.
+          32 yıldır Muğla'nın <em>yanında</em>
         </h2>
         <p class="founder-lead">
           {site.name}, <strong>{site.foundingYear} yılında kurulan, Muğla'nın
@@ -79,7 +79,7 @@ const distinctions = [
         <a class="founder-link" href="/vizyon-misyon/">Vizyon ve misyonumuz →</a>
 
         <div class="founder-block">
-          <p class="fmono founder-sub">Mesleki Liderlik</p>
+          <p class="flabel founder-sub">Mesleki Liderlik</p>
           <ol class="founder-titles">
             {
               site.memberships.map((m, i) => (
@@ -87,7 +87,7 @@ const distinctions = [
                   <span class="founder-rn">{roman[i]}</span>
                   <span class="founder-title-text">
                     <strong>{m.name}</strong>
-                    <span class="fmono">{m.role}</span>
+                    <span class="flabel">{m.role}</span>
                   </span>
                 </li>
               ))
@@ -96,7 +96,7 @@ const distinctions = [
         </div>
 
         <div class="founder-block">
-          <p class="fmono founder-sub">Bizi ayıran nitelikler</p>
+          <p class="flabel founder-sub">Bizi ayıran nitelikler</p>
           <ul class="founder-checks">
             {
               distinctions.map((d) => (
@@ -118,24 +118,21 @@ const distinctions = [
             }
           </ul>
         </div>
-
       </div>
     </div>
   </div>
 </section>
 
 <style>
-  /* "01 Editorial Ivory" — sıcak, klasik, Sotheby's-vari kurucu bölümü */
-  /* Renkler sitenin paletiyle uyumlu — editorial düzen + Instrument Serif kalır */
+  /* Editorial düzen — sitenin tipografisi (Archivo) + canlı paleti */
   .founder {
-    --f-bg: #ffffff;
-    --f-bg-deep: #f0f0ed;
-    --f-ink: #28323b;
-    --f-ink-soft: #5d6873;
-    --f-gold: #8a6347;
-    --f-line: rgba(40, 54, 65, 0.14);
-    --f-serif: "Instrument Serif", Georgia, serif;
-    --f-mono: "DM Mono", ui-monospace, monospace;
+    --f-bg: var(--color-surface);
+    --f-bg-deep: var(--color-paper-deep);
+    --f-ink: var(--color-ink);
+    --f-ink-soft: var(--color-ink-muted);
+    --f-gold: var(--color-gold);
+    --f-line: var(--color-line);
+    --f-head: var(--font-serif);
     background: var(--f-bg);
     color: var(--f-ink);
     padding: clamp(3rem, 7vw, 6rem) 0;
@@ -148,10 +145,12 @@ const distinctions = [
     padding: clamp(1.5rem, 3.2vw, 3rem);
   }
 
-  .fmono {
-    font-family: var(--f-mono);
-    font-size: 0.7rem;
-    letter-spacing: 0.13em;
+  /* Küçük etiket — sitenin eyebrow diliyle aynı */
+  .flabel {
+    font-family: var(--f-head);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--f-ink-soft);
   }
@@ -200,11 +199,12 @@ const distinctions = [
   }
 
   .founder-name {
-    font-family: var(--f-serif);
-    font-style: italic;
-    font-size: 2rem;
-    line-height: 1;
-    margin: 1.25rem 0 0.4rem;
+    font-family: var(--f-head);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    font-size: 1.9rem;
+    line-height: 1.05;
+    margin: 1.3rem 0 0.35rem;
     color: var(--f-ink);
   }
 
@@ -222,15 +222,17 @@ const distinctions = [
   .fstat {
     display: flex;
     flex-direction: column;
-    gap: 0.35rem;
+    gap: 0.4rem;
     padding: 1rem 0.9rem 0 0;
-    border-top: 1px solid var(--f-line);
+    border-top: 2px solid var(--f-gold);
   }
 
   .fstat-num {
-    font-family: var(--f-serif);
-    font-size: clamp(2.4rem, 4vw, 3.1rem);
-    line-height: 0.85;
+    font-family: var(--f-head);
+    font-weight: 800;
+    font-size: clamp(2.3rem, 3.6vw, 2.9rem);
+    line-height: 0.95;
+    letter-spacing: -0.03em;
     color: var(--f-ink);
   }
 
@@ -245,28 +247,29 @@ const distinctions = [
     align-items: center;
     gap: 0.6rem;
     color: var(--f-gold);
-    margin: 0 0 1.4rem;
+    margin: 0 0 1.3rem;
   }
 
   .founder-eyebrow::before {
     content: "";
     width: 1.6rem;
-    height: 1px;
+    height: 2px;
     background: var(--f-gold);
   }
 
   .founder-title {
-    font-family: var(--f-serif);
-    font-weight: 400;
-    font-size: clamp(2.7rem, 6vw, 4.6rem);
-    line-height: 1.02;
-    letter-spacing: 0.005em;
+    font-family: var(--f-head);
+    font-weight: 800;
+    font-size: clamp(2.2rem, 4vw, 3.3rem);
+    line-height: 1.08;
+    letter-spacing: -0.035em;
     margin: 0 0 1.4rem;
     color: var(--f-ink);
+    text-wrap: balance;
   }
 
   .founder-title em {
-    font-style: italic;
+    font-style: normal;
     color: var(--f-gold);
   }
 
@@ -274,24 +277,24 @@ const distinctions = [
     font-size: 1.04rem;
     line-height: 1.7;
     color: var(--f-ink-soft);
-    margin: 0 0 2.5rem;
-    max-width: 44ch;
+    margin: 0 0 2.25rem;
+    max-width: 46ch;
   }
 
   .founder-lead strong {
     color: var(--f-ink);
-    font-weight: 600;
+    font-weight: 700;
   }
 
   .founder-link {
     display: inline-flex;
     align-items: center;
     margin: 0 0 2.25rem;
-    font-family: var(--f-mono);
-    font-size: 0.74rem;
-    letter-spacing: 0.08em;
+    font-family: var(--f-head);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    font-weight: 500;
     color: var(--f-gold);
     text-decoration: none;
     border-bottom: 1px solid var(--f-line);
@@ -335,22 +338,23 @@ const distinctions = [
   }
 
   .founder-rn {
-    font-family: var(--f-serif);
-    font-style: italic;
-    font-size: 1.5rem;
-    line-height: 1.1;
+    font-family: var(--f-head);
+    font-weight: 800;
+    font-size: 1.3rem;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
     color: var(--f-gold);
   }
 
   .founder-title-text {
     display: flex;
     flex-direction: column;
-    gap: 0.2rem;
+    gap: 0.25rem;
   }
 
   .founder-title-text strong {
     font-size: 1.02rem;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--f-ink);
     line-height: 1.35;
   }
@@ -387,21 +391,24 @@ const distinctions = [
     margin: 1.75rem 0 0;
     padding: 1.5rem 1.65rem;
     background: var(--f-bg-deep);
-    border-left: 2px solid var(--f-gold);
+    border-left: 3px solid var(--f-gold);
   }
 
   .founder-quote p {
-    font-family: var(--f-serif);
-    font-size: 1.3rem;
-    line-height: 1.34;
+    font-family: var(--f-head);
+    font-weight: 500;
+    font-size: 1.16rem;
+    line-height: 1.5;
+    letter-spacing: -0.01em;
     margin: 0 0 0.9rem;
     color: var(--f-ink);
   }
 
   .founder-quote cite {
-    font-family: var(--f-mono);
+    font-family: var(--f-head);
     font-style: normal;
-    font-size: 0.7rem;
+    font-size: 0.72rem;
+    font-weight: 600;
     letter-spacing: 0.13em;
     text-transform: uppercase;
     color: var(--f-gold);
@@ -421,7 +428,7 @@ const distinctions = [
       grid-template-columns: 1fr;
     }
 
-    .founder-topbar .fmono:last-child {
+    .founder-topbar .flabel:last-child {
       display: none;
     }
   }
