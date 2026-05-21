@@ -200,6 +200,7 @@
     ".process-step",
     ".faq-item",
     ".mevzuat-card",
+    ".rehber-card",
     ".press-list li",
     ".contact-form",
     ".founder-frame",
