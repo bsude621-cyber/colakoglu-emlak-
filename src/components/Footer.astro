@@ -75,6 +75,11 @@ import { site } from "../data/config";
         <li><a href="/bolgeler/koycegiz/">Köyceğiz</a></li>
         <li><a href="/bolgeler/ortaca/">Ortaca</a></li>
         <li><a href="/bolgeler/dalaman/">Dalaman</a></li>
+        <li><a href="/bolgeler/mentese/">Menteşe</a></li>
+        <li><a href="/bolgeler/ula/">Ula</a></li>
+        <li><a href="/bolgeler/yatagan/">Yatağan</a></li>
+        <li><a href="/bolgeler/kavaklidere/">Kavaklıdere</a></li>
+        <li><a href="/bolgeler/seydikemer/">Seydikemer</a></li>
       </ul>
     </div>
   </div>
@@ -85,6 +90,16 @@ import { site } from "../data/config";
         © <span data-year></span> {site.name}. Tüm hakları saklıdır.
       </p>
       <a href="#main" class="footer-top">Yukarı çık ↑</a>
+    </div>
+    <div class="container">
+      <p class="footer-credit">
+        Muğla manzara görseli: yigitylnz, Wikimedia Commons —
+        <a
+          href="https://creativecommons.org/licenses/by-sa/4.0/"
+          target="_blank"
+          rel="noopener license"
+        >CC BY-SA 4.0</a>.
+      </p>
     </div>
   </div>
 </footer>
@@ -200,6 +215,23 @@ import { site } from "../data/config";
 
   .footer-bottom {
     border-top: 1px solid rgba(255, 255, 255, 0.12);
-    padding: 1.25rem 0;
+    padding: 1.25rem 0 1rem;
+  }
+
+  .footer-credit {
+    margin: 0.85rem 0 0;
+    font-size: 0.72rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.42);
+  }
+
+  .footer-credit a {
+    color: rgba(255, 255, 255, 0.62);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .footer-credit a:hover {
+    color: var(--color-gold-bright);
   }
 </style>

@@ -6,7 +6,7 @@ export const site = {
   legalName: "Çolakoğlu Emlak",
   tagline: "Emlakçılıkta Güven Esastır",
   subtitle: "Muğla Gayrimenkul Danışmanlığı",
-  url: "https://colakogluemlak.com",
+  url: "https://colakogluemlak48.com",
   alternateDomain: "https://emlakmugla.com",
   experienceYears: 32,
   foundingYear: 1994,

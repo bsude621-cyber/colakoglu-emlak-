@@ -78,4 +78,4 @@ Allow: /
 User-agent: Bingbot-AI
 Allow: /
 
-Sitemap: https://colakogluemlak.com/sitemap-index.xml
+Sitemap: https://colakogluemlak48.com/sitemap-index.xml

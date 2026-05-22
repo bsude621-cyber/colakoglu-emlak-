@@ -1,0 +1,424 @@
+---
+// "1994'e Yolculuk" — scroll-scrub köken hero'su.
+// Kullanıcı kaydırdıkça dev yıl rakamı 2026 → 1994 geri sayar; arkadaki Muğla
+// görseli eskir (sepya + gren + soluk kontrast + vinyet). Yolculuk 1994'te
+// biter: Çolakoğlu Emlak'ın kuruluşu — köken noktası.
+// reduced-motion / no-JS: statik 1994 "varış" karesi. Mobil dahil herkes scrub görür.
+// Sticky 100vh viewport + scroll-scrub tekniği.
+import { site } from "../data/config";
+
+const telHref = `tel:${site.contact.phone.replace(/[^+\d]/g, "")}`;
+---
+
+<section class="hero94" data-hero94>
+  <div class="hero94__stage">
+    <img
+      class="hero94__bg"
+      src="/images/mugla-hero.webp"
+      alt="Muğla şehir manzarası — kiremit çatılar ve ardındaki dağlar"
+      width="2400"
+      height="1350"
+      fetchpriority="high"
+      decoding="async"
+    />
+    <div class="hero94__vignette" aria-hidden="true"></div>
+    <div class="hero94__grain" aria-hidden="true"></div>
+    <div class="hero94__scrim" aria-hidden="true"></div>
+
+    <div class="hero94__inner container">
+      <div class="hero94__lead">
+        <p class="hero94__brand">
+          <span class="hero94__tick" aria-hidden="true"></span>
+          Çolakoğlu Emlak
+        </p>
+
+        <span class="hero94__year" data-hero94-year>1994</span>
+        <p class="hero94__caption" data-hero94-caption>Bugünden 32 yıl önce</p>
+
+        <div class="hero94__arrival">
+          <h1 class="hero94__headline">
+            Muğla'nın ilk emlak ofisi — <span>Çolakoğlu Emlak</span>
+          </h1>
+          <p class="hero94__sub">
+            Bu manzara 32 yılda değişti — Çolakoğlu Emlak'ın tek ilkesi
+            değişmedi. Ziya Ercan liderliğinde alım, satım, kiralama ve
+            değerlemede aynı söz: “emlakçılıkta güven esastır.”
+          </p>
+          <div class="hero94__actions">
+            <a href="#iletisim" class="btn btn-primary">Danışmanlık alın</a>
+            <a href={telHref} class="btn hero94__btn-line">
+              <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true">
+                <path
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.7"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6.5 3.5h3l1.5 4-2 1.5a12 12 0 0 0 5.5 5.5l1.5-2 4 1.5v3a2 2 0 0 1-2.2 2A16.5 16.5 0 0 1 4.5 5.7 2 2 0 0 1 6.5 3.5Z"
+                ></path>
+              </svg>
+              {site.contact.phoneDisplay}
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero94__hint" aria-hidden="true">
+      <span>Geçmişe kaydır</span>
+      <span class="hero94__hint-line"></span>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Varsayılan = VARIŞ (1994) durumu — no-JS / mobil / reduced-motion için
+     eksiksiz statik hero. JS scrub modunda bu değişkenler 2026'dan başlatılır. */
+  .hero94 {
+    --age: 1; /* 0 = 2026 modern · 1 = 1994 eskimiş */
+    --arrive: 1; /* varış metni görünürlüğü */
+    --hint: 0; /* scroll ipucu görünürlüğü */
+    position: relative;
+    height: 100vh;
+    background: #141d39;
+  }
+
+  /* JS + masaüstü + motion-OK: uzun scroll bölümü → scrub.
+     230vh = ~1.3 ekranlık scrub; içeriğe inmeden 3 ekran bekletmez. */
+  .hero94--scrub {
+    height: 230vh;
+  }
+
+  /* Sticky tam-ekran kutu: 100vh (büyük viewport) — adres çubuğu gizlenip
+     ekran büyüdüğünde bile altta açık kalmaz. svh kullanılsaydı navy
+     section zemini sızardı. */
+  .hero94__stage {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* ---- Arka plan görseli — yaşa göre eskir ---- */
+  .hero94__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 38%;
+    transform: scale(calc(1 + var(--age) * 0.06));
+    transform-origin: 50% 42%;
+    filter:
+      sepia(calc(var(--age) * 0.6)) saturate(calc(1 - var(--age) * 0.5))
+      contrast(calc(1 - var(--age) * 0.13)) brightness(calc(1 + var(--age) * 0.05))
+      hue-rotate(calc(var(--age) * -8deg));
+  }
+
+  /* Eskimiş fotoğraf vinyeti — sıcak, koyu kenarlar */
+  .hero94__vignette {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: radial-gradient(
+      125% 115% at 50% 40%,
+      transparent 42%,
+      rgba(38, 20, 6, 0.62) 100%
+    );
+    opacity: var(--age);
+  }
+
+  /* Film greni — eskidikçe belirginleşir */
+  .hero94__grain {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    mix-blend-mode: soft-light;
+    opacity: calc(var(--age) * 0.6);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+    background-size: 160px 160px;
+  }
+
+  /* Metin okunurluğu perdesi — sabit */
+  .hero94__scrim {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(13, 16, 28, 0.58) 0%,
+        rgba(13, 16, 28, 0) 24%,
+        rgba(13, 16, 28, 0.14) 56%,
+        rgba(11, 14, 24, 0.86) 100%
+      ),
+      linear-gradient(
+        96deg,
+        rgba(11, 14, 24, 0.72) 0%,
+        rgba(11, 14, 24, 0.22) 44%,
+        rgba(11, 14, 24, 0) 76%
+      );
+  }
+
+  /* ---- İçerik ---- */
+  .hero94__inner {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: var(--header-h);
+  }
+
+  .hero94__lead {
+    max-width: 44rem;
+  }
+
+  /* Marka anchor'ı — "eskimeyen tek şey". Arkadaki Muğla 32 yıl sararırken
+     bu satır age:0'da, bembeyaz ve keskin kalır. Kontrastın kendisi mesaj. */
+  .hero94__brand {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin: 0 0 0.7rem;
+    font-size: 0.84rem;
+    font-weight: 700;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+  .hero94__tick {
+    width: 1.9rem;
+    height: 2px;
+    background: var(--color-gold-bright);
+    flex-shrink: 0;
+  }
+
+  .hero94__year {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: clamp(5rem, 19vw, 13.5rem);
+    font-weight: 800;
+    line-height: 0.84;
+    letter-spacing: -0.04em;
+    font-variant-numeric: tabular-nums;
+    color: color-mix(in oklab, #fff, var(--color-gold-bright) calc(var(--arrive) * 88%));
+    text-shadow: 0 8px 46px rgba(8, 10, 20, 0.55);
+  }
+
+  .hero94__caption {
+    margin: 0.7rem 0 0;
+    font-size: clamp(0.95rem, 1.5vw, 1.12rem);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: rgba(255, 255, 255, 0.82);
+  }
+
+  /* Varış bloğu — scroll sonunda belirir */
+  .hero94__arrival {
+    margin-top: 1.5rem;
+    opacity: var(--arrive);
+    transform: translateY(calc((1 - var(--arrive)) * 26px));
+  }
+
+  .hero94__headline {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 3vw, 2.35rem);
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+    color: #fff;
+    text-wrap: balance;
+  }
+
+  .hero94__headline span {
+    color: var(--color-gold-bright);
+    white-space: nowrap;
+  }
+
+  .hero94__sub {
+    margin: 0.85rem 0 0;
+    max-width: 38rem;
+    font-size: clamp(0.98rem, 1.3vw, 1.08rem);
+    line-height: 1.62;
+    color: rgba(255, 255, 255, 0.84);
+  }
+
+  .hero94__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1.6rem;
+  }
+
+  .hero94__btn-line {
+    gap: 0.55rem;
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.42);
+    backdrop-filter: blur(6px);
+  }
+
+  .hero94__btn-line:hover {
+    background: rgba(255, 255, 255, 0.18);
+    border-color: #fff;
+    color: #fff;
+  }
+
+  /* ---- Scroll ipucu ---- */
+  .hero94__hint {
+    position: absolute;
+    left: 50%;
+    bottom: clamp(4.5rem, 9vh, 6.5rem);
+    z-index: 3;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.64rem;
+    font-weight: 700;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.66);
+    opacity: var(--hint);
+    pointer-events: none;
+  }
+
+  .hero94__hint-line {
+    width: 1px;
+    height: 36px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.8), transparent);
+    animation: hero94-hint 2.2s ease-in-out infinite;
+  }
+
+  @keyframes hero94-hint {
+    0%, 100% { opacity: 0.35; transform: scaleY(0.8); transform-origin: top; }
+    50% { opacity: 1; transform: scaleY(1); transform-origin: top; }
+  }
+
+  /* Statik (no-JS / scrub yok) modda ipucu tamamen gizli */
+  .hero94:not(.hero94--scrub) .hero94__hint {
+    display: none;
+  }
+
+  /* ---- Giriş animasyonu (yalnız statik / varış görünümü) ---- */
+  .hero94:not(.hero94--scrub) .hero94__lead > * {
+    animation: hero94-in 0.8s var(--ease-out) both;
+  }
+  .hero94:not(.hero94--scrub) .hero94__year { animation-delay: 0.08s; }
+  .hero94:not(.hero94--scrub) .hero94__caption { animation-delay: 0.16s; }
+  .hero94:not(.hero94--scrub) .hero94__arrival { animation-delay: 0.24s; }
+
+  @keyframes hero94-in {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero94__hint-line { animation: none; }
+    .hero94:not(.hero94--scrub) .hero94__lead > * { animation: none; }
+  }
+
+  /* ---- Responsive ---- */
+  @media (max-width: 720px) {
+    /* Mobil ölçek — scrub + statik iki modda da geçerli */
+    .hero94__brand {
+      font-size: 0.76rem;
+      letter-spacing: 0.2em;
+    }
+
+    .hero94__year {
+      font-size: clamp(3.6rem, 17vw, 5.5rem);
+      line-height: 0.9;
+    }
+
+    .hero94__arrival {
+      margin-top: 1.1rem;
+    }
+
+    /* Statik mod (reduced-motion / no-JS) — scrub yok → içerik doğal akar,
+       kısa ekranlı telefonda taşıp kırpılmaz. Scrub modunda bu override'lar
+       geçmez; orada masaüstüyle aynı sticky 230vh scrub çalışır. */
+    .hero94:not(.hero94--scrub),
+    .hero94:not(.hero94--scrub) .hero94__stage {
+      height: auto;
+      min-height: 100svh;
+    }
+
+    .hero94:not(.hero94--scrub) .hero94__stage {
+      position: relative;
+    }
+
+    .hero94:not(.hero94--scrub) .hero94__inner {
+      position: relative;
+      inset: auto;
+      min-height: 100svh;
+      padding: calc(var(--header-h) + 1.75rem) 0 3.25rem;
+    }
+  }
+</style>
+
+<script>
+  (function () {
+    var section = document.querySelector("[data-hero94]");
+    if (!section) return;
+
+    var yearEl = section.querySelector("[data-hero94-year]");
+    var captionEl = section.querySelector("[data-hero94-caption]");
+
+    var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    // Reduced-motion: scrub yok, statik 1994 karesi kalır (erişilebilirlik —
+    // kullanıcının OS tercihi). Mobil dahil diğer herkes scrub görür.
+    if (reduce) return;
+
+    var FROM = 2026;
+    var SPAN = 32; // 2026 → 1994
+    var SCRUB_END = 0.8; // bu noktada yıl 1994'e kilitlenir
+    var ARRIVE_START = 0.74; // varış metni burada belirmeye başlar
+
+    section.classList.add("hero94--scrub");
+
+    function clamp(v) {
+      return v < 0 ? 0 : v > 1 ? 1 : v;
+    }
+
+    var ticking = false;
+    function update() {
+      var rect = section.getBoundingClientRect();
+      var total = section.offsetHeight - window.innerHeight;
+      var p = total > 0 ? clamp(-rect.top / total) : 0;
+
+      var yp = clamp(p / SCRUB_END);
+      var year = Math.round(FROM - SPAN * yp);
+      var elapsed = FROM - year;
+      var arrive = clamp((p - ARRIVE_START) / (1 - ARRIVE_START));
+      var hint = 1 - clamp(p / 0.12);
+
+      section.style.setProperty("--age", yp.toFixed(4));
+      section.style.setProperty("--arrive", arrive.toFixed(4));
+      section.style.setProperty("--hint", hint.toFixed(3));
+
+      yearEl.textContent = String(year);
+      captionEl.textContent =
+        elapsed === 0 ? "Bugün" : "Bugünden " + elapsed + " yıl önce";
+    }
+
+    function onScroll() {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        update();
+        ticking = false;
+      });
+    }
+
+    update(); // ilk kareyi 2026'dan başlat (flash önler)
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+  })();
+</script>

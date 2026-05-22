@@ -239,6 +239,151 @@ export const regions: Region[] = [
       },
     ],
   },
+  {
+    slug: "mentese",
+    name: "Menteşe",
+    fullName: "Menteşe gayrimenkul",
+    geo: { lat: 37.2153, lng: 28.3636 },
+    intro:
+      "Menteşe, Muğla'nın merkez ilçesi ve idari kalbidir. Üniversite, kamu kurumları ve tarihi Saburhane mahallesiyle hem yerleşik konut hem öğrenci kiralama pazarı canlı seyreder.",
+    highlights: [
+      "Muğla şehir merkezi — idari kurumlar ve üniversite çevresi",
+      "Tarihi Saburhane mahallesi ve karakteristik Muğla evleri pazarı",
+      "Üniversite kaynaklı yıl boyu süren öğrenci kiralama talebi",
+      "Merkez konum nedeniyle istikrarlı uzun dönem yerleşim talebi",
+    ],
+    segments: ["Konut", "Daire", "Öğrenci konutu", "Ticari", "Arsa"],
+    faq: [
+      {
+        q: "Menteşe konut yatırımı için neden istikrarlı bir bölge?",
+        a: "Menteşe, Muğla'nın merkez ilçesi olarak idari kurumları ve üniversiteyi barındırır. Bu yapı hem uzun dönem yerleşim hem öğrenci kiralama talebini istikrarlı tutar.",
+      },
+      {
+        q: "Menteşe'de tarihi Muğla evi alırken nelere dikkat edilmeli?",
+        a: "Saburhane ve çevresindeki tescilli yapılarda koruma kurulu kararları ve restorasyon kısıtları geçerlidir. Tapu kaydı ile yapı tescil durumu satın almadan önce incelenmelidir.",
+      },
+      {
+        q: "Menteşe'de öğrenci konutu yatırımı mantıklı mı?",
+        a: "Üniversite çevresinde kiralama talebi yıl boyu süreklidir. Konumun kampüse ulaşımı ve daire tipi, getiri beklentisiyle birlikte değerlendirilmelidir.",
+      },
+    ],
+  },
+  {
+    slug: "ula",
+    name: "Ula",
+    fullName: "Ula gayrimenkul",
+    geo: { lat: 37.1058, lng: 28.4156 },
+    intro:
+      "Ula, Muğla merkeze yakın, geleneksel Ula evleri ve sakin kırsal dokusuyla tanınan bir ilçe. Akyaka'nın Gökova kıyısı ayrı bir yazlık ve turizm segmenti oluşturur.",
+    highlights: [
+      "Muğla merkeze yakınlık sakin yerleşim talebini destekliyor",
+      "Akyaka — Gökova kıyısında yazlık ve Cittaslow turizm pazarı",
+      "Geleneksel Ula evleri ve müstakil ev pazarı",
+      "Tarım arazisi ve bahçe yatırımı için aktif kırsal bölge",
+    ],
+    segments: ["Müstakil ev", "Yazlık", "Arsa", "Tarım arazisi", "Konut"],
+    faq: [
+      {
+        q: "Ula gayrimenkul açısından hangi iki karakteri taşır?",
+        a: "Ula, merkeze yakın sakin kırsal yerleşim ile Akyaka'nın Gökova kıyısındaki yazlık-turizm pazarını bir arada barındırır. İki segment farklı bütçe ve kullanım profiline hitap eder.",
+      },
+      {
+        q: "Akyaka'da gayrimenkul alırken nelere dikkat edilmeli?",
+        a: "Akyaka'da Gökova mimari dokusu ve koruma statüsü yapılaşmayı belirler; imar ve mimari kurallar titizlikle incelenmelidir. Kıyıya yakın parsellerde ek kısıtlar bulunabilir.",
+      },
+      {
+        q: "Ula'da tarım arazisi yatırımı nasıl değerlendirilmeli?",
+        a: "Toprak vasfı, sulama imkânı ve imar durumu birlikte ele alınmalıdır. Çolakoğlu Emlak süreci saha incelemesiyle yürütür.",
+      },
+    ],
+  },
+  {
+    slug: "yatagan",
+    name: "Yatağan",
+    fullName: "Yatağan gayrimenkul",
+    geo: { lat: 37.3389, lng: 28.1408 },
+    intro:
+      "Yatağan, Muğla'nın iç kesiminde tarım, madencilik ve enerji üretiminin öne çıktığı bir ilçe. Stratonikeia antik kenti ve görece uygun fiyatlı arsa pazarı bölgenin öne çıkan değerleridir.",
+    highlights: [
+      "Muğla-Aydın aksında ulaşım açısından konumlu",
+      "Tarım arazisi ve görece uygun fiyatlı arsa pazarı aktif",
+      "Stratonikeia (Eskihisar) antik kenti çevresinde özel arsa dokusu",
+      "Yerleşik nüfusa dayalı istikrarlı konut talebi",
+    ],
+    segments: ["Konut", "Arsa", "Tarım arazisi", "Ticari"],
+    faq: [
+      {
+        q: "Yatağan yatırım için neden görece uygun fiyatlı bir bölge?",
+        a: "Yatağan, iç kesimde yer alması ve tarım-sanayi ağırlıklı ekonomisiyle kıyı ilçelerine göre daha uygun fiyatlı arsa ve konut sunar. Bütçe odaklı, uzun vadeli yatırımcıya hitap eder.",
+      },
+      {
+        q: "Yatağan'da arsa veya tarım arazisi alırken nelere dikkat edilmeli?",
+        a: "İmar durumu, parsel sınırları ve tarım arazisinde bölünme kuralları kontrol edilmelidir. Tapu vasfı satın almadan önce doğrulanmalıdır.",
+      },
+      {
+        q: "Yatağan'da konut talebini ne belirler?",
+        a: "Yerleşik nüfus ve yerel ekonomi konut talebini belirler. Konum, ulaşım ve imar durumu birlikte değerlendirilmelidir.",
+      },
+    ],
+  },
+  {
+    slug: "kavaklidere",
+    name: "Kavaklıdere",
+    fullName: "Kavaklıdere gayrimenkul",
+    geo: { lat: 37.4456, lng: 28.3739 },
+    intro:
+      "Kavaklıdere, Muğla'nın kuzeydoğusunda bağcılık, ormancılık ve tarımla öne çıkan sakin bir kırsal ilçe. Bağ ve bahçe arazileri bölgenin temel gayrimenkul segmentidir.",
+    highlights: [
+      "Bağcılık geleneğiyle bağ ve bahçe arazisi pazarı aktif",
+      "Çam ormanlarıyla çevrili sakin kırsal yerleşim",
+      "Görece uygun fiyatlı müstakil ev ve arsa seçenekleri",
+      "Doğa odaklı, şehirden uzak yaşam talebine uygun",
+    ],
+    segments: ["Tarım arazisi", "Bağ & bahçe", "Müstakil ev", "Arsa"],
+    faq: [
+      {
+        q: "Kavaklıdere hangi yatırımcı profiline uygun?",
+        a: "Kavaklıdere, bağ-bahçe arazisi ve sakin kırsal yaşam arayanlara uygundur. Doğa odaklı, uzun vadeli kullanım önceliğindeki yatırımcıya hitap eder.",
+      },
+      {
+        q: "Kavaklıdere'de tarım veya bağ arazisi alırken nelere dikkat edilmeli?",
+        a: "Toprak vasfı, sulama imkânı ve imar durumu incelenmelidir. Tarım arazisinde bölünme kuralları ve tapu vasfı satın almadan önce doğrulanmalıdır.",
+      },
+      {
+        q: "Kavaklıdere'de müstakil ev pazarı nasıl?",
+        a: "Görece uygun fiyatlı müstakil ev ve arsa seçenekleri bulunur. Konum, altyapı ve imar durumu birlikte değerlendirilmelidir.",
+      },
+    ],
+  },
+  {
+    slug: "seydikemer",
+    name: "Seydikemer",
+    fullName: "Seydikemer gayrimenkul",
+    geo: { lat: 36.6347, lng: 29.3119 },
+    intro:
+      "Seydikemer, Fethiye'nin iç kesiminde tarım üretimi güçlü, dağ ve yayla dokusuna sahip bir ilçe. Sera tarımı, Tlos antik kenti ve Saklıkent çevresi bölgenin öne çıkan değerleridir.",
+    highlights: [
+      "Eşen Çayı vadisinde verimli tarım ve sera arazisi pazarı",
+      "Fethiye'ye yakınlık ulaşım ve hizmet avantajı sağlıyor",
+      "Tlos antik kenti ve Saklıkent çevresinde doğa turizmi",
+      "Görece uygun fiyatlı arsa ve müstakil ev seçenekleri",
+    ],
+    segments: ["Tarım arazisi", "Sera", "Konut", "Müstakil ev", "Arsa"],
+    faq: [
+      {
+        q: "Seydikemer tarım yatırımı için neden öne çıkıyor?",
+        a: "Seydikemer, Eşen Çayı vadisinin verimli toprakları ve sera tarımına elverişli iklimiyle tarım yatırımına uygundur. Arazi vasfı ve sulama altyapısı belirleyici unsurlardır.",
+      },
+      {
+        q: "Seydikemer'de arsa alırken nelere dikkat edilmeli?",
+        a: "İmar durumu, parsel sınırları ve tarım arazisinde bölünme kuralları kontrol edilmelidir. Tapu vasfı satın almadan önce doğrulanmalıdır.",
+      },
+      {
+        q: "Seydikemer konut açısından nasıl bir bölge?",
+        a: "Fethiye'ye yakınlığı hizmet erişimini kolaylaştırır; görece uygun fiyatlı müstakil ev ve arsa seçenekleri bulunur. Konum ve imar durumu birlikte değerlendirilmelidir.",
+      },
+    ],
+  },
 ];
 
 export const regionSlugs = regions.map((r) => r.slug);

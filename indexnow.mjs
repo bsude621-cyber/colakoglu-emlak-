@@ -4,7 +4,7 @@
 // Anahtar dosyası: public/c99e96a4fd8e2f836c30843b78782908.txt (deploy ile yayına çıkar)
 
 const KEY = "c99e96a4fd8e2f836c30843b78782908";
-const HOST = "colakogluemlak.com";
+const HOST = "colakogluemlak48.com";
 const BASE = `https://${HOST}`;
 
 const paths = [

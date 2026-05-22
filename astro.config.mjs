@@ -4,7 +4,7 @@ import sitemap from "@astrojs/sitemap";
 import cloudflare from "@astrojs/cloudflare";
 
 export default defineConfig({
-  site: "https://colakogluemlak.com",
+  site: "https://colakogluemlak48.com",
   output: "static",
   adapter: cloudflare({
     imageService: "passthrough",
