@@ -82,6 +82,53 @@ const faqSchema = {
     acceptedAnswer: { "@type": "Answer", text: item.a },
   })),
 };
+
+// HowTo schema — adım-adım tapu devir prosesi (Google rich result + AI Overview)
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "@id": `${canonical}#howto`,
+  name: "Tapu devir işlemi nasıl yapılır",
+  description,
+  totalTime: "P3D",
+  estimatedCost: {
+    "@type": "MonetaryAmount",
+    currency: "TRY",
+    description: "Satış bedelinin yüzde 4'ü oranında tapu harcı + döner sermaye hizmet bedeli",
+  },
+  tool: [
+    { "@type": "HowToTool", name: "Tapu senedi veya ada/parsel bilgileri" },
+    { "@type": "HowToTool", name: "Kimlik belgeleri (alıcı + satıcı)" },
+    { "@type": "HowToTool", name: "Vergi kimlik numaraları" },
+    { "@type": "HowToTool", name: "Zorunlu deprem sigortası (DASK)" },
+  ],
+  step: [
+    {
+      "@type": "HowToStep",
+      position: 1,
+      name: "Web-Tapu üzerinden randevu al",
+      text: "Tapu ve Kadastro Genel Müdürlüğünün resmî çevrim içi platformu Web-Tapu üzerinden e-Devlet ile başvuru yapılır ve randevu oluşturulur.",
+    },
+    {
+      "@type": "HowToStep",
+      position: 2,
+      name: "Gerekli belgeleri hazırla",
+      text: "Tapu senedi veya ada/parsel bilgileri, alıcı ve satıcının kimlik belgeleri, vergi kimlik numaraları, bina için zorunlu DASK poliçesi, vekâletle işlemde noter onaylı vekâletname.",
+    },
+    {
+      "@type": "HowToStep",
+      position: 3,
+      name: "Tapu harcı ve döner sermaye bedelini öde",
+      text: "Tapu harcı gerçek satış bedeli üzerinden toplam yüzde 4 oranındadır; alıcı ve satıcı arasında yüzde 2 — yüzde 2 paylaşılır. Ayrıca her yıl güncellenen döner sermaye hizmet bedeli ödenir.",
+    },
+    {
+      "@type": "HowToStep",
+      position: 4,
+      name: "Tapu müdürlüğünde resmî senedi imzala",
+      text: "Randevu günü taraflar tapu müdürlüğünde hazır bulunur; yetkili memur huzurunda resmî senet (akit tablosu) imzalanır ve mülkiyet alıcıya geçer.",
+    },
+  ],
+};
 ---
 
 <Layout
@@ -89,7 +136,7 @@ const faqSchema = {
   description={description}
   canonical={canonical}
   ogImage={`${site.url}/og-rehber-tapu-devir.jpg`}
-  jsonLd={[breadcrumb, article, faqSchema]}
+  jsonLd={[breadcrumb, article, faqSchema, howToSchema]}
 >
   <Header />
   <main id="main" class="article-page">

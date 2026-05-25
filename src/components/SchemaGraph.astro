@@ -55,15 +55,28 @@ const graph = {
       hasMap: `https://www.google.com/maps/search/?api=1&query=${site.geo.latitude},${site.geo.longitude}`,
       areaServed: regions.map((r) => ({
         "@type": "City",
+        "@id": `${baseUrl}/bolgeler/${r.slug}/#city`,
         name: r.name,
+        url: `${baseUrl}/bolgeler/${r.slug}/`,
         containedInPlace: {
           "@type": "AdministrativeArea",
           name: "Muğla",
+          alternateName: "Muğla Province",
         },
         geo: {
           "@type": "GeoCoordinates",
           latitude: r.geo.lat,
           longitude: r.geo.lng,
+        },
+        // ~10km radius service zone — coğrafi derinlik sinyali AI/Google için
+        serviceArea: {
+          "@type": "GeoCircle",
+          geoMidpoint: {
+            "@type": "GeoCoordinates",
+            latitude: r.geo.lat,
+            longitude: r.geo.lng,
+          },
+          geoRadius: "10000",
         },
       })),
       makesOffer: services.map((s) => ({
@@ -138,6 +151,7 @@ const graph = {
       familyName: "Ercan",
       image: `${baseUrl}/images/ziya-ercan-portre.jpg`,
       jobTitle: site.owner.jobTitle,
+      award: site.owner.titles,
       worksFor: { "@id": orgId },
       affiliation: [
         { "@id": orgaIds.esnafOdasi },

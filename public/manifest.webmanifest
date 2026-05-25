@@ -1,19 +1,42 @@
 {
-  "name": "Çolakoğlu Emlak",
+  "name": "Çolakoğlu Emlak — Muğla Gayrimenkul Danışmanlığı",
   "short_name": "Çolakoğlu",
-  "description": "Muğla genelinde konut, arsa ve ticari gayrimenkul danışmanlığı.",
+  "description": "1994'ten bu yana Muğla'nın 13 ilçesinde konut, villa, arsa ve ticari gayrimenkul danışmanlığı.",
   "start_url": "/",
+  "id": "/",
   "display": "standalone",
-  "background_color": "#3a2815",
-  "theme_color": "#f5f0e8",
+  "orientation": "portrait-primary",
+  "background_color": "#f5f0e8",
+  "theme_color": "#0f1f33",
   "lang": "tr-TR",
   "scope": "/",
+  "categories": ["business", "lifestyle", "finance"],
   "icons": [
     {
       "src": "/favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
       "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Bölgeler",
+      "short_name": "Bölgeler",
+      "url": "/#bolgeler",
+      "description": "Muğla'nın 13 ilçesi"
+    },
+    {
+      "name": "Rehber",
+      "short_name": "Rehber",
+      "url": "/rehber/",
+      "description": "Mevzuat ve süreç rehberleri"
+    },
+    {
+      "name": "İletişim",
+      "short_name": "İletişim",
+      "url": "/#iletisim",
+      "description": "Danışmanlık için ulaşın"
     }
   ]
 }

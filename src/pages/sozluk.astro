@@ -1,0 +1,416 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { site } from "../data/config";
+
+const title = "Emlak Sözlüğü — Gayrimenkul Terimleri Açıklamalı | Çolakoğlu Emlak";
+const description =
+  "Arsa, arazi, kat mülkiyeti, kat irtifakı, ifraz, tevhid, emsal, TAKS, iskan, DASK, SİT alanı — emlak alım satım sürecinde sık karşılaşılan terimlerin sade ve doğru açıklamaları. Çolakoğlu Emlak.";
+const canonical = `${site.url}/sozluk/`;
+const modified = new Date().toISOString();
+
+// Alfabetik sırada — anchor link'ler için slug ile
+const terms = [
+  {
+    slug: "arazi",
+    term: "Arazi",
+    short: "İmar planı dışında kalan, çoğunlukla tarım vasıflı taşınmaz.",
+    long: "Belediye ve mücavir alan sınırları dışında kalan, imar planına dahil edilmemiş taşınmaz. Yapılaşma hakkı genellikle yoktur veya 3194 sayılı İmar Kanunu kapsamında sıkı koşullara bağlıdır. Tarımsal vasıflı, orman, mera, zeytinlik gibi alt kategoriler olabilir.",
+    related: ["arsa", "imar-durumu"],
+  },
+  {
+    slug: "arsa",
+    term: "Arsa",
+    short: "Belediye sınırları içinde, imar planına göre parsellenmiş, üzerine yapı yapma hakkı tanımlı taşınmaz.",
+    long: "Belediye ve mücavir alan sınırları içinde, uygulama imar planına göre parsellenmiş, üzerinde yapı yapma hakkı imar planıyla tanımlı taşınmaz. TAKS/KAKS oranları, çekme mesafeleri ve yapı türü imar durumu belgesinde gösterilir.",
+    related: ["arazi", "imar-durumu", "taks", "kaks"],
+  },
+  {
+    slug: "dask",
+    term: "DASK (Zorunlu Deprem Sigortası)",
+    short: "Konut ve iş yeri gibi bina niteliğindeki taşınmazlar için yasal olarak zorunlu deprem sigortası.",
+    long: "Doğal Afet Sigortaları Kurumu tarafından düzenlenen ve 6305 sayılı Afet Sigortaları Kanunu kapsamında, kapsam dahilindeki binalar için zorunlu olan deprem sigortası. Tapu devri ve elektrik/su aboneliği için poliçenin geçerli olması istenir. Arsa ve arazi devrinde DASK gerekmez.",
+    related: ["tapu-devri"],
+  },
+  {
+    slug: "emsal-kaks",
+    term: "Emsal (KAKS — Kat Alanı Kat Sayısı)",
+    short: "Parsel alanının toplam inşaat alanına oranı; yapının kaç m² inşaat hakkı olduğunu gösterir.",
+    long: "Parsel üzerine yapılacak toplam inşaat alanının parsel alanına oranı. Örnek: 1000 m² parselde emsal 0,50 ise toplam 500 m² inşaat alanı yapılabilir. İmar planı veya imar durumu belgesinde TAKS ile birlikte gösterilir. Bodrum gibi turistik bölgelerde emsal değeri özellikle düşük tutulabilir.",
+    related: ["taks", "imar-durumu"],
+  },
+  {
+    slug: "hisseli-tapu",
+    term: "Hisseli Tapu",
+    short: "Taşınmazın birden fazla maliki olduğu tapu; alıcı belirli bir paya sahip olur.",
+    long: "Taşınmazın birden fazla maliki vardır; her malik belirli bir oranda paya (hisseye) sahiptir. Satışta diğer hissedarların önalım (şufa) hakkı bulunur; bu hak yasal süresinde kullanılırsa satışı bozabilir. Kullanım ve devirde pratik kısıtlar nedeniyle hisseli tapuda alım, müstakil tapuya göre daha dikkatli incelenmelidir.",
+    related: ["mustakil-tapu", "tapu-serhi"],
+  },
+  {
+    slug: "ifraz",
+    term: "İfraz (Parsel Bölme)",
+    short: "Bir parselin iki veya daha fazla parsele bölünmesi işlemi.",
+    long: "Mevcut bir parselin imar mevzuatına uygun şekilde iki veya daha fazla parsele bölünmesi. Belediye onayı ve tapuya tescil gerektirir. Tarım arazilerinde 5403 sayılı Toprak Koruma ve Arazi Kullanımı Kanunu kapsamında belirli büyüklüğün altına bölünme kısıtına tabidir.",
+    related: ["tevhid", "parselasyon", "imar-durumu"],
+  },
+  {
+    slug: "imar-durumu",
+    term: "İmar Durumu",
+    short: "Bir parselin imar planındaki konumunu, yapılaşma koşullarını gösteren resmî belge.",
+    long: "Belediyenin İmar Müdürlüğünden alınır; parselin imar planındaki konumunu, yapılaşma koşullarını (TAKS/KAKS), yola cephe durumunu, çekme mesafelerini ve yapı türünü gösterir. Satıcı beyanı yeterli değildir; mutlaka belediyeden teyit edilmelidir. 3194 sayılı İmar Kanunu kapsamında düzenlenir.",
+    related: ["taks", "emsal-kaks", "yapi-ruhsati"],
+  },
+  {
+    slug: "iskan",
+    term: "İskan (Yapı Kullanma İzin Belgesi)",
+    short: "İnşaatın bittiğine ve imar koşullarına uygun yapıldığına dair belediye belgesi.",
+    long: "Yapı tamamlandıktan sonra belediye tarafından düzenlenir; yapının ruhsata uygun, imar mevzuatına uygun ve oturulabilir olduğunu belgeler. İskan alınmamış yapı yasal olarak kullanılamaz, abonelik bağlanamaz, kat mülkiyetli tapuya dönüştürülemez. Daire alımında iskan kontrolü kritik adımdır.",
+    related: ["yapi-ruhsati", "kat-mulkiyeti"],
+  },
+  {
+    slug: "kat-irtifaki",
+    term: "Kat İrtifakı",
+    short: "İnşa edilmemiş veya tamamlanmamış binadaki bağımsız bölümler üzerinde kurulan hak; arsa paylı.",
+    long: "Henüz tamamlanmamış veya iskanı alınmamış binadaki bağımsız bölümler için arsa payı üzerinden kurulan hak. Tapuda arsa payı + bağımsız bölüm tanımıyla gösterilir. Yapı tamamlanıp iskan alındığında kat mülkiyetine dönüştürülür. Kat irtifaklı tapu satın alımında inşaat süreci ve teslim güvencesi ayrı incelenmelidir.",
+    related: ["kat-mulkiyeti", "iskan"],
+  },
+  {
+    slug: "kat-mulkiyeti",
+    term: "Kat Mülkiyeti",
+    short: "Tamamlanmış ve iskanı alınmış binadaki her bağımsız bölümün ayrı tapuya bağlanması.",
+    long: "634 sayılı Kat Mülkiyeti Kanunu kapsamında, iskanı alınmış binada her bağımsız bölümün (daire, dükkan, depo) ayrı bir tapuyla tescili. Her bağımsız bölümün arsa payı, yönetim planı ve ortak gider yükümlülüğü vardır. Kat mülkiyetli tapu, kat irtifaklıdan daha güvenlidir; yapı yasal olarak tamamlanmış demektir.",
+    related: ["kat-irtifaki", "iskan"],
+  },
+  {
+    slug: "kiyi-kanunu",
+    term: "Kıyı Kanunu",
+    short: "Deniz, göl ve nehir kenarındaki yapılaşmayı düzenleyen 3621 sayılı kanun.",
+    long: "Kıyı kenar çizgisi ve sahil şeridi (kara tarafına doğru 100 metrelik bant) kapsamında yapılaşmayı düzenler. Sahil şeridi içinde özel mülkiyet kullanımı sıkı kurallara tabidir; turistik tesis, balıkçı barınağı gibi kamu yararı amaçlı yapılaşmalar mümkündür. Bodrum, Marmaris, Fethiye gibi kıyı ilçelerinde satın alma öncesinde mutlaka kontrol edilmelidir.",
+    related: ["sit-alani", "imar-durumu"],
+  },
+  {
+    slug: "mustakil-tapu",
+    term: "Müstakil Tapu",
+    short: "Taşınmazın tamamına tek malik sahiptir; alıcı taşınmazın tamamını edinir.",
+    long: "Taşınmazın tek malik adına kayıtlı olduğu, alıcının taşınmazın tamamını (tüm hisseyi) edineceği tapu türü. Kullanım, satış ve devirde ortak izni gerekmez. Hisseli tapuya göre pratik avantajları nedeniyle yatırımda tercih edilir.",
+    related: ["hisseli-tapu"],
+  },
+  {
+    slug: "parselasyon",
+    term: "Parselasyon",
+    short: "İmar planına göre arazinin parsellere ayrılması ve düzenlenmesi süreci.",
+    long: "Belediyenin imar planı kapsamında, ham veya kadastral durumdaki araziyi imar parsellerine ayırma süreci. 3194 sayılı İmar Kanunu'nun 18. maddesi kapsamında uygulanır. Yol, park, okul gibi ortak kullanım alanları için düzenleme ortaklık payı (DOP) kesintisi yapılır.",
+    related: ["ifraz", "tevhid", "imar-durumu"],
+  },
+  {
+    slug: "sit-alani",
+    term: "SİT Alanı",
+    short: "Tarihi, kültürel veya doğal değer nedeniyle korunan ve yapılaşması kısıtlı alan.",
+    long: "2863 sayılı Kültür ve Tabiat Varlıklarını Koruma Kanunu kapsamında, Kültür Varlıklarını Koruma Bölge Kurulu kararıyla ilan edilir. Üç ana türü vardır: Arkeolojik SİT (örn. Gümüşlük-Myndos, Yatağan-Stratonikeia, Seydikemer-Tlos), Doğal SİT (örn. Köyceğiz-Dalyan Özel Çevre Koruma Bölgesi), Kentsel SİT (örn. Menteşe-Saburhane). Yapılaşma kurul onayına tabidir.",
+    related: ["kiyi-kanunu", "zeytinlik"],
+  },
+  {
+    slug: "taks",
+    term: "TAKS (Taban Alanı Kat Sayısı)",
+    short: "Parsel alanının yüzde kaçının yapı tabanı olarak kullanılabileceğini gösteren oran.",
+    long: "Parsel alanının ne kadarına yapı oturtulabileceğini belirleyen oran. Örnek: 1000 m² parselde TAKS 0,20 ise en fazla 200 m² taban alanı yapılabilir. İmar durumu belgesinde KAKS (Emsal) ve çekme mesafeleriyle birlikte gösterilir.",
+    related: ["emsal-kaks", "imar-durumu"],
+  },
+  {
+    slug: "tapu-serhi",
+    term: "Tapu Şerhi",
+    short: "Tapu kütüğünde taşınmazın hukuki durumunu etkileyen bilgilerin işlenmesi.",
+    long: "Tapu kaydında ilgili kişilere bildirim amacıyla işlenen kayıtlar. Başlıca türleri: ipotek (kredi teminatı), haciz (icra takibi), satış vaadi şerhi (gelecekteki satış güvencesi), irtifak hakları (geçit, kullanım), kira şerhi. Satın alma öncesinde tapu kaydındaki tüm şerhler mutlaka kontrol edilmelidir; devir sonrası ortaya çıkan ipotek alıcının sorunu olur.",
+    related: ["tapu-devri", "hisseli-tapu"],
+  },
+  {
+    slug: "tevhid",
+    term: "Tevhid (Parsel Birleştirme)",
+    short: "Birden fazla parselin birleştirilerek tek parsel hâline getirilmesi işlemi.",
+    long: "Aynı malike ait birden fazla parselin imar mevzuatına uygun şekilde tek parselde birleştirilmesi. Belediye onayı ve tapuya tescil gerektirir. Yapı yapma planlamasında daha geniş imar hakkı veya cephe avantajı için tercih edilir.",
+    related: ["ifraz", "parselasyon"],
+  },
+  {
+    slug: "yapi-ruhsati",
+    term: "Yapı Ruhsatı",
+    short: "İnşaata başlama izni; belediye tarafından imar planına uygun olarak verilir.",
+    long: "Bir yapının imar planına uygun şekilde inşa edilmesine başlanabilmesi için belediye tarafından düzenlenen izin belgesi. Mimari proje, statik proje, mekanik tesisat projesi gibi tüm projeler onaylanmadan ruhsat çıkmaz. Ruhsatsız yapı kaçak yapı statüsündedir; yıkım, idari para cezası ve yasal sorumluluk doğurur.",
+    related: ["iskan", "imar-durumu"],
+  },
+  {
+    slug: "zeytinlik",
+    term: "Zeytinlik (Vasıf)",
+    short: "Tapu kaydında zeytinlik olarak tescilli arazi; 3573 sayılı kanun kapsamında yapılaşması kısıtlıdır.",
+    long: "3573 sayılı Zeytinciliğin Islahı ve Yabanilerinin Aşılattırılması Hakkında Kanun kapsamında, zeytinlik vasfında olan arazilerde yapılaşma önemli ölçüde kısıtlıdır. Zeytinlik vasfının kaldırılması zorlu bir süreçtir. Muğla'nın iç kesimlerinde (Milas, Yatağan, Kavaklıdere) sık karşılaşılır; satın alma öncesinde tapu vasfı mutlaka kontrol edilmelidir.",
+    related: ["sit-alani", "arazi"],
+  },
+];
+
+// DefinedTermSet schema — terim sözlüğü structured (Google + AI Overview)
+const definedTermSet = {
+  "@context": "https://schema.org",
+  "@type": "DefinedTermSet",
+  "@id": `${canonical}#definedtermset`,
+  name: "Çolakoğlu Emlak — Gayrimenkul Terimleri Sözlüğü",
+  description,
+  url: canonical,
+  inLanguage: "tr-TR",
+  hasDefinedTerm: terms.map((t) => ({
+    "@type": "DefinedTerm",
+    "@id": `${canonical}#${t.slug}`,
+    name: t.term,
+    description: t.long,
+    inDefinedTermSet: { "@id": `${canonical}#definedtermset` },
+    url: `${canonical}#${t.slug}`,
+  })),
+};
+
+const breadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "@id": `${canonical}#breadcrumb`,
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: site.url },
+    { "@type": "ListItem", position: 2, name: "Sözlük", item: canonical },
+  ],
+};
+
+const webPage = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": `${canonical}#webpage`,
+  url: canonical,
+  name: title,
+  description,
+  isPartOf: { "@id": `${site.url}/#website` },
+  inLanguage: "tr-TR",
+  datePublished: "2026-05-25",
+  dateModified: modified,
+  mainEntity: { "@id": `${canonical}#definedtermset` },
+};
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  jsonLd={[breadcrumb, webPage, definedTermSet]}
+>
+  <Header />
+  <main id="main" class="article-page">
+    <article class="article">
+      <header class="article-hero sozluk-hero">
+        <div class="container">
+          <nav class="breadcrumb" aria-label="Sayfa konumu">
+            <a href="/">Ana Sayfa</a>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">Sözlük</span>
+          </nav>
+          <p class="eyebrow">Gayrimenkul Sözlüğü</p>
+          <h1>Emlak Terimleri — Açıklamalı Sözlük</h1>
+          <p class="article-meta">
+            <span>Çolakoğlu Emlak</span>
+            <span aria-hidden="true">·</span>
+            <span>{terms.length} terim</span>
+            <span aria-hidden="true">·</span>
+            <span>Mevzuata göre güncellenir</span>
+          </p>
+        </div>
+      </header>
+
+      <div class="container article-body sozluk-body">
+        <div class="article-main">
+          <aside class="tldr" aria-label="Özet">
+            <p class="tldr-label">Özet</p>
+            <p>
+              Emlak alım satım süreçlerinde sık karşılaşılan terimlerin sade
+              ve doğru açıklamaları. Her terim ilgili mevzuat çerçevesinde
+              tanımlanmıştır; bilinmediğinde maliyetli sürprizler doğurabilen
+              kavramlar ön planda tutulmuştur.
+            </p>
+          </aside>
+
+          <nav class="sozluk-toc" aria-label="Sözlük dizini">
+            <p class="sozluk-toc-label">Alfabetik dizin</p>
+            <ul>
+              {terms.map((t) => (
+                <li>
+                  <a href={`#${t.slug}`}>{t.term}</a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div class="sozluk-list">
+            {terms.map((t) => (
+              <article class="sozluk-item" id={t.slug}>
+                <h2>{t.term}</h2>
+                <p class="sozluk-short">{t.short}</p>
+                <p class="sozluk-long">{t.long}</p>
+                {t.related && t.related.length > 0 && (
+                  <p class="sozluk-related">
+                    <span class="sozluk-related-label">İlgili:</span>
+                    {t.related.map((r, i) => {
+                      const target = terms.find((x) => x.slug === r);
+                      if (!target) return null;
+                      return (
+                        <>
+                          {i > 0 && <span aria-hidden="true"> · </span>}
+                          <a href={`#${r}`}>{target.term.split(" (")[0]}</a>
+                        </>
+                      );
+                    })}
+                  </p>
+                )}
+              </article>
+            ))}
+          </div>
+
+          <aside class="article-cta">
+            <p class="article-cta-label">Çolakoğlu Emlak</p>
+            <p>
+              Mevzuat sözlüğü teorinin çerçevesidir. Pratik karar için
+              parsele ve şartlara özel inceleme gerekir. Muğla'nın 13 ilçesinde
+              tapu, imar ve sözleşme süreçlerinde eşlik ediyoruz.
+            </p>
+            <a href="/#iletisim" class="btn btn-primary">Danışmanlık alın</a>
+          </aside>
+        </div>
+      </div>
+    </article>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .sozluk-hero {
+    padding: calc(var(--header-h) + 3rem) 0 clamp(2.5rem, 5vw, 3.5rem);
+    background: var(--color-wood-deep);
+  }
+
+  .sozluk-hero .eyebrow {
+    color: var(--color-gold-bright);
+  }
+
+  .sozluk-hero h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    color: #fff;
+    margin: 0 0 1rem;
+    max-width: 24ch;
+  }
+
+  .sozluk-body {
+    max-width: 880px;
+  }
+
+  .sozluk-toc {
+    margin: 0 0 3rem;
+    padding: 1.5rem 1.75rem;
+    background: var(--color-bg-alt);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+  }
+
+  .sozluk-toc-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-eyebrow);
+    margin: 0 0 0.85rem;
+  }
+
+  .sozluk-toc ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.4rem 1.5rem;
+  }
+
+  @media (max-width: 640px) {
+    .sozluk-toc ul {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .sozluk-toc a {
+    font-size: 0.92rem;
+    color: var(--color-accent);
+    text-decoration: none;
+    text-underline-offset: 3px;
+  }
+
+  .sozluk-toc a:hover {
+    text-decoration: underline;
+  }
+
+  .sozluk-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .sozluk-item {
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--color-line);
+    scroll-margin-top: calc(var(--header-h) + 1.5rem);
+  }
+
+  .sozluk-item:last-child {
+    border-bottom: none;
+  }
+
+  .sozluk-item h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+    font-weight: 800;
+    letter-spacing: -0.018em;
+    line-height: 1.2;
+    color: var(--color-ink);
+    margin: 0 0 0.7rem;
+  }
+
+  .sozluk-short {
+    font-size: 1.08rem;
+    line-height: 1.6;
+    color: var(--color-ink);
+    font-weight: 600;
+    margin: 0 0 0.85rem;
+  }
+
+  .sozluk-long {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--color-ink-muted);
+    margin: 0 0 1rem;
+  }
+
+  .sozluk-related {
+    font-size: 0.9rem;
+    color: var(--color-ink-muted);
+    margin: 0;
+  }
+
+  .sozluk-related-label {
+    font-weight: 600;
+    color: var(--color-ink);
+    margin-right: 0.5rem;
+  }
+
+  .sozluk-related a {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .sozluk-related a:hover {
+    text-decoration: underline;
+  }
+</style>

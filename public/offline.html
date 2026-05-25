@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Çevrimdışı — Çolakoğlu Emlak</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <style>
+      :root {
+        --navy: #0f1f33;
+        --copper: #b85c20;
+        --ivory: #f5f0e8;
+        --ink: #2a2018;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        background: var(--ivory);
+        color: var(--ink);
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 2rem;
+      }
+      .wrap { max-width: 32rem; text-align: center; }
+      .eyebrow {
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--copper);
+        margin-bottom: 1rem;
+      }
+      h1 {
+        font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        line-height: 1.2;
+        color: var(--navy);
+        margin-bottom: 1rem;
+      }
+      p {
+        font-size: 1.02rem;
+        line-height: 1.65;
+        color: var(--ink);
+        opacity: 0.78;
+        margin-bottom: 1.5rem;
+      }
+      .actions {
+        display: flex;
+        gap: 0.75rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      a {
+        display: inline-block;
+        padding: 0.85rem 1.5rem;
+        background: var(--navy);
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+        border-radius: 6px;
+        transition: background 0.2s;
+      }
+      a:hover { background: var(--copper); }
+      .secondary {
+        background: transparent;
+        color: var(--navy);
+        border: 1px solid var(--navy);
+      }
+      .secondary:hover {
+        background: var(--navy);
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <p class="eyebrow">Çolakoğlu Emlak</p>
+      <h1>Şu an çevrimdışısınız</h1>
+      <p>
+        İnternet bağlantınız kesilmiş gibi görünüyor. Bağlantı geri geldiğinde
+        sayfa otomatik yüklenir. Acil iletişim için aşağıdaki numaralardan
+        ulaşabilirsiniz.
+      </p>
+      <div class="actions">
+        <a href="tel:+902522125015">0252 212 50 15</a>
+        <a class="secondary" href="tel:+905323168230">0532 316 82 30</a>
+      </div>
+    </main>
+    <script>
+      // Bağlantı geri geldiğinde sayfayı reload et
+      window.addEventListener("online", () => location.reload());
+    </script>
+  </body>
+</html>

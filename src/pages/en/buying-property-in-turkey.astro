@@ -1,0 +1,685 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { site } from "../../data/config";
+
+const title =
+  "Buying Property in Turkey as a Foreigner — A 12-Step Guide (2026) | Çolakoğlu Emlak";
+const description =
+  "Step-by-step guide for foreign nationals buying property in Turkey: legal framework (Law 2644), military zone clearance, SPK appraisal, title deed transfer, and citizenship by investment threshold. Updated for 2026. Çolakoğlu Real Estate, Muğla.";
+const canonical = `${site.url}/en/buying-property-in-turkey/`;
+const trCanonical = `${site.url}/rehber/yabanciya-gayrimenkul-satisi/`;
+const published = "2026-05-25";
+const modified = new Date().toISOString();
+
+const steps = [
+  {
+    name: "Confirm eligibility under Law 2644",
+    text:
+      "Foreign nationals from most countries can acquire property in Turkey under Article 35 of Law 2644 (Land Registry Law). The reciprocity (mütekabiliyet) requirement was abolished in 2012. A foreign individual may own up to 30 hectares nationwide; acquisitions in any single district cannot exceed 10% of that district's privately-owned area.",
+  },
+  {
+    name: "Choose location and check military forbidden zones",
+    text:
+      "Some areas are restricted under military forbidden zone or special security zone status. The Land Registry conducts an official inquiry with the relevant military command before each foreign acquisition. Coastal Muğla districts (Bodrum, Marmaris, Fethiye) generally permit acquisition; specific parcel-level checks are required.",
+  },
+  {
+    name: "Apply for a Turkish tax identification number",
+    text:
+      "Obtained from any Turkish tax office (Vergi Dairesi). Required documents: passport with notarised Turkish translation. The tax number is mandatory for property transactions, utility subscriptions, and bank account opening.",
+  },
+  {
+    name: "Open a Turkish bank account (recommended)",
+    text:
+      "While not legally required for the purchase itself, a Turkish bank account is necessary if pursuing Turkish citizenship by investment — the purchase amount must be converted to Turkish Lira through a Turkish bank, generating a Foreign Currency Purchase Document (DAB).",
+  },
+  {
+    name: "Find property through a licensed real estate consultant",
+    text:
+      "Under the Real Estate Trade Regulation, only consultants registered in the Real Estate Trade Information System (TTBS) may legally provide brokerage services. Verify any agency's TTBS registration. Çolakoğlu Real Estate is a registered consultancy under the Muğla Real Estate Consultants Chamber.",
+  },
+  {
+    name: "Negotiate price and sign preliminary contract",
+    text:
+      "After agreement, a preliminary sales contract may be signed before a notary public and registered on the title deed as an annotation (satış vaadi şerhi). This provides legal protection during the period before final transfer.",
+  },
+  {
+    name: "Request an SPK-licensed appraisal report",
+    text:
+      "Mandatory for all foreign acquisitions. The valuation report must be prepared by a real estate appraisal company licensed by the Capital Markets Board (Sermaye Piyasası Kurulu — SPK). The report documents the property's fair market value and is required at the Land Registry.",
+  },
+  {
+    name: "Military forbidden zone inquiry (handled by Land Registry)",
+    text:
+      "The Land Registry Office submits the inquiry to the relevant military command. This typically resolves within several business days. A positive response is required for the transfer to proceed.",
+  },
+  {
+    name: "Convert funds to Turkish Lira and obtain DAB",
+    text:
+      "If pursuing Turkish citizenship by investment, the purchase amount (minimum 400,000 USD equivalent) must be transferred from abroad and converted to Turkish Lira through a Turkish bank. The bank issues a Foreign Currency Purchase Document (DAB) confirming the conversion.",
+  },
+  {
+    name: "Schedule the Land Registry appointment via Web-Tapu",
+    text:
+      "Web-Tapu is the official online platform of the General Directorate of Land Registry and Cadastre. Appointments are scheduled through the platform. All required documents (passport, translated documents, tax number, appraisal report, military clearance, DAB if applicable) must be ready.",
+  },
+  {
+    name: "Pay title deed fee (4%) and revolving fund fee",
+    text:
+      "The title deed fee (tapu harcı) is 4% of the actual sale price — legally shared 2% by the buyer and 2% by the seller. An additional revolving fund (döner sermaye) service fee, updated annually, is paid at the Land Registry. Under-declaring the sale price is illegal and carries criminal liability.",
+  },
+  {
+    name: "Attend the signing at the Land Registry Office",
+    text:
+      "On the appointment day, both parties (or their notarised attorneys) attend the Land Registry Office in person. In the presence of an authorised registrar, the official deed (akit tablosu) is signed and ownership transfers to the buyer. The new title deed (TAPU) is issued.",
+  },
+];
+
+const faq = [
+  {
+    q: "Can foreign nationals own freehold property in Turkey?",
+    a: "Yes. Under Article 35 of Law 2644, foreign individuals from most countries can acquire freehold property in Turkey, up to 30 hectares nationwide, with district-level caps of 10% of privately-owned area. Restrictions apply in military forbidden zones and special security zones.",
+  },
+  {
+    q: "How much does it cost to buy property in Turkey for a foreigner?",
+    a: "Beyond the purchase price, mandatory costs include: title deed fee (4% of sale price, split 2/2 between buyer and seller), revolving fund service fee, SPK-licensed valuation report fee, notary translation fees, and any agent commission. DASK (mandatory earthquake insurance) is required for buildings.",
+  },
+  {
+    q: "Can buying property in Turkey grant citizenship?",
+    a: "Yes. Acquiring property worth at least 400,000 USD (or equivalent) qualifies for Turkish citizenship by investment. The purchase must be funded through foreign currency converted to Turkish Lira via a Turkish bank (DAB documentation required), and the buyer must commit not to sell the property for 3 years — this commitment is annotated on the title deed.",
+  },
+  {
+    q: "Why is Muğla a good investment location for foreigners?",
+    a: "Muğla province includes Bodrum, Marmaris, Fethiye, Datça, and other internationally recognised coastal destinations. The region attracts foreign buyers from EU, UK, Germany, and Russia, with strong rental yield potential in seasonal tourism markets and long-established expat communities in areas like Çalış and Ovacık (Fethiye).",
+  },
+  {
+    q: "How long does the whole process take?",
+    a: "From contract signing to title deed transfer, the process typically takes 4-8 weeks if all documents are in order. Military forbidden zone inquiry, SPK appraisal preparation, and currency conversion (if pursuing citizenship) are the main timing factors.",
+  },
+  {
+    q: "Why choose a chamber-registered consultant?",
+    a: "Real estate consultants must be registered in the TTBS (Real Estate Trade Information System) to operate legally. A chamber-registered consultant operates under professional ethics rules enforced by the local Real Estate Consultants Chamber. Çolakoğlu Real Estate is led by Ziya Ercan, who serves as President of the Muğla Real Estate Consultants Chamber and Vice President of TEMFED (the Federation of All Real Estate Consultants of Türkiye).",
+  },
+];
+
+const breadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "@id": `${canonical}#breadcrumb`,
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: site.url },
+    { "@type": "ListItem", position: 2, name: "English", item: `${site.url}/en/` },
+    { "@type": "ListItem", position: 3, name: "Buying Property in Turkey", item: canonical },
+  ],
+};
+
+const article = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": `${canonical}#article`,
+  headline: "Buying Property in Turkey as a Foreigner — A 12-Step Guide (2026)",
+  description,
+  image: { "@type": "ImageObject", url: `${site.url}/og-default.jpg` },
+  url: canonical,
+  inLanguage: "en",
+  datePublished: published,
+  dateModified: modified,
+  mainEntityOfPage: canonical,
+  isPartOf: { "@id": `${site.url}/#website` },
+  author: {
+    "@type": "Person",
+    "@id": `${site.url}/#founder`,
+    name: site.owner.name,
+    jobTitle: site.owner.jobTitle,
+    award: site.owner.titles,
+    worksFor: { "@id": `${site.url}/#organization` },
+  },
+  publisher: { "@id": `${site.url}/#organization` },
+  about: [
+    "Foreign property acquisition in Turkey",
+    "Law 2644 Article 35",
+    "Turkish citizenship by investment",
+    "Real estate in Muğla",
+    "Land Registry procedures",
+  ],
+};
+
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "@id": `${canonical}#howto`,
+  name: "How to buy property in Turkey as a foreign national",
+  description:
+    "Complete 12-step process for foreign nationals acquiring property in Turkey under Law 2644, including military zone clearance, SPK appraisal, and title deed transfer.",
+  totalTime: "P30D",
+  estimatedCost: {
+    "@type": "MonetaryAmount",
+    currency: "USD",
+    description: "Property price plus 4% title deed fee, SPK appraisal fee, notary translations, and any agency commission. Citizenship-by-investment minimum: 400,000 USD.",
+  },
+  step: steps.map((s, i) => ({
+    "@type": "HowToStep",
+    position: i + 1,
+    name: s.name,
+    text: s.text,
+  })),
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": `${canonical}#faq`,
+  mainEntity: faq.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: { "@type": "Answer", text: item.a },
+  })),
+};
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  jsonLd={[breadcrumb, article, howToSchema, faqSchema]}
+>
+  <Fragment slot="head">
+    <link rel="alternate" hreflang="en" href={canonical} />
+    <link rel="alternate" hreflang="tr" href={trCanonical} />
+    <link rel="alternate" hreflang="x-default" href={canonical} />
+  </Fragment>
+  <Header />
+  <main id="main" class="article-page">
+    <article class="article">
+      <header class="article-hero">
+        <div class="container">
+          <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <span aria-hidden="true">/</span>
+            <a href={trCanonical} hreflang="tr">Türkçe</a>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">Buying Property in Turkey</span>
+          </nav>
+          <p class="eyebrow">Guide for Foreign Buyers · 2026</p>
+          <h1>Buying Property in Turkey as a Foreigner — A 12-Step Guide</h1>
+          <p class="article-meta">
+            <span>Çolakoğlu Real Estate</span>
+            <span aria-hidden="true">·</span>
+            <time datetime={modified}>Updated May 2026</time>
+            <span aria-hidden="true">·</span>
+            <span>~10 min read</span>
+          </p>
+        </div>
+      </header>
+
+      <div class="container article-body">
+        <div class="article-main">
+          <aside class="tldr" aria-label="Summary">
+            <p class="tldr-label">TL;DR</p>
+            <p>
+              Foreign nationals can acquire property in Turkey under Article 35
+              of Law 2644 — up to 30 hectares nationwide, with a 10% cap per
+              district. Mandatory steps include a Turkish tax number, military
+              forbidden zone clearance, an SPK-licensed appraisal report, and a
+              Land Registry appointment via Web-Tapu. Acquiring property worth
+              at least 400,000 USD qualifies for Turkish citizenship by
+              investment.
+            </p>
+          </aside>
+
+          <p class="lead">
+            Turkey has been one of the most active foreign property
+            destinations in the Mediterranean since reciprocity requirements
+            were abolished in 2012. The legal framework is clear, but the
+            procedural sequence — military zone clearance, SPK appraisal,
+            Web-Tapu appointment, currency conversion if pursuing citizenship
+            — needs to be followed in order. This guide outlines the 12-step
+            process applicable to most foreign buyers acquiring property in
+            Muğla and elsewhere in Turkey.
+          </p>
+
+          <p class="source-note">
+            <strong>Note on accuracy:</strong> This guide reflects the
+            framework of Law 2644 (Land Registry Law) Article 35, the Real
+            Estate Trade Regulation, and Capital Markets Board (SPK)
+            requirements as of 2026. Specific rules may apply to certain
+            nationalities or property types. Always confirm parcel-level
+            details (military zone status, SİT designation, zoning) with the
+            local Land Registry and municipality before purchase.
+          </p>
+
+          <h2>Legal Framework — Article 35 of Law 2644</h2>
+          <p>
+            Foreign nationals from most countries can acquire real property in
+            Turkey. The reciprocity requirement (a country whose nationals
+            could not own Turkish property unless Turkish citizens could own
+            property in that country) was abolished in 2012, broadening
+            access significantly.
+          </p>
+          <p><strong>Key limits:</strong></p>
+          <ul>
+            <li>
+              <strong>30 hectares nationwide</strong> — a single foreign
+              individual cannot own more than 30 hectares of property across
+              Turkey in total.
+            </li>
+            <li>
+              <strong>10% district cap</strong> — foreign-owned property in
+              any single district cannot exceed 10% of that district's
+              privately-owned area.
+            </li>
+            <li>
+              <strong>Military forbidden zones and special security zones</strong> — acquisition in these areas requires
+              separate clearance and is restricted.
+            </li>
+          </ul>
+
+          <h2>The 12-Step Process</h2>
+
+          {steps.map((s, i) => (
+            <section class="step-block">
+              <h3>
+                <span class="step-num">{i + 1}.</span>
+                {s.name}
+              </h3>
+              <p>{s.text}</p>
+            </section>
+          ))}
+
+          <h2>Citizenship by Investment</h2>
+          <p>
+            Turkey's citizenship by investment programme allows foreign
+            nationals to obtain Turkish citizenship by acquiring real estate
+            worth at least <strong>400,000 USD</strong> (or equivalent).
+            Conditions include:
+          </p>
+          <ul>
+            <li>
+              <strong>Currency conversion</strong> — the purchase amount must
+              be transferred from abroad and converted to Turkish Lira through
+              a Turkish bank, generating a Foreign Currency Purchase Document
+              (DAB).
+            </li>
+            <li>
+              <strong>3-year holding commitment</strong> — the buyer must
+              commit not to sell the property for 3 years; this commitment is
+              annotated on the title deed.
+            </li>
+            <li>
+              <strong>SPK-licensed valuation</strong> — required to confirm
+              that the property's fair market value meets the 400,000 USD
+              threshold.
+            </li>
+            <li>
+              <strong>Citizenship application</strong> — submitted to the
+              Directorate General of Civil Registration and Nationality under
+              the Ministry of Interior after the property purchase is
+              registered.
+            </li>
+          </ul>
+
+          <h2>Why Work with a Chamber-Registered Consultant</h2>
+          <p>
+            Under the Real Estate Trade Regulation, only consultants
+            registered in the Real Estate Trade Information System
+            (<strong>TTBS</strong>) may legally provide brokerage services. A
+            chamber-registered consultant operates under professional ethics
+            rules enforced by the local Real Estate Consultants Chamber.
+          </p>
+          <p>
+            <strong>Çolakoğlu Real Estate</strong> is led by{" "}
+            <strong>Ziya Ercan</strong>, who serves as:
+          </p>
+          <ul>
+            <li>
+              President of the <strong>Muğla Real Estate Consultants
+              Chamber</strong> (the regional professional regulator)
+            </li>
+            <li>
+              President of the <strong>Muğla Real Estate Consultants
+              Association</strong>
+            </li>
+            <li>
+              Vice President of <strong>TEMFED</strong> (the Federation of
+              All Real Estate Consultants of Türkiye — the national
+              federation)
+            </li>
+          </ul>
+          <p>
+            This combination of regional and national positions provides
+            direct access to legal interpretation, regulatory updates, and
+            sector-wide enforcement standards.
+          </p>
+
+          <h2>Muğla — Region Overview for Foreign Buyers</h2>
+          <p>
+            Çolakoğlu Real Estate covers all 13 districts of Muğla Province:
+          </p>
+          <ul>
+            <li>
+              <strong>Bodrum</strong> (Yalıkavak, Türkbükü, Gümüşlük, Bitez,
+              Gündoğan) — luxury villa market, international marina ecosystem,
+              EU buyer demand.
+            </li>
+            <li>
+              <strong>Fethiye</strong> (Çalış, Hisarönü, Ovacık, Ölüdeniz) —
+              established expat community, particularly UK nationals; villa
+              and apartment market.
+            </li>
+            <li>
+              <strong>Marmaris</strong> (İçmeler, Armutalan, Selimiye) — yacht
+              tourism, seasonal rentals, and conservation-protected coves.
+            </li>
+            <li>
+              <strong>Datça</strong> — supply-constrained premium market,
+              long-term value preservation profile.
+            </li>
+            <li>
+              <strong>Milas</strong> — proximity to Bodrum-Milas Airport,
+              agricultural land (olive groves), and coastal areas
+              (Güllük, Ören).
+            </li>
+            <li>
+              Plus <strong>Köyceğiz, Ortaca, Dalaman, Menteşe, Ula,
+              Yatağan, Kavaklıdere, Seydikemer</strong> for diversified
+              investment profiles.
+            </li>
+          </ul>
+
+          <section class="article-faq" aria-label="Frequently asked questions">
+            <h2>Frequently Asked Questions</h2>
+            {faq.map((item) => (
+              <details class="faq-item">
+                <summary>
+                  <span class="faq-q">{item.q}</span>
+                  <span class="faq-toggle" aria-hidden="true">+</span>
+                </summary>
+                <div class="faq-a">
+                  <p>{item.a}</p>
+                </div>
+              </details>
+            ))}
+          </section>
+
+          <aside class="article-cta">
+            <p class="article-cta-label">Çolakoğlu Real Estate · Muğla</p>
+            <p>
+              We have been guiding property buyers in Muğla since 1994 — local
+              market knowledge, regulatory expertise, and end-to-end
+              accompaniment from first viewing to title deed transfer. For
+              foreign buyers, we coordinate the entire process: tax number
+              application, military zone clearance, SPK appraisal, currency
+              conversion, and citizenship documentation (if applicable).
+            </p>
+            <a href="/#iletisim" class="btn btn-primary">Contact us</a>
+          </aside>
+        </div>
+      </div>
+    </article>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .article-hero {
+    padding: calc(var(--header-h) + 3rem) 0 clamp(2.5rem, 5vw, 3.5rem);
+    background: var(--color-wood-deep);
+  }
+
+  .article-hero .eyebrow {
+    color: var(--color-gold-bright);
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.58);
+    margin-bottom: 1.5rem;
+  }
+
+  .breadcrumb a {
+    color: rgba(255, 255, 255, 0.58);
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: var(--color-gold-bright);
+  }
+
+  .breadcrumb [aria-current="page"] {
+    color: #fff;
+  }
+
+  .article-hero h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.95rem, 4.2vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+    color: #fff;
+    margin: 0 0 1rem;
+    max-width: 28ch;
+  }
+
+  .article-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin: 0;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.62);
+  }
+
+  .article-body {
+    max-width: 880px;
+    padding-top: clamp(2.5rem, 5vw, 3.5rem);
+    padding-bottom: clamp(3.5rem, 7vw, 5.5rem);
+  }
+
+  .article-main {
+    min-width: 0;
+  }
+
+  .article-main .lead {
+    font-size: 1.14rem;
+    line-height: 1.7;
+    color: var(--color-ink);
+    margin: 0 0 1.5rem;
+  }
+
+  .article-main h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.4rem, 2.6vw, 1.85rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--color-ink);
+    margin: 2.5rem 0 0.9rem;
+    scroll-margin-top: calc(var(--header-h) + 1.5rem);
+  }
+
+  .article-main h3 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.1rem, 2vw, 1.35rem);
+    font-weight: 700;
+    color: var(--color-ink);
+    margin: 1.75rem 0 0.6rem;
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+  }
+
+  .step-num {
+    color: var(--color-gold);
+    font-family: var(--font-serif);
+    font-weight: 800;
+  }
+
+  .article-main p {
+    font-size: 1.03rem;
+    line-height: 1.75;
+    color: var(--color-ink-muted);
+    margin: 0 0 1rem;
+  }
+
+  .article-main p strong,
+  .article-main li strong {
+    color: var(--color-ink);
+    font-weight: 600;
+  }
+
+  .article-main ul {
+    margin: 0 0 1.25rem;
+    padding-left: 1.3rem;
+    color: var(--color-ink-muted);
+  }
+
+  .article-main li {
+    font-size: 1.03rem;
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+  }
+
+  .article-main a {
+    color: var(--color-accent);
+    font-weight: 600;
+    text-underline-offset: 3px;
+  }
+
+  .tldr {
+    background: var(--color-navy);
+    color: #fff;
+    padding: 1.5rem 1.75rem;
+    border-radius: var(--radius-md);
+    margin-bottom: 2.5rem;
+  }
+
+  .tldr-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-gold-bright);
+    margin: 0 0 0.5rem;
+  }
+
+  .tldr p:last-child {
+    margin: 0;
+    font-size: 0.98rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.88);
+  }
+
+  .source-note {
+    font-size: 0.92rem !important;
+    line-height: 1.6;
+    color: var(--color-ink-muted);
+    background: var(--color-bg-alt);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0 !important;
+  }
+
+  .step-block {
+    margin-bottom: 1.5rem;
+  }
+
+  .article-faq {
+    margin-top: 3rem;
+    border-top: 1px solid var(--color-line);
+    padding-top: 2.25rem;
+  }
+
+  .article-faq h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.4rem, 2.6vw, 1.85rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
+    margin: 0 0 1.25rem;
+  }
+
+  .faq-item {
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+    background: var(--color-surface);
+  }
+
+  .faq-item[open] {
+    border-color: var(--color-navy);
+  }
+
+  .faq-item summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.05rem 1.25rem;
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .faq-item summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-q {
+    font-weight: 600;
+    color: var(--color-ink);
+    font-size: 1rem;
+  }
+
+  .faq-toggle {
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: var(--color-gold);
+    flex-shrink: 0;
+    transition: transform 0.25s var(--ease-out);
+  }
+
+  .faq-item[open] .faq-toggle {
+    transform: rotate(45deg);
+  }
+
+  .faq-a {
+    padding: 0 1.25rem 1.25rem;
+  }
+
+  .faq-a p {
+    margin: 0;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: var(--color-ink-muted);
+  }
+
+  .article-cta {
+    margin-top: 2.5rem;
+    background: var(--color-bg-alt);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem 1.9rem;
+  }
+
+  .article-cta-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-eyebrow);
+    margin: 0 0 0.6rem;
+  }
+
+  .article-cta p {
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--color-ink-muted);
+    margin: 0 0 1.25rem;
+  }
+</style>

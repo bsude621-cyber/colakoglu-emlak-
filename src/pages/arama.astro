@@ -1,0 +1,153 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { site } from "../data/config";
+
+const title = "Site içi arama | Çolakoğlu Emlak";
+const description =
+  "Çolakoğlu Emlak sitesinde arama. 13 ilçe, hizmetler, mevzuat rehberleri, sözlük ve sıkça sorulan sorular arasında arayın.";
+const canonical = `${site.url}/arama/`;
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  noindex={true}
+>
+  <Fragment slot="head">
+    <link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+    <script src="/pagefind/pagefind-ui.js" type="text/javascript" is:inline></script>
+  </Fragment>
+  <Header />
+  <main id="main" class="search-page">
+    <div class="container">
+      <header class="search-head">
+        <p class="eyebrow">Site içi arama</p>
+        <h1>Aramak istediğiniz konuyu yazın</h1>
+        <p class="search-desc">
+          13 ilçe, hizmetler, mevzuat rehberleri, sözlük ve sıkça sorulan
+          sorular arasında arama yapabilirsiniz.
+        </p>
+      </header>
+      <div id="search" class="search-ui"></div>
+      <p class="search-hint">
+        Önerilen aramalar:
+        <a href="/arama/?q=Bodrum%20villa">Bodrum villa</a>,
+        <a href="/arama/?q=tapu%20devri">tapu devri</a>,
+        <a href="/arama/?q=yabancı%20edinim">yabancı edinim</a>,
+        <a href="/arama/?q=kat%20mülkiyeti">kat mülkiyeti</a>
+      </p>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<script is:inline>
+  window.addEventListener("DOMContentLoaded", () => {
+    const params = new URLSearchParams(window.location.search);
+    const query = params.get("q") || "";
+    new PagefindUI({
+      element: "#search",
+      showSubResults: true,
+      showImages: false,
+      excerptLength: 24,
+      processTerm: (t) => t,
+      translations: {
+        placeholder: "Aramak istediğiniz konuyu yazın...",
+        clear_search: "Temizle",
+        load_more: "Daha fazla sonuç",
+        search_label: "Site içinde ara",
+        filters_label: "Filtreler",
+        zero_results: "[SEARCH_TERM] için sonuç bulunamadı",
+        many_results: "[COUNT] sonuç bulundu",
+        one_result: "[COUNT] sonuç bulundu",
+        alt_search: "[SEARCH_TERM] için sonuç bulunamadı. Şunu deniyoruz: [DIFFERENT_TERM]",
+        search_suggestion: "[SEARCH_TERM] için sonuç bulunamadı. Şunlar deneyebilirsiniz:",
+        searching: "[SEARCH_TERM] aranıyor...",
+      },
+    });
+    if (query) {
+      setTimeout(() => {
+        const input = document.querySelector("#search input.pagefind-ui__search-input");
+        if (input) {
+          input.value = query;
+          input.dispatchEvent(new Event("input", { bubbles: true }));
+        }
+      }, 100);
+    }
+  });
+</script>
+
+<style>
+  .search-page {
+    padding: calc(var(--header-h) + 3rem) 0 5rem;
+    min-height: 80vh;
+    background: var(--color-bg-alt);
+  }
+
+  .search-head {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    max-width: 38rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .search-head .eyebrow {
+    color: var(--color-eyebrow);
+  }
+
+  .search-head h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
+    color: var(--color-ink);
+    margin: 0.5rem 0 0.85rem;
+  }
+
+  .search-desc {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-ink-muted);
+    margin: 0;
+  }
+
+  .search-ui {
+    max-width: 44rem;
+    margin: 0 auto;
+  }
+
+  .search-hint {
+    margin: 2rem auto 0;
+    max-width: 44rem;
+    text-align: center;
+    font-size: 0.92rem;
+    color: var(--color-ink-muted);
+  }
+
+  .search-hint a {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 500;
+    margin: 0 0.2rem;
+  }
+
+  .search-hint a:hover {
+    text-decoration: underline;
+  }
+
+  :global(.pagefind-ui) {
+    --pagefind-ui-primary: var(--color-navy);
+    --pagefind-ui-text: var(--color-ink);
+    --pagefind-ui-background: #fff;
+    --pagefind-ui-border: var(--color-line);
+    --pagefind-ui-tag: var(--color-bg-alt);
+    --pagefind-ui-border-width: 1px;
+    --pagefind-ui-border-radius: 8px;
+    --pagefind-ui-font: var(--font-sans);
+  }
+</style>

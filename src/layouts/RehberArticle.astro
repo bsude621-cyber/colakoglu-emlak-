@@ -22,6 +22,12 @@ export interface Props {
   tldr: string;
   about: string[];
   faq: { q: string; a: string }[];
+  // Opsiyonel HowTo schema — step-by-step rehberlere AI/Google rich result için
+  howTo?: {
+    name: string;
+    totalTime?: string; // ISO 8601 duration örn "PT2H"
+    steps: Array<{ name: string; text: string; url?: string }>;
+  };
 }
 
 const {
@@ -38,6 +44,7 @@ const {
   tldr,
   about,
   faq,
+  howTo,
 } = Astro.props;
 
 const canonical = `${site.url}/rehber/${slug}/`;
@@ -71,9 +78,46 @@ const article = {
   isPartOf: { "@id": `${site.url}/#website` },
   author: {
     "@type": "Person",
+    "@id": `${site.url}/#founder`,
     name: site.owner.name,
+    givenName: "Ziya",
+    familyName: "Ercan",
     jobTitle: site.owner.jobTitle,
+    image: `${site.url}/images/ziya-ercan-portre.jpg`,
+    url: `${site.url}/hakkimizda/`,
+    description: `${site.experienceYears} yıllık tecrübeyle Muğla emlak sektörünün meslek odası başkanı, derneği başkanı ve TEMFED Genel Başkan Yardımcısı. Çolakoğlu Emlak'ın kurucusu.`,
     worksFor: { "@id": `${site.url}/#organization` },
+    award: site.owner.titles,
+    knowsAbout: [
+      "Muğla emlak piyasası",
+      "Türkiye emlak sektörü mevzuatı",
+      "Yabancı yatırımcı edinim süreçleri",
+      "Emlak müşavirliği etik standartları",
+      "Gayrimenkul değerleme",
+      "Tapu ve imar süreçleri",
+      "2644 sayılı Tapu Kanunu uygulamaları",
+      "3573 sayılı Zeytinlik Kanunu yapılaşma kısıtları",
+      "634 sayılı Kat Mülkiyeti Kanunu",
+      "3194 sayılı İmar Kanunu",
+    ],
+    knowsLanguage: ["Turkish", "English"],
+    memberOf: [
+      {
+        "@type": "OrganizationRole",
+        roleName: "Başkan",
+        memberOf: { "@id": `${site.url}/#org-esnaf-odasi` },
+      },
+      {
+        "@type": "OrganizationRole",
+        roleName: "Başkan",
+        memberOf: { "@id": `${site.url}/#org-dernek` },
+      },
+      {
+        "@type": "OrganizationRole",
+        roleName: "Genel Başkan Yardımcısı",
+        memberOf: { "@id": `${site.url}/#org-temfed` },
+      },
+    ],
   },
   publisher: { "@id": `${site.url}/#organization` },
   about,
@@ -89,13 +133,32 @@ const faqSchema = {
     acceptedAnswer: { "@type": "Answer", text: item.a },
   })),
 };
+
+const howToSchema = howTo
+  ? {
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      "@id": `${canonical}#howto`,
+      name: howTo.name,
+      ...(howTo.totalTime ? { totalTime: howTo.totalTime } : {}),
+      step: howTo.steps.map((s, i) => ({
+        "@type": "HowToStep",
+        position: i + 1,
+        name: s.name,
+        text: s.text,
+        ...(s.url ? { url: s.url } : {}),
+      })),
+    }
+  : null;
+
+const allSchemas = [breadcrumb, article, faqSchema, ...(howToSchema ? [howToSchema] : [])];
 ---
 
 <Layout
   title={pageTitle}
   description={description}
   canonical={canonical}
-  jsonLd={[breadcrumb, article, faqSchema]}
+  jsonLd={allSchemas}
 >
   <Header />
   <main id="main" class="article-page">

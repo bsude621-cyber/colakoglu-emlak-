@@ -92,6 +92,11 @@ const faqSchema = {
   ogImage={`${site.url}/og-rehber-yabanciya-satis.jpg`}
   jsonLd={[breadcrumb, article, faqSchema]}
 >
+  <Fragment slot="head">
+    <link rel="alternate" hreflang="tr" href={canonical} />
+    <link rel="alternate" hreflang="en" href={`${site.url}/en/buying-property-in-turkey/`} />
+    <link rel="alternate" hreflang="x-default" href={canonical} />
+  </Fragment>
   <Header />
   <main id="main" class="article-page">
     <article class="article">

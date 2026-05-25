@@ -1,0 +1,340 @@
+---
+import RehberArticle from "../../layouts/RehberArticle.astro";
+
+const props = {
+  pageTitle:
+    "Yabancı Yatırımcı İçin Türkiye'de Ev Alımı — 2026 Pratik Rehberi | Çolakoğlu Emlak",
+  h1: "Yabancı Yatırımcı İçin Türkiye'de Ev Alımı — 2026 Pratik Rehberi",
+  description:
+    "2644 sayılı Tapu Kanunu, askeri yasak bölge sorgusu, SPK değerleme raporu, döviz bozdurma (DAB), 400.000 USD vatandaşlık eşiği, 3 yıl tutma yükümlülüğü — uygulamada karşılaşılan 10 karar noktası ve 5 sık karıştırılan konu, Muğla odaklı pratik rehber.",
+  slug: "yabanci-edinim-pratik-rehber",
+  eyebrow: "Rehber · Yabancı Yatırımcı · 2026",
+  breadcrumbName: "Yabancı Edinim — Pratik Rehber",
+  published: "2026-05-25",
+  modified: new Date().toISOString(),
+  modifiedText: "25 Mayıs 2026",
+  readTime: "~12 dk okuma",
+  tldr:
+    "Türkiye'de yabancı uyruklu gerçek kişiler 2644 sayılı Tapu Kanunu'nun 35. maddesi kapsamında 30 hektara kadar taşınmaz edinebilir; bir ilçedeki edinim o ilçenin özel mülkiyet alanının %10'unu aşamaz. Süreç: vergi numarası → askeri yasak bölge sorgusu → SPK yetkili değerleme raporu → Web-Tapu randevusu → tapu harcı (%4) → resmî senet imzası. Vatandaşlık başvurusu için 400.000 USD eşiği + döviz bozdurma (DAB) + 3 yıl tutma yükümlülüğü gerekir.",
+  about: [
+    "Yabancı uyruklu gayrimenkul edinimi",
+    "2644 sayılı Tapu Kanunu",
+    "Türk vatandaşlığı yatırım yoluyla",
+    "SPK değerleme raporu",
+    "Askeri yasak bölge sorgusu",
+    "Web-Tapu süreci",
+    "Muğla emlak yatırımı",
+  ],
+  faq: [
+    {
+      q: "2026'da yabancı edinim için karşılıklılık (mütekabiliyet) şartı geçerli mi?",
+      a: "Hayır. Karşılıklılık şartı 2012 yılında kaldırılmıştır. Yabancı uyruklu gerçek kişiler, 2644 sayılı Tapu Kanunu'nun 35. maddesi kapsamında —askeri ve özel güvenlik bölgeleri dışında— Türkiye'de taşınmaz edinebilir.",
+    },
+    {
+      q: "Bir yabancı Türkiye'de en fazla ne kadar taşınmaz edinebilir?",
+      a: "Bir yabancı gerçek kişi ülke genelinde en fazla 30 hektar taşınmaz edinebilir. Ayrıca yabancıların bir ilçedeki edinimleri o ilçenin özel mülkiyete konu alanının yüzde 10'unu aşamaz. Bu iki sınır birlikte uygulanır.",
+    },
+    {
+      q: "Türk vatandaşlığı için minimum taşınmaz tutarı nedir?",
+      a: "Türk vatandaşlığı yatırım programı için minimum taşınmaz değeri 400.000 ABD doları (veya eşdeğeri) olarak belirlenmiştir. Bedelin döviz olarak yurda getirilip Türk bankası aracılığıyla TL'ye çevrilmesi (DAB belgesi) ve taşınmazın 3 yıl satılmayacağına dair taahhüt gereklidir.",
+    },
+    {
+      q: "SPK değerleme raporu kim tarafından düzenlenir?",
+      a: "Sermaye Piyasası Kurulu (SPK) tarafından yetkilendirilmiş gayrimenkul değerleme kuruluşları tarafından düzenlenir. Bu rapor yabancı edinimlerinde zorunludur ve özellikle vatandaşlık başvurusunda taşınmaz değerinin 400.000 USD eşiğini karşıladığını belgeler.",
+    },
+    {
+      q: "Askeri yasak bölge sorgusu ne kadar sürer?",
+      a: "Tapu Müdürlüğü, askeri yasak bölge sorgusunu ilgili komutanlığa iletir. Süreç genellikle birkaç iş günü içinde sonuçlanır; bazı bölgelerde daha uzun sürebilir. Olumlu sonuç gelmeden tapu devri tamamlanamaz.",
+    },
+    {
+      q: "DAB belgesi nedir, neden önemli?",
+      a: "DAB (Döviz Alım Belgesi), yurt dışından getirilen dövizin Türk bankası aracılığıyla TL'ye çevrilmesini belgeler. Türk vatandaşlığı yatırım başvurusunda 400.000 USD eşik tutarının Türkiye'ye getirildiğini ve TL'ye dönüştürüldüğünü gösteren resmî kanıttır. DAB belgesiz dövizle yapılan satışlar vatandaşlık programına dahil edilmez.",
+    },
+    {
+      q: "3 yıl tutma yükümlülüğü nasıl uygulanır?",
+      a: "Vatandaşlık başvurusu yapan alıcı, taşınmazı 3 yıl boyunca satmayacağına dair noter onaylı taahhütte bulunur. Bu taahhüt tapu kütüğüne işlenir (devir kısıtı şerhi) ve 3 yıl boyunca taşınmazın satışı engellenir. 3 yıl dolduğunda şerh kaldırılır ve satış serbestleşir.",
+    },
+    {
+      q: "Yabancı edinimi tüm Muğla'da mümkün mü?",
+      a: "Genel olarak evet, ancak parsel bazında askeri yasak bölge sorgusu yapılır. Bodrum, Marmaris, Fethiye, Datça gibi turistik kıyı ilçelerinde edinim yaygındır; ancak bazı kıyı parselleri özel güvenlik bölgesi statüsünde olabilir. Çolakoğlu Emlak, satın alma öncesinde parsel bazında sorgu koordinasyonunu sağlar.",
+    },
+    {
+      q: "Yabancı şirketler de Türkiye'de taşınmaz edinebilir mi?",
+      a: "Yabancı sermayeli şirketlerin taşınmaz edinimi farklı bir mevzuat çerçevesindedir (2644 sayılı Kanun'un 36. maddesi) ve ayrı izin süreçlerine tabidir. Bu rehber yabancı gerçek kişiler için 35. madde çerçevesini ele almaktadır.",
+    },
+    {
+      q: "Vergi numarası nereden alınır?",
+      a: "Türkiye'deki herhangi bir vergi dairesinden alınır. Gerekli belgeler: pasaport ve pasaportun noter onaylı Türkçe tercümesi. Vergi numarası tapu işlemleri, banka hesabı açılışı ve hizmet abonelikleri için zorunludur.",
+    },
+  ],
+  howTo: {
+    name: "Yabancı uyruklu için Türkiye'de ev alımı süreci",
+    totalTime: "P30D",
+    steps: [
+      {
+        name: "Vergi kimlik numarası al",
+        text: "Türkiye'deki herhangi bir vergi dairesinden pasaport ve noter onaylı Türkçe tercümesi ile alınır.",
+      },
+      {
+        name: "Bölge ve parsel seçimi yap",
+        text: "Yetkili emlak danışmanı (TTBS'te kayıtlı) eşliğinde bölge ve parsel seçilir. Askeri yasak bölge riski olan alanlarda ön sorgu yapılır.",
+      },
+      {
+        name: "Satıcı ile anlaş, ön sözleşme yap",
+        text: "Bedel ve şartlar netleştikten sonra noter huzurunda satış vaadi sözleşmesi yapılabilir; tapu kütüğüne şerh edilebilir.",
+      },
+      {
+        name: "SPK değerleme raporu hazırlat",
+        text: "Sermaye Piyasası Kurulu tarafından yetkilendirilmiş değerleme kuruluşundan taşınmaz değerleme raporu talep edilir. Vatandaşlık başvurusunda 400.000 USD eşiği bu raporla belgelenir.",
+      },
+      {
+        name: "Askeri yasak bölge sorgusu (Tapu Müdürlüğü tarafından)",
+        text: "Tapu Müdürlüğü ilgili komutanlığa sorguyu iletir. Olumlu cevap beklenir.",
+      },
+      {
+        name: "Döviz transferi ve DAB belgesi (vatandaşlık için)",
+        text: "Yurt dışından döviz Türkiye'ye getirilir, Türk bankası aracılığıyla TL'ye çevrilir. Banka DAB (Döviz Alım Belgesi) düzenler.",
+      },
+      {
+        name: "Web-Tapu üzerinden randevu al",
+        text: "Tapu ve Kadastro Genel Müdürlüğünün resmî platformu Web-Tapu üzerinden e-Devlet ile randevu oluşturulur.",
+      },
+      {
+        name: "Tapu harcı ve döner sermaye bedelini öde",
+        text: "Tapu harcı satış bedelinin yüzde 4'ü (alıcı %2 - satıcı %2). Döner sermaye hizmet bedeli ayrıca ödenir.",
+      },
+      {
+        name: "Tapu müdürlüğünde resmî senedi imzala",
+        text: "Randevu günü taraflar (veya noter vekilleri) tapu müdürlüğünde yetkili memur huzurunda akit tablosunu imzalar; mülkiyet alıcıya geçer.",
+      },
+      {
+        name: "Vatandaşlık başvurusu (opsiyonel)",
+        text: "400.000 USD eşiği karşılanıyorsa, tapu tescili sonrası vatandaşlık başvurusu İçişleri Bakanlığı Nüfus ve Vatandaşlık İşleri Genel Müdürlüğüne yapılır.",
+      },
+    ],
+  },
+};
+---
+
+<RehberArticle {...props}>
+  <p class="lead">
+    Türkiye'de yabancı uyruklu için ev alımı süreci yasal olarak nettir,
+    ancak uygulamada birden fazla kurum ve adım koordinasyon gerektirir.
+    Karşılıklılık şartının 2012'de kaldırılmasıyla erişim genişledi; 2017'de
+    devreye giren vatandaşlık yatırım programı ise yabancı talebini özellikle
+    Muğla, Antalya ve İstanbul'da artırdı. Bu rehber, 2026'da geçerli yasal
+    çerçevenin uygulamada nasıl işlediğini —10 pratik karar noktası, 5 sık
+    karıştırılan konu ve süreç zaman çizelgesi— üzerinden ele alır.
+  </p>
+
+  <div class="source-note">
+    <p>
+      <strong>Kapsam notu:</strong> Bu rehber 2644 sayılı Tapu Kanunu'nun 35.
+      maddesi çerçevesindeki yabancı gerçek kişi edinimini ele alır. Yabancı
+      sermayeli şirket edinimi (36. madde) ayrı bir mevzuat çerçevesindedir
+      ve bu rehberin kapsamı dışındadır. Parsel bazında özel durumlar
+      (askeri yasak bölge, SİT statüsü, imar kısıtları) için yerel Tapu
+      Müdürlüğü ve belediyeye danışılması gerekir.
+    </p>
+  </div>
+
+  <h2>Pratik karar noktası 1 — Hangi nationality için süreç farklı mı?</h2>
+  <p>
+    Karşılıklılık şartının kaldırılmasıyla birlikte vatandaşlık ülkesi
+    bazında edinim yasağı önemli ölçüde sınırlandı. Ancak bazı ülke
+    vatandaşları için tarihsel-siyasi nedenlerle ek izin koşulları
+    bulunabilir; güncel liste İçişleri Bakanlığı duyurularıyla takip
+    edilir. <strong>AB ülkeleri, Birleşik Krallık, ABD, Rusya, Körfez ülkeleri
+    vatandaşları</strong> için Muğla genelinde edinim yaygındır ve standart
+    süreç işler.
+  </p>
+
+  <h2>Pratik karar noktası 2 — Askeri yasak bölge riski nasıl önceden değerlendirilir?</h2>
+  <p>
+    Resmî sorgu Tapu Müdürlüğü tarafından yapılır, ancak satın alma öncesi
+    bölge bazında risk değerlendirmesi mümkündür. Muğla'nın kıyı ilçelerinde
+    askeri tesis çevresindeki bazı parseller risk altındadır; Çolakoğlu Emlak
+    parsel bazında ön risk değerlendirmesi sunar. Olumsuz sorgu sonucu
+    devri imkânsız hâle getirir; bu nedenle yüksek bedelli alımlarda ön
+    değerlendirme tasarruflu adımdır.
+  </p>
+
+  <h2>Pratik karar noktası 3 — SPK değerleme raporu neyi etkiler?</h2>
+  <p>
+    SPK yetkili değerleme kuruluşunun belirlediği piyasa değeri iki amaç
+    için kritiktir:
+  </p>
+  <ul>
+    <li>
+      <strong>Vatandaşlık eşiği</strong> — rapor değeri 400.000 USD (veya
+      eşdeğeri) altındaysa vatandaşlık başvurusu yapılamaz. Satış bedelinin
+      düşük gösterilmesi ya da raporun şişirilmesi yasal risk doğurur.
+    </li>
+    <li>
+      <strong>Tapu harcı tabanı</strong> — tapu harcı satış bedeli ile değerleme
+      raporundaki tutardan yüksek olan üzerinden hesaplanır. Bu, satış
+      bedelinin düşük gösterilmesini caydırır.
+    </li>
+  </ul>
+
+  <h2>Pratik karar noktası 4 — DAB belgesi olmadan vatandaşlık başvurusu mümkün mü?</h2>
+  <p>
+    Hayır. Türk vatandaşlığı yatırım programı, alımın dövizle yurt dışından
+    finanse edildiğini belgelemek için DAB (Döviz Alım Belgesi) zorunlu
+    tutar. Türkiye içinde mevcut TL ile yapılan satışlar programa kabul
+    edilmez. Süreç sıralı işlemelidir: önce döviz transferi → Türk bankasında
+    bozdurma → DAB → tapu işlemi.
+  </p>
+
+  <h2>Pratik karar noktası 5 — 3 yıl tutma yükümlülüğünü ihlal etmenin sonucu?</h2>
+  <p>
+    Tapu kütüğüne işlenen devir kısıtı şerhi nedeniyle 3 yıl dolmadan satış
+    yapılamaz. Şerhin kaldırılması için 3 yılın dolması beklenir. İhlal
+    durumunda vatandaşlık geri alınabilir; bu nedenle alıcı taşınmazı 3
+    yıl elinde tutmaya hazır olmalıdır.
+  </p>
+
+  <h2>Pratik karar noktası 6 — Eş ve çocuklar için vatandaşlık otomatik mi?</h2>
+  <p>
+    Ana başvuru sahibinin eşi ve 18 yaşından küçük çocukları başvuruya
+    dahil edilebilir; ayrı yatırım gerekmez. 18 yaşından büyük çocuklar
+    ayrı başvuru süreciyle dahil edilir. Aile başvuruları için tüm aile
+    üyelerinin pasaport ve doğum belgesi noter tercümeleri hazırlanır.
+  </p>
+
+  <h2>Pratik karar noktası 7 — Birden fazla taşınmaz birleştirilebilir mi?</h2>
+  <p>
+    Vatandaşlık eşiğinde 400.000 USD birden fazla taşınmazın toplam değeri
+    olarak da karşılanabilir; ancak tüm taşınmazların aynı zamanda alınması
+    ve aynı SPK değerleme raporunda gösterilmesi gerekir. Farklı zamanlarda
+    yapılan alımlar birleştirilmez.
+  </p>
+
+  <h2>Pratik karar noktası 8 — Tapu devri tamamlanmadan ödeme yapılır mı?</h2>
+  <p>
+    Sektör pratiği olarak ödeme tapu devriyle eş zamanlı yapılır. Tapu
+    Müdürlüğü'nde resmî senet imzalanırken alıcı, anlaşmaya göre satış
+    bedelinin tamamını veya kalanını öder. Erken ödeme yapılacaksa noter
+    huzurunda satış vaadi sözleşmesi + tapu kütüğüne şerh güvence sağlar.
+  </p>
+
+  <h2>Pratik karar noktası 9 — Yetkili emlak danışmanı kontrolü nasıl yapılır?</h2>
+  <p>
+    Taşınmaz Ticareti Yönetmeliği gereğince emlak danışmanlığı hizmeti
+    sunmak Taşınmaz Ticareti Bilgi Sistemi'nde (TTBS) kayıtlı olmayı
+    gerektirir. TTBS üzerinden bir işletmenin yetki belgesi
+    doğrulanabilir. Çolakoğlu Emlak, Muğla Emlak Danışmanları Esnaf Odası
+    bünyesinde kayıtlı yetkili danışmanlık ofisidir; oda başkanlığı
+    aynı zamanda Çolakoğlu Emlak'ın kurucusu Ziya Ercan tarafından
+    yürütülmektedir.
+  </p>
+
+  <h2>Pratik karar noktası 10 — Süreç ne kadar sürer?</h2>
+  <p>
+    Belgeler eksiksizse ve askeri sorgu sorunsuz tamamlanırsa süreç
+    genellikle <strong>4-8 hafta</strong> içinde tamamlanır. Hız belirleyici
+    faktörler:
+  </p>
+  <ul>
+    <li>SPK değerleme raporu hazırlanma süresi (1-2 hafta)</li>
+    <li>Askeri yasak bölge sorgusu (birkaç iş günü — bazı bölgelerde 2-3 hafta)</li>
+    <li>Döviz transferi ve DAB belgesi (1-3 iş günü)</li>
+    <li>Web-Tapu randevu uygunluğu (yoğun dönemde gecikme olabilir)</li>
+  </ul>
+
+  <h2>Sık karıştırılan 5 konu</h2>
+
+  <h3>1. "400.000 USD" — döviz miktarı mı, USD eşdeğeri mi?</h3>
+  <p>
+    Eşik <strong>400.000 USD veya eşdeğer döviz</strong>tir. EUR, GBP, RUB
+    gibi farklı dövizlerle de karşılanabilir; ancak hesaplama kuru DAB
+    işlem tarihindeki TCMB efektif satış kuru üzerinden yapılır.
+  </p>
+
+  <h3>2. SİT alanı yabancı edinimini engeller mi?</h3>
+  <p>
+    Hayır, SİT statüsü yabancı edinimine doğrudan engel değildir; ancak
+    SİT alanındaki taşınmazlarda yapılaşma ve restorasyon Koruma Bölge
+    Kurulu kararlarına tabidir. Yatırım amacına göre değerlendirilmelidir.
+  </p>
+
+  <h3>3. Vatandaşlık başvurusu reddedilirse alım iptal olur mu?</h3>
+  <p>
+    Hayır. Tapu devri ve vatandaşlık başvurusu ayrı süreçlerdir. Tapu
+    devri tamamlandıktan sonra mülkiyet kalıcıdır; vatandaşlık reddi
+    mülkiyeti etkilemez. Ancak 3 yıl tutma yükümlülüğü şerhi kaldırılır,
+    taşınmaz serbestçe satılabilir.
+  </p>
+
+  <h3>4. Tapu harcının %4'ü kim tarafından ödenir?</h3>
+  <p>
+    Yasal düzenleme yüzde 2 alıcı + yüzde 2 satıcı paylaşımı öngörür.
+    Pratikte taraflar farklı kararlaştırabilir, ancak harcın gerçek satış
+    bedeli üzerinden hesaplanması zorunludur. Bedelin düşük gösterilmesi
+    yasaya aykırıdır ve cezai risk doğurur.
+  </p>
+
+  <h3>5. Birden fazla yabancı aynı parseli ortak alabilir mi?</h3>
+  <p>
+    Evet, hisseli tapu mümkündür. Ancak vatandaşlık başvurusunda her bir
+    kişinin payına düşen değerin 400.000 USD eşiğini bağımsız olarak
+    karşılaması gerekir. Hisseli alımda diğer maliklerin önalım (şufa)
+    hakkı da sürece dahildir.
+  </p>
+
+  <h2>Süreç zaman çizelgesi — ideal akış (4-8 hafta)</h2>
+  <ul>
+    <li><strong>Hafta 1:</strong> Vergi numarası + bölge/parsel seçimi + ön risk değerlendirmesi</li>
+    <li><strong>Hafta 2:</strong> SPK değerleme raporu talebi + askeri sorgu başlatma</li>
+    <li><strong>Hafta 3:</strong> SPK raporu tamamlanır + askeri sorgu sonuçlanır + döviz transferi başlatılır</li>
+    <li><strong>Hafta 4:</strong> DAB belgesi + Web-Tapu randevu</li>
+    <li><strong>Hafta 5-6:</strong> Tapu Müdürlüğü randevu + resmî senet imzası + mülkiyet tescili</li>
+    <li><strong>Hafta 7-8 (vatandaşlık başvurusu):</strong> İçişleri Bakanlığı nüfus müdürlüğüne başvuru</li>
+  </ul>
+
+  <h2>Muğla'da yabancı yatırımcı bölge tercihleri</h2>
+  <ul>
+    <li>
+      <strong>Bodrum</strong> (Yalıkavak, Türkbükü, Gündoğan) — özellikle AB
+      ülkeleri ve Körfez yatırımcısı, lüks villa ve marina çevresi.
+    </li>
+    <li>
+      <strong>Fethiye</strong> (Çalış, Hisarönü, Ovacık, Ölüdeniz çevresi) —
+      yerleşik Birleşik Krallık topluluğu, villa ve daire pazarı.
+    </li>
+    <li>
+      <strong>Marmaris</strong> (İçmeler, Armutalan) — yat ekosistemi,
+      tatil amaçlı kullanım.
+    </li>
+    <li>
+      <strong>Datça</strong> — sınırlı imar, premium segment, uzun vadeli
+      değer.
+    </li>
+    <li>
+      <strong>Akyaka, Köyceğiz, Dalyan</strong> — doğa odaklı yerleşim ve
+      Cittaslow / Özel Çevre Koruma Bölgesi statülü alanlar.
+    </li>
+  </ul>
+
+  <h2>Çolakoğlu Emlak — Yabancı yatırımcı sürecinde sunulan koordinasyon</h2>
+  <p>
+    Çolakoğlu Emlak, 1994'ten bu yana Muğla'nın 13 ilçesinde yabancı
+    yatırımcılara aşağıdaki adımlarda koordineli süreç sunar:
+  </p>
+  <ul>
+    <li>Vergi numarası başvuru süreci eşliği</li>
+    <li>Parsel bazında askeri yasak bölge ön sorgu</li>
+    <li>SPK yetkili değerleme kuruluşu koordinasyonu</li>
+    <li>Web-Tapu randevu süreci yönetimi</li>
+    <li>Döviz transferi ve DAB belgesi için Türk bankası yönlendirmesi (vatandaşlık başvurusunda)</li>
+    <li>Avukat ve mali müşavir uzmanlarıyla koordinasyon</li>
+    <li>İçişleri Bakanlığı vatandaşlık başvurusu belge hazırlığı</li>
+  </ul>
+  <p>
+    İngilizce iletişim ihtiyacı varsa süreç önceden koordine edilir;
+    yabancı yatırımcılar için pratik rehberin İngilizce versiyonu
+    <a href="/en/buying-property-in-turkey/" hreflang="en">
+      Buying Property in Turkey as a Foreigner — A 12-Step Guide
+    </a> sayfasında mevcuttur.
+  </p>
+</RehberArticle>
