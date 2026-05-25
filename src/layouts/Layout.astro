@@ -51,7 +51,7 @@ const ldArray = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
-    <meta name="theme-color" content="#f5f5f3" />
+    <meta name="theme-color" content="#f5f0e8" />
     <meta name="format-detection" content="telephone=yes" />
     <meta name="geo.region" content="TR-48" />
     <meta name="geo.placename" content="Muğla" />
@@ -59,20 +59,43 @@ const ldArray = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
     <meta name="ICBM" content={`${site.geo.latitude}, ${site.geo.longitude}`} />
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="alternate icon" href="/favicon.ico" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.webmanifest" />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,500&family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap"
-      rel="stylesheet"
-    />
+    {/* LCP boost — hero AVIF preload (only on home — heuristic: canonical ends at root) */}
+    {(canonical === site.url || canonical === `${site.url}/`) && (
+      <link
+        rel="preload"
+        as="image"
+        href="/images/oludeniz-hero-1659.avif?v=2"
+        type="image/avif"
+        imagesrcset="/images/oludeniz-hero-800.avif?v=2 800w, /images/oludeniz-hero-1200.avif?v=2 1200w, /images/oludeniz-hero-1659.avif?v=2 1659w"
+        imagesizes="100vw"
+        fetchpriority="high"
+      />
+    )}
+
+    <!-- Archivo self-host via @fontsource (global.css @import) — render-blocking sıfır, woff2 dist/_astro/'da hash'li serve edilir -->
+
 
     {ldArray.map((ld) => (
       <script type="application/ld+json" set:html={JSON.stringify(ld)} />
     ))}
+
+    <!-- Speculation Rules API — Chrome 121+ hover prerender (perceived 0ms navigation) -->
+    <script type="speculationrules" is:inline set:html={JSON.stringify({
+      prerender: [
+        {
+          where: {
+            and: [
+              { href_matches: "/*" },
+              { not: { href_matches: "/*\\?*" } },
+              { not: { href_matches: "/*#*" } },
+            ],
+          },
+          eagerness: "moderate",
+        },
+      ],
+    })} />
 
     <slot name="head" />
   </head>
