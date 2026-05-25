@@ -1,0 +1,238 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { site } from "../data/config";
+
+const title = `Kişisel Verilerin Korunması (KVKK) | ${site.name}`;
+const description =
+  "Çolakoğlu Emlak — Kişisel Verilerin Korunması Kanunu (KVKK) kapsamında veri sahibi haklarınız, veri sorumlusu bilgileri ve başvuru süreci.";
+const canonical = `${site.url}/kvkk/`;
+const updatedDate = "2026-05-23";
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+>
+  <Header />
+  <main id="main" class="legal-page">
+    <header class="legal-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Sayfa konumu">
+          <a href="/">Ana Sayfa</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">KVKK</span>
+        </nav>
+        <p class="eyebrow">Yasal Bilgilendirme</p>
+        <h1>Kişisel Verilerin Korunması (KVKK)</h1>
+        <p class="legal-meta">
+          Son güncelleme: <time datetime={updatedDate}>23 Mayıs 2026</time>
+        </p>
+      </div>
+    </header>
+
+    <article class="container legal-body">
+      <section>
+        <h2>1. Veri Sorumlusu</h2>
+        <p>
+          6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") uyarınca veri
+          sorumlusu sıfatıyla; <strong>{site.name}</strong> (Ziya Ercan / Sahibi),
+          {site.address.street}, {site.address.locality}/{site.address.region}.
+          İletişim: {site.contact.phoneDisplay} · {site.contact.mobileDisplay}.
+        </p>
+      </section>
+
+      <section>
+        <h2>2. İşlenen Kişisel Veriler</h2>
+        <p>
+          Çolakoğlu Emlak; danışmanlık hizmetlerinin yürütülmesi sürecinde
+          aşağıdaki kişisel veri kategorilerini işleyebilir:
+        </p>
+        <ul>
+          <li><strong>Kimlik bilgileri:</strong> ad, soyad (gerektiğinde TCKN)</li>
+          <li><strong>İletişim bilgileri:</strong> telefon, e-posta</li>
+          <li><strong>Talep bilgileri:</strong> aradığınız gayrimenkul tipi, bütçe, bölge tercihi</li>
+          <li><strong>Mesleki bilgiler:</strong> yatırım hedefiniz, kullanım amacınız</li>
+          <li><strong>Lokasyon bilgisi:</strong> ilgilendiğiniz bölge bilgisi</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>3. Kişisel Verilerin İşlenme Amaçları</h2>
+        <p>
+          Kişisel verileriniz aşağıdaki amaçlarla işlenmektedir:
+        </p>
+        <ul>
+          <li>Danışmanlık hizmetinin sunulması ve süreç yönetimi</li>
+          <li>İletişim taleplerinizin yanıtlanması</li>
+          <li>Yasal yükümlülüklerimizin yerine getirilmesi</li>
+          <li>İhtiyaç-bütçe eşleştirmesi ve uygun gayrimenkul önerisi</li>
+          <li>Sözleşme süreçlerinin yürütülmesi</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>4. Kişisel Verilerin Aktarılması</h2>
+        <p>
+          Kişisel verileriniz; yasal yükümlülüklerin yerine getirilmesi,
+          danışmanlık sürecinin yürütülmesi ve hukuki süreçlerin koordinasyonu
+          amacıyla; mevzuat gereği yetkili kamu kurum ve kuruluşlarına, ilgili
+          tapu müdürlüklerine, hukuk ve mali müşavir iş ortaklarımıza
+          aktarılabilir. Kişisel verileriniz yurt dışına aktarılmamaktadır.
+        </p>
+      </section>
+
+      <section>
+        <h2>5. Kişisel Verilerin Toplanma Yöntemi ve Hukuki Sebebi</h2>
+        <p>
+          Kişisel verileriniz; web sitemiz, telefon, WhatsApp veya yüz yüze
+          görüşmeler aracılığıyla, sözlü veya yazılı olarak toplanmaktadır.
+          Verilerinizin işlenmesinin hukuki sebepleri; KVKK m.5/2 kapsamında
+          sözleşmenin kurulması ve ifası, hukuki yükümlülüklerimizin yerine
+          getirilmesi ve meşru menfaatlerimizdir. İletişim formu üzerinden
+          tarafımıza ilettiğiniz veriler ise açık rızanız çerçevesinde işlenir.
+        </p>
+      </section>
+
+      <section>
+        <h2>6. Veri Sahibi Olarak Haklarınız</h2>
+        <p>
+          KVKK m.11 uyarınca kişisel verileriniz hakkında aşağıdaki haklara
+          sahipsiniz:
+        </p>
+        <ul>
+          <li>Kişisel verilerinizin işlenip işlenmediğini öğrenme</li>
+          <li>İşlenmişse buna ilişkin bilgi talep etme</li>
+          <li>İşlenme amacını ve amacına uygun kullanılıp kullanılmadığını öğrenme</li>
+          <li>Yurt içinde aktarıldığı üçüncü kişileri bilme</li>
+          <li>Eksik veya yanlış işlenmiş olması hâlinde düzeltilmesini isteme</li>
+          <li>KVKK ve ilgili mevzuat hükümlerine uygun olarak silinmesini veya yok edilmesini isteme</li>
+          <li>Düzeltilme, silinme veya yok edilme işlemlerinin aktarıldığı üçüncü kişilere bildirilmesini isteme</li>
+          <li>İşlenen verilerinizin münhasıran otomatik sistemler vasıtasıyla analiz edilmesi sebebiyle aleyhinize bir sonucun ortaya çıkmasına itiraz etme</li>
+          <li>Kanuna aykırı olarak işlenmesi sebebiyle zarara uğramanız hâlinde zararın giderilmesini talep etme</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>7. Başvuru Yöntemi</h2>
+        <p>
+          Yukarıda sayılan haklarınızı kullanmak istediğinizde başvurunuzu;
+          <strong>{site.address.street}, {site.address.locality}/{site.address.region}</strong>
+          adresimize yazılı olarak veya <strong>{site.contact.phoneDisplay}</strong>
+          numaralı iş telefonumuz üzerinden iletebilirsiniz. Başvurunuz en geç
+          30 (otuz) gün içinde, KVKK m.13 uyarınca ücretsiz olarak
+          sonuçlandırılır.
+        </p>
+      </section>
+
+      <section class="legal-cta">
+        <p>
+          KVKK kapsamında sorunuz veya başvurunuz için bize ulaşın.
+        </p>
+        <a href="/#iletisim" class="btn btn-primary">İletişim</a>
+      </section>
+    </article>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .legal-page { padding-top: var(--header-h); }
+
+  .legal-hero {
+    padding: calc(var(--header-h) + 2.5rem) 0 clamp(2rem, 4vw, 3rem);
+    background: var(--color-wood-deep);
+  }
+
+  .legal-hero .eyebrow { color: var(--color-gold-bright); }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 1.5rem;
+  }
+
+  .breadcrumb a {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+  }
+
+  .breadcrumb a:hover { color: var(--color-gold-bright); text-decoration: none; }
+
+  .breadcrumb [aria-current="page"] { color: #fff; }
+
+  .legal-hero h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4.5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    color: #fff;
+    margin: 0 0 1rem;
+  }
+
+  .legal-meta {
+    margin: 0;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.62);
+  }
+
+  .legal-body {
+    max-width: 760px;
+    padding: clamp(2.5rem, 5vw, 4rem) 0 clamp(3rem, 6vw, 5rem);
+  }
+
+  .legal-body section {
+    margin-bottom: 2.5rem;
+  }
+
+  .legal-body h2 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.3rem, 2.2vw, 1.5rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    margin: 0 0 1rem;
+    color: var(--color-ink);
+  }
+
+  .legal-body p {
+    margin: 0 0 1rem;
+    font-size: 1rem;
+    line-height: 1.72;
+    color: var(--color-ink-muted);
+  }
+
+  .legal-body ul {
+    margin: 0 0 1rem;
+    padding-left: 1.25rem;
+    color: var(--color-ink-muted);
+  }
+
+  .legal-body li {
+    margin-bottom: 0.5rem;
+    line-height: 1.65;
+  }
+
+  .legal-body strong { color: var(--color-ink); }
+
+  .legal-cta {
+    margin-top: 3rem;
+    padding: 2rem 1.85rem;
+    background: var(--color-paper-deep);
+    border-left: 3px solid var(--color-gold);
+    border-radius: var(--radius-md);
+  }
+
+  .legal-cta p {
+    margin: 0 0 1rem;
+    font-family: var(--font-serif);
+    font-size: 1.1rem;
+    color: var(--color-ink);
+  }
+</style>

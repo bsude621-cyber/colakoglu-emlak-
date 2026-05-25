@@ -1,0 +1,242 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { site } from "../data/config";
+
+const title = `Basın Kiti | ${site.name}`;
+const description =
+  "Çolakoğlu Emlak basın kiti — logo, kurucu portresi, marka renk paleti, boilerplate açıklama ve basın iletişim. Gazeteci ve yayın için.";
+const canonical = `${site.url}/basin-kiti/`;
+
+const brandColors = [
+  { name: "Petrol Navy", hex: "#0f1f33", role: "Ana koyu" },
+  { name: "Petrol Deep", hex: "#081625", role: "Koyu zemin" },
+  { name: "Burnt Copper", hex: "#b85c20", role: "Aksan / vurgu" },
+  { name: "Copper Bright", hex: "#d9783e", role: "Bağlantı / hover" },
+  { name: "Warm Ivory", hex: "#f5f0e8", role: "Zemin" },
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+>
+  <Header />
+  <main id="main" class="presskit-page">
+    <header class="presskit-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Sayfa konumu">
+          <a href="/">Ana Sayfa</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">Basın Kiti</span>
+        </nav>
+        <p class="eyebrow">Press Kit</p>
+        <h1>Basın için Çolakoğlu Emlak</h1>
+        <p class="presskit-lead">
+          Çolakoğlu Emlak hakkında haber, yayın veya röportaj için aşağıdaki
+          materyalleri serbestçe kullanabilirsiniz. Ek soru veya yüksek
+          çözünürlüklü görsel talepleri için doğrudan iletişime geçebilirsiniz.
+        </p>
+      </div>
+    </header>
+
+    <article class="container presskit-body">
+      <!-- Boilerplate -->
+      <section class="pk-section">
+        <h2>Kurum Açıklaması (Boilerplate)</h2>
+        <div class="pk-card">
+          <p>
+            <strong>Çolakoğlu Emlak</strong>, 1994'te kurulan, Muğla'nın ilk
+            emlak ofisidir. <strong>Ziya Ercan</strong> liderliğinde 32 yıllık
+            saha tecrübesiyle Muğla genelinde alım, satım, kiralama, değerleme
+            ve yatırım süreçlerinde danışmanlık sunar. Ziya Ercan; Muğla Emlak
+            Danışmanları Esnaf Odası Başkanı, Muğla Emlak Müşavirleri Derneği
+            Başkanı ve TEMFED (Türkiye Tüm Emlak Müşavirleri Federasyonu) Genel
+            Başkan Yardımcısı sıfatlarını taşır. Slogan:
+            <em>"Emlakçılıkta Güven Esastır."</em>
+          </p>
+          <button type="button" class="pk-copy-btn" data-copy="boilerplate">
+            Metni kopyala
+          </button>
+        </div>
+      </section>
+
+      <!-- Kurucu künyesi -->
+      <section class="pk-section">
+        <h2>Kurucu Künyesi</h2>
+        <div class="pk-card pk-founder">
+          <img
+            src="/images/ziya-ercan-portre.jpg"
+            alt="Ziya Ercan — Çolakoğlu Emlak Kurucusu"
+            width="200"
+            height="266"
+            loading="lazy"
+          />
+          <div>
+            <p class="pk-founder-name">Ziya Ercan</p>
+            <p class="pk-founder-titles">
+              <strong>Kurucu &amp; Genel Müdür</strong> — Çolakoğlu Emlak<br />
+              <strong>Başkan</strong> — Muğla Emlak Danışmanları Esnaf Odası<br />
+              <strong>Başkan</strong> — Muğla Emlak Müşavirleri Derneği<br />
+              <strong>Genel Başkan Yardımcısı</strong> — TEMFED (Türkiye Tüm
+              Emlak Müşavirleri Federasyonu)
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Logo -->
+      <section class="pk-section">
+        <h2>Logo</h2>
+        <div class="pk-logo-row">
+          <figure class="pk-logo">
+            <img src="/images/logo.png" alt="Çolakoğlu Emlak logo (renkli)" width="280" height="280" loading="lazy" />
+            <figcaption>
+              Ana logo (renkli)
+              <a href="/images/logo.png" download class="pk-download">İndir →</a>
+            </figcaption>
+          </figure>
+          <figure class="pk-logo">
+            <img src="/images/logo-mark.png" alt="Çolakoğlu Emlak logo işareti" width="280" height="280" loading="lazy" />
+            <figcaption>
+              Logo işareti (mark)
+              <a href="/images/logo-mark.png" download class="pk-download">İndir →</a>
+            </figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- Marka renk paleti -->
+      <section class="pk-section">
+        <h2>Marka Renk Paleti</h2>
+        <div class="pk-palette">
+          {brandColors.map((c) => (
+            <div class="pk-color">
+              <div class="pk-color-swatch" style={`background:${c.hex}`}></div>
+              <p class="pk-color-name">{c.name}</p>
+              <p class="pk-color-hex">{c.hex}</p>
+              <p class="pk-color-role">{c.role}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- Hızlı bilgi -->
+      <section class="pk-section">
+        <h2>Hızlı Bilgi</h2>
+        <dl class="pk-quickfacts">
+          <div>
+            <dt>Kuruluş</dt>
+            <dd>1994 (32 yıl) — Muğla'nın ilk emlak ofisi</dd>
+          </div>
+          <div>
+            <dt>Sahibi</dt>
+            <dd>Ziya Ercan</dd>
+          </div>
+          <div>
+            <dt>Hizmet alanı</dt>
+            <dd>Muğla'nın 13 ilçesi — alım, satım, kiralama, değerleme, yatırım danışmanlığı</dd>
+          </div>
+          <div>
+            <dt>Adres</dt>
+            <dd>{site.address.street}, {site.address.locality}/{site.address.region}</dd>
+          </div>
+          <div>
+            <dt>İletişim (basın)</dt>
+            <dd>
+              <a href={`tel:${site.contact.phone}`}>{site.contact.phoneDisplay}</a>
+              · <a href={`tel:${site.contact.mobile}`}>{site.contact.mobileDisplay}</a>
+            </dd>
+          </div>
+          <div>
+            <dt>Web</dt>
+            <dd><a href={site.url}>{site.url.replace("https://", "")}</a></dd>
+          </div>
+        </dl>
+      </section>
+    </article>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .presskit-page { padding-top: var(--header-h); }
+  .presskit-hero { padding: calc(var(--header-h) + 2.5rem) 0 clamp(2rem, 4vw, 3rem); background: var(--color-wood-deep); }
+  .presskit-hero .eyebrow { color: var(--color-gold-bright); }
+  .breadcrumb { display: flex; align-items: center; flex-wrap: wrap; gap: 0.45rem; font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-bottom: 1.5rem; }
+  .breadcrumb a { color: rgba(255,255,255,0.6); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--color-gold-bright); text-decoration: none; }
+  .breadcrumb [aria-current="page"] { color: #fff; }
+  .presskit-hero h1 { font-family: var(--font-serif); font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 800; letter-spacing: -0.03em; color: #fff; margin: 0 0 1rem; text-wrap: balance; }
+  .presskit-lead { color: rgba(255,255,255,0.84); max-width: 60ch; font-size: 1.04rem; line-height: 1.65; margin: 0; }
+
+  .presskit-body { max-width: 880px; padding: clamp(2.5rem, 5vw, 4rem) 0 clamp(3rem, 6vw, 5rem); }
+  .pk-section { margin-bottom: 3rem; }
+  .pk-section h2 { font-family: var(--font-serif); font-size: clamp(1.3rem, 2.2vw, 1.55rem); font-weight: 800; letter-spacing: -0.02em; margin: 0 0 1.2rem; color: var(--color-ink); }
+
+  .pk-card { position: relative; background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-md); padding: 1.85rem 1.9rem; box-shadow: var(--shadow-card); }
+  .pk-card p { margin: 0; font-size: 1rem; line-height: 1.72; color: var(--color-ink-muted); }
+  .pk-card strong { color: var(--color-ink); }
+  .pk-card em { color: var(--color-gold-deep); font-style: italic; }
+
+  .pk-copy-btn { margin-top: 1.25rem; padding: 0.55rem 1.1rem; background: var(--color-navy); color: #fff; border: none; border-radius: var(--radius-sm); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: background 0.2s; }
+  .pk-copy-btn:hover { background: var(--color-accent-deep); }
+  .pk-copy-btn.is-copied { background: var(--color-gold); }
+
+  .pk-founder { display: grid; grid-template-columns: 200px 1fr; gap: 2rem; align-items: start; }
+  @media (max-width: 620px) { .pk-founder { grid-template-columns: 1fr; } }
+  .pk-founder img { border-radius: var(--radius-md); display: block; }
+  .pk-founder-name { font-family: var(--font-serif); font-size: 1.45rem; font-weight: 800; letter-spacing: -0.02em; color: var(--color-ink); margin: 0 0 0.85rem; }
+  .pk-founder-titles { line-height: 1.85; color: var(--color-ink-muted); margin: 0; font-size: 0.95rem; }
+
+  .pk-logo-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  @media (max-width: 620px) { .pk-logo-row { grid-template-columns: 1fr; } }
+  .pk-logo { background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-md); padding: 2rem; box-shadow: var(--shadow-card); margin: 0; text-align: center; }
+  .pk-logo img { display: block; margin: 0 auto 1rem; max-width: 200px; height: auto; }
+  .pk-logo figcaption { font-size: 0.9rem; color: var(--color-ink-muted); }
+  .pk-download { display: inline-block; margin-top: 0.5rem; color: var(--color-gold); font-weight: 700; text-decoration: none; }
+  .pk-download:hover { color: var(--color-gold-deep); }
+
+  .pk-palette { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1rem; }
+  .pk-color { background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-md); padding: 1.15rem; box-shadow: var(--shadow-card); text-align: center; }
+  .pk-color-swatch { height: 70px; border-radius: var(--radius-sm); margin-bottom: 0.85rem; border: 1px solid rgba(0,0,0,0.05); }
+  .pk-color-name { font-weight: 700; font-size: 0.9rem; color: var(--color-ink); margin: 0 0 0.2rem; }
+  .pk-color-hex { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 0.82rem; color: var(--color-gold-deep); margin: 0 0 0.2rem; }
+  .pk-color-role { font-size: 0.78rem; color: var(--color-ink-muted); margin: 0; }
+
+  .pk-quickfacts { display: grid; grid-template-columns: 1fr; gap: 1rem; margin: 0; background: var(--color-surface); border: 1px solid var(--color-line); border-radius: var(--radius-md); padding: 1.85rem 1.9rem; }
+  .pk-quickfacts > div { display: grid; grid-template-columns: 150px 1fr; gap: 1rem; padding-bottom: 0.85rem; border-bottom: 1px solid var(--color-line); }
+  .pk-quickfacts > div:last-child { border-bottom: none; padding-bottom: 0; }
+  .pk-quickfacts dt { font-weight: 700; color: var(--color-ink); font-size: 0.88rem; letter-spacing: 0.02em; }
+  .pk-quickfacts dd { margin: 0; color: var(--color-ink-muted); font-size: 0.95rem; line-height: 1.55; }
+  .pk-quickfacts a { color: var(--color-accent); font-weight: 600; }
+  @media (max-width: 540px) {
+    .pk-quickfacts > div { grid-template-columns: 1fr; gap: 0.3rem; }
+  }
+</style>
+
+<script>
+  (function () {
+    var btn = document.querySelector('[data-copy="boilerplate"]');
+    if (!btn) return;
+    var card = btn.closest(".pk-card");
+    var p = card?.querySelector("p");
+    btn.addEventListener("click", function () {
+      if (!p) return;
+      var text = p.textContent?.trim() || "";
+      navigator.clipboard.writeText(text).then(function () {
+        btn.textContent = "✓ Kopyalandı";
+        btn.classList.add("is-copied");
+        setTimeout(function () {
+          btn.textContent = "Metni kopyala";
+          btn.classList.remove("is-copied");
+        }, 2000);
+      }).catch(function () {
+        btn.textContent = "Kopyalanamadı";
+        setTimeout(function () { btn.textContent = "Metni kopyala"; }, 2000);
+      });
+    });
+  })();
+</script>

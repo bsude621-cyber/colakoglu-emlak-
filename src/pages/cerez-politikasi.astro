@@ -1,0 +1,151 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { site } from "../data/config";
+
+const title = `Çerez Politikası | ${site.name}`;
+const description =
+  "Çolakoğlu Emlak — web sitesinde kullanılan çerezler, çerez türleri, üçüncü taraf çerezler ve çerez tercihlerinizi yönetme.";
+const canonical = `${site.url}/cerez-politikasi/`;
+const updatedDate = "2026-05-23";
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+>
+  <Header />
+  <main id="main" class="legal-page">
+    <header class="legal-hero">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Sayfa konumu">
+          <a href="/">Ana Sayfa</a>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">Çerez Politikası</span>
+        </nav>
+        <p class="eyebrow">Yasal Bilgilendirme</p>
+        <h1>Çerez Politikası</h1>
+        <p class="legal-meta">
+          Son güncelleme: <time datetime={updatedDate}>23 Mayıs 2026</time>
+        </p>
+      </div>
+    </header>
+
+    <article class="container legal-body">
+      <section>
+        <h2>1. Çerez Nedir?</h2>
+        <p>
+          Çerez (cookie), bir web sitesini ziyaret ettiğinizde tarayıcınız
+          tarafından cihazınıza kaydedilen küçük metin dosyalarıdır. Çerezler;
+          sayfa tercihlerinizi hatırlamak, oturum sürekliliği sağlamak ve
+          ziyaretçi davranışını anlamak gibi amaçlarla kullanılır.
+        </p>
+      </section>
+
+      <section>
+        <h2>2. Bu Sitede Kullanılan Çerezler</h2>
+        <p>
+          {site.name} web sitesinde aşağıdaki çerez türleri kullanılmaktadır:
+        </p>
+        <ul>
+          <li>
+            <strong>Zorunlu tercih kayıtları:</strong> Sitenin temel işlevlerinin
+            çalışması için gerekli olabilir. Örneğin tema tercihinin
+            saklanması. Bu kayıtlar tarayıcınızın yerel depolama
+            (<code>localStorage</code>) alanında tutulur ve ayrı bir çerez
+            (cookie) oluşturulmaz.
+          </li>
+          <li>
+            <strong>Üçüncü taraf çerezler:</strong> İletişim bölümünde Google
+            Maps haritası yüklendiğinde Google tarafından çerez yerleştirilir.
+            Bu çerezler Google'ın gizlilik politikasına tabidir.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>3. Cloudflare Web Analytics</h2>
+        <p>
+          Web sitemiz, ziyaretçi davranışını anonim olarak ölçmek için
+          Cloudflare Web Analytics kullanmaktadır. Bu hizmet çerez kullanmaz;
+          IP adresi veya kişisel bilgi toplamaz, sadece sayfa görüntüleme
+          sayısı ve referans kaynak gibi anonim veriler kaydeder.
+        </p>
+      </section>
+
+      <section>
+        <h2>4. Çerez Tercihlerinizi Yönetme</h2>
+        <p>
+          Tarayıcı ayarlarınızdan çerezleri tamamen veya seçici olarak
+          engelleyebilirsiniz. Çerezleri engellemeniz durumunda site bazı
+          işlevleri (örneğin tema tercihinin hatırlanması) sınırlı çalışabilir.
+        </p>
+        <p>
+          Tarayıcı bazlı çerez yönetimi:
+        </p>
+        <ul>
+          <li>
+            <strong>Chrome:</strong>
+            <a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Çerez ayarları</a>
+          </li>
+          <li>
+            <strong>Safari:</strong>
+            <a href="https://support.apple.com/tr-tr/guide/safari/sfri11471/mac" target="_blank" rel="noopener">Çerez ayarları</a>
+          </li>
+          <li>
+            <strong>Firefox:</strong>
+            <a href="https://support.mozilla.org/tr/kb/cerezleri-silmek-web-sitelerinin-bilgilerini-kaldirma" target="_blank" rel="noopener">Çerez ayarları</a>
+          </li>
+          <li>
+            <strong>Edge:</strong>
+            <a href="https://support.microsoft.com/tr-tr/microsoft-edge" target="_blank" rel="noopener">Çerez ayarları</a>
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>5. KVKK ile İlişki</h2>
+        <p>
+          Çerezler, KVKK kapsamında değerlendirildiğinde kişisel veri olarak
+          kabul edilebilir. Detaylı bilgi için
+          <a href="/kvkk/">KVKK Politikamız</a> sayfasını inceleyebilirsiniz.
+          KVKK kapsamındaki haklarınızı kullanmak için sayfa sonundaki iletişim
+          adresine başvurabilirsiniz.
+        </p>
+      </section>
+
+      <section class="legal-cta">
+        <p>
+          Çerez politikası ile ilgili sorularınız için bize ulaşın.
+        </p>
+        <a href="/#iletisim" class="btn btn-primary">İletişim</a>
+      </section>
+    </article>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .legal-page { padding-top: var(--header-h); }
+  .legal-hero { padding: calc(var(--header-h) + 2.5rem) 0 clamp(2rem, 4vw, 3rem); background: var(--color-wood-deep); }
+  .legal-hero .eyebrow { color: var(--color-gold-bright); }
+  .breadcrumb { display: flex; align-items: center; flex-wrap: wrap; gap: 0.45rem; font-size: 0.8rem; color: rgba(255,255,255,0.6); margin-bottom: 1.5rem; }
+  .breadcrumb a { color: rgba(255,255,255,0.6); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--color-gold-bright); text-decoration: none; }
+  .breadcrumb [aria-current="page"] { color: #fff; }
+  .legal-hero h1 { font-family: var(--font-serif); font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.08; color: #fff; margin: 0 0 1rem; }
+  .legal-meta { margin: 0; font-size: 0.85rem; color: rgba(255,255,255,0.62); }
+  .legal-body { max-width: 760px; padding: clamp(2.5rem, 5vw, 4rem) 0 clamp(3rem, 6vw, 5rem); }
+  .legal-body section { margin-bottom: 2.5rem; }
+  .legal-body h2 { font-family: var(--font-serif); font-size: clamp(1.3rem, 2.2vw, 1.5rem); font-weight: 800; letter-spacing: -0.02em; margin: 0 0 1rem; color: var(--color-ink); }
+  .legal-body p { margin: 0 0 1rem; font-size: 1rem; line-height: 1.72; color: var(--color-ink-muted); }
+  .legal-body strong { color: var(--color-ink); }
+  .legal-body code { background: var(--color-paper-deep); padding: 0.1rem 0.35rem; border-radius: 3px; font-size: 0.9em; }
+  .legal-body ul { margin: 0 0 1rem; padding-left: 1.25rem; color: var(--color-ink-muted); }
+  .legal-body li { margin-bottom: 0.5rem; line-height: 1.65; }
+  .legal-body a { color: var(--color-accent); font-weight: 600; }
+  .legal-cta { margin-top: 3rem; padding: 2rem 1.85rem; background: var(--color-paper-deep); border-left: 3px solid var(--color-gold); border-radius: var(--radius-md); }
+  .legal-cta p { margin: 0 0 1rem; font-family: var(--font-serif); font-size: 1.1rem; color: var(--color-ink); }
+</style>
