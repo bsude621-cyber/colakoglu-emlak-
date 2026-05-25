@@ -12,15 +12,27 @@ const telHref = `tel:${site.contact.phone.replace(/[^+\d]/g, "")}`;
 
 <section class="hero94" data-hero94>
   <div class="hero94__stage">
-    <img
-      class="hero94__bg"
-      src="/images/mugla-hero.webp"
-      alt="Muğla şehir manzarası — kiremit çatılar ve ardındaki dağlar"
-      width="2400"
-      height="1350"
-      fetchpriority="high"
-      decoding="async"
-    />
+    <picture>
+      <source
+        type="image/avif"
+        srcset="/images/oludeniz-hero-800.avif?v=2 800w, /images/oludeniz-hero-1200.avif?v=2 1200w, /images/oludeniz-hero-1659.avif?v=2 1659w"
+        sizes="100vw"
+      />
+      <source
+        type="image/webp"
+        srcset="/images/oludeniz-hero-800.webp?v=2 800w, /images/oludeniz-hero-1200.webp?v=2 1200w, /images/oludeniz-hero-1659.webp?v=2 1659w"
+        sizes="100vw"
+      />
+      <img
+        class="hero94__bg"
+        src="/images/oludeniz-hero-1659.webp?v=2"
+        alt="Ölüdeniz — Muğla'nın Ege kıyısı, mavi liman ve çam ormanları"
+        width="1659"
+        height="948"
+        fetchpriority="high"
+        decoding="async"
+      />
+    </picture>
     <div class="hero94__vignette" aria-hidden="true"></div>
     <div class="hero94__grain" aria-hidden="true"></div>
     <div class="hero94__scrim" aria-hidden="true"></div>
@@ -40,7 +52,7 @@ const telHref = `tel:${site.contact.phone.replace(/[^+\d]/g, "")}`;
             Muğla'nın ilk emlak ofisi — <span>Çolakoğlu Emlak</span>
           </h1>
           <p class="hero94__sub">
-            Bu manzara 32 yılda değişti — Çolakoğlu Emlak'ın tek ilkesi
+            Bu kıyı 32 yılda değişti — Çolakoğlu Emlak'ın tek ilkesi
             değişmedi. Ziya Ercan liderliğinde alım, satım, kiralama ve
             değerlemede aynı söz: “emlakçılıkta güven esastır.”
           </p>
@@ -97,6 +109,11 @@ const telHref = `tel:${site.contact.phone.replace(/[^+\d]/g, "")}`;
     top: 0;
     height: 100vh;
     overflow: hidden;
+  }
+
+  /* Picture wrapper'i layout dışı tut — img doğrudan stage'e bağlansın */
+  .hero94 picture {
+    display: contents;
   }
 
   /* ---- Arka plan görseli — yaşa göre eskir ---- */
@@ -393,13 +410,20 @@ const telHref = `tel:${site.contact.phone.replace(/[^+\d]/g, "")}`;
       var total = section.offsetHeight - window.innerHeight;
       var p = total > 0 ? clamp(-rect.top / total) : 0;
 
+      // Yıl doğrusal: 2026 → 1994
       var yp = clamp(p / SCRUB_END);
       var year = Math.round(FROM - SPAN * yp);
       var elapsed = FROM - year;
+
+      // Görsel yaşlanması BELL-CURVE: parlak → soluk (ortada peak) → tekrar parlak.
+      // Mesaj: "geçen 32 yıl manzarayı eskitti — biz aynı tazelikteyiz."
+      // sin(π·t) doğal bell shape: 0→1→0 sonra 0 sabit (varış renkli).
+      var age = p < SCRUB_END ? Math.sin((p / SCRUB_END) * Math.PI) : 0;
+
       var arrive = clamp((p - ARRIVE_START) / (1 - ARRIVE_START));
       var hint = 1 - clamp(p / 0.12);
 
-      section.style.setProperty("--age", yp.toFixed(4));
+      section.style.setProperty("--age", age.toFixed(4));
       section.style.setProperty("--arrive", arrive.toFixed(4));
       section.style.setProperty("--hint", hint.toFixed(3));
 
