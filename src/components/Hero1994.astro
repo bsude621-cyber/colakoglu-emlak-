@@ -43,6 +43,9 @@ const telHref = `tel:${site.contact.phone.replace(/[^+\d]/g, "")}`;
           <span class="hero94__tick" aria-hidden="true"></span>
           Çolakoğlu Emlak
         </p>
+        <p class="hero94__authority">
+          EST 1994 · Muğla Emlak Odası Başkanı · TEMFED · 13 İlçe
+        </p>
 
         <span class="hero94__year" data-hero94-year>1994</span>
         <p class="hero94__caption" data-hero94-caption>Bugünden 32 yıl önce</p>
@@ -58,6 +61,19 @@ const telHref = `tel:${site.contact.phone.replace(/[^+\d]/g, "")}`;
           </p>
           <div class="hero94__actions">
             <a href="#iletisim" class="btn btn-primary">Danışmanlık alın</a>
+            <a href="#bolgeler" class="btn hero94__btn-explore">
+              13 ilçeyi keşfet
+              <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
+                <path
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M5 12h14M13 6l6 6-6 6"
+                ></path>
+              </svg>
+            </a>
             <a href={telHref} class="btn hero94__btn-line">
               <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true">
                 <path
@@ -213,6 +229,20 @@ const telHref = `tel:${site.contact.phone.replace(/[^+\d]/g, "")}`;
     flex-shrink: 0;
   }
 
+  /* Authority strip — fold-above'da otorite sinyali (1994 + 3 unvan + 13 ilçe).
+     Scrub konseptini bozmadan Sistem 1 3sn testini geçirir: sektör/yıl/yetki
+     ilk ekranda algılanır. */
+  .hero94__authority {
+    margin: 0 0 1rem;
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.72);
+    line-height: 1.5;
+    max-width: 38rem;
+  }
+
   .hero94__year {
     display: block;
     font-family: var(--font-serif);
@@ -285,6 +315,29 @@ const telHref = `tel:${site.contact.phone.replace(/[^+\d]/g, "")}`;
     color: #fff;
   }
 
+  /* Secondary CTA — commitment merdiveni 1. basamak. Düşük taahhüt mikro
+     etkileşim: ziyaretçi telefon/form'a basmadan önce 13 ilçeyi keşfeder. */
+  .hero94__btn-explore {
+    gap: 0.5rem;
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.38);
+  }
+
+  .hero94__btn-explore:hover {
+    background: rgba(255, 255, 255, 0.10);
+    border-color: #fff;
+    color: #fff;
+  }
+
+  .hero94__btn-explore svg {
+    transition: transform 0.25s var(--ease-out);
+  }
+
+  .hero94__btn-explore:hover svg {
+    transform: translateX(3px);
+  }
+
   /* ---- Scroll ipucu ---- */
   .hero94__hint {
     position: absolute;
@@ -346,6 +399,11 @@ const telHref = `tel:${site.contact.phone.replace(/[^+\d]/g, "")}`;
     .hero94__brand {
       font-size: 0.76rem;
       letter-spacing: 0.2em;
+    }
+
+    .hero94__authority {
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
     }
 
     .hero94__year {

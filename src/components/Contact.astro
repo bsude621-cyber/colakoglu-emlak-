@@ -134,54 +134,71 @@ const hasFormKey = accessKey !== "YOUR_ACCESS_KEY_HERE";
           placeholder="05xx xxx xx xx"
         />
       </label>
-      <label>
-        <span>E-posta</span>
-        <input
-          type="email"
-          name="email"
-          autocomplete="email"
-          placeholder="ornek@eposta.com"
-        />
-      </label>
-      <label>
-        <span>İlgi alanı</span>
-        <select name="interest">
-          <option value="">Seçiniz</option>
-          <option>Satılık konut</option>
-          <option>Kiralık konut</option>
-          <option>Arsa / arazi</option>
-          <option>Ticari</option>
-          <option>Değerleme</option>
-          <option>Yatırım danışmanlığı</option>
-        </select>
-      </label>
-      <label>
-        <span>Bölge</span>
-        <select name="region">
-          <option value="">Seçiniz</option>
-          <option>Bodrum</option>
-          <option>Marmaris</option>
-          <option>Fethiye</option>
-          <option>Milas</option>
-          <option>Datça</option>
-          <option>Köyceğiz</option>
-          <option>Ortaca</option>
-          <option>Dalaman</option>
-          <option>Menteşe</option>
-          <option>Ula</option>
-          <option>Yatağan</option>
-          <option>Kavaklıdere</option>
-          <option>Seydikemer</option>
-          <option>Muğla geneli</option>
-        </select>
-      </label>
-      <label>
-        <span>Mesajınız</span>
-        <textarea
-          name="message"
-          rows="4"
-          placeholder="Bütçe, lokasyon ve zaman çizelgeniz..."></textarea>
-      </label>
+
+      <details class="form-extra">
+        <summary>
+          <span>Daha hızlı dönüş için (opsiyonel)</span>
+          <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">
+            <path
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 9l6 6 6-6"
+            ></path>
+          </svg>
+        </summary>
+        <label>
+          <span>E-posta</span>
+          <input
+            type="email"
+            name="email"
+            autocomplete="email"
+            placeholder="ornek@eposta.com"
+          />
+        </label>
+        <label>
+          <span>İlgi alanı</span>
+          <select name="interest">
+            <option value="">Seçiniz</option>
+            <option>Satılık konut</option>
+            <option>Kiralık konut</option>
+            <option>Arsa / arazi</option>
+            <option>Ticari</option>
+            <option>Değerleme</option>
+            <option>Yatırım danışmanlığı</option>
+          </select>
+        </label>
+        <label>
+          <span>Bölge</span>
+          <select name="region">
+            <option value="">Seçiniz</option>
+            <option>Bodrum</option>
+            <option>Marmaris</option>
+            <option>Fethiye</option>
+            <option>Milas</option>
+            <option>Datça</option>
+            <option>Köyceğiz</option>
+            <option>Ortaca</option>
+            <option>Dalaman</option>
+            <option>Menteşe</option>
+            <option>Ula</option>
+            <option>Yatağan</option>
+            <option>Kavaklıdere</option>
+            <option>Seydikemer</option>
+            <option>Muğla geneli</option>
+          </select>
+        </label>
+        <label>
+          <span>Mesajınız</span>
+          <textarea
+            name="message"
+            rows="4"
+            placeholder="Bütçe, lokasyon ve zaman çizelgeniz..."></textarea>
+        </label>
+      </details>
+
       <button type="submit" class="btn btn-primary btn-block">Gönder</button>
       <p class="form-hint" data-form-status role="status" aria-live="polite"></p>
     </form>
@@ -350,6 +367,55 @@ const hasFormKey = accessKey !== "YOUR_ACCESS_KEY_HERE";
   /* Beyaz form kartı koyu zeminde — derin gölge ile öne çıkar */
   .section-contact-dark .contact-form {
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Form sadeleştirme — sadece Ad + Telefon zorunlu görünür, 4 opsiyonel alan
+     <details> içinde gizli. Hick's Law: ilk temas karar yükünü azalt. */
+  .form-extra {
+    margin: 0;
+  }
+
+  .form-extra > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.75rem 0;
+    cursor: pointer;
+    list-style: none;
+    font-size: 0.86rem;
+    font-weight: 600;
+    color: var(--color-ink-muted);
+    border-top: 1px dashed rgba(0, 0, 0, 0.12);
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.12);
+    transition: color 0.2s;
+  }
+
+  .form-extra > summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .form-extra > summary:hover {
+    color: var(--color-ink);
+  }
+
+  .form-extra > summary svg {
+    flex-shrink: 0;
+    transition: transform 0.25s var(--ease-out);
+  }
+
+  .form-extra[open] > summary svg {
+    transform: rotate(180deg);
+  }
+
+  .form-extra[open] > summary {
+    margin-bottom: 0.6rem;
+    border-bottom-style: solid;
+    color: var(--color-ink);
+  }
+
+  .form-extra > label {
+    margin-top: 0.75rem;
   }
 
   /* Form key gelene kadar placeholder — telefon + WhatsApp öne */

@@ -27,7 +27,6 @@ const graph = {
       name: site.name,
       legalName: site.legalName,
       url: baseUrl,
-      sameAs: [site.alternateDomain],
       logo: `${baseUrl}/images/logo.png`,
       image: `${baseUrl}/images/ziya-ercan-portre.jpg`,
       description: site.description,
@@ -193,7 +192,7 @@ const graph = {
       "@id": orgaIds.esnafOdasi,
       name: "Muğla Emlak Danışmanları Esnaf Odası",
       description:
-        "Muğla ili emlak danışmanlarının yasal meslek temsilcisi olan esnaf odası. TC Esnaf ve Sanatkârlar Konfederasyonu (TESK) çatısı altında faaliyet gösterir.",
+        "Muğla'daki emlak danışmanlarının yasal meslek temsilcisi olan esnaf odası. TC Esnaf ve Sanatkârlar Konfederasyonu (TESK) çatısı altında faaliyet gösterir.",
       areaServed: {
         "@type": "AdministrativeArea",
         name: "Muğla",
@@ -206,7 +205,7 @@ const graph = {
       "@id": orgaIds.dernek,
       name: "Muğla Emlak Müşavirleri Derneği",
       description:
-        "Muğla ili emlak müşavirlerinin sektörel ve sosyal birlik amacıyla kurduğu mesleki dernek.",
+        "Muğla'daki emlak müşavirlerinin sektörel ve sosyal birlik amacıyla kurduğu mesleki dernek.",
       areaServed: {
         "@type": "AdministrativeArea",
         name: "Muğla",
@@ -277,7 +276,7 @@ const graph = {
       inLanguage: "tr-TR",
       primaryImageOfPage: `${baseUrl}/og-default.jpg`,
       datePublished: "2026-05-22",
-      dateModified: new Date().toISOString().slice(0, 10),
+      dateModified: new Date().toISOString(),
       speakable: {
         "@type": "SpeakableSpecification",
         cssSelector: [

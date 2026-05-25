@@ -26,7 +26,7 @@ export const regions: Region[] = [
     tldr:
       "Bodrum yarımadasında gayrimenkul, kıyı odaklı lüks villa segmenti ile merkez ve iç mahallelerdeki konut/arsa pazarı olmak üzere iki katmanlıdır. Yalıkavak, Türkbükü, Gümüşlük ve Bitez yüksek talep gören kıyı noktalarıdır; yat marinası çevresi ticari gayrimenkulün yoğunlaştığı alandır.",
     detail:
-      "Bodrum yarımadasının on sekiz mahallesi, gayrimenkul açısından üç ayrı karakter taşır: kuzey kıyısı (Yalıkavak, Türkbükü, Gündoğan) lüks villa ve butik konut pazarı; batı uç (Gümüşlük, Turgutreis) restorasyonlu taş ev ve sakin koylar; doğu (Bitez, Ortakent, Konacık) yerleşik konut ve karma kullanım. Bodrum merkez ile Yalıkavak marinası çevresinde ticari ve kısa dönem kiralama pazarı yıl boyu canlıdır. Kıyıya yakın parsellerde 1/1000 ölçekli imar planı, SİT statüsü (özellikle Gümüşlük arkeolojik SİT) ve sahil kenarı çizgisi (kıyı kanunu kapsamında) satın alma öncesi mutlaka kontrol edilir. Yabancı uyruklu alıcılar için askeri yasak bölge sorgulaması ve değerleme raporu zorunlu adımlardır.",
+      "Bodrum yarımadasının mahalleleri, gayrimenkul açısından üç ayrı karakter taşır: kuzey kıyısı (Yalıkavak, Türkbükü, Gündoğan) lüks villa ve butik konut pazarı; batı uç (Gümüşlük, Turgutreis) restorasyonlu taş ev ve sakin koylar; doğu (Bitez, Ortakent, Konacık) yerleşik konut ve karma kullanım. Bodrum merkez ile Yalıkavak marinası çevresinde ticari ve kısa dönem kiralama pazarı yıl boyu canlıdır. Kıyıya yakın parsellerde 1/1000 ölçekli imar planı, SİT statüsü (özellikle Gümüşlük arkeolojik SİT) ve sahil kenarı çizgisi (kıyı kanunu kapsamında) satın alma öncesi mutlaka kontrol edilir. Yabancı uyruklu alıcılar için askeri yasak bölge sorgulaması ve değerleme raporu zorunlu adımlardır.",
     highlights: [
       "Yalıkavak, Türkbükü, Gümüşlük ve Bitez gibi mahallelerde lüks villa pazarı",
       "Marina ve liman çevresinde ticari gayrimenkul yoğun",
@@ -75,7 +75,7 @@ export const regions: Region[] = [
       "Yat limanı çevresinde ticari ve kısa dönem kiralama pazarı",
       "Doğa odaklı sakin yerleşim talebi (Selimiye, Bozburun) artıyor",
       "Yarımada köylerinde sınırlı imar — premium fiyat segmenti",
-      "Dalaman Havalimanı'na ~1 saat ulaşım, uluslararası bağlantı",
+      "Dalaman Havalimanı bağlantısı, uluslararası ulaşım kolaylığı",
     ],
     segments: ["Tatil dairesi", "Villa", "Ticari", "Yazlık"],
     faq: [
@@ -153,7 +153,7 @@ export const regions: Region[] = [
     tldr:
       "Milas, Bodrum-Milas Havalimanı'na yakın konumu ile lojistik ve yerleşim avantajı sunar. Güllük ve Ören kıyı turizmine, merkez yerleşik konuta, kuzey-batı kırsalı (Beçin, Selimiye köyü) ise tarım ve zeytinlik segmentine hizmet eder.",
     detail:
-      "Milas, Beçin Kalesi'nin bulunduğu antik kent dokusundan Güllük ve Ören kıyı yerleşimlerine, oradan da iç kesimdeki Selimiye köyü ve zeytinlik vadilerine uzanan geniş bir coğrafyaya sahiptir. Merkez ve çevresi yerleşik konut talebine; Güllük ve Ören kıyı turizmine; iç kesim ise tarım arazisi ve zeytinlik yatırımına yöneliktir. 3573 sayılı Zeytinciliğin Islahı ve Yabanilerinin Aşılattırılması Hakkında Kanun kapsamında zeytinlik vasıflı taşınmazlarda yapılaşma kısıtlıdır — bu kısıt yatırım hedefini (tarımsal getiri mi, yerleşim mi) baştan netleştirmeyi gerektirir. Bodrum-Milas Havalimanı'na 30 dakika içinde ulaşılabilen merkez ve kuzey mahalleleri lojistik-ticari yatırımcı için de cazip bir kategori oluşturur.",
+      "Milas, Beçin Kalesi'nin bulunduğu antik kent dokusundan Güllük ve Ören kıyı yerleşimlerine, oradan da iç kesimdeki Selimiye köyü ve zeytinlik vadilerine uzanan geniş bir coğrafyaya sahiptir. Merkez ve çevresi yerleşik konut talebine; Güllük ve Ören kıyı turizmine; iç kesim ise tarım arazisi ve zeytinlik yatırımına yöneliktir. 3573 sayılı Zeytinciliğin Islahı ve Yabanilerinin Aşılattırılması Hakkında Kanun kapsamında zeytinlik vasıflı taşınmazlarda yapılaşma kısıtlıdır — bu kısıt yatırım hedefini (tarımsal getiri mi, yerleşim mi) baştan netleştirmeyi gerektirir. Bodrum-Milas Havalimanı'na yakın konumu nedeniyle merkez ve kuzey mahalleleri lojistik-ticari yatırımcı için de cazip bir kategori oluşturur.",
     highlights: [
       "Havalimanı yakınlığı ulaşım avantajı sağlıyor",
       "Güllük ve Ören kıyı yerleşimleri turizm pazarı",
@@ -181,7 +181,7 @@ export const regions: Region[] = [
       },
       {
         q: "Milas merkez ve havalimanı çevresi yatırım açısından nasıl?",
-        a: "Bodrum-Milas Havalimanı'na 30 dakika içinde erişilebilen Milas merkez ve kuzey mahalleleri, lojistik ve ticari yatırımcı için cazip bir bölgedir. Havalimanı çevresi ulaşım kolaylığı yatırım değerini desteklemektedir.",
+        a: "Bodrum-Milas Havalimanı'na yakın konumdaki Milas merkez ve kuzey mahalleleri, lojistik ve ticari yatırımcı için cazip bir bölgedir. Havalimanı çevresi ulaşım kolaylığı yatırım değerini desteklemektedir.",
       },
     ],
   },
@@ -277,11 +277,11 @@ export const regions: Region[] = [
     intro:
       "Ortaca, Dalaman Havalimanı'na yakınlığı ve tarım potansiyeliyle yerleşim ve yatırım dengesini kuran bir ilçe. Sarıgerme kıyı turizmi ayrı bir segment.",
     tldr:
-      "Ortaca, Dalaman Havalimanı'na 15 dakika mesafedeki konumu, Sarıgerme kıyı turizmi ve İztuzu plajı çevresindeki Dalyan turizm bölgesiyle çok katmanlı bir gayrimenkul pazarına sahiptir. Sera ve tarım yatırımı için elverişli ovaları bölgenin diğer önemli segmentini oluşturur.",
+      "Ortaca, Dalaman Havalimanı'na yakın konumu, Sarıgerme kıyı turizmi ve İztuzu plajı çevresindeki Dalyan turizm bölgesiyle çok katmanlı bir gayrimenkul pazarına sahiptir. Sera ve tarım yatırımı için elverişli ovaları bölgenin diğer önemli segmentini oluşturur.",
     detail:
       "Ortaca, Dalaman Havalimanı'nın güney komşusu olarak ulaşım açısından stratejik bir konumdadır. İlçe merkezi yerleşik konut talebine; Sarıgerme kıyısı tatil köyü ve uluslararası tatil amaçlı konut talebine; Dalyan ise caretta caretta kaplumbağasının yumurtladığı İztuzu plajı ve Kaunos antik kenti ile ekoturizm odaklı premium pazara hizmet eder. Ovaların verimli toprakları sera ve narenciye yatırımı için elverişlidir; bu kategoride 5403 sayılı Toprak Koruma ve Arazi Kullanımı Kanunu kapsamında tarım arazisinin bölünmesi kuralları geçerlidir. Dalyan delta bölgesi koruma statüsü altındadır ve yapılaşma kuralları sıkıdır — bu kısıtlar mevcut gayrimenkulün uzun vadeli değer artışını destekler.",
     highlights: [
-      "Dalaman Havalimanı'na 15 dk mesafe ulaşım avantajı",
+      "Dalaman Havalimanı'na yakın konum — ulaşım avantajı",
       "Sarıgerme kıyı turizmi ve tatil köyü yatırım pazarı",
       "Tarım arazisi ve sera yatırımı için aktif bölge",
       "Dalyan İztuzu ekoturizm ve premium konut segmenti",
@@ -531,7 +531,7 @@ export const regions: Region[] = [
     tldr:
       "Seydikemer, Eşen Çayı vadisindeki verimli tarım toprakları ve sera tarımıyla bölgenin tarım merkezidir. Tlos antik kenti, Saklıkent Kanyonu ve dağ-yayla dokusu doğa turizmi odaklı yatırım fırsatları sunar; Fethiye'ye yakınlığı hizmet erişimini kolaylaştırır.",
     detail:
-      "Seydikemer, Fethiye'nin iç kesiminde 2012'de ayrılan ilçe olarak Eşen Çayı vadisinin verimli tarım topraklarını, Tlos antik kentini, Saklıkent Kanyonu çevresini ve yayla dokusunu kapsar. İlçenin Eşen vadisi sera tarımı için elverişli iklim ve sulama altyapısı sunar; bu bölgede sera ve tarım arazisi yatırımı belirgindir. Tlos antik kenti çevresindeki parseller arkeolojik SİT alanı statüsündedir. Saklıkent Kanyonu çevresi doğa turizmi odaklı premium parsel ve butik konaklama yatırımına hizmet eder. Fethiye'ye 35 dakika mesafedeki konumu hizmet erişimini kolaylaştırırken, görece uygun fiyatlı arsa ve müstakil ev pazarı bütçe odaklı yatırımcıyı çeker. 5403 sayılı kanun kapsamındaki tarım arazisi bölünme kuralları ve sera projelerinde su kaynağı izinleri yatırım öncesi değerlendirilmesi gereken kalemlerdir.",
+      "Seydikemer, Fethiye'nin iç kesiminde 2012'de ayrılan ilçe olarak Eşen Çayı vadisinin verimli tarım topraklarını, Tlos antik kentini, Saklıkent Kanyonu çevresini ve yayla dokusunu kapsar. İlçenin Eşen vadisi sera tarımı için elverişli iklim ve sulama altyapısı sunar; bu bölgede sera ve tarım arazisi yatırımı belirgindir. Tlos antik kenti çevresindeki parseller arkeolojik SİT alanı statüsündedir. Saklıkent Kanyonu çevresi doğa turizmi odaklı premium parsel ve butik konaklama yatırımına hizmet eder. Fethiye'ye yakın konumu hizmet erişimini kolaylaştırırken, görece uygun fiyatlı arsa ve müstakil ev pazarı bütçe odaklı yatırımcıyı çeker. 5403 sayılı kanun kapsamındaki tarım arazisi bölünme kuralları ve sera projelerinde su kaynağı izinleri yatırım öncesi değerlendirilmesi gereken kalemlerdir.",
     highlights: [
       "Eşen Çayı vadisinde verimli tarım ve sera arazisi pazarı",
       "Fethiye'ye yakınlık ulaşım ve hizmet avantajı sağlıyor",

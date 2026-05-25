@@ -7,7 +7,6 @@ export const site = {
   tagline: "Emlakçılıkta Güven Esastır",
   subtitle: "Muğla Gayrimenkul Danışmanlığı",
   url: "https://colakogluemlak48.com",
-  alternateDomain: "https://emlakmugla.com",
   experienceYears: 32,
   foundingYear: 1994,
   description:
@@ -86,14 +85,14 @@ export const services: Service[] = [
     name: "Satış & kiralama",
     icon: "◇",
     description:
-      "Konut, villa, arsa ve ticari gayrimenkulde profesyonel pazarlama ve hedef kitleye ulaşım.",
+      "Konut, villa, arsa ve ticari gayrimenkulde çoklu kanal yayın, profesyonel fotoğraf ve hedef kitleye ulaşım.",
     tldr:
-      "Konut, villa, arsa ve ticari gayrimenkulde alım, satım ve kiralama danışmanlığı. Bölgesel piyasa verisi, profesyonel pazarlama ve hedef kitleye ulaşım. Süreç ihtiyaç görüşmesinden teslime kadar eşlikli yürütülür; tapu, imar ve kat mülkiyeti kontrolleri sürece dahildir.",
+      "Konut, villa, arsa ve ticari gayrimenkulde alım, satım ve kiralama danışmanlığı. Bölgesel piyasa verisi, çoklu kanal yayın (sahibinden + ilan platformları + sosyal medya), profesyonel fotoğraf ve ön talep filtrelemesi. Süreç ihtiyaç görüşmesinden teslime kadar eşlikli yürütülür; tapu, imar ve kat mülkiyeti kontrolleri sürece dahildir.",
     detail:
-      "Satış ve kiralama danışmanlığı; gayrimenkulün özelliğine ve bölgesine uygun pazarlama stratejisinin kurulması, hedef kitleye ulaşılması, görüntüleme süreçlerinin koordinasyonu ve müzakere desteğini kapsar. Satıcı tarafında; piyasa karşılaştırmalı değerleme, profesyonel görsel ve metin üretimi, çoklu kanal yayın, ön talep filtrelemesi ve müzakere yönetimi yapılır. Alıcı tarafında; ihtiyaç-bütçe-bölge eşleştirmesi, saha incelemesi, tapu kaydı ve kat mülkiyeti kontrolü, hukuki süreç koordinasyonu sunulur. Kiralama tarafında ek olarak; sözleşme yönetimi, kefil/depozito düzenlemesi ve teslim sonrası danışmanlık desteği verilir. Her aşama yazılı bilgiyle belgelenir; danışan ne aşamada olduğunu her zaman bilir.",
+      "Satış ve kiralama danışmanlığı; gayrimenkulün özelliğine ve bölgesine uygun pazarlama stratejisinin kurulması, hedef kitleye ulaşılması, görüntüleme süreçlerinin koordinasyonu ve müzakere desteğini kapsar. Satıcı tarafında; piyasa karşılaştırmalı değerleme, profesyonel fotoğraf ve metin üretimi, çoklu kanal yayın (sahibinden + ilan platformları + sosyal medya), ön talep filtrelemesi ve müzakere yönetimi yapılır. Alıcı tarafında; ihtiyaç-bütçe-bölge eşleştirmesi, saha incelemesi, tapu kaydı ve kat mülkiyeti kontrolü, hukuki süreç koordinasyonu sunulur. Kiralama tarafında ek olarak; sözleşme yönetimi, kefil/depozito düzenlemesi ve teslim sonrası danışmanlık desteği verilir. Her aşama yazılı bilgiyle belgelenir; danışan ne aşamada olduğunu her zaman bilir.",
     highlights: [
       "Konut, villa, arsa ve ticari gayrimenkul kapsamında uzman danışmanlık",
-      "Piyasa karşılaştırmalı değerleme ve profesyonel pazarlama metin/görsel",
+      "Piyasa karşılaştırmalı değerleme + profesyonel fotoğraf + çoklu kanal yayın",
       "Tapu, kat mülkiyeti ve imar kontrolleri sürece dahil",
       "Müzakere desteği ve ön talep filtrelemesi",
       "Kiralama tarafında sözleşme ve teslim sonrası destek",
@@ -101,7 +100,7 @@ export const services: Service[] = [
     faq: [
       {
         q: "Satış danışmanlığı sürecinde neler yapılır?",
-        a: "Piyasa karşılaştırmalı değerleme, profesyonel pazarlama metin ve görsel üretimi, çoklu kanal yayın, ön talep filtrelemesi ve müzakere yönetimi sürecin temel adımlarıdır. Tapu ve kat mülkiyeti kontrolleri satış öncesinde tamamlanır.",
+        a: "Piyasa karşılaştırmalı değerleme, profesyonel fotoğraf ve metin üretimi, çoklu kanal yayın (sahibinden + ilan platformları + sosyal medya), ön talep filtrelemesi ve müzakere yönetimi sürecin temel adımlarıdır. Tapu ve kat mülkiyeti kontrolleri satış öncesinde tamamlanır.",
       },
       {
         q: "Alıcı tarafında nasıl bir süreç uygulanır?",

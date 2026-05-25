@@ -113,16 +113,16 @@ export const neighborhoods: Neighborhood[] = [
     fullName: "Bitez gayrimenkul",
     geo: { lat: 37.0461, lng: 27.3711 },
     intro:
-      "Bitez, Bodrum'a yakın, yerleşik konut ve karma kullanım pazarı dengelenen mahallelerden biridir. Manderine bahçeleri, sakin sahil ve aile odaklı yerleşim karakteri öne çıkar.",
+      "Bitez, Bodrum'a yakın, yerleşik konut ve karma kullanım pazarı dengelenen mahallelerden biridir. Mandalina bahçeleri, sakin sahil ve aile odaklı yerleşim karakteri öne çıkar.",
     tldr:
-      "Bitez, Bodrum merkeze yakın yerleşik konut ve karma kullanım pazarına sahiptir. Sakin sahil, mandarin bahçeleri ve aile odaklı yerleşim karakteriyle yıl boyu kullanım ve sezon odaklı kiralama dengesini sunar.",
+      "Bitez, Bodrum merkeze yakın yerleşik konut ve karma kullanım pazarına sahiptir. Sakin sahil, mandalina bahçeleri ve aile odaklı yerleşim karakteriyle yıl boyu kullanım ve sezon odaklı kiralama dengesini sunar.",
     detail:
-      "Bitez, Bodrum'un kuzey ile güney aksında yerleşik konut, daire ve site yapısı yoğunluğunun belirgin olduğu mahallelerinden biridir. Pazar; sahile yakın yazlık daire, iç kesimde geleneksel müstakil ev ve site içi yeni yapı seçenekleri arasında çeşitlenir. Mandarin bahçeleri ve çam ormanları bölgenin doğal karakteridir. Bodrum merkeze yakınlığı (5-7 km) yıl boyu erişimi kolaylaştırır; bu yapı hem sezon odaklı kısa dönem kiralama hem uzun dönem yerleşik kullanım için uygundur. Sahil parsellerinde kıyı kanunu kısıtları ve mevcut site yönetim planları satın alma öncesi değerlendirilir.",
+      "Bitez, Bodrum'un kuzey ile güney aksında yerleşik konut, daire ve site yapısı yoğunluğunun belirgin olduğu mahallelerinden biridir. Pazar; sahile yakın yazlık daire, iç kesimde geleneksel müstakil ev ve site içi yeni yapı seçenekleri arasında çeşitlenir. Mandalina bahçeleri ve çam ormanları bölgenin doğal karakteridir. Bodrum merkeze yakınlığı yıl boyu erişimi kolaylaştırır; bu yapı hem sezon odaklı kısa dönem kiralama hem uzun dönem yerleşik kullanım için uygundur. Sahil parsellerinde kıyı kanunu kısıtları ve mevcut site yönetim planları satın alma öncesi değerlendirilir.",
     segments: ["Daire", "Müstakil ev", "Yazlık", "Arsa", "Site içi konut"],
     faq: [
       {
         q: "Bitez'de aile odaklı konut için hangi alanlar öne çıkıyor?",
-        a: "Sahile yakın site yapıları, iç kesimde geleneksel müstakil ev ve site içi yeni yapı seçenekleri aile odaklı yerleşim için uygundur. Bodrum merkeze yakınlığı (5-7 km) okul, sağlık ve alışveriş erişimini kolaylaştırır.",
+        a: "Sahile yakın site yapıları, iç kesimde geleneksel müstakil ev ve site içi yeni yapı seçenekleri aile odaklı yerleşim için uygundur. Bodrum merkeze yakın konumu okul, sağlık ve alışveriş erişimini kolaylaştırır.",
       },
       {
         q: "Bitez yatırım için sezonluk mu yerleşik mi daha uygun?",
@@ -142,11 +142,11 @@ export const neighborhoods: Neighborhood[] = [
     fullName: "İçmeler gayrimenkul",
     geo: { lat: 36.8189, lng: 28.2225 },
     intro:
-      "İçmeler, Marmaris'in 8 km batısında, tatil amaçlı konut ve kısa dönem kiralama pazarının yoğun olduğu sahil mahallesidir. Çam ormanları ve berrak koyuyla tatil bölgesi karakteri taşır.",
+      "İçmeler, Marmaris'in batı kıyısında, tatil amaçlı konut ve kısa dönem kiralama pazarının yoğun olduğu sahil mahallesidir. Çam ormanları ve berrak koyuyla tatil bölgesi karakteri taşır.",
     tldr:
       "İçmeler, Marmaris'in batı kıyısında tatil amaçlı konut, daire ve kısa dönem kiralama pazarının yoğunlaştığı sahil mahallesi. Çam ormanları ve sakin koyu uluslararası tatil talebine hizmet eder.",
     detail:
-      "İçmeler, Marmaris'in batı yönündeki sahil yerleşimidir ve sezon odaklı kısa dönem kiralama pazarının en güçlü olduğu bölgelerden biridir. Pazar; sahile yakın yazlık daire, site içi konut ve sınırlı sayıda villa segmentine yöneliktir. Yaz sezonu (Mayıs-Ekim) yüksek doluluk, sezon dışı sakin yerleşim karakteri sunar. Çam ormanları ve berrak sahil mikro-iklim avantajıdır. Kıyıya yakın parsellerde kıyı kanunu kısıtları ve mevcut site yönetim planları geçerlidir. Marmaris merkeze yakınlığı (8-10 km) hizmet erişimini kolaylaştırır; bu yapı yatırımı yıl boyu kullanılabilir kılar.",
+      "İçmeler, Marmaris'in batı yönündeki sahil yerleşimidir ve sezon odaklı kısa dönem kiralama pazarının en güçlü olduğu bölgelerden biridir. Pazar; sahile yakın yazlık daire, site içi konut ve sınırlı sayıda villa segmentine yöneliktir. Yaz sezonu (Mayıs-Ekim) yüksek doluluk, sezon dışı sakin yerleşim karakteri sunar. Çam ormanları ve berrak sahil mikro-iklim avantajıdır. Kıyıya yakın parsellerde kıyı kanunu kısıtları ve mevcut site yönetim planları geçerlidir. Marmaris merkeze yakın konumu hizmet erişimini kolaylaştırır; bu yapı yatırımı yıl boyu kullanılabilir kılar.",
     segments: ["Tatil dairesi", "Yazlık", "Site içi konut", "Villa"],
     faq: [
       {
@@ -204,7 +204,7 @@ export const neighborhoods: Neighborhood[] = [
     tldr:
       "Çalış, Fethiye'nin batı sahilinde yabancı yatırımcı yoğun konut ve tatil bölgesi. Yerleşik yabancı topluluk, uzun sahil yürüyüş yolu ve günbatımı manzarası bölgenin değer karakterini belirler.",
     detail:
-      "Çalış sahili, Fethiye'nin batısında uzun sahil şeridi ve yıl boyu sakin yerleşim karakterine sahip bir mahalle. Pazar; sahile yakın site içi daire, müstakil ev, villa ve tatil amaçlı kullanım için kısa dönem kiralama segmentine yöneliktir. Bölgede yerleşik yabancı topluluk önemli bir alıcı ve kullanıcı kitlesidir; bu yapı yıl boyu hizmet ekonomisini canlı tutar (restoran, market, sağlık hizmetleri). Sahile yakın parsellerde kıyı kanunu kısıtları ve site yönetim planları geçerlidir. Fethiye merkezine 5 km mesafe hizmet erişimini kolaylaştırır. Yabancı uyruklu alıcılar için 2644 sayılı Tapu Kanunu kapsamındaki adımlar (askeri yasak bölge sorgusu, değerleme raporu) sürece dahildir.",
+      "Çalış sahili, Fethiye'nin batısında uzun sahil şeridi ve yıl boyu sakin yerleşim karakterine sahip bir mahalle. Pazar; sahile yakın site içi daire, müstakil ev, villa ve tatil amaçlı kullanım için kısa dönem kiralama segmentine yöneliktir. Bölgede yerleşik yabancı topluluk önemli bir alıcı ve kullanıcı kitlesidir; bu yapı yıl boyu hizmet ekonomisini canlı tutar (restoran, market, sağlık hizmetleri). Sahile yakın parsellerde kıyı kanunu kısıtları ve site yönetim planları geçerlidir. Fethiye merkezine yakın konumu hizmet erişimini kolaylaştırır. Yabancı uyruklu alıcılar için 2644 sayılı Tapu Kanunu kapsamındaki adımlar (askeri yasak bölge sorgusu, değerleme raporu) sürece dahildir.",
     segments: ["Daire", "Müstakil ev", "Villa", "Yazlık", "Site içi konut"],
     faq: [
       {
@@ -213,7 +213,7 @@ export const neighborhoods: Neighborhood[] = [
       },
       {
         q: "Çalış yıl boyu yerleşim için uygun mu?",
-        a: "Evet. Yerleşik yabancı topluluk sayesinde Çalış'ta yıl boyu hizmet ekonomisi (restoran, market, sağlık) canlıdır. Fethiye merkezine yakınlığı (5 km) ek hizmet erişimi sağlar.",
+        a: "Evet. Yerleşik yabancı topluluk sayesinde Çalış'ta yıl boyu hizmet ekonomisi (restoran, market, sağlık) canlıdır. Fethiye merkezine yakın konumu ek hizmet erişimi sağlar.",
       },
       {
         q: "Çalış'ta konut alırken nelere dikkat edilmeli?",
@@ -233,7 +233,7 @@ export const neighborhoods: Neighborhood[] = [
     tldr:
       "Ovacık, Fethiye-Ölüdeniz aksında dağ etekleri ile sahil arasında yerleşik yabancı topluluğu yoğun bir mahalle. Doğa odaklı villa, müstakil ev ve kısmen tatil amaçlı kullanım segmentine hizmet eder.",
     detail:
-      "Ovacık, Fethiye'nin güney aksında Hisarönü ve Ölüdeniz hattı üzerinde, dağ etekleri ile sahil arasında yer alan yerleşim alanıdır. Pazar; villa, müstakil ev ve site içi konut etrafında şekillenir. Yerleşik yabancı topluluk (özellikle Birleşik Krallık vatandaşları) önemli bir alıcı kitlesidir; bu yapı yerel hizmet ekonomisini yıl boyu canlı tutar. Ölüdeniz mavi lagününe yakınlık (~5 km) tatil amaçlı kullanım için cazip kılar. Yabancı uyruklu alıcılar için 2644 sayılı Tapu Kanunu kapsamındaki edinim adımları sürece dahildir. Dağ etekleri parsellerinde eğim ve erişilebilirlik yapılaşma kararında değerlendirilir.",
+      "Ovacık, Fethiye'nin güney aksında Hisarönü ve Ölüdeniz hattı üzerinde, dağ etekleri ile sahil arasında yer alan yerleşim alanıdır. Pazar; villa, müstakil ev ve site içi konut etrafında şekillenir. Yerleşik yabancı topluluk (özellikle Birleşik Krallık vatandaşları) önemli bir alıcı kitlesidir; bu yapı yerel hizmet ekonomisini yıl boyu canlı tutar. Ölüdeniz mavi lagününe yakın konumu tatil amaçlı kullanım için cazip kılar. Yabancı uyruklu alıcılar için 2644 sayılı Tapu Kanunu kapsamındaki edinim adımları sürece dahildir. Dağ etekleri parsellerinde eğim ve erişilebilirlik yapılaşma kararında değerlendirilir.",
     segments: ["Villa", "Müstakil ev", "Site içi konut", "Yazlık"],
     faq: [
       {
