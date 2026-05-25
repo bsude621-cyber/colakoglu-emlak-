@@ -4,7 +4,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { site } from "../data/config";
 
-const title = `Vizyon & Misyon | ${site.name}`;
+const title = `Vizyon ve Misyon | ${site.name}`;
 const description =
   "Çolakoğlu Emlak'ın vizyonu, misyonu ve çalışma değerleri — 32 yıllık tecrübe, mesleki etik ve güvene dayalı gayrimenkul danışmanlığı anlayışı. Muğla.";
 const canonical = `${site.url}/vizyon-misyon/`;
@@ -24,7 +24,7 @@ const values = [
   },
   {
     title: "Hukuki titizlik",
-    text: "Tapu, imar ve sözleşme süreçlerinde güvenilir hukuk ve mali müşavir iş ortaklarıyla koordineli, kayıtlı ilerleme.",
+    text: "Tapu, imar ve sözleşme süreçlerinde hukuk ve mali müşavir uzmanlarıyla koordineli, kayıtlı ilerleme.",
   },
   {
     title: "Uzun vadeli ilişki",
@@ -32,7 +32,7 @@ const values = [
   },
   {
     title: "Erişilebilirlik",
-    text: "Yabancı yatırımcılara dil ve hukuk desteği. Herkes için anlaşılır, adım adım izlenebilir bir süreç.",
+    text: "Her detay önceden netleşir, sürpriz maliyet yok. Adım adım izlenebilir bir süreç — danışan istediği anda nerede olduğunu bilir.",
   },
 ];
 
@@ -41,7 +41,7 @@ const breadcrumb = {
   "@type": "BreadcrumbList",
   itemListElement: [
     { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: site.url },
-    { "@type": "ListItem", position: 2, name: "Vizyon & Misyon", item: canonical },
+    { "@type": "ListItem", position: 2, name: "Vizyon ve Misyon", item: canonical },
   ],
 };
 
@@ -49,7 +49,7 @@ const aboutPage = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
   "@id": `${canonical}#webpage`,
-  name: `Vizyon & Misyon — ${site.name}`,
+  name: `Vizyon ve Misyon — ${site.name}`,
   description,
   url: canonical,
   inLanguage: "tr-TR",
@@ -79,8 +79,8 @@ const aboutPage = {
       <div class="container vm-hero-inner">
         <nav class="breadcrumb" aria-label="Sayfa konumu">
           <a href="/">Ana Sayfa</a>
-          <span aria-hidden="true">›</span>
-          <span aria-current="page">Vizyon &amp; Misyon</span>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">Vizyon ve Misyon</span>
         </nav>
         <p class="eyebrow vm-hero-eyebrow">{site.name} · Kurumsal</p>
         <h1>Vizyonumuz ve Misyonumuz</h1>
@@ -89,6 +89,24 @@ const aboutPage = {
           tecrübenin ötesinde bir duruştur: güvene, mesleki etiğe ve uzun
           vadeli ilişkiye dayalı bir danışmanlık anlayışı.
         </p>
+      </div>
+    </section>
+
+    <!-- TL;DR — AI Overview citation pattern -->
+    <section class="vm-tldr-section">
+      <div class="container">
+        <aside class="vm-tldr" aria-label="Vizyon ve misyon özet">
+          <p class="vm-tldr-label">Kısa Özet</p>
+          <p class="vm-tldr-text">
+            <strong>
+              Çolakoğlu Emlak'ın vizyonu, Muğla'da gayrimenkul danışmanlığını
+              güvenin ve mesleki etiğin standardı hâline getirmektir. Misyonu;
+              32 yıllık saha tecrübesi ve sektörün meslek odası temsilciliğiyle,
+              alım-satım-kiralama-değerleme süreçlerinin her aşamasında şeffaf,
+              hukuki açıdan titiz ve baştan sona eşlikli danışmanlık sunmaktır.
+            </strong>
+          </p>
+        </aside>
       </div>
     </section>
 
@@ -240,6 +258,43 @@ const aboutPage = {
     font-size: 1.08rem;
     line-height: 1.65;
     margin: 0;
+  }
+
+  /* TL;DR — AI Overview citation pattern */
+  .vm-tldr-section {
+    background: var(--color-paper-deep);
+    padding: clamp(2rem, 4vw, 3rem) 0;
+  }
+
+  .vm-tldr {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 1.5rem 1.85rem;
+    background: var(--color-surface);
+    border-left: 3px solid var(--color-gold);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+  }
+
+  .vm-tldr-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--color-eyebrow);
+    margin: 0 0 0.75rem;
+  }
+
+  .vm-tldr-text {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: clamp(1rem, 1.6vw, 1.12rem);
+    line-height: 1.55;
+    color: var(--color-ink);
+  }
+
+  .vm-tldr-text strong {
+    font-weight: 600;
   }
 
   .vm-statement {

@@ -5,7 +5,7 @@ export const faq = [
   {
     question: "Çolakoğlu Emlak hangi bölgelerde hizmet veriyor?",
     answer:
-      "Muğla genelinde Bodrum, Marmaris, Fethiye, Milas, Datça, Köyceğiz, Ortaca ve Dalaman ilçelerinde satış, kiralama, değerleme ve yatırım danışmanlığı hizmeti veriyoruz. Yerel piyasayı yıllardır takip eden ekibimiz her ilçenin karakterini ayrı ayrı tanıyor.",
+      "Muğla'nın 13 ilçesinin tamamında — Menteşe, Bodrum, Marmaris, Fethiye, Milas, Datça, Köyceğiz, Ortaca, Dalaman, Ula, Yatağan, Kavaklıdere ve Seydikemer — satış, kiralama, değerleme ve yatırım danışmanlığı hizmeti veriyoruz. Yerel piyasayı yıllardır takip eden ekibimiz her ilçenin karakterini ayrı ayrı tanıyor.",
   },
   {
     question: "Ziya Ercan kimdir, neden tercih edilmeli?",
@@ -15,7 +15,7 @@ export const faq = [
   {
     question: "Yabancı yatırımcılara hizmet veriyor musunuz?",
     answer:
-      "Evet. Yabancı yatırımcılara Türkiye'de gayrimenkul alım süreçlerinde (tapu, vergi numarası, vatandaşlık başvurusu, dil desteği) eşlik ediyoruz. Bodrum, Fethiye ve Marmaris başta olmak üzere uluslararası alıcı profilini iyi tanıyoruz.",
+      "Evet. Yabancı yatırımcılara Türkiye'de gayrimenkul alım süreçlerinde (tapu, vergi numarası, vatandaşlık başvurusu) eşlik ediyoruz. Bodrum, Fethiye ve Marmaris başta olmak üzere uluslararası alıcı profilini iyi tanıyoruz. Yabancı dilde iletişim ihtiyacı varsa önceden koordine ediyoruz.",
   },
   {
     question: "Gayrimenkul değerleme hizmeti veriyor musunuz?",
@@ -35,6 +35,6 @@ export const faq = [
   {
     question: "Çolakoğlu Emlak ile nasıl iletişime geçebilirim?",
     answer:
-      "0252 212 50 15 numaralı iş telefonumuzdan, 0532 316 82 30 numaralı GSM'den veya nilercan@gmail.com e-posta adresinden bize ulaşabilirsiniz. Web sitesindeki iletişim formu üzerinden de talep iletebilirsiniz — en kısa sürede dönüş yapıyoruz.",
+      "0252 212 50 15 numaralı iş telefonumuzdan, 0532 316 82 30 numaralı GSM'den veya WhatsApp (0532 316 82 30) üzerinden bize ulaşabilirsiniz. Web sitesindeki iletişim formu üzerinden de talep iletebilirsiniz — en kısa sürede dönüş yapıyoruz.",
   },
 ];

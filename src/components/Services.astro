@@ -29,12 +29,15 @@ const icons: Record<string, string> = {
     <div class="services-grid">
       {
         services.map((s, i) => (
-          <article class="service-card">
+          <a class="service-card" href={`/hizmetler/${s.slug}/`} aria-label={`${s.name} hizmet detayı`}>
             <span class="service-num">{String(i + 1).padStart(2, "0")}</span>
             <span class="service-icon" aria-hidden="true" set:html={icons[s.slug] ?? ""} />
             <h3>{s.name}</h3>
             <p>{s.description}</p>
-          </article>
+            <span class="service-card-go" aria-hidden="true">
+              Detayı gör →
+            </span>
+          </a>
         ))
       }
     </div>
@@ -64,6 +67,7 @@ const icons: Record<string, string> = {
   }
 
   .service-card {
+    display: block;
     position: relative;
     overflow: hidden;
     background: var(--color-surface);
@@ -71,10 +75,32 @@ const icons: Record<string, string> = {
     border-radius: var(--radius-lg);
     padding: 2.4rem 2.3rem 2.5rem;
     box-shadow: var(--shadow-card);
+    text-decoration: none;
+    color: var(--color-ink);
     transition:
       transform 0.25s var(--ease-out),
       box-shadow 0.25s,
       border-color 0.25s;
+  }
+
+  .service-card:hover {
+    text-decoration: none;
+    color: var(--color-ink);
+  }
+
+  .service-card-go {
+    display: inline-block;
+    margin-top: 1.1rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: var(--color-gold);
+    transition: transform 0.2s var(--ease-out), color 0.2s;
+  }
+
+  .service-card:hover .service-card-go {
+    transform: translateX(4px);
+    color: var(--color-gold-deep);
   }
 
   .service-card::before {

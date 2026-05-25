@@ -4,6 +4,7 @@ import { site } from "../data/config";
 // Form Web3Forms ile backend'siz çalışır.
 // [[BİLGİ GEREK: Web3Forms access_key — Sude oluşturup .env'e koyacak (PUBLIC_WEB3FORMS_KEY)]]
 const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HERE";
+const hasFormKey = accessKey !== "YOUR_ACCESS_KEY_HERE";
 ---
 
 <section id="iletisim" class="section section-contact section-contact-dark">
@@ -13,13 +14,18 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HERE"
       <h2>Bir kahve içmeye bekleriz</h2>
       <p class="section-desc">
         Gayrimenkulünüzü değerlendirmek veya aradığınızı birlikte netleştirmek
-        için arayın, yazın ya da formu doldurun — en kısa sürede dönüş yapalım.
+        için {hasFormKey ? "arayın, yazın ya da formu doldurun" : "arayın veya WhatsApp'tan yazın"} — en kısa sürede dönüş yapalım.
       </p>
 
       <address class="contact-block">
         <p>
           <strong>Sahibi</strong><br />
           Ziya Ercan
+        </p>
+        <p class="contact-block-address">
+          <strong>Ofis adresi</strong><br />
+          {site.address.street},<br />
+          {site.address.locality}/{site.address.region}
         </p>
         <p>
           <strong>İş telefonu</strong><br />
@@ -29,10 +35,12 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HERE"
           <strong>GSM</strong><br />
           <a href={`tel:${site.contact.mobile}`}>{site.contact.mobileDisplay}</a>
         </p>
-        <p>
-          <strong>E-posta</strong><br />
-          <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>
-        </p>
+        {site.contact.email && (
+          <p>
+            <strong>E-posta</strong><br />
+            <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>
+          </p>
+        )}
         {site.contact.whatsapp && (
           <p>
             <strong>WhatsApp</strong><br />
@@ -57,8 +65,29 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HERE"
           ))}
         </ul>
       </div>
+
+      <!-- Harita — yerel pack + Knowledge Panel için zorunlu sinyal -->
+      <figure class="contact-map">
+        <iframe
+          src={`https://maps.google.com/maps?q=${site.geo.latitude},${site.geo.longitude}&hl=tr&z=16&output=embed`}
+          title={`${site.name} — ofis konumu, ${site.address.locality}/${site.address.region}`}
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+        ></iframe>
+        <figcaption>
+          <a
+            href={`https://www.google.com/maps/dir/?api=1&destination=${site.geo.latitude},${site.geo.longitude}`}
+            target="_blank"
+            rel="noopener"
+          >
+            Yol tarifi al →
+          </a>
+        </figcaption>
+      </figure>
     </div>
 
+    {hasFormKey ? (
     <form
       class="contact-form"
       data-contact-form
@@ -82,6 +111,8 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HERE"
         class="visually-hidden"
         tabindex="-1"
         autocomplete="off"
+        aria-hidden="true"
+        aria-label="Bot kontrolü — boş bırakın"
       />
       <label>
         <span>Ad Soyad</span>
@@ -154,6 +185,30 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HERE"
       <button type="submit" class="btn btn-primary btn-block">Gönder</button>
       <p class="form-hint" data-form-status role="status" aria-live="polite"></p>
     </form>
+    ) : (
+    <div class="contact-form contact-placeholder">
+      <p class="placeholder-eyebrow">İletişim Formu</p>
+      <h3>Şimdilik en hızlı yol — doğrudan ulaşın</h3>
+      <p>
+        İletişim formunu çok yakında açıyoruz. Bugün için telefon veya
+        WhatsApp ile dakikalar içinde dönüş alırsınız.
+      </p>
+      <a
+        href={`tel:${site.contact.phone}`}
+        class="btn btn-primary btn-block"
+      >
+        {site.contact.phoneDisplay}
+      </a>
+      <a
+        href={`https://wa.me/${site.contact.whatsapp}`}
+        class="btn btn-ghost btn-block placeholder-wa"
+        target="_blank"
+        rel="noopener"
+      >
+        WhatsApp ile yazın
+      </a>
+    </div>
+    )}
   </div>
 </section>
 
@@ -254,9 +309,89 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_KEY || "YOUR_ACCESS_KEY_HERE"
     font-size: 0.86rem;
   }
 
+  /* Adres satırı — kolonun tam genişliği (telefon/GSM gibi tek-line değil) */
+  .contact-block-address {
+    grid-column: 1 / -1;
+  }
+
+  /* Harita — yerel pack + Knowledge Panel için zorunlu sinyal */
+  .contact-map {
+    margin: 1.85rem 0 0;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  .contact-map iframe {
+    display: block;
+    width: 100%;
+    height: 280px;
+    border: 0;
+    filter: grayscale(0.15) contrast(1.05);
+  }
+
+  .contact-map figcaption {
+    padding: 0.75rem 1.1rem;
+    background: rgba(0, 0, 0, 0.2);
+    font-size: 0.85rem;
+  }
+
+  .contact-map figcaption a {
+    color: var(--color-gold-bright);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .contact-map figcaption a:hover {
+    color: #fff;
+  }
+
   /* Beyaz form kartı koyu zeminde — derin gölge ile öne çıkar */
   .section-contact-dark .contact-form {
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Form key gelene kadar placeholder — telefon + WhatsApp öne */
+  .contact-placeholder {
+    gap: 1rem;
+  }
+
+  .contact-placeholder .placeholder-eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-eyebrow);
+    font-weight: 700;
+    margin: 0;
+  }
+
+  .contact-placeholder h3 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.25rem, 2.2vw, 1.55rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--color-ink);
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .contact-placeholder p {
+    margin: 0 0 0.5rem;
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: var(--color-ink-muted);
+  }
+
+  .contact-placeholder .placeholder-wa {
+    background: var(--color-surface);
+    color: var(--color-ink);
+    border: 1px solid var(--color-navy);
+  }
+
+  .contact-placeholder .placeholder-wa:hover {
+    background: var(--color-navy);
+    color: #fff;
   }
 
   @media (max-width: 540px) {

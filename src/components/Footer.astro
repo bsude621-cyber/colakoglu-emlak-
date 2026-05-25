@@ -24,11 +24,11 @@ import { site } from "../data/config";
         Ziya Ercan liderliğinde, Muğla emlak sektörünün meslek odası, derneği
         ve ulusal federasyon temsilcisi.
       </p>
-      <a class="footer-vm" href="/vizyon-misyon/">Vizyon &amp; Misyon →</a>
+      <a class="footer-vm" href="/vizyon-misyon/">Vizyon ve Misyon →</a>
     </div>
 
     <div class="footer-col">
-      <h4>Unvanlar</h4>
+      <h3>Unvanlar</h3>
       <ul class="footer-list">
         {site.owner.titles.map((title) => (
           <li>{title}</li>
@@ -37,7 +37,7 @@ import { site } from "../data/config";
     </div>
 
     <div class="footer-col">
-      <h4>İletişim</h4>
+      <h3>İletişim</h3>
       <ul class="footer-list">
         <li>
           <a href={`tel:${site.contact.phone}`}>{site.contact.phoneDisplay}</a>
@@ -47,9 +47,11 @@ import { site } from "../data/config";
           <a href={`tel:${site.contact.mobile}`}>{site.contact.mobileDisplay}</a>
           <span class="footer-list-tag">GSM</span>
         </li>
-        <li>
-          <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>
-        </li>
+        {site.contact.email && (
+          <li>
+            <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>
+          </li>
+        )}
         {site.contact.whatsapp && (
           <li>
             <a
@@ -65,7 +67,7 @@ import { site } from "../data/config";
     </div>
 
     <div class="footer-col">
-      <h4>Bölgeler</h4>
+      <h3>Bölgeler</h3>
       <ul class="footer-list footer-regions">
         <li><a href="/bolgeler/bodrum/">Bodrum</a></li>
         <li><a href="/bolgeler/marmaris/">Marmaris</a></li>
@@ -85,6 +87,13 @@ import { site } from "../data/config";
   </div>
 
   <div class="footer-bottom">
+    <div class="container footer-legal-row">
+      <ul class="footer-legal-links">
+        <li><a href="/kvkk/">KVKK</a></li>
+        <li><a href="/aydinlatma-metni/">Aydınlatma Metni</a></li>
+        <li><a href="/cerez-politikasi/">Çerez Politikası</a></li>
+      </ul>
+    </div>
     <div class="container footer-inner">
       <p class="footer-copy">
         © <span data-year></span> {site.name}. Tüm hakları saklıdır.
@@ -100,7 +109,9 @@ import { site } from "../data/config";
           rel="noopener license"
         >CC BY-SA</a>: Muğla © yigitylnz · Akyaka © Zemxer ·
         Stratonikeia © Dosseman · Saklıkent © Buda2000 ·
-        Kavaklıdere © refik nazilli.
+        Kavaklıdere © refik nazilli · Köyceğiz © Danaesita82 ·
+        Milas (Beçin) © Volker Höhfeld · Dalaman (Sarsala) © Raicem ·
+        Bodrum © Joe deSousa (CC0).
       </p>
     </div>
   </div>
@@ -137,7 +148,7 @@ import { site } from "../data/config";
     height: 52px;
   }
 
-  .footer-col h4 {
+  .footer-col h3 {
     font-family: var(--font-serif);
     font-size: 1rem;
     font-weight: 700;
@@ -220,11 +231,37 @@ import { site } from "../data/config";
     padding: 1.25rem 0 1rem;
   }
 
+  .footer-legal-row {
+    padding-bottom: 0.85rem;
+    margin-bottom: 0.85rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .footer-legal-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.4rem;
+    font-size: 0.78rem;
+  }
+
+  .footer-legal-links a {
+    color: rgba(255, 255, 255, 0.62);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-legal-links a:hover {
+    color: var(--color-gold-bright);
+  }
+
   .footer-credit {
     margin: 0.85rem 0 0;
     font-size: 0.72rem;
     line-height: 1.5;
-    color: rgba(255, 255, 255, 0.42);
+    color: rgba(255, 255, 255, 0.62);
   }
 
   .footer-credit a {
