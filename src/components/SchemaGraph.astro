@@ -34,7 +34,7 @@ const graph = {
       slogan: site.tagline,
       foundingDate: String(site.foundingYear),
       telephone: site.contact.phone,
-      email: site.contact.email,
+      ...(site.contact.email ? { email: site.contact.email } : {}),
       priceRange: "₺₺₺",
       currenciesAccepted: "TRY, EUR, USD, GBP",
       paymentAccepted: "Cash, Bank Transfer",
@@ -53,6 +53,7 @@ const graph = {
         latitude: site.geo.latitude,
         longitude: site.geo.longitude,
       },
+      hasMap: `https://www.google.com/maps/search/?api=1&query=${site.geo.latitude},${site.geo.longitude}`,
       areaServed: regions.map((r) => ({
         "@type": "City",
         name: r.name,
@@ -114,17 +115,17 @@ const graph = {
         {
           "@type": "ContactPoint",
           telephone: site.contact.phone,
-          email: site.contact.email,
+          ...(site.contact.email ? { email: site.contact.email } : {}),
           contactType: "customer service",
           areaServed: "TR",
-          availableLanguage: ["Turkish", "English"],
+          availableLanguage: ["Turkish"],
         },
         {
           "@type": "ContactPoint",
           telephone: site.contact.mobile,
           contactType: "sales",
           areaServed: "TR",
-          availableLanguage: ["Turkish", "English"],
+          availableLanguage: ["Turkish"],
         },
       ],
     },
@@ -263,7 +264,7 @@ const graph = {
       })),
     },
 
-    // 8) WebPage (ana sayfa)
+    // 8) WebPage (ana sayfa) + Speakable (voice search explicit selector)
     {
       "@type": "WebPage",
       "@id": `${baseUrl}/#webpage`,
@@ -275,6 +276,17 @@ const graph = {
       mainEntity: { "@id": orgId },
       inLanguage: "tr-TR",
       primaryImageOfPage: `${baseUrl}/og-default.jpg`,
+      datePublished: "2026-05-22",
+      dateModified: new Date().toISOString().slice(0, 10),
+      speakable: {
+        "@type": "SpeakableSpecification",
+        cssSelector: [
+          "h1",
+          ".hero94__sub",
+          ".section-desc",
+          ".founder-lead",
+        ],
+      },
     },
 
     // 9) BreadcrumbList (ana sayfa)
