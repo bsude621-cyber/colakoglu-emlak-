@@ -58,7 +58,9 @@ const ldArray = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
     <meta name="geo.position" content={`${site.geo.latitude};${site.geo.longitude}`} />
     <meta name="ICBM" content={`${site.geo.latitude}, ${site.geo.longitude}`} />
 
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.webmanifest" />
 
     {/* LCP boost — hero AVIF preload (only on home — heuristic: canonical ends at root) */}
