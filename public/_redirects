@@ -1,0 +1,5 @@
+# Sitemap kısayolu — bazı araçlar/botlar /sitemap.xml bekler, gerçek index'e yönlendir
+/sitemap.xml /sitemap-index.xml 301
+
+# NOT: www → apex CF Pages _redirects ile YAPILAMAZ (yalnızca path eşler, host değil).
+# Çözüm: CF dashboard → Rules → Redirect Rules → www.colakogluemlak48.com/* → apex 301.
