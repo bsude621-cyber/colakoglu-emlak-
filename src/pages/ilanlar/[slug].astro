@@ -1,0 +1,645 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Footer from "../../components/Footer.astro";
+import { site } from "../../data/config";
+import { listings, statusLabel, type Listing } from "../../data/listings";
+
+export async function getStaticPaths() {
+  return listings.map((l) => ({
+    params: { slug: l.slug },
+    props: { listing: l },
+  }));
+}
+
+interface Props {
+  listing: Listing;
+}
+
+const { listing } = Astro.props;
+const canonical = `${site.url}/ilanlar/${listing.slug}/`;
+const locText = listing.mahalle
+  ? `${listing.mahalle}, ${listing.ilce}`
+  : listing.ilce;
+const title = `${listing.title} | ${site.name}`;
+const description = listing.summary.slice(0, 155);
+const cover = `${site.url}${listing.images[0]}`;
+
+// Kategori → schema.org tipi
+const typeMap: Record<Listing["category"], string> = {
+  villa: "House",
+  "mustakil-ev": "House",
+  daire: "Apartment",
+  arsa: "Place",
+  isyeri: "Place",
+  "turistik-tesis": "Place",
+};
+
+const about: Record<string, unknown> = {
+  "@type": typeMap[listing.category],
+  name: listing.title,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: listing.mahalle ?? listing.ilce,
+    addressRegion: "Muğla",
+    addressCountry: "TR",
+  },
+};
+if (listing.sizeM2) {
+  about.floorSize = {
+    "@type": "QuantitativeValue",
+    value: listing.sizeM2,
+    unitCode: "MTK",
+  };
+}
+if (listing.geo) {
+  about.geo = {
+    "@type": "GeoCoordinates",
+    latitude: listing.geo.lat,
+    longitude: listing.geo.lng,
+  };
+}
+
+const listingSchema = {
+  "@context": "https://schema.org",
+  "@type": "RealEstateListing",
+  "@id": `${canonical}#listing`,
+  name: listing.title,
+  url: canonical,
+  description: listing.description,
+  image: listing.images.map((i) => `${site.url}${i}`),
+  ...(listing.refNo ? { identifier: listing.refNo } : {}),
+  about,
+  provider: { "@id": `${site.url}/#organization` },
+  broker: { "@id": `${site.url}/#organization` },
+};
+
+const breadcrumb = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "@id": `${canonical}#breadcrumb`,
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Ana Sayfa", item: site.url },
+    { "@type": "ListItem", position: 2, name: "İlanlar", item: `${site.url}/ilanlar/` },
+    { "@type": "ListItem", position: 3, name: listing.title, item: canonical },
+  ],
+};
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonical={canonical}
+  ogImage={cover}
+  jsonLd={[breadcrumb, listingSchema]}
+>
+  <Header />
+  <main id="main" class="listing-detail">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Sayfa konumu">
+        <a href="/">Ana Sayfa</a>
+        <span aria-hidden="true">/</span>
+        <a href="/ilanlar/">İlanlar</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">{listing.title}</span>
+      </nav>
+
+      <header class="listing-detail-head">
+        <div class="listing-detail-meta">
+          <span class={`listing-badge listing-badge--${listing.status}`}>
+            {statusLabel(listing.status)}
+          </span>
+          <span class="listing-detail-cat">{listing.categoryLabel}</span>
+          <span class="listing-detail-loc">{locText}</span>
+        </div>
+        <h1>{listing.title}</h1>
+      </header>
+
+      <div class="listing-detail-grid">
+        <!-- Sol: galeri + içerik -->
+        <div class="listing-detail-main">
+          <!-- Galeri -->
+          <figure class="listing-gallery">
+            <div class="listing-gallery-main">
+              <img
+                id="ld-main-image"
+                src={listing.images[0]}
+                alt={listing.coverAlt}
+                loading="eager"
+                decoding="async"
+              />
+              {
+                listing.images.length > 1 && (
+                  <>
+                    <button
+                      type="button"
+                      class="lg-nav lg-prev"
+                      id="ld-prev"
+                      aria-label="Önceki fotoğraf"
+                    >
+                      <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" /></svg>
+                    </button>
+                    <button
+                      type="button"
+                      class="lg-nav lg-next"
+                      id="ld-next"
+                      aria-label="Sonraki fotoğraf"
+                    >
+                      <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+                    </button>
+                    <span class="lg-counter" id="ld-counter">
+                      1 / {listing.images.length}
+                    </span>
+                  </>
+                )
+              }
+            </div>
+            {
+              listing.images.length > 1 && (
+                <div class="listing-thumbs" role="list">
+                  {listing.images.map((img, i) => (
+                    <button
+                      type="button"
+                      class="listing-thumb"
+                      data-src={img}
+                      data-index={i}
+                      aria-label={`Görsel ${i + 1}`}
+                      data-active={i === 0 ? "true" : "false"}
+                    >
+                      <img src={img} alt="" loading="lazy" decoding="async" />
+                    </button>
+                  ))}
+                </div>
+              )
+            }
+          </figure>
+
+          <!-- Özellikler tablosu -->
+          {
+            listing.specs.length > 0 && (
+              <section class="listing-specs">
+                <h2>Özellikler</h2>
+                <dl>
+                  {listing.specs.map((s) => (
+                    <div class="listing-spec">
+                      <dt>{s.label}</dt>
+                      <dd>{s.value}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </section>
+            )
+          }
+
+          <!-- Açıklama -->
+          <section class="listing-desc">
+            <h2>İlan açıklaması</h2>
+            <p>{listing.description}</p>
+          </section>
+
+          <!-- Öne çıkanlar -->
+          {
+            listing.features.length > 0 && (
+              <section class="listing-features">
+                <h2>Öne çıkanlar</h2>
+                <ul>
+                  {listing.features.map((f) => (
+                    <li>
+                      <svg
+                        viewBox="0 0 24 24"
+                        width="18"
+                        height="18"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2.2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path d="M4.5 12.6 9.5 17.5 19.5 6.5" />
+                      </svg>
+                      <span>{f}</span>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            )
+          }
+        </div>
+
+        <!-- Sağ: iletişim kartı (sticky) -->
+        <aside class="listing-contact">
+          <div class="listing-contact-card">
+            <p class="listing-contact-label">İletişim</p>
+            <p class="listing-contact-price">Fiyat için arayın</p>
+            <p class="listing-contact-note">
+              Bu ilan ve benzer seçenekler için Çolakoğlu Emlak'a ulaşın.
+              Güncel fiyat ve detayları sizinle paylaşalım.
+            </p>
+            {listing.refNo && <p class="listing-contact-ref">İlan No: {listing.refNo}</p>}
+            <div class="listing-contact-actions">
+              <a href={`tel:${site.contact.phone}`} class="btn btn-primary">
+                {site.contact.phoneDisplay}
+              </a>
+              <a
+                href={`https://wa.me/${site.contact.whatsapp}?text=${encodeURIComponent(
+                  `Merhaba, "${listing.title}" ilanı hakkında bilgi almak istiyorum.`
+                )}`}
+                class="btn btn-ghost"
+                rel="noopener"
+              >
+                WhatsApp'tan sorun
+              </a>
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      <div class="listing-back">
+        <a href="/ilanlar/">← Tüm ilanlar</a>
+      </div>
+    </div>
+  </main>
+  <Footer />
+
+  {
+    listing.images.length > 1 && (
+      <script is:inline>
+        (function () {
+          var main = document.getElementById('ld-main-image');
+          var thumbs = Array.prototype.slice.call(document.querySelectorAll('.listing-thumb'));
+          var counter = document.getElementById('ld-counter');
+          var prev = document.getElementById('ld-prev');
+          var next = document.getElementById('ld-next');
+          var srcs = thumbs.map(function (t) { return t.getAttribute('data-src'); });
+          var i = 0;
+          function show(n) {
+            i = (n + srcs.length) % srcs.length;
+            if (main) main.setAttribute('src', srcs[i]);
+            thumbs.forEach(function (x, k) { x.setAttribute('data-active', k === i ? 'true' : 'false'); });
+            if (counter) counter.textContent = (i + 1) + ' / ' + srcs.length;
+            var active = thumbs[i];
+            if (active && active.scrollIntoView) active.scrollIntoView({ block: 'nearest', inline: 'center', behavior: 'smooth' });
+          }
+          thumbs.forEach(function (t, k) {
+            t.addEventListener('click', function () { show(k); });
+          });
+          if (prev) prev.addEventListener('click', function () { show(i - 1); });
+          if (next) next.addEventListener('click', function () { show(i + 1); });
+          document.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowLeft') show(i - 1);
+            else if (e.key === 'ArrowRight') show(i + 1);
+          });
+        })();
+      </script>
+    )
+  }
+</Layout>
+
+<style>
+  .listing-detail {
+    padding: calc(var(--header-h) + 2rem) 0 clamp(3rem, 6vw, 5rem);
+  }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    font-size: 0.8rem;
+    color: var(--color-ink-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .breadcrumb a {
+    color: var(--color-ink-muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .breadcrumb a:hover {
+    color: var(--color-accent);
+  }
+
+  .breadcrumb [aria-current="page"] {
+    color: var(--color-ink);
+  }
+
+  .listing-detail-head {
+    margin-bottom: 1.75rem;
+  }
+
+  .listing-detail-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .listing-badge {
+    padding: 0.35rem 0.8rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #fff;
+  }
+
+  .listing-badge--satilik {
+    background: var(--color-eyebrow);
+  }
+
+  .listing-badge--kiralik {
+    background: var(--color-navy);
+  }
+
+  .listing-detail-cat,
+  .listing-detail-loc {
+    font-size: 0.84rem;
+    font-weight: 600;
+    color: var(--color-ink-muted);
+  }
+
+  .listing-detail-loc::before {
+    content: "·";
+    margin-right: 0.75rem;
+    color: var(--color-line);
+  }
+
+  .listing-detail-head h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.9rem, 4vw, 2.9rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    color: var(--color-ink);
+    margin: 0;
+  }
+
+  .listing-detail-grid {
+    display: grid;
+    grid-template-columns: 1.65fr 1fr;
+    gap: clamp(2rem, 4vw, 3.5rem);
+    align-items: start;
+  }
+
+  @media (max-width: 880px) {
+    .listing-detail-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* ── Galeri ── */
+  .listing-gallery {
+    margin: 0 0 2.25rem;
+  }
+
+  .listing-gallery-main {
+    position: relative;
+  }
+
+  #ld-main-image {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+    background: var(--color-bg);
+    display: block;
+  }
+
+  .lg-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.86);
+    color: var(--color-ink);
+    cursor: pointer;
+    box-shadow: var(--shadow-card);
+    backdrop-filter: blur(4px);
+    transition: background 0.2s, transform 0.2s var(--ease-out);
+  }
+
+  .lg-nav:hover {
+    background: #fff;
+    transform: translateY(-50%) scale(1.07);
+  }
+
+  .lg-prev {
+    left: 0.85rem;
+  }
+
+  .lg-next {
+    right: 0.85rem;
+  }
+
+  .lg-counter {
+    position: absolute;
+    bottom: 0.85rem;
+    right: 0.85rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: var(--radius-sm);
+    background: rgba(20, 29, 44, 0.72);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    backdrop-filter: blur(4px);
+  }
+
+  .listing-thumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 0.7rem;
+  }
+
+  .listing-thumb {
+    width: 84px;
+    height: 64px;
+    padding: 0;
+    border: 2px solid transparent;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--color-bg);
+    transition: border-color 0.2s, transform 0.2s var(--ease-out);
+  }
+
+  .listing-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .listing-thumb:hover {
+    transform: translateY(-2px);
+  }
+
+  .listing-thumb[data-active="true"] {
+    border-color: var(--color-eyebrow);
+  }
+
+  /* ── Özellik tablosu ── */
+  .listing-specs,
+  .listing-desc,
+  .listing-features {
+    margin-bottom: 2.25rem;
+  }
+
+  .listing-specs h2,
+  .listing-desc h2,
+  .listing-features h2 {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--color-ink);
+    margin: 0 0 1rem;
+  }
+
+  .listing-specs dl {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 0;
+    margin: 0;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .listing-spec {
+    padding: 0.95rem 1.1rem;
+    border-bottom: 1px solid var(--color-line);
+    border-right: 1px solid var(--color-line);
+  }
+
+  .listing-spec dt {
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-eyebrow);
+    margin-bottom: 0.3rem;
+  }
+
+  .listing-spec dd {
+    margin: 0;
+    font-size: 1.02rem;
+    font-weight: 600;
+    color: var(--color-ink);
+  }
+
+  .listing-desc p {
+    font-size: 1.02rem;
+    line-height: 1.74;
+    color: var(--color-ink-muted);
+    text-wrap: pretty;
+    margin: 0;
+    white-space: pre-line;
+  }
+
+  .listing-features ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 0.85rem;
+  }
+
+  .listing-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    font-size: 0.98rem;
+    line-height: 1.5;
+    color: var(--color-ink);
+  }
+
+  .listing-features svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+    color: var(--color-eyebrow);
+  }
+
+  /* ── İletişim kartı ── */
+  .listing-contact-card {
+    position: sticky;
+    top: calc(var(--header-h) + 1.5rem);
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-soft);
+    padding: 1.85rem 1.75rem;
+  }
+
+  .listing-contact-label {
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-eyebrow);
+    margin: 0 0 0.6rem;
+  }
+
+  .listing-contact-price {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--color-ink);
+    margin: 0 0 0.85rem;
+  }
+
+  .listing-contact-note {
+    font-size: 0.92rem;
+    line-height: 1.6;
+    color: var(--color-ink-muted);
+    margin: 0 0 1rem;
+  }
+
+  .listing-contact-ref {
+    font-size: 0.82rem;
+    color: var(--color-ink-muted);
+    margin: 0 0 1.25rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--color-line);
+  }
+
+  .listing-contact-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .listing-contact-actions .btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .listing-back {
+    margin-top: 2.5rem;
+  }
+
+  .listing-back a {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-accent);
+    text-decoration: none;
+  }
+
+  .listing-back a:hover {
+    text-decoration: underline;
+  }
+</style>
