@@ -1,0 +1,193 @@
+---
+import { site } from "../data/config";
+import { listings, statusLabel } from "../data/listings";
+
+// Ana sayfada öne çıkan ilanlar (featured) — yoksa tüm ilanlar
+const featured = listings.filter((l) => l.featured);
+const shown = (featured.length > 0 ? featured : listings).slice(0, 6);
+---
+
+{
+  shown.length > 0 && (
+    <section id="ilanlar" class="section section-home-listings">
+      <div class="container">
+        <header class="section-head section-head-center">
+          <p class="eyebrow">Portföy</p>
+          <h2>Güncel ilanlar</h2>
+          <p class="section-desc">
+            Çolakoğlu Emlak güvencesiyle sunulan güncel satılık ve kiralık
+            seçenekler. Beğendiğiniz ilan için arayın; bütçenize uygun
+            seçenekleri birlikte değerlendirelim.
+          </p>
+        </header>
+
+        <div class="listing-grid">
+          {shown.map((l) => (
+            <a href={`/ilanlar/${l.slug}/`} class="listing-card">
+              <div class="listing-card-media">
+                <img src={l.images[0]} alt={l.coverAlt} loading="lazy" decoding="async" />
+                <span class={`listing-badge listing-badge--${l.status}`}>
+                  {statusLabel(l.status)}
+                </span>
+              </div>
+              <div class="listing-card-body">
+                <p class="listing-card-loc">
+                  {l.categoryLabel}
+                  {l.mahalle ? ` · ${l.mahalle}, ${l.ilce}` : ` · ${l.ilce}`}
+                </p>
+                <h3 class="listing-card-title">{l.title}</h3>
+                <p class="listing-card-summary">{l.summary}</p>
+                <span class="listing-card-go">
+                  Detayları gör
+                  <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true">
+                    <path
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.9"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M5 12h14M13 6l6 6-6 6"
+                    />
+                  </svg>
+                </span>
+              </div>
+            </a>
+          ))}
+        </div>
+
+        <div class="home-listings-cta">
+          <a href="/ilanlar/" class="btn btn-primary">Tüm ilanları gör</a>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .section-home-listings {
+    background: var(--color-paper-deep);
+  }
+
+  .listing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 1.6rem;
+  }
+
+  .listing-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.25s var(--ease-out), box-shadow 0.3s, border-color 0.2s;
+  }
+
+  .listing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-soft);
+    border-color: var(--color-navy);
+    text-decoration: none;
+  }
+
+  .listing-card-media {
+    position: relative;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background: var(--color-bg);
+  }
+
+  .listing-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s var(--ease-out);
+  }
+
+  .listing-card:hover .listing-card-media img {
+    transform: scale(1.05);
+  }
+
+  .listing-badge {
+    position: absolute;
+    top: 0.9rem;
+    left: 0.9rem;
+    padding: 0.35rem 0.8rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.74rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #fff;
+    backdrop-filter: blur(4px);
+  }
+
+  .listing-badge--satilik {
+    background: var(--color-eyebrow);
+  }
+
+  .listing-badge--kiralik {
+    background: var(--color-navy);
+  }
+
+  .listing-card-body {
+    padding: 1.3rem 1.4rem 1.45rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  .listing-card-loc {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-eyebrow);
+    margin: 0 0 0.5rem;
+  }
+
+  .listing-card-title {
+    font-family: var(--font-serif);
+    font-size: 1.2rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    line-height: 1.28;
+    color: var(--color-ink);
+    margin: 0 0 0.6rem;
+  }
+
+  .listing-card-summary {
+    font-size: 0.94rem;
+    line-height: 1.6;
+    color: var(--color-ink-muted);
+    margin: 0 0 1.1rem;
+  }
+
+  .listing-card-go {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.86rem;
+    font-weight: 700;
+    color: var(--color-accent);
+  }
+
+  .listing-card-go svg {
+    transition: transform 0.2s var(--ease-out);
+  }
+
+  .listing-card:hover .listing-card-go svg {
+    transform: translateX(3px);
+  }
+
+  .home-listings-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 2.4rem;
+  }
+</style>
