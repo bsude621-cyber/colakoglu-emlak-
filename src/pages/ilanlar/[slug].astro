@@ -3,7 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import { site } from "../../data/config";
-import { listings, statusLabel, type Listing } from "../../data/listings";
+import { listings, statusLabel, priceDisplay, type Listing } from "../../data/listings";
 
 export async function getStaticPaths() {
   return listings.map((l) => ({
@@ -60,6 +60,30 @@ if (listing.geo) {
   };
 }
 
+// Fiyat → schema offers (satılık = toplam, kiralık = aylık UnitPriceSpecification)
+let offers: Record<string, unknown> | undefined;
+if (listing.price != null) {
+  offers =
+    listing.status === "kiralik"
+      ? {
+          "@type": "Offer",
+          availability: "https://schema.org/InStock",
+          priceSpecification: {
+            "@type": "UnitPriceSpecification",
+            price: listing.price,
+            priceCurrency: "TRY",
+            unitCode: "MON",
+            unitText: "aylık",
+          },
+        }
+      : {
+          "@type": "Offer",
+          availability: "https://schema.org/InStock",
+          price: listing.price,
+          priceCurrency: "TRY",
+        };
+}
+
 const listingSchema = {
   "@context": "https://schema.org",
   "@type": "RealEstateListing",
@@ -70,9 +94,12 @@ const listingSchema = {
   image: listing.images.map((i) => `${site.url}${i}`),
   ...(listing.refNo ? { identifier: listing.refNo } : {}),
   about,
+  ...(offers ? { offers } : {}),
   provider: { "@id": `${site.url}/#organization` },
   broker: { "@id": `${site.url}/#organization` },
 };
+
+const priceText = priceDisplay(listing);
 
 const breadcrumb = {
   "@context": "https://schema.org",
@@ -230,12 +257,29 @@ const breadcrumb = {
         <!-- Sağ: iletişim kartı (sticky) -->
         <aside class="listing-contact">
           <div class="listing-contact-card">
-            <p class="listing-contact-label">İletişim</p>
-            <p class="listing-contact-price">Fiyat için arayın</p>
-            <p class="listing-contact-note">
-              Bu ilan ve benzer seçenekler için Çolakoğlu Emlak'a ulaşın.
-              Güncel fiyat ve detayları sizinle paylaşalım.
-            </p>
+            <p class="listing-contact-label">{priceText ? statusLabel(listing.status) : "İletişim"}</p>
+            {
+              priceText ? (
+                <>
+                  <p class="listing-contact-price">{priceText}</p>
+                  {listing.priceNote && (
+                    <p class="listing-contact-pricenote">{listing.priceNote}</p>
+                  )}
+                  <p class="listing-contact-note">
+                    Bu ilanı yerinde görmek ve detaylı bilgi almak için Çolakoğlu
+                    Emlak'a ulaşın.
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p class="listing-contact-price">Fiyat için arayın</p>
+                  <p class="listing-contact-note">
+                    Bu ilan ve benzer seçenekler için Çolakoğlu Emlak'a ulaşın.
+                    Güncel fiyat ve detayları sizinle paylaşalım.
+                  </p>
+                </>
+              )
+            }
             {listing.refNo && <p class="listing-contact-ref">İlan No: {listing.refNo}</p>}
             <div class="listing-contact-actions">
               <a href={`tel:${site.contact.phone}`} class="btn btn-primary">
@@ -594,10 +638,17 @@ const breadcrumb = {
 
   .listing-contact-price {
     font-family: var(--font-serif);
-    font-size: 1.5rem;
+    font-size: 1.85rem;
     font-weight: 800;
     letter-spacing: -0.02em;
     color: var(--color-ink);
+    margin: 0 0 0.25rem;
+  }
+
+  .listing-contact-pricenote {
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--color-eyebrow);
     margin: 0 0 0.85rem;
   }
 

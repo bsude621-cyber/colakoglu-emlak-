@@ -1,7 +1,10 @@
 // Çolakoğlu Emlak — portföy / ilanlar
 // ⚠️ UYDURMA YASAK: Hiçbir ilan alanı (fiyat, m², oda, konum, özellik, foto)
 //    Çolakoğlu/Ziya onayı olmadan yazılmaz. Veri gelince doldurulur.
-// Fiyat KASTEN gösterilmiyor — her ilan telefon çağrısına yönlendirir ("arayın").
+// FİYAT (2026-06-18 Sude/Çolakoğlu onayı): ilanlarda fiyat gösteriliyor.
+//   price alanı YOKSA o ilan "Fiyat için arayın" gösterir (uydurma yapılmaz).
+//   ⚠️ Reklam Kurulu / Taşınmaz Ticareti Yönetmeliği: gösterilen fiyat GÜNCEL
+//   ve gerçek olmak zorunda — değişince burada güncellenir.
 //
 // Yeni ilan eklemek için:
 //   1) Bu diziye bir nesne ekle (aşağıdaki örnek şablonu kopyala)
@@ -32,6 +35,8 @@ export type Listing = {
   images: string[]; // ["/images/ilanlar/<slug>/01.webp", ...] — ilk görsel kapak
   coverAlt: string; // kapak görseli alt metni (SEO + erişilebilirlik)
   refNo?: string; // ilan no (varsa)
+  price?: number; // TL. kiralık = aylık kira, satılık = toplam satış bedeli. Yoksa "Fiyat için arayın"
+  priceNote?: string; // ek koşul, örn "+ KDV · 1 yıl peşin"
   featured?: boolean; // ana sayfada/listede öne çıkarılsın mı
   // Schema için opsiyonel yapısal alanlar (varsa doldur — RealEstateListing zenginleşir):
   sizeM2?: number; // kapalı/yapı alanı m²
@@ -89,6 +94,7 @@ Daireyi yerinde görmek ve güncel bilgi almak için Çolakoğlu Emlak'ı arayab
     coverAlt: "Emirbeyazıt'ta eşyalı 1+1 kiralık dairenin aydınlık salonu",
     featured: true,
     sizeM2: 60,
+    price: 35000,
   },
   {
     slug: "emirbeyazit-hasan-ercan-kiralik-dukkan",
@@ -136,6 +142,8 @@ Kiralama koşulları ve dükkanı yerinde görme randevusu için Çolakoğlu Eml
       "Emirbeyazıt Hasan Ercan Caddesi üzeri geniş vitrinli kiralık dükkanın iç görünümü",
     featured: true,
     sizeM2: 250,
+    price: 180000,
+    priceNote: "+ KDV · 1 yıl peşin",
   },
   {
     slug: "emirbeyazit-recai-gureli-kiralik-buro",
@@ -251,6 +259,7 @@ Daireyi yerinde görmek ve bilgi almak için Çolakoğlu Emlak'ı arayabilirsini
       "Emirbeyazıt Kazım Çağlar Sokak'ta 3+1 satılık dairenin aydınlık geniş salonu",
     featured: true,
     sizeM2: 170,
+    price: 12500000,
   },
   {
     slug: "emirbeyazit-kurkutcu-satilik-2-1-daire",
@@ -308,6 +317,7 @@ Daireyi yerinde görmek ve bilgi almak için Çolakoğlu Emlak'ı arayabilirsini
       "Emirbeyazıt Kürkütçü Sokak'ta 2+1 satılık dairenin aydınlık salonu",
     featured: true,
     sizeM2: 80,
+    price: 7000000,
   },
   {
     slug: "emirbeyazit-bakkaloglu-pasaji-satilik-buro",
@@ -350,11 +360,19 @@ Bilgi almak ve büroyu yerinde görmek için Çolakoğlu Emlak'ı arayabilirsini
       "Emirbeyazıt Bakkaloğlu Pasajı'nda 2 odalı satılık büronun iç görünümü",
     featured: true,
     sizeM2: 52,
+    price: 3750000,
   },
 ];
 
 // ── Yardımcılar ──
 export const statusLabel = (s: Listing["status"]): string =>
   s === "satilik" ? "Satılık" : "Kiralık";
+
+// Fiyat görünümü: "12.500.000 ₺" / kiralıkta "35.000 ₺/ay". Fiyat yoksa null.
+export const priceDisplay = (l: Listing): string | null => {
+  if (l.price == null) return null;
+  const num = new Intl.NumberFormat("tr-TR").format(l.price) + " ₺";
+  return l.status === "kiralik" ? `${num}/ay` : num;
+};
 
 export const hasListings = listings.length > 0;

@@ -3,7 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import { site } from "../../data/config";
-import { listings, statusLabel } from "../../data/listings";
+import { listings, statusLabel, priceDisplay } from "../../data/listings";
 
 const title = `Satılık & Kiralık İlanlar | ${site.name}`;
 const description =
@@ -87,6 +87,14 @@ const itemList = {
                       {l.mahalle ? ` · ${l.mahalle}, ${l.ilce}` : ` · ${l.ilce}`}
                     </p>
                     <h2 class="listing-card-title">{l.title}</h2>
+                    {priceDisplay(l) ? (
+                      <p class="listing-card-price">
+                        {priceDisplay(l)}
+                        {l.priceNote && <span class="listing-card-pricenote">{l.priceNote}</span>}
+                      </p>
+                    ) : (
+                      <p class="listing-card-price listing-card-price--call">Fiyat için arayın</p>
+                    )}
                     <p class="listing-card-summary">{l.summary}</p>
                     <span class="listing-card-go">
                       Detayları gör
@@ -273,7 +281,32 @@ const itemList = {
     letter-spacing: -0.015em;
     line-height: 1.28;
     color: var(--color-ink);
-    margin: 0 0 0.6rem;
+    margin: 0 0 0.45rem;
+  }
+
+  .listing-card-price {
+    font-family: var(--font-serif);
+    font-size: 1.32rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--color-eyebrow);
+    margin: 0 0 0.7rem;
+  }
+
+  .listing-card-pricenote {
+    display: inline-block;
+    margin-left: 0.45rem;
+    font-family: var(--font-sans);
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--color-ink-muted);
+  }
+
+  .listing-card-price--call {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-ink-muted);
   }
 
   .listing-card-summary {

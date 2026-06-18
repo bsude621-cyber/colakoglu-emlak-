@@ -1,6 +1,6 @@
 ---
 import { site } from "../data/config";
-import { listings, statusLabel } from "../data/listings";
+import { listings, statusLabel, priceDisplay } from "../data/listings";
 
 // Ana sayfada öne çıkan ilanlar (featured) — yoksa tüm ilanlar
 const featured = listings.filter((l) => l.featured);
@@ -36,6 +36,14 @@ const shown = (featured.length > 0 ? featured : listings).slice(0, 6);
                   {l.mahalle ? ` · ${l.mahalle}, ${l.ilce}` : ` · ${l.ilce}`}
                 </p>
                 <h3 class="listing-card-title">{l.title}</h3>
+                {priceDisplay(l) ? (
+                  <p class="listing-card-price">
+                    {priceDisplay(l)}
+                    {l.priceNote && <span class="listing-card-pricenote">{l.priceNote}</span>}
+                  </p>
+                ) : (
+                  <p class="listing-card-price listing-card-price--call">Fiyat için arayın</p>
+                )}
                 <p class="listing-card-summary">{l.summary}</p>
                 <span class="listing-card-go">
                   Detayları gör
@@ -157,7 +165,31 @@ const shown = (featured.length > 0 ? featured : listings).slice(0, 6);
     letter-spacing: -0.015em;
     line-height: 1.28;
     color: var(--color-ink);
-    margin: 0 0 0.6rem;
+    margin: 0 0 0.45rem;
+  }
+
+  .listing-card-price {
+    font-family: var(--font-serif);
+    font-size: 1.32rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: var(--color-eyebrow);
+    margin: 0 0 0.7rem;
+  }
+
+  .listing-card-pricenote {
+    display: inline-block;
+    margin-left: 0.45rem;
+    font-size: 0.74rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    color: var(--color-ink-muted);
+  }
+
+  .listing-card-price--call {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-ink-muted);
   }
 
   .listing-card-summary {
