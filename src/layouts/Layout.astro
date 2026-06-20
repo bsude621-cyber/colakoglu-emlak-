@@ -22,6 +22,9 @@ const {
 
 const titleFull = title.includes(site.name) ? title : `${title} | ${site.name}`;
 const ldArray = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+
+// Cloudflare Web Analytics — cookieless, KVKK uyumlu. Token env'den gelirse aktif.
+const cfBeacon = import.meta.env.PUBLIC_CF_BEACON_TOKEN;
 ---
 
 <!doctype html>
@@ -113,5 +116,12 @@ const ldArray = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
         });
       }
     </script>
+    {cfBeacon && (
+      <script
+        defer
+        src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon={`{"token": "${cfBeacon}"}`}
+      ></script>
+    )}
   </body>
 </html>

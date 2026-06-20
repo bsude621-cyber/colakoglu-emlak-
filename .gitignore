@@ -2,6 +2,9 @@
 dist/
 .astro/
 
+# sosyal medya post render dökümleri (kaynak HTML/JS izlenir, ağır PNG çıktıları regenere edilebilir)
+social/**/out/
+
 # dependencies
 node_modules/
 

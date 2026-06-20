@@ -362,6 +362,118 @@ Bilgi almak ve büroyu yerinde görmek için Çolakoğlu Emlak'ı arayabilirsini
     sizeM2: 52,
     price: 3750000,
   },
+  {
+    slug: "orhaniye-ismet-catak-kiralik-buro",
+    title: "Orhaniye'de Cadde Üzeri 2+1 60 m² Kiralık Büro",
+    status: "kiralik",
+    category: "isyeri",
+    categoryLabel: "Büro / Ofis",
+    ilce: "Menteşe",
+    mahalle: "Orhaniye",
+    summary:
+      "Menteşe Orhaniye'de, İsmet Çatak Caddesi üzerinde (DenizBank üstü); 2+1, 60 m², mutfaklı, tuvaletli, klimalı, cadde cepheli kiralık büro.",
+    description: `Menteşe Orhaniye Mahallesi, İsmet Çatak Caddesi üzerinde, DenizBank'ın üst katında yer alan bu büro 2+1 planlı ve yaklaşık 60 m² kullanım alanına sahiptir. Geniş ana bölümün yanında iki ayrı oda, mutfak köşesi ve tuvalet bulunur; odalar laminat parke zeminlidir.
+
+Cadde cepheli geniş pencerelerden bol gün ışığı alan büro, radyatör ve klima ile iklimlendirilir. Bir bölümde gömme dolap, bir odada balkon/teras çıkışı vardır. Merkezi konumu sayesinde avukatlık, muhasebe, danışmanlık, emlak gibi ofis kullanımlarına uygundur.
+
+Büroyu yerinde görmek ve güncel bilgi almak için Çolakoğlu Emlak'ı arayabilirsiniz.`,
+    features: [
+      "2+1, ayrı odalar + geniş bölüm",
+      "Cadde cepheli geniş pencereler, bol ışık",
+      "Mutfak köşesi ve tuvalet",
+      "Radyatör + klima",
+      "Laminat parke zemin",
+      "Gömme dolap + balkon/teras çıkışı",
+      "DenizBank üstü — merkezi konum",
+    ],
+    specs: [
+      { label: "Oda", value: "2+1" },
+      { label: "Brüt m²", value: "60" },
+      { label: "Isıtma", value: "Radyatör + klima" },
+      { label: "Mutfak / WC", value: "Var" },
+      { label: "Kullanım", value: "Ofis / büro" },
+      { label: "Konum", value: "İsmet Çatak Cad. — DenizBank üstü" },
+    ],
+    images: [
+      "/images/ilanlar/orhaniye-ismet-catak-kiralik-buro/01.webp",
+      "/images/ilanlar/orhaniye-ismet-catak-kiralik-buro/02.webp",
+      "/images/ilanlar/orhaniye-ismet-catak-kiralik-buro/03.webp",
+      "/images/ilanlar/orhaniye-ismet-catak-kiralik-buro/04.webp",
+      "/images/ilanlar/orhaniye-ismet-catak-kiralik-buro/05.webp",
+      "/images/ilanlar/orhaniye-ismet-catak-kiralik-buro/06.webp",
+      "/images/ilanlar/orhaniye-ismet-catak-kiralik-buro/07.webp",
+      "/images/ilanlar/orhaniye-ismet-catak-kiralik-buro/08.webp",
+      "/images/ilanlar/orhaniye-ismet-catak-kiralik-buro/09.webp",
+      "/images/ilanlar/orhaniye-ismet-catak-kiralik-buro/10.webp",
+      "/images/ilanlar/orhaniye-ismet-catak-kiralik-buro/11.webp",
+    ],
+    coverAlt:
+      "Orhaniye İsmet Çatak Caddesi'nde cadde cepheli 2+1 kiralık büronun aydınlık ana bölümü",
+    featured: true,
+    sizeM2: 60,
+    price: 35000,
+  },
+  {
+    slug: "karamehmet-avlulu-eski-mugla-evi",
+    title: "Karamehmet'te Avlulu 4 Odalı Eski Muğla Evi (145 m²)",
+    status: "satilik",
+    category: "mustakil-ev",
+    categoryLabel: "Müstakil Ev",
+    ilce: "Menteşe",
+    mahalle: "Karamehmet",
+    summary:
+      "Menteşe'nin tarihi Karamehmet Mahallesi'nde; kemerli ahşap hayatı, asmalı taş avlusu ve Muğla bacalarıyla geleneksel mimarisini koruyan, 4 odalı, ev + avlu toplam 145 m² müstakil eski Muğla evi.",
+    description: `Menteşe'nin köklü mahallelerinden Karamehmet'te, Kara Mehmet Sokak'ta yer alan bu müstakil ev, geleneksel Muğla mimarisinin tüm karakterini taşır. İki katlı evin kemerli ahşap hayatı (sundurması), camekânlı çift kanat giriş kapısı, ahşap tavanları ve cumbası özgün haliyle korunmuştur. Üst kattaki kemerli teras, Muğla şehir dokusu ve karşı tepelerin manzarasına bakar.
+
+Ev, asma çardaklı ve taş fırınlı bir avluya sahiptir; ev ile avlu toplam 145 m² kullanım alanı sunar. İçeride 4 oda, mutfak ve ıslak hacimler bulunur. Çatı kiremitli, duvarlar kârgir ve ahşap dokuludur; bacalar geleneksel Muğla bacası formundadır.
+
+70 yılın üzerinde bir geçmişe sahip olan ev, özgün dokusunu koruyarak yenileme ile bir bütün olarak değer kazanmaya çok uygundur — yaşanacak otantik bir konut ya da butik bir restorasyon projesi olarak değerlendirilebilir.
+
+Evi yerinde görmek ve güncel bilgi almak için Çolakoğlu Emlak'ı arayabilirsiniz.`,
+    features: [
+      "Geleneksel iki katlı eski Muğla evi (70+ yıl)",
+      "Kemerli ahşap hayat (sundurma) + cumba",
+      "Asma çardaklı, taş fırınlı avlu",
+      "Şehir ve tepe manzaralı üst teras",
+      "Ahşap tavanlar + kârgir taş duvar",
+      "Geleneksel Muğla bacaları",
+      "4 oda + mutfak",
+      "Müstakil — komşu duvarı paylaşımı dışında bağımsız",
+      "Restorasyon / yenileme potansiyeli yüksek",
+    ],
+    specs: [
+      { label: "Oda", value: "4 oda" },
+      { label: "Toplam Alan", value: "145 m² (ev + avlu)" },
+      { label: "Kat", value: "2 katlı" },
+      { label: "Bina Yaşı", value: "70 yıl ve üzeri" },
+      { label: "Yapı Tipi", value: "Müstakil eski Muğla evi (kârgir + ahşap)" },
+      { label: "Avlu", value: "Var (asma çardak + taş fırın)" },
+      { label: "Konum", value: "Karamehmet Mah. — Kara Mehmet Sk." },
+    ],
+    images: [
+      "/images/ilanlar/karamehmet-avlulu-eski-mugla-evi/01.webp",
+      "/images/ilanlar/karamehmet-avlulu-eski-mugla-evi/02.webp",
+      "/images/ilanlar/karamehmet-avlulu-eski-mugla-evi/03.webp",
+      "/images/ilanlar/karamehmet-avlulu-eski-mugla-evi/04.webp",
+      "/images/ilanlar/karamehmet-avlulu-eski-mugla-evi/05.webp",
+      "/images/ilanlar/karamehmet-avlulu-eski-mugla-evi/06.webp",
+      "/images/ilanlar/karamehmet-avlulu-eski-mugla-evi/07.webp",
+      "/images/ilanlar/karamehmet-avlulu-eski-mugla-evi/08.webp",
+      "/images/ilanlar/karamehmet-avlulu-eski-mugla-evi/09.webp",
+      "/images/ilanlar/karamehmet-avlulu-eski-mugla-evi/10.webp",
+      "/images/ilanlar/karamehmet-avlulu-eski-mugla-evi/11.webp",
+      "/images/ilanlar/karamehmet-avlulu-eski-mugla-evi/12.webp",
+      "/images/ilanlar/karamehmet-avlulu-eski-mugla-evi/13.webp",
+      "/images/ilanlar/karamehmet-avlulu-eski-mugla-evi/14.webp",
+      "/images/ilanlar/karamehmet-avlulu-eski-mugla-evi/15.webp",
+      "/images/ilanlar/karamehmet-avlulu-eski-mugla-evi/16.webp",
+    ],
+    coverAlt:
+      "Karamehmet'te kemerli ahşap hayatı ve camekânlı giriş kapısıyla geleneksel eski Muğla evi",
+    featured: true,
+    sizeM2: 145,
+    price: 6000000,
+  },
 ];
 
 // ── Yardımcılar ──

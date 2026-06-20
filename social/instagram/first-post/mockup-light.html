@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <title>Çolakoğlu — Açık Deniz Mockup (s1)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400..900&family=Archivo+Black&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sand:       #f6efdf;   /* açık krem zemin (sıcak) */
+      --sand-warm:  #efe4c8;
+      --sea-deep:   #0a2c44;   /* koyu deniz mavisi — metin, yüksek kontrast */
+      --sea-mid:    #4a8caa;
+      --sea-light:  #a8cee0;   /* canlı açık mavi */
+      --copper:     #a04b18;   /* koyu sıcak accent, açık zeminde belirgin */
+      --coral:      #d8623e;   /* sparing vurgu */
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { background: #2a2a2a; }
+    body {
+      font-family: 'Archivo', system-ui, sans-serif;
+      font-feature-settings: 'kern', 'liga';
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    .deck { display: flex; flex-direction: column; align-items: center; gap: 24px; padding: 24px; }
+    .slide {
+      width: 1080px; height: 1350px;
+      position: relative; overflow: hidden; flex-shrink: 0;
+      box-shadow: 0 6px 40px rgba(0,0,0,0.4);
+      background: var(--sand);
+    }
+    body.export .deck { padding: 0; gap: 0; }
+    body.export .slide:not(.active) { display: none; }
+    body.export .slide { box-shadow: none; }
+
+    /* hafif grain — sıcaklık verir, AI klişesi olmaz */
+    .grain::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 4;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.25  0 0 0 0 0.15  0 0 0 0 0.05  0 0 0 0.5 0'/></filter><rect width='220' height='220' filter='url(%23n)'/></svg>");
+      opacity: 0.10; mix-blend-mode: multiply;
+    }
+
+    /* ============ s1 — KİMLİK (AÇIK DENİZ) ============ */
+    .s1 {
+      display: grid;
+      grid-template-rows: 870px 1fr;  /* foto üstte, krem altta */
+    }
+    .s1__photo {
+      position: relative; overflow: hidden;
+      background-image: url('../../../public/images/oludeniz-hero-1659.webp');
+      background-size: cover; background-position: center 35%;
+      /* sepia YOK. Sadece minimal lift */
+      filter: saturate(1.08) contrast(1.04) brightness(1.02);
+    }
+    .s1__photo::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 70%, var(--sand) 100%);
+    }
+    .s1__photo-cap {
+      position: absolute; top: 60px; left: 60px;
+      font-family: 'Instrument Serif', serif; font-style: italic;
+      color: #fff; font-size: 22px; opacity: 0.92;
+      letter-spacing: 0.04em;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.35);
+      display: flex; align-items: center; gap: 14px;
+    }
+    .s1__photo-cap::before {
+      content: ''; width: 28px; height: 1.5px;
+      background: #fff; opacity: 0.85;
+    }
+    .s1__panel {
+      background: var(--sand);
+      padding: 60px 80px 70px;
+      display: flex; flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+    .s1__pre {
+      font-family: 'Instrument Serif', serif; font-style: italic;
+      font-size: 24px; color: var(--copper);
+      margin-bottom: 18px;
+    }
+    .s1__brand {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 80px; line-height: 0.96;
+      letter-spacing: -0.025em;
+      color: var(--sea-deep);
+    }
+    .s1__divider {
+      display: flex; align-items: center; gap: 18px;
+      margin-top: 28px;
+    }
+    .s1__divider::before, .s1__divider::after {
+      content: ''; flex: 1; height: 1.5px; background: var(--sea-deep); opacity: 0.45;
+    }
+    .s1__divider span {
+      font-size: 13px; letter-spacing: 0.42em;
+      text-transform: uppercase; color: var(--sea-deep);
+      opacity: 1; font-weight: 800;
+    }
+    .s1__since {
+      position: absolute; top: 60px; right: 80px;
+      font-family: 'Archivo', sans-serif;
+      font-size: 11px; letter-spacing: 0.5em;
+      text-transform: uppercase; color: var(--copper);
+      font-weight: 700;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .s1__since::before {
+      content: ''; width: 20px; height: 1.5px; background: var(--copper);
+    }
+  </style>
+</head>
+<body>
+  <div class="deck">
+
+    <div class="slide s1 grain">
+      <div class="s1__photo">
+        <div class="s1__photo-cap">Ölüdeniz — Fethiye / Muğla</div>
+      </div>
+      <div class="s1__panel">
+        <div class="s1__since">Est. 1994 · Muğla</div>
+        <div class="s1__pre">— Muğla'da emlak,</div>
+        <div class="s1__brand">ÇOLAKOĞLU<br>EMLAK</div>
+        <div class="s1__divider">
+          <span>1994'ten beri · 13 ilçede hizmet</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const slide = new URLSearchParams(location.search).get('slide');
+    if (slide) {
+      document.body.classList.add('export');
+      const t = document.querySelectorAll('.slide')[Number(slide) - 1];
+      if (t) t.classList.add('active');
+    }
+  </script>
+</body>
+</html>

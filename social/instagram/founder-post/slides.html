@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <title>Çolakoğlu Emlak — IG 2. Post (Kurucu: Ziya Ercan) — v3 Açık Zemin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400..900&family=Archivo+Black&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sand:       #f6efdf;
+      --sand-warm:  #ece0c0;
+      --sea-deep:   #0a2c44;
+      --sea-mid:    #4a8caa;
+      --sea-light:  #a8cee0;
+      --copper:     #b85220;
+      --coral:      #d8623e;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { background: #2a2a2a; }
+    body {
+      font-family: 'Archivo', system-ui, sans-serif;
+      font-feature-settings: 'kern', 'liga';
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    .deck { display: flex; flex-direction: column; align-items: center; gap: 24px; padding: 24px; }
+    .slide {
+      width: 1080px; height: 1350px;
+      position: relative; overflow: hidden; flex-shrink: 0;
+      box-shadow: 0 6px 40px rgba(0,0,0,0.4);
+      background: var(--sand);
+      color: var(--sea-deep);
+    }
+    /* deniz arkaplan — her slaytta direkt background-image ile, sand wash üstte (koyu yasak — açık deniz palet kuralı) */
+    /* küçük yer-adı imzası, sağ alt */
+    .sea-cap {
+      position: absolute; bottom: 36px; right: 60px; z-index: 5;
+      font-family: 'Instrument Serif', serif; font-style: italic;
+      color: var(--sea-deep); font-size: 16px; opacity: 0.58;
+      letter-spacing: 0.05em;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .sea-cap::before { content: ''; width: 18px; height: 1.5px; background: var(--sea-deep); opacity: 0.5; }
+    body.export .deck { padding: 0; gap: 0; }
+    body.export .slide:not(.active) { display: none; }
+    body.export .slide { box-shadow: none; }
+
+    .grain::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 4;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.25  0 0 0 0 0.15  0 0 0 0 0.05  0 0 0 0.5 0'/></filter><rect width='220' height='220' filter='url(%23n)'/></svg>");
+      opacity: 0.08; mix-blend-mode: multiply;
+    }
+
+    /* primitives — açık zemin */
+    .corner-mark {
+      position: absolute; top: 60px; left: 80px; z-index: 5;
+      font-size: 13px; letter-spacing: 0.42em; text-transform: uppercase;
+      font-weight: 800; color: var(--copper);
+      display: flex; align-items: center; gap: 14px;
+    }
+    .corner-mark::before { content: ''; width: 28px; height: 1.5px; background: var(--copper); }
+
+    .since-mark {
+      position: absolute; top: 60px; right: 80px; z-index: 5;
+      font-size: 11px; letter-spacing: 0.5em; text-transform: uppercase;
+      font-weight: 800; color: var(--copper);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .since-mark::before { content: ''; width: 20px; height: 1.5px; background: var(--copper); }
+
+    .kicker {
+      font-family: 'Instrument Serif', serif; font-style: italic;
+      font-size: 28px; color: var(--copper);
+      margin-bottom: 18px;
+    }
+
+    /* ============ s1 — KAPAK (PORTRE BAYA BÜYÜK + AÇIK ZEMİN + DENİZ ARKA) ============ */
+    .s1 {
+      display: flex;
+      flex-direction: column;
+      padding: 130px 60px 60px;
+      position: relative;
+      background-image:
+        linear-gradient(180deg,
+          rgba(246,239,223,0.32) 0%,
+          rgba(246,239,223,0.44) 55%,
+          rgba(246,239,223,0.78) 100%),
+        url('../../../public/images/oludeniz-hero.webp');
+      background-size: cover;
+      background-position: center 60%;
+    }
+    .s1__photo-row {
+      flex: 1;
+      display: flex; justify-content: center; align-items: stretch;
+      min-height: 0;
+      z-index: 2;
+    }
+    .s1__photo-wrap {
+      width: 100%;
+      padding: 14px;
+      background: var(--sand-warm);
+      border: 2px solid var(--sea-deep);
+      box-shadow: 0 18px 50px rgba(10,44,68,0.22),
+                  0 4px 12px rgba(10,44,68,0.14);
+      display: flex;
+    }
+    .s1__photo {
+      flex: 1;
+      background-image: url('../../../public/images/ziya-ercan-portre.jpg');
+      background-size: cover;
+      background-position: 50% 18%;
+      filter: saturate(1.16) contrast(1.1) brightness(1.02);
+    }
+    .s1__bottom {
+      flex-shrink: 0;
+      margin-top: 36px;
+      text-align: center;
+      z-index: 3;
+    }
+    .s1__kicker-c {
+      font-family: 'Instrument Serif', serif; font-style: italic;
+      font-size: 24px; color: var(--copper);
+      margin-bottom: 14px;
+    }
+    .s1__name {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 82px; line-height: 0.94;
+      letter-spacing: -0.028em; color: var(--sea-deep);
+    }
+    .s1__divider {
+      display: flex; align-items: center; gap: 18px;
+      width: 56%; margin: 22px auto 0;
+    }
+    .s1__divider::before, .s1__divider::after {
+      content: ''; flex: 1; height: 1.5px; background: var(--sea-deep); opacity: 0.45;
+    }
+    .s1__divider span {
+      font-size: 12px; letter-spacing: 0.42em; text-transform: uppercase;
+      color: var(--sea-deep); font-weight: 800;
+    }
+
+    /* ============ s2 — ÜÇ MESLEKİ KONUM (kartlar sea-deep dolgu + deniz arka) ============ */
+    .s2 {
+      padding: 130px 90px 90px; display: flex; flex-direction: column;
+      background-image:
+        linear-gradient(180deg,
+          rgba(246,239,223,0.55) 0%,
+          rgba(246,239,223,0.66) 50%,
+          rgba(246,239,223,0.82) 100%),
+        url('../../../public/images/ilce-marmaris.webp');
+      background-size: cover;
+      background-position: 30% 40%;
+    }
+    .s2__hd {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 62px; line-height: 1.04;
+      color: var(--sea-deep); margin-bottom: 56px;
+      letter-spacing: -0.022em; max-width: 820px;
+    }
+    .s2__cards { display: flex; flex-direction: column; gap: 22px; position: relative; z-index: 2; }
+    .s2__card {
+      padding: 34px 38px;
+      background: var(--sea-deep);
+      border-left: 4px solid var(--copper);
+      display: grid; grid-template-columns: 60px 1fr;
+      gap: 28px; align-items: center;
+      box-shadow: 0 10px 30px rgba(10,44,68,0.18);
+    }
+    .s2__rn {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 40px; color: var(--coral);
+      line-height: 1;
+    }
+    .s2__role {
+      font-size: 13px; letter-spacing: 0.32em;
+      text-transform: uppercase; color: var(--coral);
+      font-weight: 800; margin-bottom: 10px;
+    }
+    .s2__org {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 28px; color: var(--sand); line-height: 1.16;
+      letter-spacing: -0.012em;
+    }
+    .s2__foot {
+      margin-top: auto; padding-top: 40px;
+      border-top: 1px solid rgba(10,44,68,0.22);
+      font-family: 'Instrument Serif', serif; font-style: italic;
+      font-size: 20px; color: var(--sea-deep); opacity: 0.82;
+      line-height: 1.45;
+      position: relative; z-index: 2;
+    }
+
+    /* ============ s3 — 32 YIL + İLK OFİS + DENİZ ARKA ============ */
+    .s3 {
+      padding: 130px 90px 90px;
+      display: grid; grid-template-columns: 560px 1fr;
+      gap: 40px; align-items: center; position: relative;
+      background-image:
+        linear-gradient(180deg,
+          rgba(246,239,223,0.45) 0%,
+          rgba(246,239,223,0.58) 55%,
+          rgba(246,239,223,0.84) 100%),
+        url('../../../public/images/ilce-koycegiz.webp');
+      background-size: cover;
+      background-position: center 60%;
+    }
+    .s3__num-wrap {
+      position: relative; z-index: 2;
+      display: flex; align-items: flex-end; gap: 18px;
+    }
+    .s3__num {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 380px; line-height: 0.82;
+      color: var(--copper); letter-spacing: -0.045em;
+      transform: rotate(-1.5deg);
+      display: inline-block;
+    }
+    .s3__num-label {
+      font-size: 22px; letter-spacing: 0.4em;
+      color: var(--sea-deep); opacity: 0.78;
+      font-weight: 800;
+      padding-bottom: 130px;
+      text-transform: uppercase;
+    }
+    .s3__txt { padding-top: 10px; position: relative; z-index: 2; }
+    .s3__hd {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 58px; line-height: 1.02;
+      letter-spacing: -0.022em; margin-bottom: 30px;
+      color: var(--sea-deep);
+    }
+    .s3__body {
+      font-size: 22px; line-height: 1.55;
+      color: var(--sea-deep); opacity: 0.85;
+      max-width: 480px;
+    }
+    .s3__body b { font-weight: 700; color: var(--copper); opacity: 1; }
+    .s3__foot {
+      position: absolute; bottom: 60px; left: 90px; right: 90px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(10,44,68,0.22);
+      font-family: 'Instrument Serif', serif; font-style: italic;
+      font-size: 18px; color: var(--sea-deep); opacity: 0.78;
+      z-index: 2;
+    }
+
+    /* ============ s4 — ÇALIŞMA İLKESİ (ALINTI) + DENİZ ARKA (atmosferik) ============ */
+    .s4 {
+      padding: 160px 110px 130px;
+      display: flex; flex-direction: column; justify-content: center;
+      position: relative;
+      background-image:
+        linear-gradient(180deg,
+          rgba(246,239,223,0.45) 0%,
+          rgba(246,239,223,0.62) 50%,
+          rgba(246,239,223,0.85) 100%),
+        url('../../../public/images/ilce-datca.webp');
+      background-size: cover;
+      background-position: center 35%;
+    }
+    .s4__rule-top {
+      position: absolute; top: 200px; left: 110px;
+      width: 80px; height: 2px;
+      background: var(--copper);
+      z-index: 2;
+    }
+    .s4__quote {
+      font-family: 'Instrument Serif', serif;
+      font-size: 60px; line-height: 1.16;
+      letter-spacing: -0.014em;
+      color: var(--sea-deep);
+      position: relative; z-index: 2;
+      margin-top: 40px;
+    }
+    .s4__quote em {
+      font-style: italic;
+      color: var(--copper);
+    }
+    .s4__rule {
+      width: 60px; height: 1.5px;
+      background: var(--copper);
+      margin: 50px 0 28px;
+      position: relative; z-index: 2;
+    }
+    .s4__by {
+      font-family: 'Archivo', sans-serif;
+      font-size: 14px; letter-spacing: 0.32em;
+      text-transform: uppercase; color: var(--sea-deep);
+      font-weight: 800;
+      position: relative; z-index: 2;
+    }
+    .s4__by span {
+      display: block; margin-top: 8px;
+      font-size: 12px; opacity: 0.6;
+      letter-spacing: 0.36em;
+    }
+
+    /* ============ s5 — İLETİŞİM + DENİZ ARKA ============ */
+    .s5 {
+      padding: 130px 90px 90px; display: flex; flex-direction: column; position: relative;
+      background-image:
+        linear-gradient(180deg,
+          rgba(246,239,223,0.58) 0%,
+          rgba(246,239,223,0.70) 55%,
+          rgba(246,239,223,0.86) 100%),
+        url('../../../public/images/ilce-bodrum.webp');
+      background-size: cover;
+      background-position: center 75%;
+    }
+    .s5__hd {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 86px; line-height: 1.0;
+      color: var(--sea-deep); letter-spacing: -0.025em;
+      margin-bottom: 50px;
+      position: relative; z-index: 2;
+    }
+    .s5__handle-row {
+      display: inline-flex; align-items: center; gap: 22px;
+      padding: 26px 36px; background: var(--sea-deep);
+      align-self: flex-start; margin-bottom: 48px;
+      box-shadow: 0 12px 30px rgba(10,44,68,0.28);
+      position: relative; z-index: 2;
+    }
+    .s5__handle-label {
+      font-size: 12px; letter-spacing: 0.42em;
+      text-transform: uppercase; color: var(--sand);
+      opacity: 0.62; font-weight: 700;
+    }
+    .s5__handle {
+      font-family: 'Archivo Black', sans-serif;
+      font-size: 38px; color: var(--sand);
+      letter-spacing: -0.015em;
+    }
+    .s5__channels {
+      display: flex; flex-direction: column; gap: 14px;
+      font-size: 22px; color: var(--sea-deep);
+      border-top: 1px solid rgba(10,44,68,0.25); padding-top: 26px;
+      position: relative; z-index: 2;
+    }
+    .s5__channels b { font-weight: 700; letter-spacing: 0.02em; }
+    .s5__channels span {
+      opacity: 0.7; font-weight: 800; margin-right: 14px;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      font-size: 12px; display: inline-block; width: 120px;
+      color: var(--copper);
+    }
+    .s5__addr {
+      margin-top: 28px;
+      font-family: 'Instrument Serif', serif; font-style: italic;
+      font-size: 19px; color: var(--sea-deep); opacity: 0.78;
+      line-height: 1.4;
+      position: relative; z-index: 2;
+    }
+    .s5__slogan {
+      margin-top: auto;
+      padding: 22px 0 0;
+      border-top: 1px solid rgba(10,44,68,0.22);
+      font-size: 14px; letter-spacing: 0.4em;
+      text-transform: uppercase; color: var(--copper);
+      font-weight: 800; text-align: center;
+      position: relative; z-index: 2;
+    }
+  </style>
+</head>
+<body>
+  <div class="deck">
+
+    <!-- 1 KAPAK -->
+    <div class="slide s1 grain">
+      <div class="sea-cap">Ölüdeniz — Fethiye / Muğla</div>
+      <div class="s1__photo-row">
+        <div class="s1__photo-wrap">
+          <div class="s1__photo"></div>
+        </div>
+      </div>
+
+      <div class="s1__bottom">
+        <div class="s1__kicker-c">— Çolakoğlu Emlak'ın kurucusu,</div>
+        <div class="s1__name">ZİYA ERCAN</div>
+        <div class="s1__divider">
+          <span>Kurucu · 1994'ten beri</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2 ÜÇ MESLEKİ KONUM -->
+    <div class="slide s2 grain">
+      <div class="sea-cap">Marmaris — Muğla</div>
+      <div class="kicker">— Üç başkanlık, tek çatı.</div>
+      <div class="s2__hd">Sektörün yasal<br>meslek temsili.</div>
+
+      <div class="s2__cards">
+        <div class="s2__card">
+          <div class="s2__rn">I</div>
+          <div>
+            <div class="s2__role">Başkan</div>
+            <div class="s2__org">Muğla Emlak Danışmanları<br>Esnaf Odası</div>
+          </div>
+        </div>
+        <div class="s2__card">
+          <div class="s2__rn">II</div>
+          <div>
+            <div class="s2__role">Başkan</div>
+            <div class="s2__org">Muğla Emlak Müşavirleri<br>Derneği</div>
+          </div>
+        </div>
+        <div class="s2__card">
+          <div class="s2__rn">III</div>
+          <div>
+            <div class="s2__role">Genel Başkan Yardımcısı</div>
+            <div class="s2__org">TEMFED — Tüm Emlak<br>Müşavirleri Federasyonu</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="s2__foot">
+        Sektörel etik standardın yerel ve ulusal temsili — bu üç konum bir araya, Muğla'da tek bir adreste geliyor.
+      </div>
+    </div>
+
+    <!-- 3 32 YIL + İLK OFİS -->
+    <div class="slide s3 grain">
+      <div class="sea-cap">Köyceğiz — Muğla</div>
+      <div class="s3__num-wrap">
+        <span class="s3__num">32</span>
+        <span class="s3__num-label">YIL</span>
+      </div>
+      <div class="s3__txt">
+        <div class="kicker">— 1994'ten bu yana.</div>
+        <div class="s3__hd">Muğla'nın<br>ilk emlak ofisi.</div>
+        <div class="s3__body">
+          <b>Aynı ofis, aynı kapı, aynı söz.</b> Otuz iki yılda Muğla'nın değişen sokaklarını, mülkün hikayesini ve bir tek ilkeyi öğrendik: emlakçılıkta güven esastır.
+        </div>
+      </div>
+      <div class="s3__foot">
+        Bodrum'dan Marmaris'e, Datça'dan Fethiye'ye — Muğla'nın 13 ilçesinde saha derinliği.
+      </div>
+    </div>
+
+    <!-- 4 ÇALIŞMA İLKESİ -->
+    <div class="slide s4 grain">
+      <div class="sea-cap">Datça — Muğla</div>
+      <div class="s4__rule-top"></div>
+
+      <div class="s4__quote">
+        Bir emlakçı sadece konut göstermez —<br>
+        ailenin yıllarca yaşayacağı kararı <em>şekillendirir.</em><br>
+        Bu sorumluluk, mesleği sıradan bir<br>
+        ticaretten ayırır.
+      </div>
+
+      <div class="s4__rule"></div>
+      <div class="s4__by">
+        Ziya Ercan
+        <span>Kurucu · Çolakoğlu Emlak</span>
+      </div>
+    </div>
+
+    <!-- 5 İLETİŞİM -->
+    <div class="slide s5 grain">
+      <div class="sea-cap">Bodrum — Muğla</div>
+      <div class="kicker">— Yazılı, sözlü ya da yüz yüze.</div>
+      <div class="s5__hd">Bize<br>ulaşın.</div>
+
+      <div class="s5__handle-row">
+        <span class="s5__handle-label">Takip</span>
+        <span class="s5__handle">@colakogluemlak48</span>
+      </div>
+
+      <div class="s5__channels">
+        <div><span>WhatsApp</span><b>0532 316 82 30</b></div>
+        <div><span>Ofis</span><b>0252 212 50 15</b></div>
+        <div><span>Web</span><b>colakogluemlak48.com</b></div>
+      </div>
+
+      <div class="s5__addr">
+        Emirbeyazıt Mah. Recai Güreli Cad. Bakkaloğlu Pasajı No: 26<br>
+        Menteşe / Muğla
+      </div>
+
+      <div class="s5__slogan">Emlakçılıkta güven esastır</div>
+    </div>
+
+  </div>
+
+  <script>
+    const slide = new URLSearchParams(location.search).get('slide');
+    if (slide) {
+      document.body.classList.add('export');
+      const t = document.querySelectorAll('.slide')[Number(slide) - 1];
+      if (t) t.classList.add('active');
+    }
+  </script>
+</body>
+</html>
