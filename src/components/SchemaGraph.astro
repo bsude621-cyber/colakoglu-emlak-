@@ -26,6 +26,10 @@ const graph = {
       "@id": orgId,
       name: site.name,
       legalName: site.legalName,
+      // Entity disambiguation — "Çolakoğlu" markası çok kalabalık (çelik holding +
+      // aynı isimli farklı emlak ofisleri). Google/AI'ya net ayrım sinyali:
+      disambiguatingDescription:
+        "Muğla Menteşe'de Ziya Ercan tarafından 1994'te kurulan emlak danışmanlık ofisidir. Çolakoğlu Holding / Çolakoğlu Metalurji (çelik) veya başka şehirlerdeki (Ortaca, Dalaman) aynı adlı emlak ofisleriyle ilgisi yoktur.",
       url: baseUrl,
       logo: `${baseUrl}/images/logo.png`,
       image: `${baseUrl}/images/ziya-ercan-portre.jpg`,
@@ -140,7 +144,14 @@ const graph = {
           availableLanguage: ["Turkish"],
         },
       ],
-      sameAs: ["https://www.wikidata.org/wiki/Q140173990"],
+      // Doğrulanmış kimlik profilleri (sadece bu Menteşe/Ziya Ercan firması —
+      // başka şehirlerdeki aynı adlı ofisler DEĞİL). NAP/telefon eşleşmesiyle teyitli.
+      sameAs: [
+        "https://www.wikidata.org/wiki/Q140173990",
+        "https://www.bulurum.com/details/6110d71gagcj1_6bdb24dbagbb2hb3b3",
+        "https://tr.foursquare.com/v/çolakoğlu-emlak-ziya-ercan/546334e1498ed0dde0194442",
+        "https://www.tikla.com.tr/colakoglu-emlak-mugla-2.html",
+      ],
     },
 
     // 2) Founder Person — Ziya Ercan (otorite çekirdeği)
@@ -150,6 +161,8 @@ const graph = {
       name: site.owner.name,
       givenName: "Ziya",
       familyName: "Ercan",
+      disambiguatingDescription:
+        "Muğla emlak danışmanı; Çolakoğlu Emlak kurucusu ve Muğla Emlak Danışmanları Esnaf Odası (MEDEO) Başkanı. Aynı adı taşıyan siyasetçiyle (Wikidata Q17432221) ilgisi yoktur.",
       image: `${baseUrl}/images/ziya-ercan-portre.jpg`,
       jobTitle: site.owner.jobTitle,
       award: site.owner.titles,
