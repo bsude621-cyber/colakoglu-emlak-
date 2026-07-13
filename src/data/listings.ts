@@ -414,6 +414,51 @@ Büroyu yerinde görmek ve güncel bilgi almak için Çolakoğlu Emlak'ı arayab
     price: 35000,
   },
   {
+    slug: "emirbeyazit-turgutreis-kiralik-buro",
+    title: "Emirbeyazıt'ta Turgutreis Caddesi'nde Tek Odalı 40 m² Kiralık Büro",
+    status: "kiralik",
+    category: "isyeri",
+    categoryLabel: "Büro / Ofis",
+    ilce: "Menteşe",
+    mahalle: "Emirbeyazıt",
+    summary:
+      "Menteşe Emirbeyazıt'ta, Turgutreis Caddesi üzerinde Zeybek Sineması yanında; tek odalı, 40 m², cadde cepheli, lavabolu kiralık büro.",
+    description: `Menteşe Emirbeyazıt Mahallesi, Turgutreis Caddesi üzerinde, Zeybek Sineması yanında yer alan bu büro tek odalı ve yaklaşık 40 m² kullanım alanına sahiptir. Cadde cepheli geniş penceresi sayesinde bol gün ışığı alır.
+
+Laminat parke zeminli açık plan mekanda duvar rafları, klima ve ayrı bir lavabolu bölüm bulunur. Çarşı merkezindeki konumu ile emlak, muhasebe, danışmanlık, avukatlık gibi ofis kullanımlarına uygundur.
+
+Büroyu yerinde görmek ve güncel bilgi almak için Çolakoğlu Emlak'ı arayabilirsiniz.`,
+    features: [
+      "Tek oda, açık plan — 40 m²",
+      "Cadde cepheli geniş pencere, bol ışık",
+      "Klima",
+      "Lavabolu bölüm",
+      "Laminat parke zemin",
+      "Duvar rafları mevcut",
+      "Zeybek Sineması yanı — çarşı merkezi",
+    ],
+    specs: [
+      { label: "Oda", value: "1 oda (açık plan)" },
+      { label: "Brüt m²", value: "40" },
+      { label: "İklimlendirme", value: "Klima" },
+      { label: "Lavabo", value: "Var" },
+      { label: "Kullanım", value: "Ofis / büro" },
+      { label: "Konum", value: "Turgutreis Cad. — Zeybek Sineması yanı" },
+    ],
+    images: [
+      "/images/ilanlar/emirbeyazit-turgutreis-kiralik-buro/01.webp",
+      "/images/ilanlar/emirbeyazit-turgutreis-kiralik-buro/02.webp",
+      "/images/ilanlar/emirbeyazit-turgutreis-kiralik-buro/03.webp",
+      "/images/ilanlar/emirbeyazit-turgutreis-kiralik-buro/04.webp",
+      "/images/ilanlar/emirbeyazit-turgutreis-kiralik-buro/05.webp",
+    ],
+    coverAlt:
+      "Emirbeyazıt Turgutreis Caddesi'nde tek odalı kiralık büronun cadde cepheli aydınlık iç mekanı",
+    featured: true,
+    sizeM2: 40,
+    price: 15000,
+  },
+  {
     slug: "karamehmet-avlulu-eski-mugla-evi",
     title: "Karamehmet'te Avlulu 4 Odalı Eski Muğla Evi (145 m²)",
     status: "satilik",
