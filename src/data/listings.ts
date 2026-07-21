@@ -50,6 +50,59 @@ export type Listing = {
 
 export const listings: Listing[] = [
   {
+    slug: "karamehmet-tascilar-bahceli-kargir-ev",
+    title: "Karamehmet'te Taşçılar Sokak'ta Bahçeli Kârgir Ev (394 m²)",
+    status: "satilik",
+    category: "mustakil-ev",
+    categoryLabel: "Müstakil Ev",
+    ilce: "Menteşe",
+    mahalle: "Karamehmet",
+    summary:
+      "Menteşe'nin tarihi Karamehmet Mahallesi'nde, Taşçılar Sokak'ta; tapuda “kârgir ev ve bahçesi” nitelikli, toplam 394,84 m² tapu alanlı, iki katlı bahçeli müstakil ev.",
+    description: `Menteşe'nin köklü mahallelerinden Karamehmet'te, Taşçılar Sokak'ta yer alan bu iki katlı kârgir ev, geniş bahçesiyle birlikte satışa sunulmuştur. Tapu kaydında “kârgir ev ve bahçesi” nitelikli taşınmazın toplam tapu alanı 394,84 m²dir (ada 1786, parsel 3).
+
+Kiremit çatılı ve geleneksel Muğla bacalı evin üst katı, cephe boyunca uzanan ahşap doğramalı pencere şeridiyle bol gün ışığı alır. Bahçeye açılan taş desenli taşlık, gölgesinde oturulan bir avlu yaşamı sunar. Bahçede aralarında zeytinin de bulunduğu yetişkin ağaçlar ve asma, ayrıca müştemilat olarak kullanılan bir depo yapısı vardır. Bahçe girişi taş duvarlı, ahşap çift kanatlı kapıyla sağlanır.
+
+Tarihi Karamehmet dokusu içindeki bu müstakil ev; geniş bahçeli konut yaşamı arayanlar için olduğu kadar, yenileme ile bir bütün olarak değer kazanmaya uygun bir yatırım olarak da değerlendirilebilir.
+
+Evi yerinde görmek ve güncel bilgi almak için Çolakoğlu Emlak'ı arayabilirsiniz.`,
+    features: [
+      "İki katlı kârgir ev + geniş bahçe (tapu toplam 394,84 m²)",
+      "Tapu niteliği: kârgir ev ve bahçesi",
+      "Üst katta cephe boyu ahşap doğramalı pencereler",
+      "Kiremit çatı + geleneksel Muğla bacası",
+      "Taş desenli taşlık / avlu oturma alanı",
+      "Aralarında zeytin de bulunan yetişkin ağaçlar + asma",
+      "Müştemilat / depo yapısı",
+      "Taş duvarlı, ahşap çift kanatlı bahçe girişi",
+      "Tarihi Karamehmet dokusunda müstakil konum",
+    ],
+    specs: [
+      { label: "Tapu Alanı", value: "394,84 m² (ev + bahçe)" },
+      { label: "Nitelik", value: "Kârgir ev ve bahçesi (tapu)" },
+      { label: "Kat", value: "2 katlı" },
+      { label: "Ada / Parsel", value: "1786 / 3" },
+      { label: "İklimlendirme", value: "Klima" },
+      { label: "Konum", value: "Karamehmet Mah. — Taşçılar Sk." },
+    ],
+    images: [
+      "/images/ilanlar/karamehmet-tascilar-bahceli-kargir-ev/01.webp",
+      "/images/ilanlar/karamehmet-tascilar-bahceli-kargir-ev/02.webp",
+      "/images/ilanlar/karamehmet-tascilar-bahceli-kargir-ev/03.webp",
+      "/images/ilanlar/karamehmet-tascilar-bahceli-kargir-ev/04.webp",
+      "/images/ilanlar/karamehmet-tascilar-bahceli-kargir-ev/05.webp",
+      "/images/ilanlar/karamehmet-tascilar-bahceli-kargir-ev/06.webp",
+      "/images/ilanlar/karamehmet-tascilar-bahceli-kargir-ev/07.webp",
+      "/images/ilanlar/karamehmet-tascilar-bahceli-kargir-ev/08.webp",
+      "/images/ilanlar/karamehmet-tascilar-bahceli-kargir-ev/09.webp",
+    ],
+    coverAlt:
+      "Karamehmet Taşçılar Sokak'ta taş desenli taşlığı ve ahşap doğramalı üst katıyla iki katlı bahçeli kârgir ev",
+    featured: true,
+    landM2: 394,
+    price: 8500000,
+  },
+  {
     slug: "emirbeyazit-esyali-1-1-kiralik-daire",
     title: "Emirbeyazıt'ta Eşyalı 1+1 Kiralık Daire",
     status: "kiralik",
