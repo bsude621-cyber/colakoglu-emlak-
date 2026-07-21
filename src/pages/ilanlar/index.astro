@@ -3,15 +3,21 @@ import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import { site } from "../../data/config";
-import { listings, statusLabel, priceDisplay } from "../../data/listings";
+import { listings, statusLabel, closedLabel, priceDisplay } from "../../data/listings";
 
 const title = `Satılık & Kiralık İlanlar | ${site.name}`;
 const description =
   "Çolakoğlu Emlak güncel portföyü — Muğla'nın 13 ilçesinde satılık ve kiralık konut, villa, arsa ve ticari gayrimenkul ilanları.";
 const canonical = `${site.url}/ilanlar/`;
 
-const featured = listings.filter((l) => l.featured);
-const ordered = [...featured, ...listings.filter((l) => !l.featured)];
+// Aktif ilanlar önce (featured başta), kiralanmış/satılmış ilanlar en sonda
+const active = listings.filter((l) => !l.closed);
+const closed = listings.filter((l) => l.closed);
+const ordered = [
+  ...active.filter((l) => l.featured),
+  ...active.filter((l) => !l.featured),
+  ...closed,
+];
 
 const breadcrumb = {
   "@context": "https://schema.org",
@@ -69,7 +75,10 @@ const itemList = {
           ordered.length > 0 ? (
             <div class="listing-grid">
               {ordered.map((l) => (
-                <a href={`/ilanlar/${l.slug}/`} class="listing-card">
+                <a
+                  href={`/ilanlar/${l.slug}/`}
+                  class={`listing-card${l.closed ? " listing-card--closed" : ""}`}
+                >
                   <div class="listing-card-media">
                     <img
                       src={l.images[0]}
@@ -77,8 +86,10 @@ const itemList = {
                       loading="lazy"
                       decoding="async"
                     />
-                    <span class={`listing-badge listing-badge--${l.status}`}>
-                      {statusLabel(l.status)}
+                    <span
+                      class={`listing-badge listing-badge--${l.closed ?? l.status}`}
+                    >
+                      {l.closed ? closedLabel(l.closed) : statusLabel(l.status)}
                     </span>
                   </div>
                   <div class="listing-card-body">
@@ -87,7 +98,11 @@ const itemList = {
                       {l.mahalle ? ` · ${l.mahalle}, ${l.ilce}` : ` · ${l.ilce}`}
                     </p>
                     <h2 class="listing-card-title">{l.title}</h2>
-                    {priceDisplay(l) ? (
+                    {l.closed ? (
+                      <p class="listing-card-price listing-card-price--call">
+                        {closedLabel(l.closed)} — benzer seçenekler için arayın
+                      </p>
+                    ) : priceDisplay(l) ? (
                       <p class="listing-card-price">
                         {priceDisplay(l)}
                         {l.priceNote && <span class="listing-card-pricenote">{l.priceNote}</span>}
@@ -256,6 +271,15 @@ const itemList = {
 
   .listing-badge--kiralik {
     background: var(--color-navy);
+  }
+
+  .listing-badge--kiralandi,
+  .listing-badge--satildi {
+    background: var(--color-ink-muted);
+  }
+
+  .listing-card--closed .listing-card-media img {
+    filter: grayscale(45%);
   }
 
   .listing-card-body {

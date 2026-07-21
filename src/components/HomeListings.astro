@@ -2,9 +2,10 @@
 import { site } from "../data/config";
 import { listings, statusLabel, priceDisplay } from "../data/listings";
 
-// Ana sayfada öne çıkan ilanlar (featured) — yoksa tüm ilanlar
-const featured = listings.filter((l) => l.featured);
-const shown = (featured.length > 0 ? featured : listings).slice(0, 6);
+// Ana sayfada öne çıkan aktif ilanlar (featured) — kiralanmış/satılmış gösterilmez
+const active = listings.filter((l) => !l.closed);
+const featured = active.filter((l) => l.featured);
+const shown = (featured.length > 0 ? featured : active).slice(0, 6);
 ---
 
 {

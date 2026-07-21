@@ -38,6 +38,10 @@ export type Listing = {
   price?: number; // TL. kiralık = aylık kira, satılık = toplam satış bedeli. Yoksa "Fiyat için arayın"
   priceNote?: string; // ek koşul, örn "+ KDV · 1 yıl peşin"
   featured?: boolean; // ana sayfada/listede öne çıkarılsın mı
+  // İşlem tamamlandı: "kiralandi" | "satildi". İşaretlenince ilan listede otomatik
+  // sona düşer, ana sayfadan çıkar, fiyat + schema Offer gösterilmez (Reklam Kurulu:
+  // mevcut olmayan teklife fiyat yazılmaz). Sayfa canlı kalır (404 üretme).
+  closed?: "kiralandi" | "satildi";
   // Schema için opsiyonel yapısal alanlar (varsa doldur — RealEstateListing zenginleşir):
   sizeM2?: number; // kapalı/yapı alanı m²
   landM2?: number; // arsa/parsel m²
@@ -92,7 +96,9 @@ Daireyi yerinde görmek ve güncel bilgi almak için Çolakoğlu Emlak'ı arayab
       "/images/ilanlar/emirbeyazit-esyali-1-1-kiralik-daire/14.webp",
     ],
     coverAlt: "Emirbeyazıt'ta eşyalı 1+1 kiralık dairenin aydınlık salonu",
-    featured: true,
+    featured: false,
+    closed: "kiralandi", // 2026-07-21 Sude bildirdi
+
     sizeM2: 60,
     price: 35000,
   },
@@ -454,7 +460,9 @@ Büroyu yerinde görmek ve güncel bilgi almak için Çolakoğlu Emlak'ı arayab
     ],
     coverAlt:
       "Emirbeyazıt Turgutreis Caddesi'nde tek odalı kiralık büronun cadde cepheli aydınlık iç mekanı",
-    featured: true,
+    featured: false,
+    closed: "kiralandi", // 2026-07-21 Sude bildirdi
+
     sizeM2: 40,
     price: 15000,
   },
@@ -525,9 +533,13 @@ Evi yerinde görmek ve güncel bilgi almak için Çolakoğlu Emlak'ı arayabilir
 export const statusLabel = (s: Listing["status"]): string =>
   s === "satilik" ? "Satılık" : "Kiralık";
 
+export const closedLabel = (c: NonNullable<Listing["closed"]>): string =>
+  c === "kiralandi" ? "Kiralandı" : "Satıldı";
+
 // Fiyat görünümü: "12.500.000 ₺" / kiralıkta "35.000 ₺/ay". Fiyat yoksa null.
+// Kapanmış (kiralandı/satıldı) ilanda fiyat gösterilmez.
 export const priceDisplay = (l: Listing): string | null => {
-  if (l.price == null) return null;
+  if (l.closed || l.price == null) return null;
   const num = new Intl.NumberFormat("tr-TR").format(l.price) + " ₺";
   return l.status === "kiralik" ? `${num}/ay` : num;
 };

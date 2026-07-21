@@ -3,7 +3,7 @@ import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import { site } from "../../data/config";
-import { listings, statusLabel, priceDisplay, type Listing } from "../../data/listings";
+import { listings, statusLabel, closedLabel, priceDisplay, type Listing } from "../../data/listings";
 
 export async function getStaticPaths() {
   return listings.map((l) => ({
@@ -61,8 +61,9 @@ if (listing.geo) {
 }
 
 // Fiyat → schema offers (satılık = toplam, kiralık = aylık UnitPriceSpecification)
+// Kapanmış (kiralandı/satıldı) ilanda Offer yayınlanmaz — mevcut olmayan teklif gösterilmez.
 let offers: Record<string, unknown> | undefined;
-if (listing.price != null) {
+if (listing.price != null && !listing.closed) {
   offers =
     listing.status === "kiralik"
       ? {
@@ -133,8 +134,10 @@ const breadcrumb = {
 
       <header class="listing-detail-head">
         <div class="listing-detail-meta">
-          <span class={`listing-badge listing-badge--${listing.status}`}>
-            {statusLabel(listing.status)}
+          <span
+            class={`listing-badge listing-badge--${listing.closed ?? listing.status}`}
+          >
+            {listing.closed ? closedLabel(listing.closed) : statusLabel(listing.status)}
           </span>
           <span class="listing-detail-cat">{listing.categoryLabel}</span>
           <span class="listing-detail-loc">{locText}</span>
@@ -257,9 +260,21 @@ const breadcrumb = {
         <!-- Sağ: iletişim kartı (sticky) -->
         <aside class="listing-contact">
           <div class="listing-contact-card">
-            <p class="listing-contact-label">{priceText ? statusLabel(listing.status) : "İletişim"}</p>
+            <p class="listing-contact-label">
+              {listing.closed ? "Durum" : priceText ? statusLabel(listing.status) : "İletişim"}
+            </p>
             {
-              priceText ? (
+              listing.closed ? (
+                <>
+                  <p class="listing-contact-price">{closedLabel(listing.closed)}</p>
+                  <p class="listing-contact-note">
+                    Bu mülk Çolakoğlu Emlak aracılığıyla{" "}
+                    {listing.closed === "kiralandi" ? "kiralanmıştır" : "satılmıştır"}.
+                    Benzer seçenekler için bize ulaşın; portföydeki güncel
+                    ilanları sizinle paylaşalım.
+                  </p>
+                </>
+              ) : priceText ? (
                 <>
                   <p class="listing-contact-price">{priceText}</p>
                   {listing.priceNote && (
@@ -287,7 +302,9 @@ const breadcrumb = {
               </a>
               <a
                 href={`https://wa.me/${site.contact.whatsapp}?text=${encodeURIComponent(
-                  `Merhaba, "${listing.title}" ilanı hakkında bilgi almak istiyorum.`
+                  listing.closed
+                    ? `Merhaba, "${listing.title}" ilanına benzer güncel seçenekler hakkında bilgi almak istiyorum.`
+                    : `Merhaba, "${listing.title}" ilanı hakkında bilgi almak istiyorum.`
                 )}`}
                 class="btn btn-ghost"
                 rel="noopener"
@@ -397,6 +414,11 @@ const breadcrumb = {
 
   .listing-badge--kiralik {
     background: var(--color-navy);
+  }
+
+  .listing-badge--kiralandi,
+  .listing-badge--satildi {
+    background: var(--color-ink-muted);
   }
 
   .listing-detail-cat,
