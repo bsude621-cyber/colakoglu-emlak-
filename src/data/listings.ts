@@ -255,6 +255,7 @@ Bilgi almak ve büroyu yerinde görmek için Çolakoğlu Emlak'ı arayabilirsini
       "Emirbeyazıt Recai Güreli Caddesi Osman Ercan İş Merkezi'nde 2. kat kiralık büronun aydınlık odası",
     featured: true,
     sizeM2: 50,
+    price: 25000,
   },
   {
     slug: "emirbeyazit-kazim-caglar-satilik-3-1-daire",
