@@ -50,6 +50,70 @@ export type Listing = {
 
 export const listings: Listing[] = [
   {
+    slug: "emirbeyazit-koyuncuoglu-kiralik-dubleks",
+    title: "Emirbeyazıt'ta Koyuncuoğlu Apartmanı'nda 3+1 Kiralık Dubleks Daire",
+    status: "kiralik",
+    category: "daire",
+    categoryLabel: "Daire",
+    ilce: "Menteşe",
+    mahalle: "Emirbeyazıt",
+    summary:
+      "Menteşe Emirbeyazıt'ta, Cemil Şerif Baydur Sokak'taki Koyuncuoğlu Apartmanı'nda; iki banyolu, bol gömme dolaplı 3+1 kiralık dubleks daire.",
+    description: `Menteşe Emirbeyazıt Mahallesi'nde, Cemil Şerif Baydur Sokak ile Hasan Ercan Caddesi köşesindeki Koyuncuoğlu Apartmanı'nda yer alan bu 3+1 daire, iki katı iç mermer merdivenle bağlanan dubleks düzendedir (ada 552, parsel 88).
+
+Dairede geniş bir salon, üç oda, ayrı mutfak ve iki banyo bulunur. Banyolardan biri duşakabinli olarak yenilenmiştir. Odalarda ve kat sahanlığında bol miktarda gömme dolap, ayrıca dolaplı kapalı balkon vardır. Zeminler odalarda laminat parke, ıslak hacimlerde seramiktir; ısıtma radyatörlüdür.
+
+Eczaneler, market ve okulların yürüme mesafesinde olduğu Emirbeyazıt konumu, günlük yaşamın merkezinde bir kiralık arayanlar için uygundur.
+
+Daireyi yerinde görmek ve güncel bilgi almak için Çolakoğlu Emlak'ı arayabilirsiniz.`,
+    features: [
+      "İç mermer merdivenli dubleks düzen",
+      "3 oda + geniş salon",
+      "2 banyo (biri duşakabinli yenilenmiş)",
+      "Odalarda ve sahanlıkta gömme dolaplar",
+      "Dolaplı kapalı balkon",
+      "Ayrı mutfak (granit tezgâh, davlumbaz)",
+      "Radyatörlü ısıtma",
+      "Cemil Şerif Baydur Sk. × Hasan Ercan Cad. köşe konum",
+    ],
+    specs: [
+      { label: "Oda", value: "3+1 dubleks" },
+      { label: "Banyo", value: "2 (biri yenilenmiş)" },
+      { label: "Isıtma", value: "Radyatörlü" },
+      { label: "Balkon", value: "Kapalı, dolaplı" },
+      { label: "Ada / Parsel", value: "552 / 88" },
+      { label: "Konum", value: "Emirbeyazıt Mah. Cemil Şerif Baydur Sk. — Koyuncuoğlu Apt." },
+    ],
+    images: [
+      "/images/ilanlar/emirbeyazit-koyuncuoglu-kiralik-dubleks/01.webp",
+      "/images/ilanlar/emirbeyazit-koyuncuoglu-kiralik-dubleks/02.webp",
+      "/images/ilanlar/emirbeyazit-koyuncuoglu-kiralik-dubleks/03.webp",
+      "/images/ilanlar/emirbeyazit-koyuncuoglu-kiralik-dubleks/04.webp",
+      "/images/ilanlar/emirbeyazit-koyuncuoglu-kiralik-dubleks/05.webp",
+      "/images/ilanlar/emirbeyazit-koyuncuoglu-kiralik-dubleks/06.webp",
+      "/images/ilanlar/emirbeyazit-koyuncuoglu-kiralik-dubleks/07.webp",
+      "/images/ilanlar/emirbeyazit-koyuncuoglu-kiralik-dubleks/08.webp",
+      "/images/ilanlar/emirbeyazit-koyuncuoglu-kiralik-dubleks/09.webp",
+      "/images/ilanlar/emirbeyazit-koyuncuoglu-kiralik-dubleks/10.webp",
+      "/images/ilanlar/emirbeyazit-koyuncuoglu-kiralik-dubleks/11.webp",
+      "/images/ilanlar/emirbeyazit-koyuncuoglu-kiralik-dubleks/12.webp",
+      "/images/ilanlar/emirbeyazit-koyuncuoglu-kiralik-dubleks/13.webp",
+      "/images/ilanlar/emirbeyazit-koyuncuoglu-kiralik-dubleks/14.webp",
+      "/images/ilanlar/emirbeyazit-koyuncuoglu-kiralik-dubleks/15.webp",
+      "/images/ilanlar/emirbeyazit-koyuncuoglu-kiralik-dubleks/16.webp",
+      "/images/ilanlar/emirbeyazit-koyuncuoglu-kiralik-dubleks/17.webp",
+      "/images/ilanlar/emirbeyazit-koyuncuoglu-kiralik-dubleks/18.webp",
+      "/images/ilanlar/emirbeyazit-koyuncuoglu-kiralik-dubleks/19.webp",
+      "/images/ilanlar/emirbeyazit-koyuncuoglu-kiralik-dubleks/20.webp",
+      "/images/ilanlar/emirbeyazit-koyuncuoglu-kiralik-dubleks/21.webp",
+      "/images/ilanlar/emirbeyazit-koyuncuoglu-kiralik-dubleks/22.webp",
+    ],
+    coverAlt:
+      "Emirbeyazıt Cemil Şerif Baydur Sokak'taki Koyuncuoğlu Apartmanı'nın köşe cephesi — 3+1 kiralık dubleks daire",
+    featured: true,
+    price: 40000,
+  },
+  {
     slug: "karamehmet-tascilar-bahceli-kargir-ev",
     title: "Karamehmet'te Taşçılar Sokak'ta Bahçeli Kârgir Ev (394 m²)",
     status: "satilik",
