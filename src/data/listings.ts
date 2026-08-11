@@ -111,7 +111,7 @@ Daireyi yerinde görmek ve güncel bilgi almak için Çolakoğlu Emlak'ı arayab
     coverAlt:
       "Emirbeyazıt Cemil Şerif Baydur Sokak'taki Koyuncuoğlu Apartmanı'nın köşe cephesi — 3+1 kiralık dubleks daire",
     featured: true,
-    price: 40000,
+    price: 45000,
   },
   {
     slug: "karamehmet-tascilar-bahceli-kargir-ev",
