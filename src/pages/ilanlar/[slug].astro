@@ -52,6 +52,16 @@ if (listing.sizeM2) {
     unitCode: "MTK",
   };
 }
+if (listing.landM2) {
+  about.additionalProperty = [
+    {
+      "@type": "PropertyValue",
+      name: "Arsa / tapu alanı",
+      value: listing.landM2,
+      unitCode: "MTK",
+    },
+  ];
+}
 if (listing.geo) {
   about.geo = {
     "@type": "GeoCoordinates",

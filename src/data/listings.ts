@@ -50,6 +50,63 @@ export type Listing = {
 
 export const listings: Listing[] = [
   {
+    slug: "ortakoy-koyici-imarli-konut-arsasi",
+    title: "Ortaköy'de 502 m² İmarlı Konut Arsası (2 Kat, Emsal 0,30)",
+    status: "satilik",
+    category: "arsa",
+    categoryLabel: "Arsa",
+    ilce: "Menteşe",
+    mahalle: "Ortaköy",
+    summary:
+      "Menteşe Ortaköy Mahallesi'nde, köy içi mevkiinde; 1/1000 ölçekli uygulama imar planında gelişme konut alanında kalan, 2 kat imarlı (TAKS 0,15 / KAKS 0,30), 502,15 m² tapu alanlı, yola cepheli satılık arsa.",
+    description: `Menteşe'nin Ortaköy Mahallesi'nde, Köyiçi mevkiinde yer alan bu arsa 502,15 m² tapu alanına sahiptir (ada 196, parsel 6; pafta N20-C-09-A-3-B; tapu niteliği "arsa").
+
+Parsel, yürürlükteki 1/1000 ölçekli Muğla Ortaköy Uygulama İmar Planı'nda Gelişme Konut Alanı fonksiyonundadır. İmar durumuna göre 2 kat, serbest nizam; TAKS 0,15 ve KAKS (emsal) 0,30; yan bahçe mesafesi 3,00 m'dir. Bu değerlerle parsel üzerinde yaklaşık 150 m² toplam inşaat alanlı (yaklaşık 75 m² taban oturumlu) iki katlı müstakil bir konut planlanabilir; kesin hesap için belediyeden güncel imar durumu alınması önerilir.
+
+Arsa, cephe aldığı sokağa bordürle ayrılmış düz bir parseldir; sokakta elektrik hattı mevcuttur. Çevresinde yeni yapılmış iki katlı müstakil konutlar bulunur; mahalle dokusu oturmuş, Muğla merkeze yakın, sakin bir yerleşimdir. Arka planda Muğla'yı çevreleyen dağ silüeti görülür.
+
+Satış ilanı için taşınmaz maliki tarafından Web Tapu üzerinden Çolakoğlu Emlak'a yetki verilmiştir (taşınmaz ticareti yetki belgeli ilan).
+
+Arsayı yerinde görmek, imar ve tapu bilgilerini incelemek için Çolakoğlu Emlak'ı arayabilirsiniz.`,
+    features: [
+      "502,15 m² tapu alanı (ada 196 / parsel 6)",
+      "1/1000 uygulama imar planında Gelişme Konut Alanı",
+      "2 kat imarlı, serbest nizam",
+      "TAKS 0,15 / KAKS (emsal) 0,30",
+      "Yola cepheli, düz parsel — Köyiçi mevkii",
+      "Çevresinde yeni yapılmış müstakil konutlar, oturmuş mahalle dokusu",
+      "Sokakta elektrik hattı mevcut",
+      "Web Tapu üzerinden yetkilendirilmiş, yetki belgeli ilan",
+    ],
+    specs: [
+      { label: "Tapu Alanı", value: "502,15 m²" },
+      { label: "Nitelik", value: "Arsa" },
+      { label: "Ada / Parsel", value: "196 / 6" },
+      { label: "Mevkii", value: "Köyiçi" },
+      { label: "Pafta", value: "N20-C-09-A-3-B" },
+      { label: "İmar Planı", value: "1/1000 Muğla Ortaköy Uygulama İmar Planı" },
+      { label: "Fonksiyon", value: "Gelişme Konut Alanı" },
+      { label: "Kat Adedi", value: "2" },
+      { label: "İnşaat Nizamı", value: "Serbest" },
+      { label: "TAKS / KAKS", value: "0,15 / 0,30" },
+      { label: "Yan Bahçe", value: "3,00 m" },
+      { label: "Konum", value: "Ortaköy Mah. — Menteşe, Muğla" },
+    ],
+    images: [
+      "/images/ilanlar/ortakoy-koyici-imarli-konut-arsasi/01.webp",
+      "/images/ilanlar/ortakoy-koyici-imarli-konut-arsasi/02.webp",
+      "/images/ilanlar/ortakoy-koyici-imarli-konut-arsasi/03.webp",
+      "/images/ilanlar/ortakoy-koyici-imarli-konut-arsasi/04.webp",
+      "/images/ilanlar/ortakoy-koyici-imarli-konut-arsasi/05.webp",
+      "/images/ilanlar/ortakoy-koyici-imarli-konut-arsasi/06.webp",
+    ],
+    coverAlt:
+      "Menteşe Ortaköy'de yola cepheli 502 m² imarlı konut arsası — arka planda komşu iki katlı konutlar",
+    featured: true,
+    landM2: 502.15,
+    price: 16000000,
+  },
+  {
     slug: "emirbeyazit-koyuncuoglu-kiralik-dubleks",
     title: "Emirbeyazıt'ta Koyuncuoğlu Apartmanı'nda 3+1 Kiralık Dubleks Daire",
     status: "kiralik",
