@@ -99,6 +99,11 @@ Arsayı yerinde görmek, imar ve tapu bilgilerini incelemek için Çolakoğlu Em
       "/images/ilanlar/ortakoy-koyici-imarli-konut-arsasi/04.webp",
       "/images/ilanlar/ortakoy-koyici-imarli-konut-arsasi/05.webp",
       "/images/ilanlar/ortakoy-koyici-imarli-konut-arsasi/06.webp",
+      "/images/ilanlar/ortakoy-koyici-imarli-konut-arsasi/07.webp",
+      "/images/ilanlar/ortakoy-koyici-imarli-konut-arsasi/08.webp",
+      "/images/ilanlar/ortakoy-koyici-imarli-konut-arsasi/09.webp",
+      "/images/ilanlar/ortakoy-koyici-imarli-konut-arsasi/10.webp",
+      "/images/ilanlar/ortakoy-koyici-imarli-konut-arsasi/11.webp",
     ],
     coverAlt:
       "Menteşe Ortaköy'de yola cepheli 502 m² imarlı konut arsası — arka planda komşu iki katlı konutlar",
