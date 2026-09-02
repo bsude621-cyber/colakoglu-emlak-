@@ -50,6 +50,66 @@ export type Listing = {
 
 export const listings: Listing[] = [
   {
+    slug: "karamehmet-tolga-sitesi-kiralik-dubleks",
+    title: "Karamehmet'te Tolga Sitesi'nde Teraslı 3+1 Kiralık Dubleks Daire",
+    status: "kiralik",
+    category: "daire",
+    categoryLabel: "Daire",
+    ilce: "Menteşe",
+    mahalle: "Karamehmet",
+    summary:
+      "Menteşe Karamehmet'te, Selçuk Çağlayan Sokak'taki Tolga Sitesi'nde; üstü kapalı geniş çatı terası ve Muğla manzaralı 3+1 kiralık dubleks daire.",
+    description: `Menteşe Karamehmet Mahallesi'nde, Selçuk Çağlayan Sokak üzerindeki Tolga Sitesi'nde yer alan bu 3+1 daire dubleks düzendedir; üst katında çelik konstrüksiyonla üstü kapatılmış, seramik zeminli geniş bir çatı terası bulunur (ada 1781, parsel 1). Terastan Muğla'nın çatıları ve karşı tepelere uzanan şehir manzarası izlenir.
+
+Salon kemerli geçişli ve kartonpiyer tavanlıdır. Salon ve odalarda laminat parke, ıslak hacimlerde seramik zemin vardır. Isıtma radyatörlüdür; odalarda split klima mevcuttur. Odalardan birinde gömme dolap, mutfakta koyu ahşap dolaplar ve granit tezgâh bulunur. İki banyodan biri duşakabinli ve klozetli, diğeri alaturka tuvaletlidir. Demir korkuluklu balkon ve çok sayıda pencereyle daire bol gün ışığı alır.
+
+Açık pazar yerine yürüme mesafesindeki Karamehmet konumu, şehir merkezine yakın sakin bir sokakta oturmak isteyenler için uygundur. Mülk sahibinin kiracı tercihi memurdur.
+
+Daireyi yerinde görmek ve güncel bilgi almak için Çolakoğlu Emlak'ı arayabilirsiniz.`,
+    features: [
+      "Üstü kapalı geniş çatı terası (Muğla manzaralı)",
+      "3 oda + kemerli geçişli salon",
+      "2 banyo (biri duşakabinli, diğeri alaturka)",
+      "Radyatörlü ısıtma + split klima",
+      "Gömme dolap",
+      "Koyu ahşap mutfak dolapları, granit tezgâh",
+      "Laminat parke zemin",
+      "Demir korkuluklu balkon",
+    ],
+    specs: [
+      { label: "Oda", value: "3+1 dubleks" },
+      { label: "Banyo", value: "2 (biri duşakabinli, biri alaturka)" },
+      { label: "Isıtma", value: "Radyatörlü + split klima" },
+      { label: "Teras", value: "Üstü kapalı çatı terası" },
+      { label: "Ada / Parsel", value: "1781 / 1" },
+      { label: "Konum", value: "Karamehmet Mah. Selçuk Çağlayan Sk. — Tolga Sitesi" },
+      { label: "Kiracı tercihi", value: "Memur" },
+    ],
+    images: [
+      "/images/ilanlar/karamehmet-tolga-sitesi-kiralik-dubleks/01.webp",
+      "/images/ilanlar/karamehmet-tolga-sitesi-kiralik-dubleks/02.webp",
+      "/images/ilanlar/karamehmet-tolga-sitesi-kiralik-dubleks/03.webp",
+      "/images/ilanlar/karamehmet-tolga-sitesi-kiralik-dubleks/04.webp",
+      "/images/ilanlar/karamehmet-tolga-sitesi-kiralik-dubleks/05.webp",
+      "/images/ilanlar/karamehmet-tolga-sitesi-kiralik-dubleks/06.webp",
+      "/images/ilanlar/karamehmet-tolga-sitesi-kiralik-dubleks/07.webp",
+      "/images/ilanlar/karamehmet-tolga-sitesi-kiralik-dubleks/08.webp",
+      "/images/ilanlar/karamehmet-tolga-sitesi-kiralik-dubleks/09.webp",
+      "/images/ilanlar/karamehmet-tolga-sitesi-kiralik-dubleks/10.webp",
+      "/images/ilanlar/karamehmet-tolga-sitesi-kiralik-dubleks/11.webp",
+      "/images/ilanlar/karamehmet-tolga-sitesi-kiralik-dubleks/12.webp",
+      "/images/ilanlar/karamehmet-tolga-sitesi-kiralik-dubleks/13.webp",
+      "/images/ilanlar/karamehmet-tolga-sitesi-kiralik-dubleks/14.webp",
+      "/images/ilanlar/karamehmet-tolga-sitesi-kiralik-dubleks/15.webp",
+      "/images/ilanlar/karamehmet-tolga-sitesi-kiralik-dubleks/16.webp",
+    ],
+    coverAlt:
+      "Karamehmet Selçuk Çağlayan Sokak'taki Tolga Sitesi'nin cephesi — teraslı 3+1 kiralık dubleks daire",
+    featured: true,
+    price: 30000,
+    priceNote: "Memur kiracı tercih edilir",
+  },
+  {
     slug: "ortakoy-koyici-imarli-konut-arsasi",
     title: "Ortaköy'de 502 m² İmarlı Konut Arsası (2 Kat, Emsal 0,30)",
     status: "satilik",
