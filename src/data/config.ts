@@ -11,6 +11,11 @@ export const site = {
   foundingYear: 1994,
   description:
     "Çolakoğlu Emlak — 1994'te kurulan, Muğla'nın ilk emlak ofisi. Ziya Ercan liderliğinde 32 yıllık tecrübeyle gayrimenkul danışmanlığı; Muğla Emlak Danışmanları Esnaf Odası ve Müşavirleri Derneği Başkanı, TEMFED Genel Başkan Yardımcısı.",
+  // SERP'te görünen kısa açıklama (140-160 karakter hedefi).
+  // description alanı schema/AI için uzun tutulur; meta description Google'ın
+  // ~160 karakterde kestiği yerdir — ayrı tutulur ki SERP'te cümle yarım kalmasın.
+  metaDescription:
+    "Muğla'nın ilk emlak ofisi — 1994'ten beri. Satılık & kiralık konut, arsa, işyeri; değerleme ve tapu sürecinde 32 yıl tecrübe. Ara: 0252 212 50 15",
   locale: "tr_TR",
   region: "Muğla",
   country: "TR",

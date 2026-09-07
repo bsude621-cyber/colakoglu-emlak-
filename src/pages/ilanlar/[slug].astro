@@ -21,9 +21,45 @@ const canonical = `${site.url}/ilanlar/${listing.slug}/`;
 const locText = listing.mahalle
   ? `${listing.mahalle}, ${listing.ilce}`
   : listing.ilce;
-const title = `${listing.title} | ${site.name}`;
+
+// SEO başlığı H1'den AYRI tutulur. H1 tam tanımlayıcı kalır (sokak/site adı =
+// hyperlocal long-tail), <title> ise 60 karakterde arama talebi olan terimleri
+// öne alır — uzun başlıkları Google zaten kendi yeniden yazıyordu.
+const roomSpec = listing.specs.find((sp) => /^oda$/i.test(sp.label))?.value;
+const roomShort = roomSpec?.match(/^[0-9]+\+[0-9]+/)?.[0];
+const areaM2 = listing.sizeM2 ?? listing.landM2;
+const areaShort = areaM2
+  ? `${new Intl.NumberFormat("tr-TR").format(Math.round(areaM2))} m²`
+  : undefined;
+// "Büro / Ofis" → "Büro": başlıkta yer kazanır, arama talebi zaten ilk terimde
+const catShort = listing.categoryLabel.split(" / ")[0].trim();
+const detailShort = roomShort ?? areaShort;
+const brandSuffix = ` | ${site.name}`;
+
+// Başlık adayları en zenginden en sadeye. KONUM her zaman korunur —
+// yerel arama sinyalinin taşıyıcısı odur; kırpılacaksa önce m²/oda düşer.
+const titleCandidates = [
+  detailShort && `${statusLabel(listing.status)} ${catShort} ${detailShort} — ${locText}`,
+  detailShort && `${statusLabel(listing.status)} ${catShort} ${detailShort} — ${listing.ilce}`,
+  `${statusLabel(listing.status)} ${catShort} — ${locText}`,
+  `${statusLabel(listing.status)} ${catShort} — ${listing.ilce}`,
+].filter(Boolean) as string[];
+
+const title =
+  (titleCandidates.find((c) => (c + brandSuffix).length <= 60) ??
+    titleCandidates[titleCandidates.length - 1]) + brandSuffix;
+
 const description = listing.summary.slice(0, 155);
 const cover = `${site.url}${listing.images[0]}`;
+
+// Tazelik sinyali — gerçek tarihler (uydurma güncelleme yapılmaz)
+const datePosted = listing.datePosted;
+const dateModified = listing.updatedAt ?? listing.datePosted;
+const dateHuman = new Intl.DateTimeFormat("tr-TR", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+}).format(new Date(dateModified));
 
 // Kategori → schema.org tipi
 const typeMap: Record<Listing["category"], string> = {
@@ -108,6 +144,8 @@ const listingSchema = {
   ...(offers ? { offers } : {}),
   provider: { "@id": `${site.url}/#organization` },
   broker: { "@id": `${site.url}/#organization` },
+  datePosted,
+  dateModified,
 };
 
 const priceText = priceDisplay(listing);
@@ -122,6 +160,100 @@ const breadcrumb = {
     { "@type": "ListItem", position: 3, name: listing.title, item: canonical },
   ],
 };
+
+// --- SSS (AEO) --------------------------------------------------------------
+// ⚠️ UYDURMA YASAK: sorular yalnızca listings.ts'teki GERÇEK alanlardan üretilir.
+// Hiçbir cevap veri dışına çıkmaz; veri yoksa o soru hiç oluşturulmaz.
+// Google FAQ zenginleştirmesi için içerik sayfada GÖRÜNÜR olmak zorunda —
+// aşağıdaki <section class="listing-faq"> aynı listeyi basar.
+const contactLine = `Çolakoğlu Emlak: ${site.contact.phoneDisplay} (${site.contact.mobileDisplay}).`;
+const kindText = `${statusLabel(listing.status).toLowerCase()} ${catShort.toLowerCase()}`;
+
+const faqItems: { q: string; a: string }[] = [];
+
+if (listing.closed) {
+  faqItems.push({
+    q: `${listing.title} hâlâ müsait mi?`,
+    a: `Hayır. Bu mülk Çolakoğlu Emlak aracılığıyla ${
+      listing.closed === "kiralandi" ? "kiralanmıştır" : "satılmıştır"
+    }. ${locText} bölgesindeki güncel portföy için ${contactLine}`,
+  });
+} else if (priceDisplay(listing)) {
+  faqItems.push({
+    q:
+      listing.status === "kiralik"
+        ? `${locText} bölgesindeki bu ${catShort.toLowerCase()} için aylık kira ne kadar?`
+        : `${locText} bölgesindeki bu ${catShort.toLowerCase()} için satış fiyatı ne kadar?`,
+    a: `${priceDisplay(listing)}${listing.priceNote ? ` (${listing.priceNote})` : ""}. Fiyat güncelliği için ${contactLine}`,
+  });
+} else {
+  faqItems.push({
+    q: `Bu ${catShort.toLowerCase()} için fiyat ne kadar?`,
+    a: `Bu ilanın fiyatı sitede yayınlanmıyor; güncel bilgi için ${contactLine}`,
+  });
+}
+
+faqItems.push({
+  q: `Bu ${kindText} tam olarak nerede?`,
+  a: `${locText} — Muğla.${
+    listing.specs.find((sp) => /konum/i.test(sp.label))
+      ? ` Konum: ${listing.specs.find((sp) => /konum/i.test(sp.label))!.value}.`
+      : ""
+  }`,
+});
+
+if (listing.specs.length > 0) {
+  faqItems.push({
+    q: `Bu ${kindText} hangi özelliklere sahip?`,
+    a: listing.specs.map((sp) => `${sp.label}: ${sp.value}`).join(". ") + ".",
+  });
+}
+
+if (listing.features.length > 0) {
+  faqItems.push({
+    q: `Bu ${kindText} ilanında öne çıkanlar neler?`,
+    a: listing.features.slice(0, 6).join(". ") + ".",
+  });
+}
+
+if (!listing.closed) {
+  faqItems.push({
+    q: `Bu ilanı yerinde nasıl görebilirim?`,
+    a: `Randevu için ${contactLine} Çolakoğlu Emlak ofisi ${site.address.street}, ${site.address.locality}/${site.address.region} adresindedir.`,
+  });
+}
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": `${canonical}#faq`,
+  mainEntity: faqItems.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
+// Sesli arama / asistan cevabı için okunacak bölge açıkça işaretlenir —
+// belirtilmezse Google hangi parçayı okuyacağını kendi tahmin eder.
+const webPageSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "@id": `${canonical}#webpage`,
+  url: canonical,
+  name: listing.title,
+  inLanguage: "tr-TR",
+  datePublished: datePosted,
+  dateModified,
+  isPartOf: { "@id": `${site.url}/#website` },
+  about: { "@id": `${canonical}#listing` },
+  primaryImageOfPage: { "@type": "ImageObject", url: cover, caption: listing.coverAlt },
+  breadcrumb: { "@id": `${canonical}#breadcrumb` },
+  speakable: {
+    "@type": "SpeakableSpecification",
+    cssSelector: ["h1", ".listing-detail-loc", ".listing-contact-price"],
+  },
+};
 ---
 
 <Layout
@@ -129,7 +261,7 @@ const breadcrumb = {
   description={description}
   canonical={canonical}
   ogImage={cover}
-  jsonLd={[breadcrumb, listingSchema]}
+  jsonLd={[breadcrumb, webPageSchema, listingSchema, faqSchema]}
 >
   <Header />
   <main id="main" class="listing-detail">
@@ -151,6 +283,10 @@ const breadcrumb = {
           </span>
           <span class="listing-detail-cat">{listing.categoryLabel}</span>
           <span class="listing-detail-loc">{locText}</span>
+          <span class="listing-detail-date">
+            {listing.updatedAt ? "Güncelleme" : "Yayın"}:{" "}
+            <time datetime={dateModified}>{dateHuman}</time>
+          </span>
         </div>
         <h1>{listing.title}</h1>
       </header>
@@ -265,6 +401,19 @@ const breadcrumb = {
               </section>
             )
           }
+
+          <!-- SSS — FAQPage schema ile birebir aynı içerik (Google görünürlük şartı) -->
+          <section class="listing-faq">
+            <h2>Bu ilan hakkında sık sorulanlar</h2>
+            <dl>
+              {faqItems.map((f) => (
+                <div class="listing-faq-item">
+                  <dt>{f.q}</dt>
+                  <dd>{f.a}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
         </div>
 
         <!-- Sağ: iletişim kartı (sticky) -->
@@ -432,10 +581,21 @@ const breadcrumb = {
   }
 
   .listing-detail-cat,
-  .listing-detail-loc {
+  .listing-detail-loc,
+  .listing-detail-date {
     font-size: 0.84rem;
     font-weight: 600;
     color: var(--color-ink-muted);
+  }
+
+  .listing-detail-date {
+    font-weight: 500;
+  }
+
+  .listing-detail-date::before {
+    content: "·";
+    margin-right: 0.75rem;
+    color: var(--color-line);
   }
 
   .listing-detail-loc::before {
@@ -568,13 +728,15 @@ const breadcrumb = {
   /* ── Özellik tablosu ── */
   .listing-specs,
   .listing-desc,
-  .listing-features {
+  .listing-features,
+  .listing-faq {
     margin-bottom: 2.25rem;
   }
 
   .listing-specs h2,
   .listing-desc h2,
-  .listing-features h2 {
+  .listing-features h2,
+  .listing-faq h2 {
     font-family: var(--font-serif);
     font-size: 1.3rem;
     font-weight: 700;
@@ -725,4 +887,29 @@ const breadcrumb = {
   .listing-back a:hover {
     text-decoration: underline;
   }
+
+  /* ── SSS (AEO — FAQPage schema ile aynı içerik) ── */
+  .listing-faq dl {
+    margin: 0;
+    border-top: 1px solid var(--color-line);
+  }
+
+  .listing-faq-item {
+    padding: 1.1rem 0;
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .listing-faq-item dt {
+    font-weight: 700;
+    color: var(--color-ink);
+    margin: 0 0 0.4rem;
+    line-height: 1.4;
+  }
+
+  .listing-faq-item dd {
+    margin: 0;
+    color: var(--color-ink-muted);
+    line-height: 1.65;
+  }
+
 </style>

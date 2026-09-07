@@ -178,15 +178,19 @@ const faqSchema = {
 ---
 
 <Layout
+  lang="en"
   title={title}
   description={description}
   canonical={canonical}
+  ogImageAlt="Çolakoğlu Real Estate — buying property in Turkey, step-by-step guide"
   jsonLd={[breadcrumb, article, howToSchema, faqSchema]}
 >
   <Fragment slot="head">
     <link rel="alternate" hreflang="en" href={canonical} />
     <link rel="alternate" hreflang="tr" href={trCanonical} />
-    <link rel="alternate" hreflang="x-default" href={canonical} />
+    {/* x-default = Turkish page: site is TR-primary and both cluster members
+        must declare the SAME x-default, otherwise Google discards the set. */}
+    <link rel="alternate" hreflang="x-default" href={trCanonical} />
   </Fragment>
   <Header />
   <main id="main" class="article-page">
