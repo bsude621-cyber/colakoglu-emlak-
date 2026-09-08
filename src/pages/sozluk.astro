@@ -3,12 +3,16 @@ import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { site } from "../data/config";
+import { contentModified } from "../lib/content-dates.mjs";
+import { webPageSchema } from "../lib/page-schema.mjs";
 
-const title = "Emlak Sözlüğü — Gayrimenkul Terimleri Açıklamalı | Çolakoğlu Emlak";
+const title = "Emlak Sözlüğü — Gayrimenkul Terimleri | Çolakoğlu Emlak";
 const description =
-  "Arsa, arazi, kat mülkiyeti, kat irtifakı, ifraz, tevhid, emsal, TAKS, iskan, DASK, SİT alanı — emlak alım satım sürecinde sık karşılaşılan terimlerin sade ve doğru açıklamaları. Çolakoğlu Emlak.";
+  "Arsa, kat mülkiyeti, kat irtifakı, ifraz, tevhid, emsal, TAKS, iskan, DASK, SİT — emlak alım satımında sık geçen terimlerin sade açıklamaları.";
 const canonical = `${site.url}/sozluk/`;
-const modified = new Date().toISOString();
+// Gerçek son değişiklik tarihi (git). Her build'de "bugün" yazan sahte
+// tazelik sinyali kaldırıldı.
+const modified = contentModified("src/pages/sozluk.astro");
 
 // Alfabetik sırada — anchor link'ler için slug ile
 const terms = [
@@ -176,19 +180,16 @@ const breadcrumb = {
   ],
 };
 
-const webPage = {
-  "@context": "https://schema.org",
-  "@type": "WebPage",
-  "@id": `${canonical}#webpage`,
-  url: canonical,
+const webPage = webPageSchema({
+  siteUrl: site.url,
+  canonical,
   name: title,
   description,
-  isPartOf: { "@id": `${site.url}/#website` },
-  inLanguage: "tr-TR",
   datePublished: "2026-05-25",
   dateModified: modified,
-  mainEntity: { "@id": `${canonical}#definedtermset` },
-};
+  mainEntityId: `${canonical}#definedtermset`,
+  speakable: ["h1", ".lead"],
+});
 ---
 
 <Layout

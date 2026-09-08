@@ -1,18 +1,22 @@
 ---
 import RehberArticle from "../../layouts/RehberArticle.astro";
+import { contentModified, contentModifiedText } from "../../lib/content-dates.mjs";
+
+const SOURCE = "src/pages/rehber/yabanci-edinim-pratik-rehber.astro";
 
 const props = {
-  pageTitle:
-    "Yabancı Yatırımcı İçin Türkiye'de Ev Alımı — 2026 Pratik Rehberi | Çolakoğlu Emlak",
+  // <title> SERP için kısa; h1 tam açıklayıcı hâliyle sayfada duruyor.
+  pageTitle: "Yabancıya Ev Alımı — 2026 Pratik Rehberi | Çolakoğlu Emlak",
   h1: "Yabancı Yatırımcı İçin Türkiye'de Ev Alımı — 2026 Pratik Rehberi",
   description:
-    "2644 sayılı Tapu Kanunu, askeri yasak bölge sorgusu, SPK değerleme raporu, döviz bozdurma (DAB), 400.000 USD vatandaşlık eşiği, 3 yıl tutma yükümlülüğü — uygulamada karşılaşılan 10 karar noktası ve 5 sık karıştırılan konu, Muğla odaklı pratik rehber.",
+    "2644 sayılı Tapu Kanunu, askeri bölge sorgusu, SPK değerleme, DAB ve 400.000 USD vatandaşlık eşiği — 10 karar noktasıyla Muğla odaklı 2026 rehberi.",
   slug: "yabanci-edinim-pratik-rehber",
   eyebrow: "Rehber · Yabancı Yatırımcı · 2026",
   breadcrumbName: "Yabancı Edinim — Pratik Rehber",
   published: "2026-05-25",
-  modified: new Date().toISOString(),
-  modifiedText: "25 Mayıs 2026",
+  // Gerçek son değişiklik tarihi (git) — sahte "bugün güncellendi" sinyali yok
+  modified: contentModified(SOURCE),
+  modifiedText: contentModifiedText(SOURCE),
   readTime: "~12 dk okuma",
   tldr:
     "Türkiye'de yabancı uyruklu gerçek kişiler 2644 sayılı Tapu Kanunu'nun 35. maddesi kapsamında 30 hektara kadar taşınmaz edinebilir; bir ilçedeki edinim o ilçenin özel mülkiyet alanının %10'unu aşamaz. Süreç: vergi numarası → askeri yasak bölge sorgusu → SPK yetkili değerleme raporu → Web-Tapu randevusu → tapu harcı (%4) → resmî senet imzası. Vatandaşlık başvurusu için 400.000 USD eşiği + döviz bozdurma (DAB) + 3 yıl tutma yükümlülüğü gerekir.",

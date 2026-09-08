@@ -4,6 +4,8 @@ import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import { regions, type Region } from "../../data/regions";
 import { site } from "../../data/config";
+import { webPageSchema } from "../../lib/page-schema.mjs";
+import { contentModified, contentModifiedText } from "../../lib/content-dates.mjs";
 
 export async function getStaticPaths() {
   return regions.map((r) => ({
@@ -111,6 +113,23 @@ const faqSchema = {
     acceptedAnswer: { "@type": "Answer", text: f.a },
   })),
 };
+
+// Bölge içerikleri regions.ts'ten gelir — tarihi de o dosyanın git geçmişi verir.
+const modified = contentModified("src/data/regions.ts");
+const modifiedText = contentModifiedText("src/data/regions.ts");
+
+const webPage = webPageSchema({
+  siteUrl: site.url,
+  canonical,
+  name: region.fullName,
+  description,
+  dateModified: modified,
+  image: `${site.url}${heroImage}`,
+  imageCaption: heroImageAlt,
+  mainEntityId: `${canonical}#place`,
+  // Sesli/AI cevabı H1 + kısa özetten okunsun
+  speakable: ["h1", ".region-tldr-text"],
+});
 ---
 
 <Layout
@@ -118,7 +137,7 @@ const faqSchema = {
   description={description}
   canonical={canonical}
   ogImage={`${site.url}${heroImage}`}
-  jsonLd={[breadcrumb, placePage, realEstateService, faqSchema]}
+  jsonLd={[breadcrumb, webPage, placePage, realEstateService, faqSchema]}
 >
   <Header />
   <main id="main" class="region-page">
@@ -140,7 +159,9 @@ const faqSchema = {
           <span aria-hidden="true">/</span>
           <span aria-current="page">{region.name}</span>
         </nav>
-        <p class="eyebrow region-hero-eyebrow">Muğla · Bölge Rehberi</p>
+        <p class="eyebrow region-hero-eyebrow">
+          Muğla · Bölge Rehberi · güncelleme <time datetime={modified}>{modifiedText}</time>
+        </p>
         <h1>{region.fullName}</h1>
         <p class="region-intro">{region.intro}</p>
         <div class="region-actions">

@@ -7,6 +7,7 @@ import Layout from "./Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { site } from "../data/config";
+import { webPageSchema } from "../lib/page-schema.mjs";
 
 export interface Props {
   pageTitle: string;
@@ -151,7 +152,26 @@ const howToSchema = howTo
     }
   : null;
 
-const allSchemas = [breadcrumb, article, faqSchema, ...(howToSchema ? [howToSchema] : [])];
+const webPage = webPageSchema({
+  siteUrl: site.url,
+  canonical,
+  name: h1,
+  description,
+  datePublished: published,
+  dateModified: modified,
+  image: `${site.url}/og-default.jpg`,
+  mainEntityId: `${canonical}#article`,
+  // Sesli/AI cevabı başlık + özet kutusundan okunsun — tahmine bırakılmaz
+  speakable: ["h1", ".tldr p:last-child"],
+});
+
+const allSchemas = [
+  breadcrumb,
+  webPage,
+  article,
+  faqSchema,
+  ...(howToSchema ? [howToSchema] : []),
+];
 ---
 
 <Layout

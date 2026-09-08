@@ -49,7 +49,18 @@ const title =
   (titleCandidates.find((c) => (c + brandSuffix).length <= 60) ??
     titleCandidates[titleCandidates.length - 1]) + brandSuffix;
 
-const description = listing.summary.slice(0, 155);
+// Meta description 140-160 hedefi. Kısa özetli ilanlarda SERP'te yarım satır
+// kalmasın diye gerçek verilerden (durum, tür, konum, fiyat) tamamlanır.
+const descBits = [listing.summary.trim()];
+if (descBits[0].length < 120) {
+  const priceBit = priceDisplay(listing);
+  descBits.push(
+    `${statusLabel(listing.status)} ${catShort.toLowerCase()}, ${locText}${
+      priceBit ? ` — ${priceBit}` : ""
+    }. Çolakoğlu Emlak: ${site.contact.phoneDisplay}`,
+  );
+}
+const description = descBits.join(" ").slice(0, 158);
 const cover = `${site.url}${listing.images[0]}`;
 
 // Tazelik sinyali — gerçek tarihler (uydurma güncelleme yapılmaz)
