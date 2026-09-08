@@ -5,6 +5,8 @@ import Footer from "../../../components/Footer.astro";
 import { neighborhoods, type Neighborhood } from "../../../data/neighborhoods";
 import { regions } from "../../../data/regions";
 import { site } from "../../../data/config";
+import { inPlace } from "../../../lib/turkish.mjs";
+import { describeWithSegments } from "../../../lib/seo-text.mjs";
 import { webPageSchema } from "../../../lib/page-schema.mjs";
 import { contentModified, contentModifiedText } from "../../../lib/content-dates.mjs";
 
@@ -20,8 +22,13 @@ interface Props {
 }
 
 const { neighborhood: nb } = Astro.props;
-const title = `${nb.fullName} | ${nb.parentName} | ${site.name}`;
-const description = nb.tldr.slice(0, 155);
+// İlçe sayfalarıyla aynı gerekçe: arama talebi "X emlak" tarafında.
+const title = `${nb.name} Emlak — ${nb.parentName}, Muğla | ${site.name}`;
+const description = describeWithSegments(
+  nb.segments,
+  (segs) =>
+    `${inPlace(nb.name)} (${nb.parentName}) satılık ve kiralık ${segs}. Muğla'nın ilk emlak ofisi, ${site.foundingYear}'ten beri. Ara: ${site.contact.phoneDisplay}`,
+);
 const canonical = `${site.url}/bolgeler/${nb.parent}/${nb.slug}/`;
 
 const parentRegion = regions.find((r) => r.slug === nb.parent);

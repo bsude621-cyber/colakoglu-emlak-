@@ -4,6 +4,8 @@ import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import { regions, type Region } from "../../data/regions";
 import { site } from "../../data/config";
+import { inPlace } from "../../lib/turkish.mjs";
+import { describeWithSegments } from "../../lib/seo-text.mjs";
 import { neighborhoods } from "../../data/neighborhoods";
 import { listings, statusLabel, priceDisplay } from "../../data/listings";
 import { webPageSchema } from "../../lib/page-schema.mjs";
@@ -21,8 +23,16 @@ interface Props {
 }
 
 const { region } = Astro.props;
-const title = `${region.fullName} | ${site.name}`;
-const description = region.intro.slice(0, 155);
+// GSC verisi: bu sayfa grubu 3-8. sırada ~270 gösterim alıp SIFIR tıklama
+// üretiyordu. Başlıkta arama talebi olan kelime ("emlak") yoktu ve açıklama
+// tıklama nedeni sunmuyordu. H1 "X gayrimenkul" olarak kalıyor; değişen
+// yalnızca SERP'te görünen iki alan.
+const title = `${region.name} Emlak — Satılık ve Kiralık | ${site.name}`;
+const description = describeWithSegments(
+  region.segments,
+  (segs) =>
+    `${inPlace(region.name)} satılık ve kiralık ${segs}. Muğla'nın ilk emlak ofisi, ${site.foundingYear}'ten beri. Ara: ${site.contact.phoneDisplay}`,
+);
 const canonical = `${site.url}/bolgeler/${region.slug}/`;
 
 const heroImage = `/images/ilce-${region.slug}.webp`;

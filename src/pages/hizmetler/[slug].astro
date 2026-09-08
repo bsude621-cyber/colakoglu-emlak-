@@ -18,8 +18,8 @@ interface Props {
 }
 
 const { service } = Astro.props;
-const title = `${service.name} | ${site.name}`;
-const description = service.tldr.slice(0, 155);
+const title = `${service.seoTitle} | ${site.name}`;
+const description = service.metaDescription;
 const canonical = `${site.url}/hizmetler/${service.slug}/`;
 
 const otherServices = services.filter((s) => s.slug !== service.slug);

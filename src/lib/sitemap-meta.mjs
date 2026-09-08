@@ -30,15 +30,8 @@ const RULES = [
   // Kurumsal
   { test: (p) => p === "/basin-kiti/" || p === "/vizyon-misyon/", priority: 0.5, changefreq: "yearly" },
 
-  // Site içi arama — sonuçlar istemci tarafında üretilir, düşük öncelik
-  { test: (p) => p === "/arama/", priority: 0.3, changefreq: "monthly" },
-
-  // Yasal metinler — nadiren değişir
-  {
-    test: (p) => ["/kvkk/", "/cerez-politikasi/", "/aydinlatma-metni/"].includes(p),
-    priority: 0.3,
-    changefreq: "yearly",
-  },
+  // NOT: /arama/ ve yasal metinler noindex; sitemap'e hiç girmedikleri için
+  // burada kuralları yok (bkz. NOINDEX + filter).
 ];
 
 /**
@@ -76,6 +69,17 @@ function lastCommitDate(file) {
 }
 
 let warnedNoGit = false;
+
+/** Sitemap'e girmeyecek yollar — noindex verilen sayfalar (çelişen sinyal olmasın). */
+const NOINDEX = ["/kvkk/", "/cerez-politikasi/", "/aydinlatma-metni/", "/arama/"];
+
+/**
+ * @astrojs/sitemap `filter` kancası. serialize()'dan undefined dönmek
+ * bu entegrasyonda sitemap'i boşaltıyor; çıkarma işi filter ile yapılır.
+ */
+export function filter(url) {
+  return !NOINDEX.includes(new URL(url).pathname);
+}
 
 /**
  * @astrojs/sitemap `serialize` kancası.

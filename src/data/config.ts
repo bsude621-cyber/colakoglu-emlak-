@@ -76,6 +76,11 @@ export const site = {
 export type Service = {
   slug: string;
   name: string;
+  // SERP'te görünen başlık ve açıklama. name/description sayfa içi kullanım için
+  // kalır; bunlar arama talebine göre ayrı yazılır (GSC: hizmet sayfaları
+  // gösterim alıp hiç tıklanmıyordu).
+  seoTitle: string;
+  metaDescription: string;
   icon: string;
   description: string;
   tldr: string;
@@ -87,6 +92,9 @@ export type Service = {
 export const services: Service[] = [
   {
     slug: "satis-kiralama",
+    seoTitle: "Muğla Emlak Satış ve Kiralama Danışmanlığı",
+    metaDescription:
+      "Muğla'da konut, villa, arsa ve ticari gayrimenkul satış-kiralama danışmanlığı. Değerleme, çoklu kanal yayın, tapu ve imar kontrolü dahil. Ara: 0252 212 50 15",
     name: "Satış & kiralama",
     icon: "◇",
     description:
@@ -127,6 +135,9 @@ export const services: Service[] = [
   },
   {
     slug: "yatirim-danismanligi",
+    seoTitle: "Muğla Gayrimenkul Yatırım Danışmanlığı",
+    metaDescription:
+      "Muğla'nın 13 ilçesinde bölge-segment eşleştirmesi, kira getiri projeksiyonu ve risk analiziyle gayrimenkul yatırım danışmanlığı. Ara: 0252 212 50 15",
     name: "Yatırım danışmanlığı",
     icon: "◎",
     description:
@@ -167,6 +178,9 @@ export const services: Service[] = [
   },
   {
     slug: "degerleme-raporlama",
+    seoTitle: "Muğla Gayrimenkul Değerleme ve Raporlama",
+    metaDescription:
+      "Emsal analiziyle piyasa ve kira değer aralığı tespiti; yabancı alımlarında SPK yetkili kuruluş koordinasyonu. Muğla genelinde hizmet. Ara: 0252 212 50 15",
     name: "Değerleme & raporlama",
     icon: "▫",
     description:
@@ -207,6 +221,9 @@ export const services: Service[] = [
   },
   {
     slug: "hukuki-eslik",
+    seoTitle: "Tapu ve İmar Sürecinde Hukuki Eşlik",
+    metaDescription:
+      "Web-Tapu randevusu, harç ve döner sermaye, satış vaadi, kat mülkiyeti ve yabancı edinim süreçlerinde Muğla'nın uzmanlarıyla koordineli eşlik. 0252 212 50 15",
     name: "Hukuki eşlik",
     icon: "◈",
     description:
