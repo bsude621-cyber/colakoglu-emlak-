@@ -85,7 +85,10 @@ const article = {
     familyName: "Ercan",
     jobTitle: site.owner.jobTitle,
     image: `${site.url}/images/ziya-ercan-portre.jpg`,
-    url: `${site.url}/hakkimizda/`,
+    // /hakkimizda/ diye bir sayfa yok — yazar varlığının url'i 404'e gidiyordu ve
+    // Google yazar entity'sini çözemiyordu (9 rehber sayfasında E-E-A-T kaybı).
+    // Gerçek hedef ana sayfadaki Hakkımızda bölümü.
+    url: `${site.url}/#hakkimizda`,
     description: `${site.experienceYears} yıllık tecrübeyle Muğla emlak sektörünün meslek odası başkanı, derneği başkanı ve TEMFED Genel Başkan Yardımcısı. Çolakoğlu Emlak'ın kurucusu.`,
     worksFor: { "@id": `${site.url}/#organization` },
     award: site.owner.titles,

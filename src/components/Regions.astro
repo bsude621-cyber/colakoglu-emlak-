@@ -3,6 +3,15 @@
 // Koyu zemin: ana sayfanın açık bölümleri arasında görsel ritim sağlar.
 // Görsel kartlar — ilçe fotoğrafı + segment etiketi; her kart ilçe sayfasına gider.
 import { regions } from "../data/regions";
+import { neighborhoods } from "../data/neighborhoods";
+
+// Mahalle sayfaları yalnızca kendi ilçe sayfasından link alıyordu; tek mahalleli
+// ilçelerde (Dalyan/Ortaca, Akyaka/Ula) bu tek bir bağlantı demek — Google'ın
+// "keşfedildi ama taranmadı" kovasına düşme sebebi. Ana sayfadan gövde içi link
+// vermek, footer linkine göre çok daha güçlü bir tarama ve sıralama sinyali.
+const nbByRegion = regions
+  .map((r) => ({ region: r, items: neighborhoods.filter((n) => n.parent === r.slug) }))
+  .filter((g) => g.items.length > 0);
 ---
 
 <section id="bolgeler" class="section section-regions">
@@ -38,10 +47,78 @@ import { regions } from "../data/regions";
         ))
       }
     </div>
+
+    <div class="regions-nb">
+      <p class="regions-nb-label">Mahalle bazlı bölge sayfaları</p>
+      <ul class="regions-nb-list">
+        {
+          nbByRegion.flatMap((g) =>
+            g.items.map((n) => (
+              <li>
+                <a href={`/bolgeler/${n.parent}/${n.slug}/`}>
+                  {n.name}
+                  <span class="regions-nb-parent">{g.region.name}</span>
+                </a>
+              </li>
+            )),
+          )
+        }
+      </ul>
+    </div>
   </div>
 </section>
 
 <style>
+  .regions-nb {
+    margin-top: 2.5rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+  }
+
+  .regions-nb-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-gold-bright);
+    margin: 0 0 1rem;
+  }
+
+  .regions-nb-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .regions-nb-list a {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.45rem;
+    padding: 0.5rem 0.9rem;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .regions-nb-list a:hover {
+    border-color: var(--color-gold-bright);
+    background: rgba(255, 255, 255, 0.06);
+    text-decoration: none;
+  }
+
+  .regions-nb-parent {
+    font-size: 0.76rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.55);
+  }
+
   .section-regions {
     background: var(--color-wood-deep, #1e2a34);
   }

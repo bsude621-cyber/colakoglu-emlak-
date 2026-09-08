@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build && pagefind --site dist",
-    "build:no-search": "astro build",
+    "build": "astro build && pagefind --site dist && node scripts/check-llms-coverage.mjs",
+    "build:no-search": "astro build && node scripts/check-llms-coverage.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },

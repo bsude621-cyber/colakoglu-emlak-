@@ -4,6 +4,8 @@ import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import { site } from "../../data/config";
 import { listings, statusLabel, closedLabel, priceDisplay, type Listing } from "../../data/listings";
+import { regions } from "../../data/regions";
+import { neighborhoods } from "../../data/neighborhoods";
 
 export async function getStaticPaths() {
   return listings.map((l) => ({
@@ -62,6 +64,27 @@ if (descBits[0].length < 120) {
 }
 const description = descBits.join(" ").slice(0, 158);
 const cover = `${site.url}${listing.images[0]}`;
+
+// İç link: ilan sayfası bulunduğu bölgeye ve aynı bölgedeki diğer ilanlara
+// link vermiyordu. Bu hem ilan sayfalarını link'siz bırakıyor hem de bölge
+// sayfalarının ("<ilçe> emlak" hedefi) tematik kümesini zayıflatıyordu.
+const listingRegion = regions.find((r) => r.name === listing.ilce);
+const listingNeighborhood = listing.mahalle
+  ? neighborhoods.find(
+      (n) => n.name === listing.mahalle && n.parent === listingRegion?.slug,
+    )
+  : undefined;
+// Aynı ilçedeki ilanlar arasında DÖNGÜSEL pencere: her ilan kendinden sonraki
+// 4 ilanı gösterir. Sabit .slice(0,4) kullanılsaydı hep aynı 4 ilan link alır,
+// listenin sonundaki ilanlar link'siz kalırdı (dizine girmeme sebebi).
+const sameIlce = listings.filter((l) => l.ilce === listing.ilce && !l.closed);
+const selfIdx = sameIlce.findIndex((l) => l.slug === listing.slug);
+const relatedListings =
+  selfIdx === -1
+    ? sameIlce.slice(0, 4)
+    : Array.from({ length: Math.min(4, sameIlce.length - 1) }, (_, i) =>
+        sameIlce[(selfIdx + 1 + i) % sameIlce.length],
+      );
 
 // Tazelik sinyali — gerçek tarihler (uydurma güncelleme yapılmaz)
 const datePosted = listing.datePosted;
@@ -486,9 +509,44 @@ const webPageSchema = {
         </aside>
       </div>
 
-      <div class="listing-back">
+      {
+        relatedListings.length > 0 && (
+          <section class="listing-related">
+            <h2>{listing.ilce}'deki diğer ilanlar</h2>
+            <div class="listing-related-grid">
+              {relatedListings.map((l) => (
+                <a href={`/ilanlar/${l.slug}/`} class="listing-related-card">
+                  <img
+                    src={l.images[0]}
+                    alt={l.coverAlt}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <span class="listing-related-title">{l.title}</span>
+                  <span class="listing-related-meta">
+                    {statusLabel(l.status)} · {l.categoryLabel}
+                    {priceDisplay(l) ? ` · ${priceDisplay(l)}` : ""}
+                  </span>
+                </a>
+              ))}
+            </div>
+          </section>
+        )
+      }
+
+      <nav class="listing-back" aria-label="İlgili sayfalar">
         <a href="/ilanlar/">← Tüm ilanlar</a>
-      </div>
+        {listingRegion && (
+          <a href={`/bolgeler/${listingRegion.slug}/`}>
+            {listingRegion.name} gayrimenkul piyasası
+          </a>
+        )}
+        {listingNeighborhood && (
+          <a href={`/bolgeler/${listingNeighborhood.parent}/${listingNeighborhood.slug}/`}>
+            {listingNeighborhood.name} gayrimenkul
+          </a>
+        )}
+      </nav>
     </div>
   </main>
   <Footer />
@@ -921,6 +979,74 @@ const webPageSchema = {
     margin: 0;
     color: var(--color-ink-muted);
     line-height: 1.65;
+  }
+
+
+  /* ── Aynı ilçedeki diğer ilanlar ── */
+  .listing-related {
+    margin-top: 3rem;
+    border-top: 1px solid var(--color-line);
+    padding-top: 2.25rem;
+  }
+
+  .listing-related h2 {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    color: var(--color-ink);
+    margin: 0 0 1.25rem;
+  }
+
+  .listing-related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+    gap: 1.1rem;
+  }
+
+  .listing-related-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    text-decoration: none;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    background: var(--color-surface);
+    transition: border-color 0.2s, transform 0.2s var(--ease-out);
+  }
+
+  .listing-related-card:hover {
+    border-color: var(--color-gold);
+    transform: translateY(-2px);
+    text-decoration: none;
+  }
+
+  .listing-related-card img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+  }
+
+  .listing-related-title {
+    padding: 0 0.9rem;
+    font-weight: 700;
+    font-size: 0.94rem;
+    line-height: 1.35;
+    color: var(--color-ink);
+  }
+
+  .listing-related-meta {
+    padding: 0 0.9rem 0.95rem;
+    font-size: 0.83rem;
+    color: var(--color-ink-muted);
+  }
+
+  .listing-back {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
   }
 
 </style>

@@ -4,6 +4,8 @@ import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import { regions, type Region } from "../../data/regions";
 import { site } from "../../data/config";
+import { neighborhoods } from "../../data/neighborhoods";
+import { listings, statusLabel, priceDisplay } from "../../data/listings";
 import { webPageSchema } from "../../lib/page-schema.mjs";
 import { contentModified, contentModifiedText } from "../../lib/content-dates.mjs";
 
@@ -113,6 +115,15 @@ const faqSchema = {
     acceptedAnswer: { "@type": "Answer", text: f.a },
   })),
 };
+
+// İç link akışı: ilçe sayfası mahallelerine ve o ilçedeki ilanlara link vermiyordu.
+// Mahalle sayfaları yalnızca kardeş mahalleden link alıyordu (Dalyan/Akyaka gibi
+// tek mahalleli ilçelerde sıfır) — Google bu sayfaları "keşfedildi ama taranmadı"
+// durumunda bırakıyordu. Aşağıdaki iki blok ilçeden aşağı PageRank akıtır.
+const regionNeighborhoods = neighborhoods.filter((n) => n.parent === region.slug);
+const regionListings = listings
+  .filter((l) => l.ilce === region.name && !l.closed)
+  .slice(0, 12);
 
 // Bölge içerikleri regions.ts'ten gelir — tarihi de o dosyanın git geçmişi verir.
 const modified = contentModified("src/data/regions.ts");
@@ -264,6 +275,59 @@ const webPage = webPageSchema({
         </div>
       </div>
     </section>
+
+    <!-- Bu ilçedeki mahalle sayfaları — hyperlocal küme -->
+    {
+      regionNeighborhoods.length > 0 && (
+        <section class="section region-subs">
+          <div class="container">
+            <header class="section-head">
+              <p class="eyebrow">{region.name} Mahalleleri</p>
+              <h2>{region.name}'de öne çıkan bölgeler</h2>
+            </header>
+            <div class="region-sub-grid">
+              {regionNeighborhoods.map((n) => (
+                <a href={`/bolgeler/${n.parent}/${n.slug}/`} class="region-sub-card">
+                  <span class="region-sub-name">{n.name} gayrimenkul</span>
+                  <span class="region-sub-text">{n.intro}</span>
+                  <span class="region-sub-go" aria-hidden="true">→</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      )
+    }
+
+    <!-- Bu ilçedeki açık portföy -->
+    {
+      regionListings.length > 0 && (
+        <section class="section region-listings">
+          <div class="container">
+            <header class="section-head">
+              <p class="eyebrow">Portföy</p>
+              <h2>{region.name}'deki güncel ilanlar</h2>
+            </header>
+            <div class="region-sub-grid">
+              {regionListings.map((l) => (
+                <a href={`/ilanlar/${l.slug}/`} class="region-sub-card">
+                  <span class="region-sub-name">{l.title}</span>
+                  <span class="region-sub-text">
+                    {statusLabel(l.status)} · {l.categoryLabel}
+                    {l.mahalle ? ` · ${l.mahalle}` : ""}
+                    {priceDisplay(l) ? ` · ${priceDisplay(l)}` : ""}
+                  </span>
+                  <span class="region-sub-go" aria-hidden="true">→</span>
+                </a>
+              ))}
+            </div>
+            <p class="region-listings-all">
+              <a href="/ilanlar/">Tüm ilanları görüntüle →</a>
+            </p>
+          </div>
+        </section>
+      )
+    }
 
     <!-- İlgili rehberler -->
     <section class="section">
@@ -708,4 +772,65 @@ const webPage = webPageSchema({
     line-height: 1.66;
     margin: 0 0 1.75rem;
   }
+
+  /* ── İlçe altı bağlantı kartları (mahalle + portföy) ── */
+  .region-sub-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+  }
+
+  .region-sub-card {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "name go" "text text";
+    gap: 0.35rem 1rem;
+    align-items: start;
+    padding: 1.25rem 1.4rem;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.2s var(--ease-out);
+  }
+
+  .region-sub-card:hover {
+    border-color: var(--color-gold);
+    transform: translateY(-2px);
+    text-decoration: none;
+  }
+
+  .region-sub-name {
+    grid-area: name;
+    font-weight: 700;
+    color: var(--color-ink);
+    line-height: 1.35;
+  }
+
+  .region-sub-go {
+    grid-area: go;
+    color: var(--color-gold);
+    font-size: 1.1rem;
+  }
+
+  .region-sub-text {
+    grid-area: text;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--color-ink-muted);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .region-listings-all {
+    margin: 1.5rem 0 0;
+  }
+
+  .region-listings-all a {
+    font-weight: 600;
+    color: var(--color-accent);
+  }
+
 </style>

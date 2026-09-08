@@ -308,6 +308,80 @@ export const neighborhoods: Neighborhood[] = [
       },
     ],
   },
+  {
+    slug: "dalyan",
+    parent: "ortaca",
+    parentName: "Ortaca",
+    name: "Dalyan",
+    fullName: "Dalyan gayrimenkul",
+    geo: { lat: 36.8339, lng: 28.6417 },
+    intro:
+      "Dalyan, Ortaca'ya bağlı, Köyceğiz Gölü ile İztuzu sahilini birbirine bağlayan kanal boyunca kurulmuş yerleşimdir. Köyceğiz-Dalyan Özel Çevre Koruma Bölgesi kapsamındadır; yapılaşma bu statünün getirdiği kurallara tabidir.",
+    tldr:
+      "Dalyan, Ortaca ilçesine bağlı ve Köyceğiz-Dalyan Özel Çevre Koruma Bölgesi içinde yer alan yerleşimdir. Bölgede yapılaşma doğayla uyumlu ve düşük yoğunluklu bir düzende, çok katlı yapıya izin vermeyen plan kararları çerçevesinde yürütülür. Kaya mezarları, İztuzu sahili ve kanal ekosistemi bölgenin gayrimenkul karakterini doğrudan belirler.",
+    detail:
+      "Dalyan, Köyceğiz Gölü'nü Akdeniz'e bağlayan kanalın iki yakasında gelişmiş, uluslararası tanınırlığı yüksek bir yerleşimdir. Bölgenin tamamı Köyceğiz-Dalyan Özel Çevre Koruma Bölgesi sınırları içindedir; bu statü kapsamındaki koruma amaçlı imar planları, yerleşim alanlarında doğayla uyumlu ve düşük yoğunluklu bir yapılaşma öngörür ve çok katlı yapılaşmaya izin vermez. Yerleşim dışında kalan göl kıyısı sazlık alanları, kumullar ve orman alanları koruma altındadır. İztuzu sahili deniz kaplumbağası (caretta caretta) üreme alanı olarak ayrı bir koruma rejimine tabidir. Pazar; müstakil ev ve bahçeli konut, sınırlı sayıda villa, pansiyon ve turizm amaçlı ticari gayrimenkul ile narenciye bahçesi niteliğindeki tarım arazilerinden oluşur. Bu bölgede satın alma öncesinde parselin koruma statüsü, ÖÇK planındaki fonksiyonu ve yapılaşma hakkı belediyeden alınacak imar durumu belgesiyle mutlaka doğrulanmalıdır; koruma bölgesinde imar durumu, ilçe genelindeki genel kabullerden farklı olabilir. Yabancı uyruklu alıcılarda 2644 sayılı Tapu Kanunu kapsamındaki askeri yasak bölge sorgusu ve SPK yetkili kuruluşça düzenlenen değerleme raporu süreci ayrıca yürütülür.",
+    segments: ["Müstakil ev", "Bahçeli konut", "Villa", "Pansiyon / turizm", "Narenciye bahçesi"],
+    faq: [
+      {
+        q: "Dalyan'da arsa veya ev alırken nelere dikkat edilmeli?",
+        a: "Dalyan, Köyceğiz-Dalyan Özel Çevre Koruma Bölgesi içindedir. Parselin bu kapsamdaki koruma amaçlı imar planındaki fonksiyonu, yapılaşma hakkı ve kat sınırı satın alma öncesinde belediyeden alınacak imar durumu belgesiyle doğrulanmalıdır. Koruma bölgesinde yapılaşma koşulları, ilçenin diğer bölgelerinden farklı işler.",
+      },
+      {
+        q: "Dalyan'da çok katlı bina yapılabilir mi?",
+        a: "Hayır. Köyceğiz-Dalyan Özel Çevre Koruma Bölgesi planlarında Dalyan yerleşimi için doğayla uyumlu, düşük yoğunluklu ve çok katlı yapıya izin vermeyen bir yapılaşma düzeni öngörülmüştür. Parsel bazındaki kesin kat ve emsal bilgisi imar durumu belgesinden okunur.",
+      },
+      {
+        q: "Dalyan Ortaca merkeze göre gayrimenkul açısından nasıl farklılaşıyor?",
+        a: "Ortaca merkez, ilçe hizmetlerinin ve yıl boyu yerleşik nüfusun yoğunlaştığı bölgedir. Dalyan ise turizm odaklı, uluslararası tanınırlığı yüksek ve koruma statüsü nedeniyle yapılaşma hakkı sınırlı bir yerleşimdir. İki bölge farklı yatırım profiline hizmet eder.",
+      },
+      {
+        q: "Dalyan'da yabancı uyruklu alıcı için süreç nasıl işliyor?",
+        a: "Süreç 2644 sayılı Tapu Kanunu'nun 35. maddesi kapsamında yürür: vergi numarası, askeri yasak bölge sorgusu, SPK yetkili kuruluşça düzenlenen taşınmaz değerleme raporu ve Web-Tapu randevusu adımlarını içerir. Koruma bölgesi statüsü nedeniyle imar durumu kontrolü bu bölgede ayrıca önem taşır.",
+      },
+      {
+        q: "Dalyan'da narenciye bahçesi yatırımı değerlendirilebilir mi?",
+        a: "Ortaca ve çevresi narenciye üretiminin yoğun olduğu bir bölgedir. Tarım vasıflı arazilerde 5403 sayılı Toprak Koruma ve Arazi Kullanımı Kanunu kapsamındaki bölünme ve kullanım kısıtları ile koruma bölgesi plan kararları birlikte değerlendirilmelidir. Tarımsal getiri hedefi ve yapılaşma beklentisi ayrı ayrı ele alınmalıdır.",
+      },
+    ],
+  },
+  {
+    slug: "akyaka",
+    parent: "ula",
+    parentName: "Ula",
+    name: "Akyaka",
+    fullName: "Akyaka gayrimenkul",
+    geo: { lat: 37.0553, lng: 28.3247 },
+    intro:
+      "Akyaka, Ula'ya bağlı, Gökova Körfezi'nin doğu ucunda yer alan sahil yerleşimidir. Gökova Özel Çevre Koruma Bölgesi kapsamındadır ve yapılaşmada Nail Çakırhan mimarisi olarak bilinen yerel ahşap mimari karakteri belirleyicidir.",
+    tldr:
+      "Akyaka, Ula ilçesine bağlı ve Gökova Özel Çevre Koruma Bölgesi içinde yer alan sahil yerleşimidir. Koruma amaçlı imar planları ve Ula-Muğla geleneksel mimarisinden türeyen Çakırhan mimarisi bölgedeki yapılaşmanın karakterini belirler. Akyaka 2010'dan bu yana Cittaslow (Sakin Şehir) unvanını taşır.",
+    detail:
+      "Akyaka, Gökova Körfezi'nin doğu ucunda, Bodrum ve Datça yarımadaları arasındaki körfezin iç kesiminde yer alır. Yerleşim ve kıyı alanları Gökova Özel Çevre Koruma Bölgesi kapsamındadır; bölgede koruma amaçlı nazım ve uygulama imar planları geçerlidir. Akyaka'nın yapı karakterini belirleyen Çakırhan mimarisi, Ula'nın eski ev örneklerinden yola çıkan ve Ağa Han Mimarlık Ödülü ile tanınan ahşap işçilikli yerel mimari geleneğidir; bölgedeki yapılaşmada bu karakterin korunması gözetilir. Akyaka 2010'dan bu yana Cittaslow (Sakin Şehir) ağının üyesidir. Pazar; müstakil ev ve bahçeli konut, butik pansiyon ve turizm amaçlı ticari gayrimenkul ile sınırlı sayıda daire segmentine yöneliktir. Azmak deltası, çam ormanı ve rüzgâr sporlarına elverişli kıyı yapısı bölgeyi yıl boyu talep gören bir yerleşim hâline getirir. Satın alma öncesinde parselin koruma amaçlı imar planındaki fonksiyonu, yapılaşma hakkı ve mimari koşullar belediyeden alınacak imar durumu belgesiyle doğrulanmalıdır.",
+    segments: ["Müstakil ev", "Bahçeli konut", "Butik pansiyon", "Daire", "Ticari gayrimenkul"],
+    faq: [
+      {
+        q: "Akyaka'da ev veya arsa alırken nelere dikkat edilmeli?",
+        a: "Akyaka, Gökova Özel Çevre Koruma Bölgesi içindedir ve koruma amaçlı imar planlarına tabidir. Parselin plandaki fonksiyonu, yapılaşma hakkı ve yerel mimari karaktere ilişkin koşullar satın alma öncesinde belediyeden alınacak imar durumu belgesiyle doğrulanmalıdır.",
+      },
+      {
+        q: "Akyaka'da istediğim tarzda ev yapabilir miyim?",
+        a: "Akyaka'nın yapı karakteri, Ula'nın geleneksel ev örneklerinden türeyen ve Çakırhan mimarisi olarak bilinen ahşap işçilikli yerel mimariyle tanımlanır; bölgedeki yapılaşmada bu karakterin korunması gözetilir. Parsel bazında geçerli mimari koşullar imar durumu belgesi ve ilgili plan hükümlerinden okunur.",
+      },
+      {
+        q: "Akyaka Ula merkeze göre gayrimenkul açısından nasıl farklılaşıyor?",
+        a: "Ula merkez, ilçe hizmetlerinin ve yerleşik nüfusun yoğunlaştığı iç kesimdir. Akyaka ise kıyıda yer alan, turizm talebi ve koruma statüsüyle şekillenen bir yerleşimdir. Yapılaşma hakkı, kullanım profili ve talep yapısı iki bölgede farklı işler.",
+      },
+      {
+        q: "Akyaka'nın Cittaslow unvanı gayrimenkulü nasıl etkiliyor?",
+        a: "Cittaslow (Sakin Şehir) unvanı, yerleşimin ölçeğini, yerel karakterini ve yaşam kalitesini koruma yönünde bir çerçeve sunar. Pratikte bu, yoğun ve büyük ölçekli yapılaşma yerine mevcut dokuyla uyumlu gelişmeyi öne çıkarır; yatırım değerlendirmesinde bu karakter dikkate alınmalıdır.",
+      },
+      {
+        q: "Akyaka'da yabancı uyruklu alıcı için süreç nasıl işliyor?",
+        a: "Süreç 2644 sayılı Tapu Kanunu'nun 35. maddesi kapsamında yürür: vergi numarası, askeri yasak bölge sorgusu, SPK yetkili kuruluşça düzenlenen taşınmaz değerleme raporu ve Web-Tapu randevusu adımlarını içerir. Koruma bölgesi statüsü nedeniyle imar durumu kontrolü bu bölgede ayrıca önem taşır.",
+      },
+    ],
+  },
 ];
 
 export const neighborhoodSlugs = neighborhoods.map(
