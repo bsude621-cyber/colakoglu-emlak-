@@ -11,6 +11,12 @@
 - Değerleme ve raporlama (piyasa karşılaştırmalı analiz)
 - Hukuki eşlik (tapu, imar, sözleşme süreçleri)
 
+Hizmet detay sayfaları:
+- [Satış & kiralama](https://colakogluemlak48.com/hizmetler/satis-kiralama/) — çoklu kanal yayın, değerleme, müzakere, tapu/kat mülkiyeti kontrolleri
+- [Yatırım danışmanlığı](https://colakogluemlak48.com/hizmetler/yatirim-danismanligi/) — bölge-segment eşleştirme, kira getiri projeksiyonu, risk profili
+- [Değerleme & raporlama](https://colakogluemlak48.com/hizmetler/degerleme-raporlama/) — emsal analizi, piyasa/kira değer aralığı, SPK yetkili kuruluş koordinasyonu
+- [Hukuki eşlik](https://colakogluemlak48.com/hizmetler/hukuki-eslik/) — Web-Tapu randevusu, harç, satış vaadi, yabancı edinim süreci
+
 ## Güncel İlanlar (portföy)
 Tüm ilanlar: https://colakogluemlak48.com/ilanlar/ — fiyatı belirtilmeyen ilanlar için telefon/WhatsApp ile iletişime geçilir.
 - [Karamehmet'te Tolga Sitesi'nde Teraslı 3+1 Kiralık Dubleks Daire](https://colakogluemlak48.com/ilanlar/karamehmet-tolga-sitesi-kiralik-dubleks/) — Menteşe Karamehmet Mah. Selçuk Çağlayan Sk. Tolga Sitesi (ada 1781 / parsel 1), 3+1 dubleks, üstü kapalı Muğla manzaralı çatı terası, 2 banyo (biri alaturka), radyatör + split klima, gömme dolap, açık pazar yerine yürüme mesafesi, mülk sahibi memur kiracı tercih ediyor — 30.000 ₺/ay
@@ -25,8 +31,14 @@ Tüm ilanlar: https://colakogluemlak48.com/ilanlar/ — fiyatı belirtilmeyen il
 - [Orhaniye'de Cadde Üzeri 2+1 60 m² Kiralık Büro](https://colakogluemlak48.com/ilanlar/orhaniye-ismet-catak-kiralik-buro/) — İsmet Çatak Cad. DenizBank üstü, 60 m², 2+1, radyatör + klima — 35.000 ₺/ay
 - [Karamehmet'te Avlulu 4 Odalı Eski Muğla Evi (145 m²)](https://colakogluemlak48.com/ilanlar/karamehmet-avlulu-eski-mugla-evi/) — Kara Mehmet Sk., 4 oda, ev + avlu 145 m², kemerli ahşap hayat, taş avlu, 70+ yıl — 6.000.000 ₺
 
+## Gerçekleşen işlemler (kapanmış ilanlar)
+Aşağıdaki mülkler Çolakoğlu Emlak aracılığıyla kiralanmış veya satılmıştır; sayfaları referans olarak yayında kalır, güncel teklif içermez.
+- [Emirbeyazıt'ta Eşyalı 1+1 Kiralık Daire](https://colakogluemlak48.com/ilanlar/emirbeyazit-esyali-1-1-kiralik-daire/) — Çolakoğlu Emlak aracılığıyla kiralandı
+- [Emirbeyazıt'ta Turgutreis Caddesi'nde Tek Odalı 40 m² Kiralık Büro](https://colakogluemlak48.com/ilanlar/emirbeyazit-turgutreis-kiralik-buro/) — Çolakoğlu Emlak aracılığıyla kiralandı
+
 ## Kurumsal
 - [Vizyon & Misyon](https://colakogluemlak48.com/vizyon-misyon/) — değerler, çalışma ilkeleri, danışmanlık anlayışı
+- [Basın Kiti](https://colakogluemlak48.com/basin-kiti/) — kurum künyesi, yönetici bilgileri, logo ve görsel varlıklar, basın yansımaları
 
 ## Rehber — gayrimenkul bilgi içerikleri
 - [Gayrimenkul Rehberi](https://colakogluemlak48.com/rehber/) — uzman rehber içerikleri hub'ı
@@ -37,6 +49,9 @@ Tüm ilanlar: https://colakogluemlak48.com/ilanlar/ — fiyatı belirtilmeyen il
 - [Kat Mülkiyeti Kanunu](https://colakogluemlak48.com/rehber/kat-mulkiyeti-kanunu/) — kat mülkiyeti–kat irtifakı farkı, arsa payı, yönetim planı, aidat
 - [Taşınmaz Ticareti Yönetmeliği](https://colakogluemlak48.com/rehber/tasinmaz-ticareti-yonetmeligi/) — emlak yetki belgesi, TTBS, yazılı sözleşme, hizmet bedeli
 - [Zeytinlik ve SİT Alanları](https://colakogluemlak48.com/rehber/zeytinlik-sit-alanlari/) — zeytinlik yapılaşma kısıtı, SİT türleri, koruma kurulu izni
+- [Yabancı Yatırımcı İçin Türkiye'de Ev Alımı — 2026 Pratik Rehberi](https://colakogluemlak48.com/rehber/yabanci-edinim-pratik-rehber/) — 2644 sayılı Tapu Kanunu, askeri yasak bölge sorgusu, SPK değerleme, DAB, 400.000 USD vatandaşlık eşiği
+- [Buying Property in Turkey as a Foreigner — 12-Step Guide (EN)](https://colakogluemlak48.com/en/buying-property-in-turkey/) — English-language guide: Law 2644, military zone clearance, SPK appraisal, title deed transfer, citizenship threshold
+- [Emlak Sözlüğü](https://colakogluemlak48.com/sozluk/) — arsa, arazi, kat mülkiyeti, kat irtifakı, ifraz, tevhid, emsal, TAKS, iskan, DASK, SİT alanı terimlerinin açıklamaları
 
 ## Operasyon alanı
 - [Bodrum](https://colakogluemlak48.com/bolgeler/bodrum/) — lüks villa, marina, yat turizmi, yabancı yatırımcı
@@ -52,6 +67,20 @@ Tüm ilanlar: https://colakogluemlak48.com/ilanlar/ — fiyatı belirtilmeyen il
 - [Yatağan](https://colakogluemlak48.com/bolgeler/yatagan/) — Stratonikeia antik kenti, görece uygun fiyatlı arsa pazarı
 - [Kavaklıdere](https://colakogluemlak48.com/bolgeler/kavaklidere/) — bağcılık, çam ormanı, sakin kırsal yaşam
 - [Seydikemer](https://colakogluemlak48.com/bolgeler/seydikemer/) — Eşen vadisi sera tarımı, Tlos antik kenti, Saklıkent
+
+## Mahalle bazlı bölge sayfaları (hyperlocal)
+- [Bitez — Bodrum](https://colakogluemlak48.com/bolgeler/bodrum/bitez/) — daire, müstakil ev, yazlık, arsa, site içi konut
+- [Gümüşlük — Bodrum](https://colakogluemlak48.com/bolgeler/bodrum/gumusluk/) — taş ev, restorasyon, butik konaklama, arsa (sınırlı)
+- [Türkbükü — Bodrum](https://colakogluemlak48.com/bolgeler/bodrum/turkbuku/) — lüks villa, yamaç villa, yazlık, butik konaklama
+- [Yalıkavak — Bodrum](https://colakogluemlak48.com/bolgeler/bodrum/yalikavak/) — lüks villa, marina daire, yazlık ev, butik ticari
+- [Ovacık — Fethiye](https://colakogluemlak48.com/bolgeler/fethiye/ovacik/) — villa, müstakil ev, site içi konut, yazlık
+- [Çalış — Fethiye](https://colakogluemlak48.com/bolgeler/fethiye/calis/) — daire, müstakil ev, villa, yazlık, site içi konut
+- [Selimiye — Marmaris](https://colakogluemlak48.com/bolgeler/marmaris/selimiye/) — taş ev, koy konutu, butik konaklama, arsa (sınırlı)
+- [İçmeler — Marmaris](https://colakogluemlak48.com/bolgeler/marmaris/icmeler/) — tatil dairesi, yazlık, site içi konut, villa
+- [Kötekli — Menteşe](https://colakogluemlak48.com/bolgeler/mentese/kotekli/) — öğrenci dairesi (1+1, 2+1), site içi konut, aile dairesi
+- [Saburhane — Menteşe](https://colakogluemlak48.com/bolgeler/mentese/saburhane/) — tescilli muğla evi, restorasyon projesi, butik konaklama
+- [Dalyan — Ortaca](https://colakogluemlak48.com/bolgeler/ortaca/dalyan/) — müstakil ev, bahçeli konut, villa, pansiyon / turizm, narenciye bahçesi
+- [Akyaka — Ula](https://colakogluemlak48.com/bolgeler/ula/akyaka/) — müstakil ev, bahçeli konut, butik pansiyon, daire, ticari gayrimenkul
 
 ## Otorite & üyelikler (doğrulanabilir kaynaklar)
 - **Muğla Emlak Danışmanları Esnaf Odası (MEDEO)** — Yönetim Kurulu Başkanı: Ziya Ercan. Resmi oda sitesi: http://medeo.org.tr — üye/firma kataloğu (ÜYELERİMİZ / FİRMALAR) ve yönetim kurulu listesi kamuya açıktır.

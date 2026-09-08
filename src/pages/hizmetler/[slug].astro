@@ -3,6 +3,8 @@ import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import { services, site, type Service } from "../../data/config";
+import { webPageSchema } from "../../lib/page-schema.mjs";
+import { contentModified, contentModifiedText } from "../../lib/content-dates.mjs";
 
 export async function getStaticPaths() {
   return services.map((s) => ({
@@ -16,8 +18,8 @@ interface Props {
 }
 
 const { service } = Astro.props;
-const title = `${service.name} | ${site.name}`;
-const description = service.tldr.slice(0, 155);
+const title = `${service.seoTitle} | ${site.name}`;
+const description = service.metaDescription;
 const canonical = `${site.url}/hizmetler/${service.slug}/`;
 
 const otherServices = services.filter((s) => s.slug !== service.slug);
@@ -60,13 +62,27 @@ const faqSchema = {
     acceptedAnswer: { "@type": "Answer", text: f.a },
   })),
 };
+
+// Hizmet metinleri config.ts'te tanımlı — tarih o dosyanın git geçmişinden.
+const modified = contentModified("src/data/config.ts");
+const modifiedText = contentModifiedText("src/data/config.ts");
+
+const webPage = webPageSchema({
+  siteUrl: site.url,
+  canonical,
+  name: service.name,
+  description,
+  dateModified: modified,
+  mainEntityId: `${canonical}#service`,
+  speakable: ["h1", ".service-description"],
+});
 ---
 
 <Layout
   title={title}
   description={description}
   canonical={canonical}
-  jsonLd={[breadcrumb, serviceSchema, faqSchema]}
+  jsonLd={[breadcrumb, webPage, serviceSchema, faqSchema]}
 >
   <Header />
   <main id="main" class="service-page">
@@ -79,7 +95,9 @@ const faqSchema = {
           <span aria-hidden="true">/</span>
           <span aria-current="page">{service.name}</span>
         </nav>
-        <p class="eyebrow">Hizmet</p>
+        <p class="eyebrow">
+          Hizmet · güncelleme <time datetime={modified}>{modifiedText}</time>
+        </p>
         <h1>{service.name}</h1>
         <p class="service-description">{service.description}</p>
         <div class="service-actions">

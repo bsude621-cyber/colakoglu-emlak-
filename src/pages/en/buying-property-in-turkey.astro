@@ -3,15 +3,24 @@ import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import { site } from "../../data/config";
+import { contentModified, contentModifiedText } from "../../lib/content-dates.mjs";
+import { webPageSchema } from "../../lib/page-schema.mjs";
 
-const title =
-  "Buying Property in Turkey as a Foreigner — A 12-Step Guide (2026) | Çolakoğlu Emlak";
+// <title> SERP için kısa; H1 tam açıklayıcı hâliyle sayfada duruyor.
+const title = "Buying Property in Turkey: 2026 Guide | Çolakoğlu Emlak";
 const description =
-  "Step-by-step guide for foreign nationals buying property in Turkey: legal framework (Law 2644), military zone clearance, SPK appraisal, title deed transfer, and citizenship by investment threshold. Updated for 2026. Çolakoğlu Real Estate, Muğla.";
+  "How foreigners buy property in Turkey: Law 2644, military zone clearance, SPK appraisal, title deed transfer and the citizenship threshold. 2026 guide.";
 const canonical = `${site.url}/en/buying-property-in-turkey/`;
 const trCanonical = `${site.url}/rehber/yabanciya-gayrimenkul-satisi/`;
 const published = "2026-05-25";
-const modified = new Date().toISOString();
+// Gerçek son değişiklik tarihi (git) — görünür metin de aynı tarihten üretilir,
+// datetime ile ekrandaki yazı birbirini tutmak zorunda.
+const SOURCE = "src/pages/en/buying-property-in-turkey.astro";
+const modified = contentModified(SOURCE);
+const modifiedText = contentModifiedText(SOURCE, "en-GB", {
+  month: "long",
+  year: "numeric",
+});
 
 const steps = [
   {
@@ -175,18 +184,35 @@ const faqSchema = {
     acceptedAnswer: { "@type": "Answer", text: item.a },
   })),
 };
+
+const webPage = webPageSchema({
+  siteUrl: site.url,
+  canonical,
+  name: "Buying Property in Turkey as a Foreigner — A 12-Step Guide (2026)",
+  description,
+  datePublished: published,
+  dateModified: modified,
+  image: `${site.url}/og-rehber-yabanciya-satis.jpg`,
+  mainEntityId: `${canonical}#article`,
+  lang: "en-GB",
+  speakable: ["h1", ".tldr p:last-child"],
+});
 ---
 
 <Layout
+  lang="en"
   title={title}
   description={description}
   canonical={canonical}
-  jsonLd={[breadcrumb, article, howToSchema, faqSchema]}
+  ogImageAlt="Çolakoğlu Real Estate — buying property in Turkey, step-by-step guide"
+  jsonLd={[breadcrumb, webPage, article, howToSchema, faqSchema]}
 >
   <Fragment slot="head">
     <link rel="alternate" hreflang="en" href={canonical} />
     <link rel="alternate" hreflang="tr" href={trCanonical} />
-    <link rel="alternate" hreflang="x-default" href={canonical} />
+    {/* x-default = Turkish page: site is TR-primary and both cluster members
+        must declare the SAME x-default, otherwise Google discards the set. */}
+    <link rel="alternate" hreflang="x-default" href={trCanonical} />
   </Fragment>
   <Header />
   <main id="main" class="article-page">
@@ -205,7 +231,7 @@ const faqSchema = {
           <p class="article-meta">
             <span>Çolakoğlu Real Estate</span>
             <span aria-hidden="true">·</span>
-            <time datetime={modified}>Updated May 2026</time>
+            <time datetime={modified}>Updated {modifiedText}</time>
             <span aria-hidden="true">·</span>
             <span>~10 min read</span>
           </p>

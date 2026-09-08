@@ -7,6 +7,9 @@ export interface Props {
   description?: string;
   canonical?: string;
   ogImage?: string;
+  ogImageAlt?: string;
+  /** Sayfa dili — İngilizce sayfalarda "en" geçilir (hreflang/og:locale ile tutarlı olmalı). */
+  lang?: "tr" | "en";
   noindex?: boolean;
   jsonLd?: object | object[];
 }
@@ -16,11 +19,17 @@ const {
   description = site.description,
   canonical = Astro.url.href,
   ogImage = `${site.url}/og-default.jpg`,
+  ogImageAlt = `${site.name} — ${site.subtitle}`,
+  lang = "tr",
   noindex = false,
   jsonLd,
 } = Astro.props;
 
 const titleFull = title.includes(site.name) ? title : `${title} | ${site.name}`;
+const ogLocale = lang === "en" ? "en_US" : site.locale;
+// OG kapak görselleri 1200x630 üretiliyor; ilan kapakları (webp) farklı oranda olabilir,
+// yanlış boyut bildirmemek için yalnızca .jpg OG'lerde width/height yayınlanır.
+const ogFixedSize = ogImage.endsWith(".jpg");
 const ldArray = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 
 // Cloudflare Web Analytics — cookieless, KVKK uyumlu. Token env'den gelirse aktif.
@@ -28,7 +37,7 @@ const cfBeacon = import.meta.env.PUBLIC_CF_BEACON_TOKEN;
 ---
 
 <!doctype html>
-<html lang="tr">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -38,21 +47,30 @@ const cfBeacon = import.meta.env.PUBLIC_CF_BEACON_TOKEN;
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
 
-    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    {/* follow: sayfa indeksten çıkar ama iç link grafiği kopmaz */}
+    {noindex && <meta name="robots" content="noindex, follow" />}
     {!noindex && <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />}
 
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content={site.locale} />
+    <meta property="og:locale" content={ogLocale} />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={titleFull} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={ogImageAlt} />
+    {ogFixedSize && (
+      <>
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+      </>
+    )}
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={titleFull} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
 
     <meta name="theme-color" content="#f5f0e8" />
     <meta name="format-detection" content="telephone=yes" />

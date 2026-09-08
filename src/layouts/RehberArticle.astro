@@ -7,6 +7,7 @@ import Layout from "./Layout.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { site } from "../data/config";
+import { webPageSchema } from "../lib/page-schema.mjs";
 
 export interface Props {
   pageTitle: string;
@@ -84,7 +85,10 @@ const article = {
     familyName: "Ercan",
     jobTitle: site.owner.jobTitle,
     image: `${site.url}/images/ziya-ercan-portre.jpg`,
-    url: `${site.url}/hakkimizda/`,
+    // /hakkimizda/ diye bir sayfa yok — yazar varlığının url'i 404'e gidiyordu ve
+    // Google yazar entity'sini çözemiyordu (9 rehber sayfasında E-E-A-T kaybı).
+    // Gerçek hedef ana sayfadaki Hakkımızda bölümü.
+    url: `${site.url}/#hakkimizda`,
     description: `${site.experienceYears} yıllık tecrübeyle Muğla emlak sektörünün meslek odası başkanı, derneği başkanı ve TEMFED Genel Başkan Yardımcısı. Çolakoğlu Emlak'ın kurucusu.`,
     worksFor: { "@id": `${site.url}/#organization` },
     award: site.owner.titles,
@@ -151,7 +155,26 @@ const howToSchema = howTo
     }
   : null;
 
-const allSchemas = [breadcrumb, article, faqSchema, ...(howToSchema ? [howToSchema] : [])];
+const webPage = webPageSchema({
+  siteUrl: site.url,
+  canonical,
+  name: h1,
+  description,
+  datePublished: published,
+  dateModified: modified,
+  image: `${site.url}/og-default.jpg`,
+  mainEntityId: `${canonical}#article`,
+  // Sesli/AI cevabı başlık + özet kutusundan okunsun — tahmine bırakılmaz
+  speakable: ["h1", ".tldr p:last-child"],
+});
+
+const allSchemas = [
+  breadcrumb,
+  webPage,
+  article,
+  faqSchema,
+  ...(howToSchema ? [howToSchema] : []),
+];
 ---
 
 <Layout

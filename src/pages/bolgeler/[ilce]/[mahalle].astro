@@ -5,6 +5,10 @@ import Footer from "../../../components/Footer.astro";
 import { neighborhoods, type Neighborhood } from "../../../data/neighborhoods";
 import { regions } from "../../../data/regions";
 import { site } from "../../../data/config";
+import { inPlace } from "../../../lib/turkish.mjs";
+import { describeWithSegments } from "../../../lib/seo-text.mjs";
+import { webPageSchema } from "../../../lib/page-schema.mjs";
+import { contentModified, contentModifiedText } from "../../../lib/content-dates.mjs";
 
 export async function getStaticPaths() {
   return neighborhoods.map((n) => ({
@@ -18,8 +22,13 @@ interface Props {
 }
 
 const { neighborhood: nb } = Astro.props;
-const title = `${nb.fullName} | ${nb.parentName} | ${site.name}`;
-const description = nb.tldr.slice(0, 155);
+// İlçe sayfalarıyla aynı gerekçe: arama talebi "X emlak" tarafında.
+const title = `${nb.name} Emlak — ${nb.parentName}, Muğla | ${site.name}`;
+const description = describeWithSegments(
+  nb.segments,
+  (segs) =>
+    `${inPlace(nb.name)} (${nb.parentName}) satılık ve kiralık ${segs}. Muğla'nın ilk emlak ofisi, ${site.foundingYear}'ten beri. Ara: ${site.contact.phoneDisplay}`,
+);
 const canonical = `${site.url}/bolgeler/${nb.parent}/${nb.slug}/`;
 
 const parentRegion = regions.find((r) => r.slug === nb.parent);
@@ -96,6 +105,22 @@ const faqSchema = {
     acceptedAnswer: { "@type": "Answer", text: f.a },
   })),
 };
+
+// Mahalle içerikleri neighborhoods.ts'ten gelir — tarih o dosyanın git geçmişinden.
+const modified = contentModified("src/data/neighborhoods.ts");
+const modifiedText = contentModifiedText("src/data/neighborhoods.ts");
+
+const webPage = webPageSchema({
+  siteUrl: site.url,
+  canonical,
+  name: nb.fullName,
+  description,
+  dateModified: modified,
+  image: `${site.url}${heroImage.split("?")[0]}`,
+  imageCaption: `${nb.name}, ${nb.parentName} — Muğla`,
+  mainEntityId: `${canonical}#place`,
+  speakable: ["h1", ".nb-intro"],
+});
 ---
 
 <Layout
@@ -103,7 +128,7 @@ const faqSchema = {
   description={description}
   canonical={canonical}
   ogImage={`${site.url}${heroImage.split("?")[0]}`}
-  jsonLd={[breadcrumb, placePage, serviceSchema, faqSchema]}
+  jsonLd={[breadcrumb, webPage, placePage, serviceSchema, faqSchema]}
 >
   <Header />
   <main id="main" class="nb-page">
@@ -120,7 +145,9 @@ const faqSchema = {
           <span aria-hidden="true">/</span>
           <span aria-current="page">{nb.name}</span>
         </nav>
-        <p class="eyebrow nb-hero-eyebrow">{nb.parentName} · Mahalle</p>
+        <p class="eyebrow nb-hero-eyebrow">
+          {nb.parentName} · Mahalle · güncelleme <time datetime={modified}>{modifiedText}</time>
+        </p>
         <h1>{nb.fullName}</h1>
         <p class="nb-intro">{nb.intro}</p>
         <div class="nb-actions">

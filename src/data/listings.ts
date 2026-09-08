@@ -43,6 +43,12 @@ export type Listing = {
   // mevcut olmayan teklife fiyat yazılmaz). Sayfa canlı kalır (404 üretme).
   closed?: "kiralandi" | "satildi";
   // Schema için opsiyonel yapısal alanlar (varsa doldur — RealEstateListing zenginleşir):
+  // İlanın siteye ilk konduğu tarih (YYYY-AA-GG). Schema datePosted + görünür
+  // "Yayın tarihi" için kullanılır — Google/AI tazelik sinyali. Uydurulmaz: gerçek tarih.
+  datePosted: string;
+  // İlanda esaslı güncelleme yapıldıysa (fiyat, durum, açıklama) buraya o günün tarihi
+  // yazılır. Boşsa dateModified = datePosted kabul edilir; sahte tazelik üretilmez.
+  updatedAt?: string;
   sizeM2?: number; // kapalı/yapı alanı m²
   landM2?: number; // arsa/parsel m²
   geo?: { lat: number; lng: number }; // ilanın yaklaşık konumu (opsiyonel)
@@ -51,6 +57,7 @@ export type Listing = {
 export const listings: Listing[] = [
   {
     slug: "karamehmet-tolga-sitesi-kiralik-dubleks",
+    datePosted: "2026-09-02",
     title: "Karamehmet'te Tolga Sitesi'nde Teraslı 3+1 Kiralık Dubleks Daire",
     status: "kiralik",
     category: "daire",
@@ -111,6 +118,7 @@ Daireyi yerinde görmek ve güncel bilgi almak için Çolakoğlu Emlak'ı arayab
   },
   {
     slug: "ortakoy-koyici-imarli-konut-arsasi",
+    datePosted: "2026-08-21",
     title: "Ortaköy'de 502 m² İmarlı Konut Arsası (2 Kat, Emsal 0,30)",
     status: "satilik",
     category: "arsa",
@@ -173,6 +181,7 @@ Arsayı yerinde görmek, imar ve tapu bilgilerini incelemek için Çolakoğlu Em
   },
   {
     slug: "emirbeyazit-koyuncuoglu-kiralik-dubleks",
+    datePosted: "2026-08-05",
     title: "Emirbeyazıt'ta Koyuncuoğlu Apartmanı'nda 3+1 Kiralık Dubleks Daire",
     status: "kiralik",
     category: "daire",
@@ -237,6 +246,7 @@ Daireyi yerinde görmek ve güncel bilgi almak için Çolakoğlu Emlak'ı arayab
   },
   {
     slug: "karamehmet-tascilar-bahceli-kargir-ev",
+    datePosted: "2026-07-21",
     title: "Karamehmet'te Taşçılar Sokak'ta Bahçeli Kârgir Ev (394 m²)",
     status: "satilik",
     category: "mustakil-ev",
@@ -290,6 +300,7 @@ Evi yerinde görmek ve güncel bilgi almak için Çolakoğlu Emlak'ı arayabilir
   },
   {
     slug: "emirbeyazit-esyali-1-1-kiralik-daire",
+    datePosted: "2026-06-11",
     title: "Emirbeyazıt'ta Eşyalı 1+1 Kiralık Daire",
     status: "kiralik",
     category: "daire",
@@ -343,6 +354,7 @@ Daireyi yerinde görmek ve güncel bilgi almak için Çolakoğlu Emlak'ı arayab
   },
   {
     slug: "emirbeyazit-hasan-ercan-kiralik-dukkan",
+    datePosted: "2026-06-11",
     title: "Emirbeyazıt'ta Cadde Üzeri 250 m² Kiralık Dükkan",
     status: "kiralik",
     category: "isyeri",
@@ -392,6 +404,7 @@ Kiralama koşulları ve dükkanı yerinde görme randevusu için Çolakoğlu Eml
   },
   {
     slug: "emirbeyazit-recai-gureli-kiralik-buro",
+    datePosted: "2026-06-11",
     title: "Emirbeyazıt'ta 2. Kat 2 Odalı 50 m² Kiralık Büro",
     status: "kiralik",
     category: "isyeri",
@@ -445,6 +458,7 @@ Bilgi almak ve büroyu yerinde görmek için Çolakoğlu Emlak'ı arayabilirsini
   },
   {
     slug: "emirbeyazit-kazim-caglar-satilik-3-1-daire",
+    datePosted: "2026-06-11",
     title: "Emirbeyazıt'ta 3+1 Satılık Daire (170 m², 2. Kat)",
     status: "satilik",
     category: "daire",
@@ -509,6 +523,7 @@ Daireyi yerinde görmek ve bilgi almak için Çolakoğlu Emlak'ı arayabilirsini
   },
   {
     slug: "emirbeyazit-kurkutcu-satilik-2-1-daire",
+    datePosted: "2026-06-11",
     title: "Emirbeyazıt'ta 2+1 Satılık Daire (80 m², 1. Kat)",
     status: "satilik",
     category: "daire",
@@ -567,6 +582,7 @@ Daireyi yerinde görmek ve bilgi almak için Çolakoğlu Emlak'ı arayabilirsini
   },
   {
     slug: "emirbeyazit-bakkaloglu-pasaji-satilik-buro",
+    datePosted: "2026-06-11",
     title: "Emirbeyazıt'ta 2 Odalı 52 m² Satılık Büro",
     status: "satilik",
     category: "isyeri",
@@ -610,6 +626,7 @@ Bilgi almak ve büroyu yerinde görmek için Çolakoğlu Emlak'ı arayabilirsini
   },
   {
     slug: "orhaniye-ismet-catak-kiralik-buro",
+    datePosted: "2026-06-20",
     title: "Orhaniye'de Cadde Üzeri 2+1 60 m² Kiralık Büro",
     status: "kiralik",
     category: "isyeri",
@@ -661,6 +678,7 @@ Büroyu yerinde görmek ve güncel bilgi almak için Çolakoğlu Emlak'ı arayab
   },
   {
     slug: "emirbeyazit-turgutreis-kiralik-buro",
+    datePosted: "2026-07-13",
     title: "Emirbeyazıt'ta Turgutreis Caddesi'nde Tek Odalı 40 m² Kiralık Büro",
     status: "kiralik",
     category: "isyeri",
@@ -708,6 +726,7 @@ Büroyu yerinde görmek ve güncel bilgi almak için Çolakoğlu Emlak'ı arayab
   },
   {
     slug: "karamehmet-avlulu-eski-mugla-evi",
+    datePosted: "2026-06-20",
     title: "Karamehmet'te Avlulu 4 Odalı Eski Muğla Evi (145 m²)",
     status: "satilik",
     category: "mustakil-ev",

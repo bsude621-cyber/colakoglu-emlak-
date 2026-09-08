@@ -6,15 +6,15 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro build && pagefind --site dist",
-    "build:no-search": "astro build",
+    "build": "astro build && pagefind --site dist && node scripts/check-llms-coverage.mjs",
+    "build:no-search": "astro build && node scripts/check-llms-coverage.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
     "@astrojs/cloudflare": "^12.5.0",
-    "@astrojs/sitemap": "^3.2.1",
-    "@fontsource-variable/archivo": "^5.2.8",
+    "@astrojs/sitemap": "^3.7.4",
+    "@fontsource-variable/archivo": "^5.3.0",
     "astro": "^5.6.1"
   },
   "devDependencies": {
