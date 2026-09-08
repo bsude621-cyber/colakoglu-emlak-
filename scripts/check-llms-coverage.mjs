@@ -34,10 +34,23 @@ const sitemapUrls = [
 
 const llms = readFileSync(LLMS, "utf8");
 
+/**
+ * URL llms.txt'te geçiyor mu?
+ * Düz `includes` yanlış pozitif verir: "/bolgeler/" dizesi "/bolgeler/bodrum/"
+ * içinde de bulunur. Bu yüzden URL'in ardından bir yol karakteri gelmemeli.
+ */
+function mentioned(url) {
+  const bare = url.replace(/\/$/, "");
+  const pattern = new RegExp(
+    `${bare.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}/?(?![\\w\\-/])`,
+  );
+  return pattern.test(llms);
+}
+
 const missing = sitemapUrls.filter((url) => {
   const path = url.replace(SITE, "") || "/";
   if (path === "/" || EXCLUDE.includes(path)) return false;
-  return !llms.includes(url) && !llms.includes(url.replace(/\/$/, ""));
+  return !mentioned(url);
 });
 
 if (missing.length === 0) {
