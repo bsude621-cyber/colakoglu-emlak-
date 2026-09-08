@@ -54,6 +54,7 @@ Aşağıdaki mülkler Çolakoğlu Emlak aracılığıyla kiralanmış veya satı
 - [Emlak Sözlüğü](https://colakogluemlak48.com/sozluk/) — arsa, arazi, kat mülkiyeti, kat irtifakı, ifraz, tevhid, emsal, TAKS, iskan, DASK, SİT alanı terimlerinin açıklamaları
 
 ## Operasyon alanı
+- [Muğla Emlak — 13 ilçede satılık ve kiralık](https://colakogluemlak48.com/bolgeler/) — il geneli bölge rehberi: 13 ilçenin gayrimenkul karakteri, segment karşılaştırma tablosu ve mahalle sayfalarına giriş
 - [Bodrum](https://colakogluemlak48.com/bolgeler/bodrum/) — lüks villa, marina, yat turizmi, yabancı yatırımcı
 - [Marmaris](https://colakogluemlak48.com/bolgeler/marmaris/) — tatil dairesi, yat liman çevresi
 - [Fethiye](https://colakogluemlak48.com/bolgeler/fethiye/) — yabancı yatırımcı, doğa turizmi
