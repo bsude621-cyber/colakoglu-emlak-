@@ -296,7 +296,7 @@ Evi yerinde görmek ve güncel bilgi almak için Çolakoğlu Emlak'ı arayabilir
       "Karamehmet Taşçılar Sokak'ta taş desenli taşlığı ve ahşap doğramalı üst katıyla iki katlı bahçeli kârgir ev",
     featured: true,
     landM2: 394,
-    price: 8500000,
+    price: 8000000,
   },
   {
     slug: "emirbeyazit-esyali-1-1-kiralik-daire",
