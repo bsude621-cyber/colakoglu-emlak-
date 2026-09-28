@@ -40,12 +40,39 @@ const brandSuffix = ` | ${site.name}`;
 
 // Başlık adayları en zenginden en sadeye. KONUM her zaman korunur —
 // yerel arama sinyalinin taşıyıcısı odur; kırpılacaksa önce m²/oda düşer.
-const titleCandidates = [
-  detailShort && `${statusLabel(listing.status)} ${catShort} ${detailShort} — ${locText}`,
-  detailShort && `${statusLabel(listing.status)} ${catShort} ${detailShort} — ${listing.ilce}`,
-  `${statusLabel(listing.status)} ${catShort} — ${locText}`,
-  `${statusLabel(listing.status)} ${catShort} — ${listing.ilce}`,
-].filter(Boolean) as string[];
+// Aynı mahallede aynı durum/tür/oda sayısına sahip ikinci bir ilan, yukarıdaki
+// formülle BİREBİR aynı <title>'ı üretir (örn. Emirbeyazıt'ta iki ayrı 2+1
+// satılık daire). Yinelenen başlık = iki sayfa aynı sorguda birbirini yer.
+// Çakışma varsa başlığa m² eklenir; konum yine korunur, 60 karakter aşılsa da
+// ayırt edicilik önce gelir — Google fazlasını zaten markadan kırpıyor.
+const titleKeyOf = (l: Listing) => {
+  const room = l.specs
+    .find((sp) => /^oda$/i.test(sp.label))
+    ?.value?.match(/^[0-9]+\+[0-9]+/)?.[0];
+  const area = l.sizeM2 ?? l.landM2;
+  return [
+    statusLabel(l.status),
+    l.categoryLabel.split(" / ")[0].trim(),
+    room ?? (area ? `${area} m²` : ""),
+    l.mahalle ? `${l.mahalle}, ${l.ilce}` : l.ilce,
+  ].join("|");
+};
+const titleCollides = listings.some(
+  (l) => l.slug !== listing.slug && titleKeyOf(l) === titleKeyOf(listing),
+);
+
+const titleCandidates = (
+  titleCollides && roomShort && areaShort
+    ? [
+        `${statusLabel(listing.status)} ${catShort} ${roomShort} ${areaShort} — ${locText}`,
+      ]
+    : [
+        detailShort && `${statusLabel(listing.status)} ${catShort} ${detailShort} — ${locText}`,
+        detailShort && `${statusLabel(listing.status)} ${catShort} ${detailShort} — ${listing.ilce}`,
+        `${statusLabel(listing.status)} ${catShort} — ${locText}`,
+        `${statusLabel(listing.status)} ${catShort} — ${listing.ilce}`,
+      ]
+).filter(Boolean) as string[];
 
 const title =
   (titleCandidates.find((c) => (c + brandSuffix).length <= 60) ??

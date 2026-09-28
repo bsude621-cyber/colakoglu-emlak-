@@ -56,6 +56,77 @@ export type Listing = {
 
 export const listings: Listing[] = [
   {
+    slug: "emirbeyazit-ertuglu-satilik-2-1-daire",
+    datePosted: "2026-09-28",
+    title:
+      "Emirbeyazıt'ta Ertuğlu Apartmanı'nda 2+1 Satılık Daire (90 m², Yüksek Zemin)",
+    status: "satilik",
+    category: "daire",
+    categoryLabel: "Daire",
+    ilce: "Menteşe",
+    mahalle: "Emirbeyazıt",
+    summary:
+      "Menteşe Emirbeyazıt'ta Hasan Ercan Caddesi üzerinde; 2+1, yüksek zemin, 90 m², doğalgaz kombi ısıtmalı, geniş salonlu ve balkonlu satılık daire.",
+    description: `Menteşe Emirbeyazıt Mahallesi, Hasan Ercan Caddesi'ndeki Ertuğlu Apartmanı'nda (No: 6) yer alan bu 2+1 daire yüksek zemin kattadır. 90 m²'lik dairede geniş bir salon, 2 oda, mutfak, banyo ve ayrı tuvalet bulunur.
+
+Salon apartmanın cadde cephesindedir ve iki ayrı pencere grubundan gün ışığı alır; salondan ve mutfaktan balkon çıkışı vardır. Kombinin bulunduğu balkon kapalıdır. Isıtma doğalgaz kombi ve radyatörlerle sağlanır. Odalardan birinde gömme dolap bulunur, pencereler PVC'dir.
+
+50 yıllık binanın dış cephesi bakımlıdır; apartman girişi mermer merdivenlidir. Daire şu anda boştur ve iç mekân, alıcının kendi zevkine göre yenilenmeye açıktır.
+
+Yüksek zemin katta ve cadde cephesinde olması nedeniyle konut dışında işyeri olarak da değerlendirilebilir.
+
+Daireyi yerinde görmek ve güncel bilgi almak için Çolakoğlu Emlak'ı arayabilirsiniz.`,
+    features: [
+      "2+1, geniş salon",
+      "90 m²",
+      "Yüksek zemin",
+      "Doğalgaz kombi + radyatör ısıtma",
+      "Salondan ve mutfaktan balkon çıkışı",
+      "Kombi balkonu kapalı",
+      "Odada gömme dolap",
+      "Banyo + ayrı tuvalet",
+      "PVC pencere",
+      "Dış cephesi bakımlı 50 yıllık bina",
+      "Cadde üzeri, dükkânların bulunduğu hareketli konum",
+      "İşyeri olarak da değerlendirilebilir",
+    ],
+    specs: [
+      { label: "Oda", value: "2+1" },
+      { label: "m²", value: "90" },
+      { label: "Bulunduğu Kat", value: "Yüksek zemin" },
+      { label: "Bina Yaşı", value: "50 yıllık" },
+      { label: "Isıtma", value: "Doğalgaz (kombi + radyatör)" },
+      { label: "Banyo", value: "Banyo + ayrı WC" },
+      { label: "Balkon", value: "Salondan ve mutfaktan balkon çıkışı" },
+      { label: "Durum", value: "Boş (kiracısız)" },
+    ],
+    images: [
+      "/images/ilanlar/emirbeyazit-ertuglu-satilik-2-1-daire/01.webp",
+      "/images/ilanlar/emirbeyazit-ertuglu-satilik-2-1-daire/02.webp",
+      "/images/ilanlar/emirbeyazit-ertuglu-satilik-2-1-daire/03.webp",
+      "/images/ilanlar/emirbeyazit-ertuglu-satilik-2-1-daire/04.webp",
+      "/images/ilanlar/emirbeyazit-ertuglu-satilik-2-1-daire/05.webp",
+      "/images/ilanlar/emirbeyazit-ertuglu-satilik-2-1-daire/06.webp",
+      "/images/ilanlar/emirbeyazit-ertuglu-satilik-2-1-daire/07.webp",
+      "/images/ilanlar/emirbeyazit-ertuglu-satilik-2-1-daire/08.webp",
+      "/images/ilanlar/emirbeyazit-ertuglu-satilik-2-1-daire/09.webp",
+      "/images/ilanlar/emirbeyazit-ertuglu-satilik-2-1-daire/10.webp",
+      "/images/ilanlar/emirbeyazit-ertuglu-satilik-2-1-daire/11.webp",
+      "/images/ilanlar/emirbeyazit-ertuglu-satilik-2-1-daire/12.webp",
+      "/images/ilanlar/emirbeyazit-ertuglu-satilik-2-1-daire/13.webp",
+      "/images/ilanlar/emirbeyazit-ertuglu-satilik-2-1-daire/14.webp",
+      "/images/ilanlar/emirbeyazit-ertuglu-satilik-2-1-daire/15.webp",
+      "/images/ilanlar/emirbeyazit-ertuglu-satilik-2-1-daire/16.webp",
+      "/images/ilanlar/emirbeyazit-ertuglu-satilik-2-1-daire/17.webp",
+      "/images/ilanlar/emirbeyazit-ertuglu-satilik-2-1-daire/18.webp",
+    ],
+    coverAlt:
+      "Emirbeyazıt Hasan Ercan Caddesi'ndeki Ertuğlu Apartmanı'nın cadde cephesi",
+    featured: true,
+    sizeM2: 90,
+    price: 6500000,
+  },
+  {
     slug: "karamehmet-tolga-sitesi-kiralik-dubleks",
     datePosted: "2026-09-02",
     title: "Karamehmet'te Tolga Sitesi'nde Teraslı 3+1 Kiralık Dubleks Daire",
