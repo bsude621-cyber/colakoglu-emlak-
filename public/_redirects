@@ -3,3 +3,7 @@
 
 # NOT: www → apex CF Pages _redirects ile YAPILAMAZ (yalnızca path eşler, host değil).
 # Çözüm: CF dashboard → Rules → Redirect Rules → www.colakogluemlak48.com/* → apex 301.
+
+# Yayından kaldırılan ilanlar → ilan listesine 301 (404 üretme, link/indeks değeri korunur)
+/ilanlar/emirbeyazit-kazim-caglar-satilik-3-1-daire /ilanlar/ 301
+/ilanlar/emirbeyazit-kazim-caglar-satilik-3-1-daire/ /ilanlar/ 301
