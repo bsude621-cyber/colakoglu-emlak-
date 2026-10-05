@@ -56,6 +56,76 @@ export type Listing = {
 
 export const listings: Listing[] = [
   {
+    slug: "kotekli-toki-1-etap-kiralik-3-1-daire",
+    datePosted: "2026-10-05",
+    title: "Kötekli'de 1. Etap TOKİ Konutları'nda 3+1 Kiralık Daire (116 m², 2. Kat)",
+    status: "kiralik",
+    category: "daire",
+    categoryLabel: "Daire",
+    ilce: "Menteşe",
+    mahalle: "Kötekli",
+    summary:
+      "Menteşe Kötekli'de 1. Etap TOKİ Konutları K2-2 blokta; 3+1, 116 m², 2. kat, kuzeydoğu cepheli, kombili ve balkonlu kiralık daire.",
+    description: `Menteşe Kötekli'deki 1. Etap TOKİ Konutları'nda, K2-2 blokta yer alan bu 3+1 daire 2. kattadır (daire no: 8). 116 m²'lik dairede salon, 3 oda, ayrı mutfak, banyo ve ayrı tuvalet bulunur; daire kuzeydoğu cephelidir.
+
+Salon laminat parke zeminlidir ve üç kanatlı penceresi vardır. Üç odanın zemini açık gri laminattır; hol ve mutfakta seramik vardır. Mutfakta ahşap görünümlü alt ve üst dolaplar ile uzun bir tezgâh bulunur, mutfaktan balkona çıkılır. Balkon ve odaların pencereleri çam ağaçlarına, balkon ayrıca karşıdaki dağlara bakar.
+
+Isıtma kombi ve radyatörlerle sağlanır; kombi mutfaktadır. Banyo duşakabinli ve dolaplı lavaboludur, lavabolu ayrı tuvalet alaturkadır. Pencereler PVC'dir. Blok girişinde merdivenin yanında rampa bulunur.
+
+Daire şu anda boştur. Yerinde görmek ve güncel bilgi almak için Çolakoğlu Emlak'ı arayabilirsiniz.`,
+    features: [
+      "3 oda + salon",
+      "116 m²",
+      "2. kat",
+      "Kuzeydoğu cepheli",
+      "Kombi + radyatör ısıtma",
+      "Mutfaktan çıkılan balkon, çam ve dağ manzarası",
+      "Ayrı mutfak, uzun tezgâh",
+      "Duşakabinli banyo + ayrı tuvalet",
+      "Salonda laminat parke, odalarda açık gri laminat",
+      "PVC pencere",
+      "Rampalı blok girişi",
+    ],
+    specs: [
+      { label: "Oda", value: "3+1" },
+      { label: "m²", value: "116" },
+      { label: "Bulunduğu Kat", value: "2. kat" },
+      { label: "Cephe", value: "Kuzeydoğu" },
+      { label: "Isıtma", value: "Kombi + radyatör" },
+      { label: "Banyo", value: "Duşakabinli banyo + ayrı WC (alaturka)" },
+      { label: "Balkon", value: "Mutfaktan çıkışlı" },
+      { label: "Konum", value: "Kötekli — 1. Etap TOKİ Konutları, K2-2 Blok, Daire 8" },
+      { label: "Durum", value: "Boş" },
+    ],
+    images: [
+      "/images/ilanlar/kotekli-toki-1-etap-kiralik-3-1-daire/01.webp",
+      "/images/ilanlar/kotekli-toki-1-etap-kiralik-3-1-daire/02.webp",
+      "/images/ilanlar/kotekli-toki-1-etap-kiralik-3-1-daire/03.webp",
+      "/images/ilanlar/kotekli-toki-1-etap-kiralik-3-1-daire/04.webp",
+      "/images/ilanlar/kotekli-toki-1-etap-kiralik-3-1-daire/05.webp",
+      "/images/ilanlar/kotekli-toki-1-etap-kiralik-3-1-daire/06.webp",
+      "/images/ilanlar/kotekli-toki-1-etap-kiralik-3-1-daire/07.webp",
+      "/images/ilanlar/kotekli-toki-1-etap-kiralik-3-1-daire/08.webp",
+      "/images/ilanlar/kotekli-toki-1-etap-kiralik-3-1-daire/09.webp",
+      "/images/ilanlar/kotekli-toki-1-etap-kiralik-3-1-daire/10.webp",
+      "/images/ilanlar/kotekli-toki-1-etap-kiralik-3-1-daire/11.webp",
+      "/images/ilanlar/kotekli-toki-1-etap-kiralik-3-1-daire/12.webp",
+      "/images/ilanlar/kotekli-toki-1-etap-kiralik-3-1-daire/13.webp",
+      "/images/ilanlar/kotekli-toki-1-etap-kiralik-3-1-daire/14.webp",
+      "/images/ilanlar/kotekli-toki-1-etap-kiralik-3-1-daire/15.webp",
+      "/images/ilanlar/kotekli-toki-1-etap-kiralik-3-1-daire/16.webp",
+      "/images/ilanlar/kotekli-toki-1-etap-kiralik-3-1-daire/17.webp",
+      "/images/ilanlar/kotekli-toki-1-etap-kiralik-3-1-daire/18.webp",
+      "/images/ilanlar/kotekli-toki-1-etap-kiralik-3-1-daire/19.webp",
+      "/images/ilanlar/kotekli-toki-1-etap-kiralik-3-1-daire/20.webp",
+    ],
+    coverAlt:
+      "Kötekli 1. Etap TOKİ Konutları'nda K2-2 bloğun dış cephesi — 3+1 kiralık daire",
+    featured: true,
+    sizeM2: 116,
+    price: 40000,
+  },
+  {
     slug: "emirbeyazit-ertuglu-satilik-2-1-daire",
     datePosted: "2026-09-28",
     title:
