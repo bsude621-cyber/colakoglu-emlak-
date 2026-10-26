@@ -7,3 +7,5 @@
 # Yayından kaldırılan ilanlar → ilan listesine 301 (404 üretme, link/indeks değeri korunur)
 /ilanlar/emirbeyazit-kazim-caglar-satilik-3-1-daire /ilanlar/ 301
 /ilanlar/emirbeyazit-kazim-caglar-satilik-3-1-daire/ /ilanlar/ 301
+/ilanlar/kotekli-toki-1-etap-kiralik-3-1-daire /ilanlar/ 301
+/ilanlar/kotekli-toki-1-etap-kiralik-3-1-daire/ /ilanlar/ 301
