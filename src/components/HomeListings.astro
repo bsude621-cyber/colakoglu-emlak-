@@ -1,9 +1,9 @@
 ---
 import { site } from "../data/config";
-import { listings, statusLabel, priceDisplay } from "../data/listings";
+import { listings, statusLabel, priceDisplay, LISTINGS_HIDDEN } from "../data/listings";
 
 // Ana sayfada öne çıkan aktif ilanlar (featured) — kiralanmış/satılmış gösterilmez
-const active = listings.filter((l) => !l.closed);
+const active = LISTINGS_HIDDEN ? [] : listings.filter((l) => !l.closed);
 const featured = active.filter((l) => l.featured);
 const shown = (featured.length > 0 ? featured : active).slice(0, 6);
 ---

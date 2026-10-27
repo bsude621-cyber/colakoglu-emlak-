@@ -3,7 +3,10 @@ import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import { site } from "../../data/config";
-import { listings, statusLabel, closedLabel, priceDisplay } from "../../data/listings";
+import { listings, statusLabel, closedLabel, priceDisplay, LISTINGS_HIDDEN } from "../../data/listings";
+
+// İlanlar gizliyken liste sayfası ana sayfaya yönlenir (asıl 302 _redirects'te)
+if (LISTINGS_HIDDEN) return Astro.redirect("/", 302);
 
 const title = `Muğla Satılık ve Kiralık İlanlar | ${site.name}`;
 const description =

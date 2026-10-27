@@ -7,7 +7,7 @@ import { site } from "../../data/config";
 import { inPlace } from "../../lib/turkish.mjs";
 import { describeWithSegments } from "../../lib/seo-text.mjs";
 import { neighborhoods } from "../../data/neighborhoods";
-import { listings, statusLabel, priceDisplay } from "../../data/listings";
+import { listings, statusLabel, priceDisplay, LISTINGS_HIDDEN } from "../../data/listings";
 import { webPageSchema } from "../../lib/page-schema.mjs";
 import { contentModified, contentModifiedText } from "../../lib/content-dates.mjs";
 
@@ -132,7 +132,7 @@ const faqSchema = {
 // durumunda bırakıyordu. Aşağıdaki iki blok ilçeden aşağı PageRank akıtır.
 const regionNeighborhoods = neighborhoods.filter((n) => n.parent === region.slug);
 const regionListings = listings
-  .filter((l) => l.ilce === region.name && !l.closed)
+  .filter((l) => !LISTINGS_HIDDEN && l.ilce === region.name && !l.closed)
   .slice(0, 12);
 
 // Bölge içerikleri regions.ts'ten gelir — tarihi de o dosyanın git geçmişi verir.

@@ -6,6 +6,7 @@
 // crawl bütçesine hiyerarşi vermez. Burada ikisi de gerçek veriye bağlanır.
 
 import { execFileSync } from "node:child_process";
+import { readFileSync } from "node:fs";
 
 /** URL yoluna göre priority + changefreq. En spesifik kural önce eşleşir. */
 const RULES = [
@@ -77,8 +78,15 @@ const NOINDEX = ["/kvkk/", "/cerez-politikasi/", "/aydinlatma-metni/", "/arama/"
  * @astrojs/sitemap `filter` kancası. serialize()'dan undefined dönmek
  * bu entegrasyonda sitemap'i boşaltıyor; çıkarma işi filter ile yapılır.
  */
+// listings.ts LISTINGS_HIDDEN açıkken /ilanlar/ yalnızca yönlendirme — sitemap'e girmez
+const LISTINGS_HIDDEN = /LISTINGS_HIDDEN\s*=\s*true/.test(
+  readFileSync(new URL("../data/listings.ts", import.meta.url), "utf8"),
+);
+
 export function filter(url) {
-  return !NOINDEX.includes(new URL(url).pathname);
+  const path = new URL(url).pathname;
+  if (LISTINGS_HIDDEN && path.startsWith("/ilanlar/")) return false;
+  return !NOINDEX.includes(path);
 }
 
 /**

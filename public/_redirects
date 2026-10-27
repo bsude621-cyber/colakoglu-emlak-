@@ -9,3 +9,9 @@
 /ilanlar/emirbeyazit-kazim-caglar-satilik-3-1-daire/ /ilanlar/ 301
 /ilanlar/kotekli-toki-1-etap-kiralik-3-1-daire /ilanlar/ 301
 /ilanlar/kotekli-toki-1-etap-kiralik-3-1-daire/ /ilanlar/ 301
+
+# GEÇİCİ (2026-10-27): ilanlar gizli → tüm /ilanlar/ yolları ana sayfaya 302.
+# İlanlar geri açılınca (listings.ts LISTINGS_HIDDEN = false) bu 3 satırı sil.
+/ilanlar / 302
+/ilanlar/ / 302
+/ilanlar/* / 302

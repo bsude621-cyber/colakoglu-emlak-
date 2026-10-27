@@ -54,6 +54,12 @@ export type Listing = {
   geo?: { lat: number; lng: number }; // ilanın yaklaşık konumu (opsiyonel)
 };
 
+// Geçici gizleme (2026-10-27, Sude): true iken ilan sayfaları üretilmez, menü/ana
+// sayfa/bölge sayfalarındaki ilan blokları kalkar, /ilanlar/* ana sayfaya 302
+// (public/_redirects). Veri burada durur — geri açmak için false yap + _redirects'teki
+// geçici satırları sil + llms.txt ilan bölümünü geri getir (git geçmişi).
+export const LISTINGS_HIDDEN = true;
+
 export const listings: Listing[] = [
   {
     slug: "emirbeyazit-ertuglu-satilik-2-1-daire",

@@ -3,11 +3,12 @@ import Layout from "../../layouts/Layout.astro";
 import Header from "../../components/Header.astro";
 import Footer from "../../components/Footer.astro";
 import { site } from "../../data/config";
-import { listings, statusLabel, closedLabel, priceDisplay, type Listing } from "../../data/listings";
+import { listings, statusLabel, closedLabel, priceDisplay, LISTINGS_HIDDEN, type Listing } from "../../data/listings";
 import { regions } from "../../data/regions";
 import { neighborhoods } from "../../data/neighborhoods";
 
 export async function getStaticPaths() {
+  if (LISTINGS_HIDDEN) return [];
   return listings.map((l) => ({
     params: { slug: l.slug },
     props: { listing: l },
